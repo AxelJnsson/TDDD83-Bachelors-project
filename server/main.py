@@ -8,6 +8,8 @@ app = Flask(__name__)
 
 #Thiss is the feature COMMENTS 
 #They should mess up dev
+#These are the dev changes
+#These should clash with feature
 
 @app.route('/hello')
 def hello():
