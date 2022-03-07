@@ -1,7 +1,7 @@
 $(document).ready(function(){
-    // Kod i detta block körs när dokumentet laddats klart.    
+    // Kod i detta block körs när dokumentet laddats klart.  
     alert("siddan laddades");
-    $(".container").html($("#view-about").html())  
+    $(".container").html($("#view-home").html())  
  });
 
 $('#aboutButton').click(function (e) {
