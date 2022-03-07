@@ -2,13 +2,20 @@
 from flask import Flask
 from flask import jsonify
 from flask import request
+from flask_bcrypt import Bcrypt
 from sqlalchemy import null
 from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from flask_jwt_extended import JWTManager
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 
 app = Flask(__name__, static_folder='../client', static_url_path='/')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = "svargissadstrang"
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+jwt = JWTManager(app)
 
 class Product(db.Model):
   id = db.Column(db.Integer, primary_key = True)
@@ -38,6 +45,21 @@ class User(db.Model):
   def serialize(self):
     return dict(id=self.id, email=self.email, name=self.name, is_admin=self.is_admin)
 
+  def set_password(self, password):
+    self.password_hash= bcrypt.generate_password_hash(password).decode('utf8')
+
+@app.route('/sign-up', methods= ['GET', 'POST'])
+def signup():
+
+  if request.method == 'POST':
+    new_user = request.get_json()
+    x = User(name = new_user["name"], mail = new_user["mail"])
+    x.set_password(new_user["password"])
+    db.session.add(x)
+    db.session.commit()
+    user_id = x.id
+    i = User.serialize(User.query.get_or_404(user_id))
+    return i
 
 @app.route('/product/<int:product_id>', methods = ['GET', 'DELETE', 'PUT'] )
 def product(product_id):
