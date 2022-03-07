@@ -31,12 +31,23 @@ class User(db.Model):
   email = db.Column(db.String, nullable = False)
   name = db.Column (db.String, nullable = False)
   is_admin =db.Column(db.Boolean, default = False, nullable = False)
+  password_hash = db.Column(db.String, nullable = False)
 
   def __repr__(self):
     return '<User {}: {} {}>'.format(self.id, self.email, self.name)
 
   def serialize(self):
     return dict(id=self.id, email=self.email, name=self.name, is_admin=self.is_admin)
+
+
+@app.route("/login", methods = ['POST'])
+def login():
+  if request.method == 'POST':
+    indata = request.get_json()
+    users = User.query.all()
+    for x in users:
+      if x.email == indata["email"]:
+        if bcrypt.check_password_hash(x.password_hash, indata)
 
 
 @app.route('/product/<int:product_id>', methods = ['GET', 'DELETE', 'PUT'] )
