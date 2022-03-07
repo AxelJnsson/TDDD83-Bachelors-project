@@ -37,7 +37,7 @@ class User(db.Model):
   id = db.Column(db.Integer, primary_key = True)
   email = db.Column(db.String, nullable = False)
   name = db.Column (db.String, nullable = False)
-  is_admin =db.Column(db.Boolean, default = False, nullable = False)
+  is_admin =db.Column(db.Boolean, default = False, nullable =True)
   password_hash = db.Column(db.String, nullable = False)
 
   def __repr__(self):
@@ -54,7 +54,7 @@ def signup():
 
   if request.method == 'POST':
     new_user = request.get_json()
-    x = User(name = new_user["name"], mail = new_user["mail"])
+    x = User(name = new_user["name"], email = new_user["email"])
     x.set_password(new_user["password"])
     db.session.add(x)
     db.session.commit()
@@ -62,14 +62,14 @@ def signup():
     i = User.serialize(User.query.get_or_404(user_id))
     return i
 
-@app.route("/login", methods = ['POST'])
-def login():
-  if request.method == 'POST':
-    indata = request.get_json()
-    users = User.query.all()
-    for x in users:
-      if x.email == indata["email"]:
-        if bcrypt.check_password_hash(x.password_hash, indata)
+# @app.route("/login", methods = ['POST'])
+# def login():
+#   if request.method == 'POST':
+#     indata = request.get_json()
+#     users = User.query.all()
+#     for x in users:
+#       if x.email == indata["email"]:
+#         if bcrypt.check_password_hash(x.password_hash, indata)
 
 
 @app.route('/product/<int:product_id>', methods = ['GET', 'DELETE', 'PUT'] )
