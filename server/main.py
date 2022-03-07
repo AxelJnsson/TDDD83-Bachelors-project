@@ -38,6 +38,7 @@ class User(db.Model):
   email = db.Column(db.String, nullable = False)
   name = db.Column (db.String, nullable = False)
   is_admin =db.Column(db.Boolean, default = False, nullable = False)
+  password_hash = db.Column(db.String, nullable = False)
 
   def __repr__(self):
     return '<User {}: {} {}>'.format(self.id, self.email, self.name)
@@ -60,6 +61,16 @@ def signup():
     user_id = x.id
     i = User.serialize(User.query.get_or_404(user_id))
     return i
+
+@app.route("/login", methods = ['POST'])
+def login():
+  if request.method == 'POST':
+    indata = request.get_json()
+    users = User.query.all()
+    for x in users:
+      if x.email == indata["email"]:
+        if bcrypt.check_password_hash(x.password_hash, indata)
+
 
 @app.route('/product/<int:product_id>', methods = ['GET', 'DELETE', 'PUT'] )
 def product(product_id):
