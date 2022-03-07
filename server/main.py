@@ -15,7 +15,7 @@ class Product(db.Model):
   brand = db.Column(db.String, nullable = False)
   model = db.Column(db.String, nullable = False)
   name = db.Column(db.String, nullable = False)
-  price = db.Column(db.Double, nullable = False)
+  price = db.Column(db.Integer, nullable = False)
   color = db.Column(db.String, nullable = False)
   year = db.Column(db.Integer, nullable = False)
 
@@ -32,7 +32,7 @@ class User(db.Model):
 
 @app.route('/product/<int:id>', methods = ['GET', 'DELETE', 'PUT'] )
 def product(product_id):
-    if request.method == 'GET'
+    if request.method == 'GET':
       print("hello")
 
 if __name__ == "__main__":
