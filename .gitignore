@@ -7,9 +7,5 @@ venv/
 # Database
 server/database.db
 
-<<<<<<< HEAD
 #DS
-=======
-#DS Store
->>>>>>> c38a64ef3c7b7ce768761ab204d21eaacc57e33a
 .DS_Store
