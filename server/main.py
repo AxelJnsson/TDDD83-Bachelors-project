@@ -108,7 +108,6 @@ def product(product_id):
       db.session.commit()
       return "OK", 200
 
-
 @app.route('/product', methods = ['GET', 'POST'] )
 def products():
   if request.method == 'GET':
