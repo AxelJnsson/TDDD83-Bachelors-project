@@ -47,55 +47,92 @@
         </div>
     </nav>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="annap">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div width= 200>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarNav"> 
-          <ul class="navbar-nav" id="instrumentCategories">
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="contactButton">Kontakt</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="registerButton">Registrera dig</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div width= 200>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNav"> 
+        <ul class="navbar-nav" id="instrumentCategories">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="contactButton">Kontakt</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" id="aboutButton">Om oss</a>
+            <a class="nav-link" href="#" id="registerButton">Registrera dig</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="logoutButton">Logga ut</a>
+          <a class="nav-link" href="#" id="aboutButton">Om oss</a>
       </li>
-          </ul>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="logoutButton">Logga ut</a>
+    </li>
+        </ul>
+      </div>
+  </nav>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Bootstrap Sidebar</h3>
         </div>
+
+        <ul class="list-unstyled components">
+            <p>Dummy Heading</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Home 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Portfolio</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
     </nav>
-<<<<<<< HEAD
-    <div class="container">
-    </div>
+
+</div>
+    
     <script id="view-home" type="text/html">
       <div id="qualitycontent">
           <h1>HEmma vy</h1>
       </div>
   </script>
-<script id="view-about" type="text/html">
-  <div class="container-fluid container pt-2" id="about">
-    <p>Här har ni massa information om oss:)</p>
+  <script id="view-about" type="text/html">
+    <div class="container-fluid container pt-2" id="about">
+      <p>Här har ni massa information om oss:)</p>
 
 
-=======
-<div class="container">
-
-</div>
-<script id="view-about" type="text/html">
-  <div class="container-fluid container pt-2" id="about">
-    <h1>Här har ni massa information om oss:)</h1>
->>>>>>> f15b6bbc10df02b02bb0216436260da664063b98
-  </div>
-</script>
-
-
-
-        
+    </div>
+  </script>
+   
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
