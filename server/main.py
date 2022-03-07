@@ -34,10 +34,29 @@ class User(db.Model):
 
 
 
-@app.route('/product/<int:id>', methods = ['GET', 'DELETE', 'PUT'] )
+@app.route('/product/<int:product_id>', methods = ['GET', 'DELETE', 'PUT'] )
 def product(product_id):
     if request.method == 'GET':
-      print("hello")
+      temp = Product.query.filter_by(id = product_id).first_or_404()
+    # if temp.user is not None:
+    #   return jsonify(temp.serialize2())
+    # else:
+      return jsonify(temp.serialize())
+    elif request.method == 'PUT':
+     product = request.get_json()
+     product["id"]= product_id
+     Product.query.filter_by(id = product_id).update(product)     
+     temp = Product.query.filter_by(id = product_id).first_or_404()
+    
+     
+     db.session.commit()
+     
+     return jsonify(temp.serialize())
+    elif request.method == 'DELETE':
+      new_product = Product.query.get_or_404(product_id)
+      db.session.delete(new_product)
+      db.session.commit()
+      return "OK", 200
 
 
 
