@@ -5,7 +5,8 @@ $(document).ready(function(){
  });
 
 $('#aboutButton').click(function (e) {
+    e.preventDefault();
     alert("siddan kom hit");
     $(".container").html($("#view-about").html())  
-   /* e.preventDefault(); */
+   
   });
