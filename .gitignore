@@ -7,5 +7,5 @@ venv/
 # Database
 server/database.db
 
-#DS Store
+#DS
 .DS_Store
