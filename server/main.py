@@ -49,6 +49,28 @@ class User(db.Model):
   def set_password(self, password):
     self.password_hash= bcrypt.generate_password_hash(password).decode('utf8')
 
+@app.route("/login", methods = ['POST'])
+def login():
+  if request.method == 'POST':
+    indata = request.get_json()
+    users = User.query.all()
+    for x in users:
+      if x.email == indata["email"]:
+        if bcrypt.check_password_hash(x.password_hash, indata['password']):
+          access_token = create_access_token(identity = x.serialize())
+          dict = {"token" : access_token,
+                  "user" : x.serialize() 
+                  }
+          return jsonify(dict), 200
+        else:
+          return "wrong password", 401
+    
+    return "no such user", 401
+
+@app.route("/")
+def client():
+  return app.send_static_file("client.html")
+
 @app.route('/sign-up', methods= ['GET', 'POST'])
 def signup():
 
@@ -61,16 +83,6 @@ def signup():
     user_id = x.id
     i = User.serialize(User.query.get_or_404(user_id))
     return i
-
-# @app.route("/login", methods = ['POST'])
-# def login():
-#   if request.method == 'POST':
-#     indata = request.get_json()
-#     users = User.query.all()
-#     for x in users:
-#       if x.email == indata["email"]:
-#         if bcrypt.check_password_hash(x.password_hash, indata)
-
 
 @app.route('/product/<int:product_id>', methods = ['GET', 'DELETE', 'PUT'] )
 def product(product_id):
