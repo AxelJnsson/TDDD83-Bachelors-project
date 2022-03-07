@@ -18,9 +18,13 @@ class Product(db.Model):
   price = db.Column(db.Integer, nullable = False)
   color = db.Column(db.String, nullable = False)
   year = db.Column(db.Integer, nullable = False)
+  type = db.Column(db.String, nullable = False)
+
+  def __repr__(self):
+    return '<Product {}: {} {} {} {} {} {} {}>'.format(self.id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type)
 
   def serialize(self):
-    return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year)
+    return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type)
 
 class User(db.Model):
   id = db.Column(db.Integer, primary_key = True)
@@ -35,8 +39,7 @@ def product(product_id):
     if request.method == 'GET':
       print("hello")
 
-if __name__ == "__main__":
-    app.run(port=5000)
+
 
 
 @app.route('/product', methods = ['GET', 'POST'] )
@@ -51,9 +54,14 @@ def products():
 
   elif request.method == 'POST':
     new_product = request.get_json()
-    x = Product(id = new_product["id"], brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"])
+    x = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"])
     db.session.add(x)
     db.session.commit()
     product_id = x.id
     i = Product.serialize(Product.query.get_or_404(product_id))
     return i
+
+  return "401"
+
+if __name__ == "__main__":
+  app.run(debug=True)
