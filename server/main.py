@@ -3,7 +3,7 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 from flask_bcrypt import Bcrypt
-from sqlalchemy import null
+#from sqlalchemy import null
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from flask_jwt_extended import JWTManager
@@ -67,9 +67,9 @@ def login():
     
     return "no such user", 401
 
-@app.route("/")
+@app.route('/')
 def client():
-  return app.send_static_file("client.html")
+  return app.send_static_file("home.html")
 
 @app.route('/sign-up', methods= ['GET', 'POST'])
 def signup():
