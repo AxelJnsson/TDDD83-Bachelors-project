@@ -9,11 +9,6 @@ $('#aboutButton').click(function (e) {
     e.preventDefault();
   });
 
-$('#basketButton').click(function (e) {
-  $("#basketModal").modal('toggle');
-  e.preventDefault();
-});
-
 $('#homeButton').click(function (e) {
   $(".container").html($("#view-home").html())  
     e.preventDefault();
