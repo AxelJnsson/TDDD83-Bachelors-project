@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+body{
+  min-height: 100vh;
+  background-color: rgb(67, 201, 174);
+}
+.navbar{
+  width: 100x;
+  height: 100vh;
+  position: fixed;
+  margin-left: 500px;
+  background-color: rgb(67, 107, 55);
+  transition: 0.4s;
+}
+.nav-link{
+  font-size: 1.25em;
+}
+.nav-link:active,
+.nav-link:focus,
+.nav-link:hover{
+  background-color: rgb(0, 0, 0);
+}
+
