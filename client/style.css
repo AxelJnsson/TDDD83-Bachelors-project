@@ -1,4 +1,18 @@
-.navbar.navbar-nav{
-text-align: center;
-background-color: red
+#navbarNav2 > ul > li{
+    display: inline-block;
+}
+
+
+/*#navbarNav ul li a {
+    color: #666;
+    display: block;
+    padding: 0 25px;
+    position: relative;
+    line-height: inherit;
+  }*/
+  #navbarNav2 > ul {
+    width: auto;
+    float: none;
+    display: inline-block;
+    margin: 0 auto;
 }
