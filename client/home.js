@@ -4,7 +4,15 @@ $(document).ready(function(){
  })
 
 $('#aboutButton').click(function (e) {
+   
+   
     $(".container").html($("#view-about").html())  
+   
+    e.preventDefault();
+  });
+
+  $('#gitarButton2').click(function (e) {   
+    $(".container").html($("#view-product").html())  
 
     e.preventDefault();
   });
