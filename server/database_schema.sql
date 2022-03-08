@@ -32,19 +32,23 @@ CREATE TABLE user (
 )
 
 CREATE TABLE used_product (
-    SELECT A.*, B.*
-    FROM product A, user B
-    WHERE B.user_id IN (SELECT seller
-                        FROM product
-                        WHERE new_or_not = '0';)
+    INSERT INTO used_product (
+        SELECT A.*, B.*
+        FROM product A, user B
+        WHERE B.user_id IN (SELECT seller
+                            FROM product
+                            WHERE new_or_not = '0';)
+    )
     DROP COLUMN A.seller
     DROP COLUMN A.new_or_not
 
 )
 
 CREATE TABLE new_product (
-    SELECT *
-    FROM product
-    WHERE new_or_not = '1';
-    DROP COLUMN new_or_not
+    INSERT INTO new_product (
+        SELECT *
+        FROM product
+        WHERE new_or_not = '1';
+        DROP COLUMN new_or_not
+    )
 )
