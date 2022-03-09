@@ -36,6 +36,8 @@ $('#closeProductModal').click(function (e) {
 
 function showProdInfo() {
   $("#productModal").modal('toggle');
+  $(".product-modal-body").append('<p>nånting nånting yamaha</p>');                    
+
 
 }
 
