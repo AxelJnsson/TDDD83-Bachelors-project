@@ -17,6 +17,7 @@ $('#aboutButton').click(function (e) {
     e.preventDefault();
   });
 
+
 $('#homeButton').click(function (e) {
   $(".container").html($("#view-home").html())  
     e.preventDefault();
