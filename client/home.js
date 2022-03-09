@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 $('#aboutButton').click(function (e) {
     $(".container").html($("#view-about").html())  
-
+      alert("JAAA")
     e.preventDefault();
   });
 
