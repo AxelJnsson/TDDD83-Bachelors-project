@@ -15,13 +15,11 @@ $('#xRegister').click(function (e) {
 
 $('#registerFinishButton').click(function (e) {
     e.preventDefault();
-    alert("hej");
-    var inputEmail = $("#inputEmailRegisterForm").val();
-    var inputPassword = ("#inputPasswordRegisterForm").val();
-    var inputCheckPassword = $("#inputPasswordAgainRegisterForm").val();
-    if (inputPassword == inputCheckPassword){
-        alert("Du försökte registrera dig med\n emailen: " + inputEmail+ "\noch lösenordet: "+inputCheckPassword+"\n Men asså det går inte att registrera sig än.");
-        $("#loginModal").modal('hide');
+    var registerEmail = $("#inputEmailRegisterForm").val();
+    var registerPassword = $("#inputPasswordRegisterForm").val();
+    var registerCheckPassword = $("#inputPasswordAgainRegisterForm").val();
+    if (registerPassword == registerCheckPassword){
+       alert("Du försökte registrera dig med \nEmailen: "+registerEmail+"\nLösenordet: "+ registerPassword);
     }else{
         alert("Dit andra lösenord matchar inte det första!")
     }
