@@ -23,3 +23,12 @@
   background-color:orange;
   border: black;
 }
+
+#cashRegisterArea{
+  background-color:rgb(240, 240, 240);
+  position: absolute;
+  left: 300px;
+  top: 250px;
+  height: 600px;
+  width: 800px;
+}
