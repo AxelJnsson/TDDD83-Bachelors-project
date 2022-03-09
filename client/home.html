@@ -1,4 +1,5 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -121,26 +122,26 @@
     <div class="container">
       <div class="row mb-3 gx-5" >
         <div class="col">
-          <div class="p-3 border bg-light" id="prod1" onclick="showProdInfo()">Produkt 1</div>      
+          <div class="p-3 border bg-light" id="prod1" onclick="showProdModal()">Produkt 1</div>      
         </div>
         
         <div class="col">
-          <div class="p-3 border bg-light" onclick="showProdInfo()">Produkt 2</div>  
+          <div class="p-3 border bg-light" onclick="showProdModal()">Produkt 2</div>  
         </div>
         <div class="col">
-          <div class="p-3 border bg-light" onclick="showProdInfo()">Produkt 3</div>  
+          <div class="p-3 border bg-light" onclick="showProdModal()">Produkt 3</div>  
         </div>
       </div>
       <div class="row mb-3 gx-5" >
         <div class="col">
-          <div class="p-3 border bg-light" onclick="showProdInfo()">Produkt 4</div>      
+          <div class="p-3 border bg-light" onclick="showProdModal()">Produkt 4</div>      
         </div>
         
         <div class="col">
-          <div class="p-3 border bg-light" onclick="showProdInfo()">Produkt 5</div>  
+          <div class="p-3 border bg-light" onclick="showProdModal()">Produkt 5</div>  
         </div>
         <div class="col">
-          <div class="p-3 border bg-light" onclick="showProdInfo()">Produkt 6</div>  
+          <div class="p-3 border bg-light" onclick="showProdModal()">Produkt 6</div>  
         </div>
       </div>
   </script>
@@ -217,15 +218,15 @@
         <div class="form-group">
           <label for="inputEmail">Email</label>
           <input class="form-control" id="inputEmailRegisterForm">
-      </div>
-      <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input class="form-control" id="inputPasswordRegisterForm">
-    </div>
-    <div class="form-group">
-      <label for="inputPassword">Password igen</label>
-      <input class="form-control" id="inputPasswordAgainRegisterForm">
-  </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword">Password</label>
+          <input class="form-control" id="inputPasswordRegisterForm">
+        </div>
+        <div class="form-group">
+           <label for="inputPassword">Password igen</label>
+          <input class="form-control" id="inputPasswordAgainRegisterForm">
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"  data-dismiss="modal" id="closeRegisterButton">Stäng</button>
@@ -236,22 +237,22 @@
 </div>
 
 
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Produktinformation</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xRegister">
-          <span aria-hidden="true">&times;</span>
-        </button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xProduct">
+            <span aria-hidden="true">&times;</span>
+          </button>
       </div>
 
       <div class="modal-body">
         <div class="product-modal-body">
-          <p>nånting nånting yamaha</p>
+
         </div>
       </div>
-    </div>
+    
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"  data-dismiss="modal" id="closeProductModal">Stäng</button>
       </div>
