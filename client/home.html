@@ -78,37 +78,85 @@
       </li>
           </ul>
         </div>
-    <div>
+   
     </nav>
       <!-- Sidebar -->
-      <div class="d-flex flex-column vh-100 flex-shrink-0 p-3 text-black bg-light" style="width: 250px; float:left"> <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-secondary text-decoration-none"> <svg class="bi me-2" width="40" height="32"> </svg> <span class="fs-4">INSTRUMENT</span> </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item"> 
-            <a href="#" class="nav-link active" aria-current="page"> <i class="fa fa-home"></i><span class="ms-2">Home</span> </a> </li>
-            <li class="nav-item has-submenu">
-             <a class="nav-link text-secondary" id= "gitarButton2" href="#">Piano</a> 
-             <ul class="submenu collapse">
-               <li><a class="nav-link" href="#">Ett</a></li>
-               <li><a class="nav-link" href="#">två</a></li>
-               <li><a class="nav-link" href="#">tre</a></li>
-            </ul>
-            </li>
-            <li> <a href="#" class="nav-link text-secondary"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
-            
-            <li> <a href="#" class="nav-link text-secondary"> <i class="fa fa-first-order"></i><span class="ms-2">My Orders</span> </a> </li>
-            <li> <a href="#" class="nav-link text-secondary"> <i class="fa fa-cog"></i><span class="ms-2">Settings</span> </a> </li>
-            <li> <a href="#" class="nav-link text-secondary"> <i class="fa fa-bookmark"></i><span class="ms-2">Bookmarks</span> </a> </li>
-        </ul>
-        <hr>
+      <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto bg-light">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black min-vh-100">
+                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline text-secondary">Filtrera mera!</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link align-middle px-0">
+                                <span class="ms-1 d-none d-sm-inline text-secondary">A</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                 <span class="ms-1 d-none d-sm-inline text-secondary">B</span> </a>
+                            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-info">Item</span> 1 </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-info">Item</span> 2 </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline text-secondary">C</span></a>
+                        </li>
+                        <li>
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                 <span class="ms-1 d-none d-sm-inline text-secondary">D</span></a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-info">Item</span> 1</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-info">Item</span> 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                 <span class="ms-1 d-none d-sm-inline text-secondary">E</span> </a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-info">Product</span> 1</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-info">Product</span> 2</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-info">Product</span> 3</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-info">Product</span> 4</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-0 align-middle">
+                                 <span class="ms-1 d-none d-sm-inline text-secondary">F</span> </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    
+                </div>
+            </div>
+            <div class="col py-3">
+                Content area...
+            </div>
+        </div>
     </div>
-    </div>
+   
     
-    <script id="view-home" type="text/html">
-      <div id="qualitycontent">
-          <h1>HEmma vy</h1>
-      </div>
-  </script>
+    
 
   <script id="view-about" type="text/html">
     <div class="center"  id="about">  
