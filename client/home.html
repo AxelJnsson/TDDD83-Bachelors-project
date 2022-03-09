@@ -64,7 +64,7 @@
         <div class="collapse navbar-collapse" id="navbarNav2"> 
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#" id="gitarButton">Gitar</a>
+              <a class="nav-link" href="#" id="gitarButton2">Gitarr</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" id="registerButton2">Piano & Keyboard</a>
@@ -114,36 +114,35 @@
         <p >Här har ni  information om oss:)</p>     
      
     </div>
-    <div class="container">
-      <div class="row mb-3 gx-5" >
-        <div class="col">
-          <div class="p-3 border bg-light">Produkt 1</div>      
-        </div>
-        
-        <div class="col">
-          <div class="p-3 border bg-light">Produkt 2</div>  
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">Produkt 3</div>  
-        </div>
-      </div>
-      <div class="row mb-3 gx-5" >
-        <div class="col">
-          <div class="p-3 border bg-light">Produkt 4</div>      
-        </div>
-        
-        <div class="col">
-          <div class="p-3 border bg-light">Produkt 5</div>  
-        </div>
-        <div class="col">
-          <div class="p-3 border bg-light">Produkt 6</div>  
-        </div>
-      </div>
 
   </script>
 
   <script id="view-product" type="text/html">
- 
+    <div class="container">
+      <div class="row mb-3 gx-5" >
+        <div class="col">
+          <div class="p-3 border bg-light" id="prod1" onclick="showProdInfo()">Produkt 1</div>      
+        </div>
+        
+        <div class="col">
+          <div class="p-3 border bg-light" onclick="showProdInfo()">Produkt 2</div>  
+        </div>
+        <div class="col">
+          <div class="p-3 border bg-light" onclick="showProdInfo()">Produkt 3</div>  
+        </div>
+      </div>
+      <div class="row mb-3 gx-5" >
+        <div class="col">
+          <div class="p-3 border bg-light" onclick="showProdInfo()">Produkt 4</div>      
+        </div>
+        
+        <div class="col">
+          <div class="p-3 border bg-light" onclick="showProdInfo()">Produkt 5</div>  
+        </div>
+        <div class="col">
+          <div class="p-3 border bg-light" onclick="showProdInfo()">Produkt 6</div>  
+        </div>
+      </div>
   </script>
   
 
@@ -236,8 +235,6 @@
   </div>
 </div>
 
-<button type="button" class="btn btn-secondary"  data-dismiss="modal" id="testModalButton" onclick="showProdInfo()">testar productinfo</button>
-
 
 <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -251,6 +248,7 @@
 
       <div class="modal-body">
         <div class="product-modal-body">
+          <p>nånting nånting yamaha</p>
         </div>
       </div>
     </div>

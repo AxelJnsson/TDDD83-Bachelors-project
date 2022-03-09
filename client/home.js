@@ -22,22 +22,4 @@ $('#homeButton').click(function (e) {
     e.preventDefault();
 });
 
-$('#prod1').click(function (e) {
-  $("#productModal").modal('toggle');
- 
-    e.preventDefault();
-});
-
-$('#closeProductModal').click(function (e) {
-  $("#productModal").modal('hide');
- 
-    e.preventDefault();
-});
-
-function showProdInfo() {
-  $("#productModal").modal('toggle');
-  $(".product-modal-body").append('<p>nånting nånting yamaha</p>');                    
-
-
-}
 
