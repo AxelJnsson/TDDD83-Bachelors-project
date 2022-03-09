@@ -35,6 +35,8 @@
   top: 250px;
   height: 600px;
   width: 1000px;
+  overflow: auto;
+
 }
 
 #scrollableItemsInBasket{
