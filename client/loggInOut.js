@@ -13,7 +13,7 @@ $('#xButtonLogin').click(function (e) {
   $("#loginModal").modal('hide');
 });
 
-$('#LoginButton').click(function (e) {
+$('#LoginFinishButton').click(function (e) {
     e.preventDefault();
     var inputEmail = $("#inputEmailForm").val();
     var inputPassword = $("#inputPasswordForm").val();
