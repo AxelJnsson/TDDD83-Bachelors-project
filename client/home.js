@@ -11,7 +11,7 @@ $('#aboutButton').click(function (e) {
     e.preventDefault();
   });
 
-  $('#gitarButton2').click(function (e) {   
+  $('#gitarButton').click(function (e) {   
     $(".container").html($("#view-product").html())  
 
     e.preventDefault();

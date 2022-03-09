@@ -12,13 +12,25 @@ body{
   padding: 0 5px 0 5px;
 }
 
-.center {
-  border: 5px solid #242327;
-  width: 800px;
-  margin-left: 500px;
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
   text-align: center;
-  display: inline-block
+  cursor: pointer;
+  width: 100px;
+  font-size: 18px;
 }
+.card button:hover {
+  opacity: 0.7;
+}
+
+
+
+
+
 .navbar{
   width: 100x;
   height: 100vh;
