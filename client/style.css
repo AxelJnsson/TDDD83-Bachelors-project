@@ -18,3 +18,8 @@
   border: black;
   border-radius: 4px;
 }
+
+#toPaymentButton{
+  background-color:orange;
+  border: black;
+}
