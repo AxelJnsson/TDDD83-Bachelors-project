@@ -78,37 +78,132 @@
       </li>
           </ul>
         </div>
-    <div>
+   
     </nav>
       <!-- Sidebar -->
-      <div class="d-flex flex-column vh-100 flex-shrink-0 p-3 text-black bg-light" style="width: 250px; float:left"> <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-secondary text-decoration-none"> <svg class="bi me-2" width="40" height="32"> </svg> <span class="fs-4">INSTRUMENT</span> </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item"> 
-            <a href="#" class="nav-link active" aria-current="page"> <i class="fa fa-home"></i><span class="ms-2">Home</span> </a> </li>
-            <li class="nav-item has-submenu">
-             <a class="nav-link text-secondary" id= "gitarButton2" href="#">Piano</a> 
-             <ul class="submenu collapse">
-               <li><a class="nav-link" href="#">Ett</a></li>
-               <li><a class="nav-link" href="#">två</a></li>
-               <li><a class="nav-link" href="#">tre</a></li>
-            </ul>
-            </li>
-            <li> <a href="#" class="nav-link text-secondary"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
-            
-            <li> <a href="#" class="nav-link text-secondary"> <i class="fa fa-first-order"></i><span class="ms-2">My Orders</span> </a> </li>
-            <li> <a href="#" class="nav-link text-secondary"> <i class="fa fa-cog"></i><span class="ms-2">Settings</span> </a> </li>
-            <li> <a href="#" class="nav-link text-secondary"> <i class="fa fa-bookmark"></i><span class="ms-2">Bookmarks</span> </a> </li>
-        </ul>
-        <hr>
+      <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto bg-light">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black min-vh-100">
+                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline text-secondary">Filtrera mera!</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column" id="sideMenu">
+                      <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0">
+                             <span class="text-secondary">A</span></a>
+                        <ul class="collapse nav flex-column" id="submenu1" data-bs-parent="#sideMenu">
+                            <li class="w-100">
+                              <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem1">
+                              <label class="form-check-label" for="defaultCheck1">
+                                <span class="text-info">Item 1</span>
+                              </label>
+                            </li>
+                            <li>
+                              <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem2">
+                              <label class="form-check-label" for="defaultCheck1">
+                                <span class="text-info">Item 2</span>
+                              </label>
+                            </li>
+                        </ul>
+                    </li>
+                        <li>
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0">
+                                 <span class="text-secondary">B</span> </a>
+                            <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#sideMenu">
+                                <li class="w-100">
+                                  <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem3">
+                                  <label class="form-check-label" for="defaultCheck1">
+                                    <span class="text-info">Item 3</span>
+                                  </label>
+                                </li>
+                                <li>
+                                  <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem4">
+                                  <label class="form-check-label" for="defaultCheck1">
+                                    <span class="text-info">Item 4</span>
+                                  </label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                          <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0">
+                               <span class="text-secondary">C</span></a>
+                          <ul class="collapse nav flex-column" id="submenu3" data-bs-parent="#sideMenu">
+                              <li class="w-100">
+                                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem5">
+                                <label class="form-check-label" for="defaultCheck1">
+                                  <span class="text-info">Item 5</span>
+                                </label>
+                              </li>
+                              <li>
+                                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem6">
+                                <label class="form-check-label" for="defaultCheck1">
+                                  <span class="text-info">Item 6</span>
+                                </label>
+                              </li>
+                          </ul>
+                      </li>
+                        <li>
+                            <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0">
+                                 <span class="text-secondary">D</span></a>
+                            <ul class="collapse nav flex-column" id="submenu4" data-bs-parent="#sideMenu">
+                                <li class="w-100">
+                                  <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem7">
+                                  <label class="form-check-label" for="defaultCheck1">
+                                    <span class="text-info">Item 7</span>
+                                  </label>
+                                </li>
+                                <li>
+                                  <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem8">
+                                  <label class="form-check-label" for="defaultCheck1">
+                                    <span class="text-info">Item 8</span>
+                                  </label>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0">
+                                 <span class="text-secondary">E</span> </a>
+                                <ul class="collapse nav flex-column" id="submenu5" data-bs-parent="#sideMenu">
+                                <li class="w-100">
+                                  <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem9">
+                                  <label class="form-check-label" for="defaultCheck1">
+                                    <span class="text-info">Item 9</span>
+                                  </label>
+                                </li>
+                                <li>
+                                  <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem10">
+                                  <label class="form-check-label" for="defaultCheck1">
+                                    <span class="text-info">Item 10</span>
+                                  </label>
+                                </li>
+                                <li>
+                                  <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem11">
+                                  <label class="form-check-label" for="defaultCheck1">
+                                    <span class="text-info">Item 11</span>
+                                  </label>
+                                </li>
+                                <li>
+                                  <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem12">
+                                  <label class="form-check-label" for="defaultCheck1">
+                                    <span class="text-info">Item 12</span>
+                                  </label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <hr>
+                    
+                </div>
+            </div>
+            <div class="col py-3">
+                Content area...
+            </div>
+        </div>
     </div>
-    </div>
+   
     
-    <script id="view-home" type="text/html">
-      <div id="qualitycontent">
-          <h1>HEmma vy</h1>
-      </div>
-  </script>
+    
 
   <script id="view-about" type="text/html">
     <div class="center"  id="about">  
