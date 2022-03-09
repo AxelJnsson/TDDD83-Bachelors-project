@@ -22,6 +22,10 @@
 #toPaymentButton{
   background-color:orange;
   border: black;
+  position: absolute;
+  top: 805px; 
+  left: 1090px;
+  width: 200;
 }
 
 #cashRegisterArea{
@@ -30,5 +34,18 @@
   left: 300px;
   top: 250px;
   height: 600px;
-  width: 800px;
+  width: 1000px;
+}
+
+#scrollableItemsInBasket{
+  background-color: lightgray;
+  position: absolute;
+  top: 280;
+  left: 320;
+  height: 550;
+  width: 300;
+  border-style:double;
+  border-radius: 7px;
+  border-color: rgb(0, 0, 0);
+  overflow: scroll;
 }
