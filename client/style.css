@@ -21,7 +21,7 @@
   border: 5px solid black;
 }
 
-#registerFinishButton, #LoginFinishButton{
+#registerFinishButton, #LoginFinishButton, #shopFromBasketButton{
   background-color:orange;
   border: black;
   border-radius: 4px;
