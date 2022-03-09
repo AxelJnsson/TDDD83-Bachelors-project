@@ -8,6 +8,17 @@ body{
   min-height: 100vh;
   background-color: rgb(67, 201, 174);
 }
+.box {
+  padding: 0 5px 0 5px;
+}
+
+.center {
+  border: 5px solid #242327;
+  width: 800px;
+  margin-left: 500px;
+  text-align: center;
+  display: inline-block
+}
 .navbar{
   width: 100x;
   height: 100vh;
