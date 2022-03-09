@@ -13,8 +13,22 @@
   border: 5px solid black;
 }
 
-#registerFinishButton, #LoginFinishButton{
+#registerFinishButton, #LoginFinishButton, #shopFromBasketButton{
   background-color:orange;
   border: black;
   border-radius: 4px;
+}
+
+#toPaymentButton{
+  background-color:orange;
+  border: black;
+}
+
+#cashRegisterArea{
+  background-color:rgb(240, 240, 240);
+  position: absolute;
+  left: 300px;
+  top: 250px;
+  height: 600px;
+  width: 800px;
 }
