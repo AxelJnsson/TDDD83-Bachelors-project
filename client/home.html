@@ -14,6 +14,7 @@
 </head>
 <body>
 
+    <!--Övre navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="logga.png" width="100" height="100" id="homeButton">
@@ -53,7 +54,7 @@
  
     </nav>
 
-    <!--"navbar navbar-expand-lg navbar-light bg-light"-->
+    <!--Nedre navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-white" id="annap">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -107,6 +108,7 @@
           <h1>HEmma vy</h1>
       </div>
   </script>
+
   <script id="view-about" type="text/html">
     <div class="center"  id="about">  
         <p >Här har ni  information om oss:)</p>     
@@ -115,7 +117,7 @@
     <div class="container">
       <div class="row mb-3 gx-5" >
         <div class="col">
-          <div class="p-3 border bg-light">Produkt 1</div>      
+          <div class="p-3 border bg-light"><a id="prod1" href="#" onclick="showProdInfo()">Produkt 1</a></div>
         </div>
         
         <div class="col">
@@ -146,7 +148,7 @@
 
  
 
-  </script>
+  
     
     <div class="modal fade" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -232,6 +234,31 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Produktinformation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xRegister">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p>Här visas produktinfo</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"  data-dismiss="modal" id="closeProductModal">Stäng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
     <div class="container">
     </div>
