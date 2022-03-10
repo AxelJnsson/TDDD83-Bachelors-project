@@ -14,7 +14,9 @@
 
   function showProdInfo() {
     //  alert("h");
-    $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");                
+    $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>"); 
+    $(".product-modal-body").append(createGuitar().name);
+           
     
   }
 
