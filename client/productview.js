@@ -34,15 +34,30 @@ function createGuitar(){
 
 
   function showProdInfo() {
+    $(".product-modal-body").empty();
+    $("#productcoltest").empty();
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>"); 
     let guitars = createGuitar();
-    alert("produktinfon skriver just nu ut flera olika beskrivningar pga test av loop")
+    alert(guitars.length);
+
+    //alert("produktinfon skriver just nu ut flera olika beskrivningar pga test av loop")
     for (let i=0; i < guitars.length; i++) {
 
-        $(".product-modal-body").append("<b>Produktnamn:</b> " + guitars[i].name + "<br> <b>Märke:</b> " + guitars[i].brand + "<br> <b>Modell:</b> " + guitars[i].model + "<br> <b>Pris:</b> " + guitars[i].price + "<br><br>");
+        //$(".product-modal-body").append("<b>Produktnamn:</b> " + guitars[i].name + "<br> <b>Märke:</b> " + guitars[i].brand + "<br> <b>Modell:</b> " + guitars[i].model + "<br> <b>Pris:</b> " + guitars[i].price + "<br><br>");
+
+        $("#productcoltest").append("<div class='card'><b>Produktnamn:</b> " + guitars[i].name + "<br> <b>Märke:</b> " + guitars[i].brand + "<br> <b>Modell:</b> " + guitars[i].model + "<br> <b>Pris:</b> " + guitars[i].price + "</div>" + "<button type='btn btn-primary' id='btnInfo' data-id='"+ i + "'>info</button>");
+
+       
 
     }
-           
+    $('#btnInfo').on("click" ,function (e) {
+        var prod_id = $(this).data('id');
+        //alert(prod_id);
+        
+        $("#productModal").modal('toggle');
+        $(".product-modal-body").append("<b>Produktnamn:</b> " + guitars[prod_id].name + "<br> <b>Märke:</b> " + guitars[prod_id].brand + "<br> <b>Modell:</b> " + guitars[prod_id].model + "<br> <b>Pris:</b> " + guitars[prod_id].price + "<br><br>");
+
+    });
     
   }
 
