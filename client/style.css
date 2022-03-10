@@ -42,10 +42,10 @@
 #scrollableItemsInBasket{
   background-color: lightgray;
   position: absolute;
-  top: 280;
-  left: 320;
-  height: 550;
-  width: 300;
+  top: 280px;
+  left: 320px;
+  height: 550px;
+  width: 300px;
   border-style:double;
   border-radius: 7px;
   border-color: rgb(0, 0, 0);
