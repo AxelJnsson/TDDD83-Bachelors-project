@@ -46,10 +46,10 @@ class User(db.Model):
 
 
   def __repr__(self):
-    return '<User {}: {} {}>'.format(self.id, self.email, self.name)
+    return '<User {}: {} {} {}>'.format(self.id, self.email, self.name, self.items)
 
   def serialize(self):
-    return dict(id=self.id, email=self.email, name=self.name, is_admin=self.is_admin)
+    return dict(id=self.id, email=self.email, name=self.name, is_admin=self.is_admin, items = self.items)
 
   def set_password(self, password):
     self.password_hash= bcrypt.generate_password_hash(password).decode('utf8')
