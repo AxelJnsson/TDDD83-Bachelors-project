@@ -1,13 +1,15 @@
 //funkar inte än att hämta in klasser från productclasses.js så lägger den här så länge  
   class Product {
-    constructor(id, brand, model, name, price, color, year){
+    constructor(id, brand, model, name, price, color, year, image, otherinfo){
         this.id = id;
         this.brand = brand;
         this.model = model;
         this.name = name;
         this.price = price;
         this.color = color;
-        this.year = year;     
+        this.year = year;
+        this.image = image;
+        this.otherinfo = otherinfo;     
 
     }
 }
@@ -15,9 +17,9 @@
 //testfunktion
 function createGuitar(){
 
-    let testgitarr = new Product("1", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000");
-    let testgitarr2 = new Product("2", "giiiiitarrrrrr", "m", "ännu bättre", "2000 rubel", "rosa", "2020" );
-    let testgitarr3 = new Product("3", "brand", "aaa", "carl bildt", "2000 rubel", "blå", "1995" );
+    let testgitarr = new Product("1", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
+    let testgitarr2 = new Product("2", "giiiiitarrrrrr", "m", "ännu bättre", "2000 rubel", "rosa", "2020", "gitarklassisk.jpg", "nyskick");
+    let testgitarr3 = new Product("3", "bäst", "aaa", "carl bildt", "2000 rubel", "blå", "1948","carlbildt.png", "mycket bra skick" );
 
 
     const gitarrer = [testgitarr, testgitarr2, testgitarr3];
@@ -35,27 +37,29 @@ function createGuitar(){
 
   function showProdInfo() {
     $(".product-modal-body").empty();
-    $("#productcoltest").empty();
+    $("#testrow").empty();
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>"); 
     let guitars = createGuitar();
-    alert(guitars.length);
+    //alert(guitars.length);
 
     //alert("produktinfon skriver just nu ut flera olika beskrivningar pga test av loop")
     for (let i=0; i < guitars.length; i++) {
 
         //$(".product-modal-body").append("<b>Produktnamn:</b> " + guitars[i].name + "<br> <b>Märke:</b> " + guitars[i].brand + "<br> <b>Modell:</b> " + guitars[i].model + "<br> <b>Pris:</b> " + guitars[i].price + "<br><br>");
 
-        $("#productcoltest").append("<div class='card'><b>Produktnamn:</b> " + guitars[i].name + "<br> <b>Märke:</b> " + guitars[i].brand + "<br> <b>Modell:</b> " + guitars[i].model + "<br> <b>Pris:</b> " + guitars[i].price + "</div>" + "<button type='btn btn-primary' id='btnInfo' data-id='"+ i + "'>info</button>");
+        $("#testrow").append("<div class='col-sm'><div class='card'><img class='card-img-top'  src='"+ guitars[i].image +"' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + guitars[i].name + "</h5><p class='card-text'> <b>Märke:</b> " + guitars[i].brand + "<br> <b>Modell:</b> " + guitars[i].model + "<br> <b>Pris:</b> " + guitars[i].price + "</p></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>info</button></div></div>");
 
        
 
     }
-    $('#btnInfo').on("click" ,function (e) {
+    $('.btnInfo').on("click" ,function (e) {
         var prod_id = $(this).data('id');
         //alert(prod_id);
-        
+        $(".product-modal-body").empty();
+
         $("#productModal").modal('toggle');
-        $(".product-modal-body").append("<b>Produktnamn:</b> " + guitars[prod_id].name + "<br> <b>Märke:</b> " + guitars[prod_id].brand + "<br> <b>Modell:</b> " + guitars[prod_id].model + "<br> <b>Pris:</b> " + guitars[prod_id].price + "<br><br>");
+        
+        $(".product-modal-body").append("<div class='card'><div class='card-body'><h5 class='card-title'> " + guitars[prod_id].name +  "</h5><br><img class='card-img-top' src='"+ guitars[prod_id].image +"'><br><p class='card-text'> <b>Märke:</b> " + guitars[prod_id].brand + "<br> <b>Modell:</b> " + guitars[prod_id].model + "<br> <b>Färg: </b>" + guitars[prod_id].color + "<br> <b>År: </b>" + guitars[prod_id].year + "<br> <b>Pris:</b> " + guitars[prod_id].price + "<br> <b>Övrig info:</b> " + guitars[prod_id].otherinfo + "</p></div></div>");
 
     });
     
