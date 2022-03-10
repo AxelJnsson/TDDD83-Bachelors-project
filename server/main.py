@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
+from faulthandler import dump_traceback_later
+from sqlite3 import OperationalError
 from flask import Flask
 from flask import jsonify
 from flask import request
 from flask_bcrypt import Bcrypt
+import sqlite3
+from sqlite3 import OperationalError
 #from sqlalchemy import null
+#from sqlalchemy import create_engine
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from sqlalchemy import engine_from_config
+
 
 app = Flask(__name__, static_folder='../client', static_url_path='/')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -16,6 +23,11 @@ app.config['JWT_SECRET_KEY'] = "svargissadstrang"
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
+
+
+
+
+
 
 class Product(db.Model):
   id = db.Column(db.Integer, primary_key = True)
@@ -34,20 +46,65 @@ class Product(db.Model):
     return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type)
 
 class User(db.Model):
-  id = db.Column(db.Integer, primary_key = True)
+  user_id = db.Column(db.Integer, primary_key = True)
   email = db.Column(db.String, nullable = False)
-  name = db.Column (db.String, nullable = False)
+  first_name = db.Column (db.String, nullable = False)
+  last_name = db.Column (db.String, nullable = False)
   is_admin =db.Column(db.Boolean, default = False, nullable =True)
   password_hash = db.Column(db.String, nullable = False)
 
   def __repr__(self):
-    return '<User {}: {} {}>'.format(self.id, self.email, self.name)
+    return '<User {}: {} {}>'.format(self.id, self.email, self.first_name, self.last_name)
 
   def serialize(self):
-    return dict(id=self.id, email=self.email, name=self.name, is_admin=self.is_admin)
+    return dict(user_id=self.user_id, email=self.email, first_name=self.first_name, last_name= self.last_name, is_admin=self.is_admin)
 
   def set_password(self, password):
     self.password_hash= bcrypt.generate_password_hash(password).decode('utf8')
+
+#Sets up database from database_schema
+def executeTestSQL(filename):
+  fd = open(filename, 'r')
+  sqlFile = fd.read()
+  fd.close()
+  i=0
+
+  sqlCommands = sqlFile.split(';')
+  
+  for command in sqlCommands:
+    try:
+      db.session.execute(command)
+    except OperationalError as msg:
+      print("Command skipped: ", msg)
+
+#Inserts data from database_insert
+def addTestSQL(filename):
+  fd = open(filename, 'r')
+  sqlFile = fd.read()
+  fd.close()
+  i=0
+
+  sqlCommands = sqlFile.split(';')
+  
+  for command in sqlCommands:
+    try:
+      db.session.execute(command)
+      db.session.commit()
+    except OperationalError as msg:
+      print("Command skipped: ", msg)
+
+#Does the setupdatabase routine
+def setUpDatabase():
+  #global connection 
+  #connection = db.session.connection()
+  executeTestSQL('database_schema.sqlite')
+  addTestSQL('database_insert.sqlite')
+  #connection.close()
+  print("Succesfully loaded database")
+setUpDatabase()
+
+
+
 
 @app.route("/login", methods = ['POST'])
 def login():
@@ -69,18 +126,20 @@ def login():
 
 @app.route('/')
 def client():
+  
   return app.send_static_file("home.html")
+  
 
 @app.route('/sign-up', methods= ['GET', 'POST'])
 def signup():
 
   if request.method == 'POST':
     new_user = request.get_json()
-    x = User(name = new_user["name"], email = new_user["email"])
+    x = User(first_name = new_user["first_name"], last_name = new_user["last_name"], email = new_user["email"])
     x.set_password(new_user["password"])
     db.session.add(x)
     db.session.commit()
-    user_id = x.id
+    user_id = x.user_id
     i = User.serialize(User.query.get_or_404(user_id))
     return i
 
