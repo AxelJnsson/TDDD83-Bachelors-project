@@ -16,21 +16,32 @@
 function createGuitar(){
 
     let testgitarr = new Product("1", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000");
+    let testgitarr2 = new Product("2", "giiiiitarrrrrr", "m", "ännu bättre", "2000 rubel", "rosa", "2020" );
+    let testgitarr3 = new Product("3", "brand", "aaa", "carl bildt", "2000 rubel", "blå", "1995" );
 
-    return testgitarr;
+
+    const gitarrer = [testgitarr, testgitarr2, testgitarr3];
+    return gitarrer;
 }
 
 
   function showProdModal(){
-    $("#productModal").modal('toggle',{backdrop: 'static', keyboard: false});
+    $("#productModal").modal('toggle');
+    //$("#productModal").data('bs.modal')._config.backdrop = 'static'; 
+
       showProdInfo();
   }
 
 
   function showProdInfo() {
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>"); 
-    createGuitar();
-    $(".product-modal-body").append("<b>Produktnamn:</b> " + createGuitar().name + "<br> <b>Märke:</b> " + createGuitar().brand + "<br> <b>Modell:</b> " + createGuitar().model + "<br> <b>Pris:</b> " + createGuitar().price);
+    let guitars = createGuitar();
+    alert("produktinfon skriver just nu ut flera olika beskrivningar pga test av loop")
+    for (let i=0; i < guitars.length; i++) {
+
+        $(".product-modal-body").append("<b>Produktnamn:</b> " + guitars[i].name + "<br> <b>Märke:</b> " + guitars[i].brand + "<br> <b>Modell:</b> " + guitars[i].model + "<br> <b>Pris:</b> " + guitars[i].price + "<br><br>");
+
+    }
            
     
   }
