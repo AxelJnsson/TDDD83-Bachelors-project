@@ -32,23 +32,49 @@ CREATE TABLE user (
 )
 
 CREATE TABLE used_product (
-    INSERT INTO used_product (
-        SELECT A.*, B.*
+    product_id INT,
+    brand VARCHAR NOT NULL,
+    model VARCHAR NOT NULL,
+    name VARCHAR NOT NULL,
+    price INT NOT NULL,
+    color VARCHAR NOT NULL,
+    year INT NOT NULL,
+    type VARCHAR NOT NULL,
+    user_id INT,
+    email VARCHAR NOT NULL,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL
+)
+
+CREATE TABLE new_product (
+    product_id INT,
+    brand VARCHAR NOT NULL,
+    model VARCHAR NOT NULL,
+    name VARCHAR NOT NULL,
+    price INT NOT NULL,
+    color VARCHAR NOT NULL,
+    year INT NOT NULL,
+    type VARCHAR NOT NULL
+)
+
+INSERT INTO product VALUES
+    ()
+
+INSERT INTO user VALUES
+    ()
+
+
+INSERT INTO used_product (
+        SELECT A.product_id, A.brand, A.model, A.name, A.price, A.color, A.year, A.type,
+               B.user_id, B.email, B.first_name, B.last_name
         FROM product A, user B
         WHERE B.user_id IN (SELECT seller
                             FROM product
                             WHERE new_or_not = '0';)
-    )
-    DROP COLUMN A.seller
-    DROP COLUMN A.new_or_not
-
 )
 
-CREATE TABLE new_product (
-    INSERT INTO new_product (
-        SELECT *
+INSERT INTO new_product (
+        SELECT product_id, brand, model, name, price, color, year, type
         FROM product
         WHERE new_or_not = '1';
-        DROP COLUMN new_or_not
-    )
 )
