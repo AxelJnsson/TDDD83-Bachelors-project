@@ -45,7 +45,7 @@ CREATE TABLE  used_product (
 );
 
 CREATE TABLE new_product (
-product_id INTEGER PRIMARY KEY,
+product_id INTEGER PRIMARY KEY AUTOINCREMENT,
 brand TEXT NOT NULL,
 model TEXT NOT NULL,
 name TEXT NOT NULL,
@@ -54,10 +54,3 @@ color TEXT NOT NULL,
 year INTEGER NOT NULL,
 type TEXT NOT NULL
 );
-
-INSERT INTO product (brand,model,name, price , color, year, type, new_or_not, seller) VALUES
-('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000, 'Black', 2022, 'Piano', 1, 1);
-
-SELECT * 
-FROM product;
---INSERT INTO user VALUES ();
