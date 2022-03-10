@@ -12,7 +12,7 @@ $('#aboutButton').click(function (e) {
   });
 
   $('#gitarButton2').click(function (e) {   
-    $(".container").html($("#view-product").html())  
+    $("#mainViewContainer").html($("#view-product").html())  
 
     e.preventDefault();
   });

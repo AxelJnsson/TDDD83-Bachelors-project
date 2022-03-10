@@ -17,7 +17,7 @@ $('#xButtonBasket').click(function (e) {
 $('#shopFromBasketButton').click(function (e) {
   e.preventDefault();
   $("#basketModal").modal('hide');
-  $(".container").html($("#view-cashregister").html());
+  $("#mainViewContainer").html($("#view-cashregister").html());
   });
 
 // function toCheckout(){
