@@ -8,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from sqlalchemy import Integer
 
 app = Flask(__name__, static_folder='../client', static_url_path='/')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -41,7 +42,7 @@ class User(db.Model):
   name = db.Column (db.String, nullable = False)
   is_admin =db.Column(db.Boolean, default = False, nullable =True)
   password_hash = db.Column(db.String, nullable = False)
-  #items = db.Column(db.Arr, nullable = True)
+  items = db.Column(db.ARRAY(Integer), nullable = True)
 
 
   def __repr__(self):
@@ -52,6 +53,13 @@ class User(db.Model):
 
   def set_password(self, password):
     self.password_hash= bcrypt.generate_password_hash(password).decode('utf8')
+
+
+
+
+
+
+
 
 @app.route("/login", methods = ['POST'])
 def login():
@@ -178,26 +186,28 @@ def productadd(product_id):
   if request.method == 'POST':
     temp = Product.query.filter_by(id = product_id).first_or_404()
     x = int(get_jwt_identity().get('id'))
+    temp_user = User.query.filter_by(id = x.id).first_or_404()
     if temp.added is False:
-      setattr(temp, True, x)
+      setattr(temp, "added", True)
+      setattr(temp_user, "items", product_id)
       db.session.commit()       
     return "success : true"
   else:
     return "success : false"
 
-@app.route('/produect/<int:product_id>/unadding', methods= ['POST'])
-@jwt_required()
-def carsub(product_id):
+# @app.route('/produect/<int:product_id>/unadding', methods= ['POST'])
+# @jwt_required()
+# def carsub(product_id):
 
-  if request.method == 'POST':
-    temp = Product.query.filter_by(id = product_id).first_or_404()
-    x = int(get_jwt_identity().get('id'))
-    if temp.user_id == x:
-      setattr(temp, "user_id", None)
-      db.session.commit()       
-      return "Avbokad"
-    else:
-      return "Inte din bokning"
+#   if request.method == 'POST':
+#     temp = Product.query.filter_by(id = product_id).first_or_404()
+#     x = int(get_jwt_identity().get('id'))
+#     if temp.user_id == x:
+#       setattr(temp, "user_id", None)
+#       db.session.commit()       
+#       return "Avbokad"
+#     else:
+#       return "Inte din bokning"
 
 if __name__ == "__main__":
   app.run(debug=True)
