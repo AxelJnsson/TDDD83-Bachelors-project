@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
     <title>Välkommen till ToneHub</title>   
 
 </head>
@@ -232,9 +233,10 @@
   </script>
 
   <script id="view-product" type="text/html">
-      <div class="row mb-3 gx-5" >
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="gitarblå.jpg" alt="Card image cap">
+      <div class="row align-self-center" >
+        <div class="col-sm" id="productcol">
+        <div class="card" id= "productcard" >
+          <img class="card-img-top"  src="gitarblå.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Blå gitar</h5>
             <p class="card-text">Denna är inte så bra men blå</p>
@@ -242,16 +244,20 @@
             <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
           </div>
         </div>
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="gitarklassisk.jpg" alt="Card image cap">
+        </div>
+        <div class="col-sm" id="productcol">
+        <div class="card" >
+          <img class="card-img-top"  src="gitarklassisk.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Vanlig gitar</h5>
             <p class="card-text">Tråkig gitar</p>
        
             <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
           </div>
-        </div>        
-        <div class="card" style="width: 18rem;">
+        </div>       
+        </div> 
+        <div class="col-sm" id="productcol">
+        <div class="card"  >
           <img class="card-img-top" src="gitarsvart.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Svart gitar</h5>
@@ -260,18 +266,23 @@
             <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
           </div>
         </div>
-      <div class="row mb-3 gx-5" >
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="elgitarröd.jpeg" alt="Card image cap">
+        </div>
+      
+      <div class="row" >
+        <div class="col-sm" id="productcol">
+        <div class="card"  >
+          <img class="card-img-top"  src="elgitarröd.jpeg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">röd elgitar</h5>
             <p class="card-text">En väldigt frän gitar</p>
        
             <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
           </div>
-        </div>        
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="elgitarwood.jpg" alt="Card image cap">
+        </div>   
+        </div>
+        <div class="col-sm" id="productcol">     
+        <div class="card" >
+          <img class="card-img-top"  src="elgitarwood.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Elgitar trä</h5>
             <p class="card-text">Ful gitar men funkar</p>
@@ -279,15 +290,17 @@
             <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
           </div>
         </div>
-    
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="elgitarsvart.jpg" alt="Card image cap">
+        </div>
+        <div class="col-sm" id="productcol">
+          <div class="card" >
+            <img class="card-img-top"  src="elgitarsvart.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Svart elgitar</h5>
-              <p class="card-text">Elfitar i cool färg</p>
+              <p class="card-text">Elgitar i cool färg</p>
          
               <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
             </div>
+          </div>
           </div>
   </script>
   
@@ -394,7 +407,7 @@
       <br>
       <img src="skitfulgitarr.png" width="100" height="100" id="homeButton">
       <br>
-      <img src="skitfulgitarr.png" width="100" height="100" id="homeButton">
+  ,    <img src="skitfulgitarr.png" width="100" height="100" id="homeButton">
       <br>
       <img src="logga.png" width="100" height="100" id="homeButton">
       <br>
