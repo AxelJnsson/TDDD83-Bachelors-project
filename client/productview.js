@@ -22,7 +22,7 @@ function createGuitar(){
 
 
   function showProdModal(){
-    $("#productModal").modal('toggle');
+    $("#productModal").modal('toggle',{backdrop: 'static', keyboard: false});
       showProdInfo();
   }
 
@@ -37,12 +37,15 @@ function createGuitar(){
 
 $('#closeProductModal').on("click" ,function (e) {
     $(".product-modal-body").empty();
-    $("#productModal").modal('hide');  
+    $("#productModal").modal('hide');
+    $('#productModal').data('bs.modal',null);  
     e.preventDefault();
 });
 
 $('#xProduct').on("click" ,function (e) {
   $(".product-modal-body").empty();
-    $("#productModal").modal('hide');  
+    $("#productModal").modal('hide'); 
+    $('#productModal').data('bs.modal',null);  
+ 
    e.preventDefault();
 });
