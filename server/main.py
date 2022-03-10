@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from faulthandler import dump_traceback_later
+from msilib import Table
 from sqlite3 import OperationalError
 from flask import Flask
 from flask import jsonify
@@ -13,12 +14,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
-<<<<<<< HEAD
-from sqlalchemy import Integer
-=======
+from sqlalchemy import Column, Integer, table
 from sqlalchemy import engine_from_config
 
->>>>>>> c13767c7a3b3b439af1d8c4490b1f81e2bb206c8
 
 app = Flask(__name__, static_folder='../client', static_url_path='/')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -27,9 +25,6 @@ app.config['JWT_SECRET_KEY'] = "svargissadstrang"
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
-
-
-
 
 
 
@@ -42,14 +37,14 @@ class Product(db.Model):
   color = db.Column(db.String, nullable = False)
   year = db.Column(db.Integer, nullable = False)
   type = db.Column(db.String, nullable = False)
-  added = db.Column(db.Boolean, nullable = False)
+  quantity = db.Column(db.Integer, nullable = False) #how many of the specific product is there avaliable to buy
 
 
   def __repr__(self):
     return '<Product {}: {} {} {} {} {} {} {} {}>'.format(self.id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type, self.added)
 
   def serialize(self):
-    return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type, added=self.added)
+    return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type)
 
 class User(db.Model):
   user_id = db.Column(db.Integer, primary_key = True)
@@ -58,30 +53,28 @@ class User(db.Model):
   last_name = db.Column (db.String, nullable = False)
   is_admin =db.Column(db.Boolean, default = False, nullable =True)
   password_hash = db.Column(db.String, nullable = False)
-  items = db.Column(db.ARRAY(Integer), nullable = True)
+  cart = db.relationship('Cart', backref='user', lazy = True) #https://fabric.inc/blog/shopping-cart-database-design/
 
 
   def __repr__(self):
-<<<<<<< HEAD
-    return '<User {}: {} {} {}>'.format(self.id, self.email, self.name, self.items)
-
-  def serialize(self):
-    return dict(id=self.id, email=self.email, name=self.name, is_admin=self.is_admin, items = self.items)
-=======
     return '<User {}: {} {}>'.format(self.id, self.email, self.first_name, self.last_name)
 
   def serialize(self):
     return dict(user_id=self.user_id, email=self.email, first_name=self.first_name, last_name= self.last_name, is_admin=self.is_admin)
->>>>>>> c13767c7a3b3b439af1d8c4490b1f81e2bb206c8
 
   def set_password(self, password):
     self.password_hash= bcrypt.generate_password_hash(password).decode('utf8')
 
-<<<<<<< HEAD
+class Cart(db.Model):
+  id = db.Column(db.Integer, primary_key = True)
+  quant = db.Column(db.Integer, nullable = True)
 
+  def __repr__(self):
+    return '<Users cart {}: {} {}>'.format(self.id, self.quant)
 
+  def serialize(self):
+    return dict(id=self.id, quant=self.quant)
 
-=======
 #Sets up database from database_schema
 def executeTestSQL(filename):
   fd = open(filename, 'r')
@@ -122,11 +115,10 @@ def setUpDatabase():
   #connection.close()
   print("Succesfully loaded database")
 setUpDatabase()
->>>>>>> c13767c7a3b3b439af1d8c4490b1f81e2bb206c8
 
 
 
-
+#Route for login-method
 @app.route("/login", methods = ['POST'])
 def login():
   if request.method == 'POST':
@@ -150,7 +142,7 @@ def client():
   
   return app.send_static_file("home.html")
   
-
+#Route for sign-in-method
 @app.route('/sign-up', methods= ['GET', 'POST'])
 def signup():
 
@@ -164,6 +156,7 @@ def signup():
     i = User.serialize(User.query.get_or_404(user_id))
     return i
 
+#Route for get, delete and put a specific product
 @app.route('/product/<int:product_id>', methods = ['GET', 'DELETE', 'PUT'] )
 def product(product_id):
     if request.method == 'GET':
@@ -188,7 +181,7 @@ def product(product_id):
       db.session.commit()
       return "OK", 200
 
-
+#Route for getting all products och posting a product
 @app.route('/product', methods = ['GET', 'POST'] )
 def products():
   if request.method == 'GET':
@@ -255,9 +248,9 @@ def productadd(product_id):
     temp = Product.query.filter_by(id = product_id).first_or_404()
     x = int(get_jwt_identity().get('id'))
     temp_user = User.query.filter_by(id = x.id).first_or_404()
-    if temp.added is False:
+    if temp.quantity > 0:
       setattr(temp, "added", True)
-      setattr(temp_user, "items", product_id)
+      setattr(temp_user, "cart", product_id)
       db.session.commit()       
     return "success : true"
   else:
