@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
+from faulthandler import dump_traceback_later
+from sqlite3 import OperationalError
 from flask import Flask
 from flask import jsonify
 from flask import request
 from flask_bcrypt import Bcrypt
+import sqlite3
+from sqlite3 import OperationalError
 #from sqlalchemy import null
+#from sqlalchemy import create_engine
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from sqlalchemy import engine_from_config
+
 
 app = Flask(__name__, static_folder='../client', static_url_path='/')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -16,6 +23,10 @@ app.config['JWT_SECRET_KEY'] = "svargissadstrang"
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
+
+#Connects to database
+
+
 
 class Product(db.Model):
   id = db.Column(db.Integer, primary_key = True)
@@ -49,6 +60,50 @@ class User(db.Model):
   def set_password(self, password):
     self.password_hash= bcrypt.generate_password_hash(password).decode('utf8')
 
+#Sets up database from database_schema
+def executeTestSQL(filename):
+  fd = open(filename, 'r')
+  sqlFile = fd.read()
+  fd.close()
+  i=0
+
+  sqlCommands = sqlFile.split(';')
+  
+  for command in sqlCommands:
+    try:
+      connection.execute(command)
+    except OperationalError as msg:
+      print("Command skipped: ", msg)
+
+#Inserts data from database_insert
+def addTestSQL(filename):
+  fd = open(filename, 'r')
+  sqlFile = fd.read()
+  fd.close()
+  i=0
+
+  sqlCommands = sqlFile.split(';')
+  
+  for command in sqlCommands:
+    try:
+      db.session.execute(command)
+      db.session.commit()
+    except OperationalError as msg:
+      print("Command skipped: ", msg)
+
+#Does the setupdatabase routine
+def setUpDatabase():
+  global connection 
+  connection = db.session.connection()
+  executeTestSQL('database_schema.sqlite')
+  addTestSQL('database_insert.sqlite')
+  connection.close()
+  print("Succesfully loaded database")
+setUpDatabase()
+
+
+
+
 @app.route("/login", methods = ['POST'])
 def login():
   if request.method == 'POST':
@@ -69,7 +124,9 @@ def login():
 
 @app.route('/')
 def client():
+  
   return app.send_static_file("home.html")
+  
 
 @app.route('/sign-up', methods= ['GET', 'POST'])
 def signup():
