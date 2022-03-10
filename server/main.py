@@ -41,6 +41,8 @@ class User(db.Model):
   name = db.Column (db.String, nullable = False)
   is_admin =db.Column(db.Boolean, default = False, nullable =True)
   password_hash = db.Column(db.String, nullable = False)
+  #items = db.Column(db.Arr, nullable = True)
+
 
   def __repr__(self):
     return '<User {}: {} {}>'.format(self.id, self.email, self.name)
@@ -177,7 +179,7 @@ def productadd(product_id):
     temp = Product.query.filter_by(id = product_id).first_or_404()
     x = int(get_jwt_identity().get('id'))
     if temp.added is False:
-      setattr(temp, "user_id", x)
+      setattr(temp, True, x)
       db.session.commit()       
     return "success : true"
   else:
@@ -188,7 +190,7 @@ def productadd(product_id):
 def carsub(product_id):
 
   if request.method == 'POST':
-    temp = Product.query.filter_by(id = product).first_or_404()
+    temp = Product.query.filter_by(id = product_id).first_or_404()
     x = int(get_jwt_identity().get('id'))
     if temp.user_id == x:
       setattr(temp, "user_id", None)
