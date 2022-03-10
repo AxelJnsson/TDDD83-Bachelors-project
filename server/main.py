@@ -26,12 +26,14 @@ class Product(db.Model):
   color = db.Column(db.String, nullable = False)
   year = db.Column(db.Integer, nullable = False)
   type = db.Column(db.String, nullable = False)
+  added = db.Column(db.Boolean, nullable = False)
+
 
   def __repr__(self):
-    return '<Product {}: {} {} {} {} {} {} {}>'.format(self.id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type)
+    return '<Product {}: {} {} {} {} {} {} {} {}>'.format(self.id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type, self.added)
 
   def serialize(self):
-    return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type)
+    return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type, added=self.added)
 
 class User(db.Model):
   id = db.Column(db.Integer, primary_key = True)
@@ -166,6 +168,34 @@ def user():
     user_id = x.id
     i = User.serialize(User.query.get_or_404(user_id))
     return i
+
+@app.route('/product/<int:product_id>/adding', methods= ['POST'])
+@jwt_required()
+def productadd(product_id):
+
+  if request.method == 'POST':
+    temp = Product.query.filter_by(id = product_id).first_or_404()
+    x = int(get_jwt_identity().get('id'))
+    if temp.added is False:
+      setattr(temp, "user_id", x)
+      db.session.commit()       
+    return "success : true"
+  else:
+    return "success : false"
+
+@app.route('/produect/<int:product_id>/unadding', methods= ['POST'])
+@jwt_required()
+def carsub(product_id):
+
+  if request.method == 'POST':
+    temp = Product.query.filter_by(id = product).first_or_404()
+    x = int(get_jwt_identity().get('id'))
+    if temp.user_id == x:
+      setattr(temp, "user_id", None)
+      db.session.commit()       
+      return "Avbokad"
+    else:
+      return "Inte din bokning"
 
 if __name__ == "__main__":
   app.run(debug=True)
