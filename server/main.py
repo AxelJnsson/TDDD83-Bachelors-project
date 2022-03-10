@@ -24,7 +24,8 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
-#Connects to database
+
+
 
 
 
@@ -45,17 +46,18 @@ class Product(db.Model):
     return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type)
 
 class User(db.Model):
-  id = db.Column(db.Integer, primary_key = True)
+  user_id = db.Column(db.Integer, primary_key = True)
   email = db.Column(db.String, nullable = False)
-  name = db.Column (db.String, nullable = False)
+  first_name = db.Column (db.String, nullable = False)
+  last_name = db.Column (db.String, nullable = False)
   is_admin =db.Column(db.Boolean, default = False, nullable =True)
   password_hash = db.Column(db.String, nullable = False)
 
   def __repr__(self):
-    return '<User {}: {} {}>'.format(self.id, self.email, self.name)
+    return '<User {}: {} {}>'.format(self.id, self.email, self.first_name, self.last_name)
 
   def serialize(self):
-    return dict(id=self.id, email=self.email, name=self.name, is_admin=self.is_admin)
+    return dict(user_id=self.user_id, email=self.email, first_name=self.first_name, last_name= self.last_name, is_admin=self.is_admin)
 
   def set_password(self, password):
     self.password_hash= bcrypt.generate_password_hash(password).decode('utf8')
@@ -71,7 +73,7 @@ def executeTestSQL(filename):
   
   for command in sqlCommands:
     try:
-      connection.execute(command)
+      db.session.execute(command)
     except OperationalError as msg:
       print("Command skipped: ", msg)
 
@@ -93,11 +95,11 @@ def addTestSQL(filename):
 
 #Does the setupdatabase routine
 def setUpDatabase():
-  global connection 
-  connection = db.session.connection()
+  #global connection 
+  #connection = db.session.connection()
   executeTestSQL('database_schema.sqlite')
   addTestSQL('database_insert.sqlite')
-  connection.close()
+  #connection.close()
   print("Succesfully loaded database")
 setUpDatabase()
 
@@ -133,11 +135,11 @@ def signup():
 
   if request.method == 'POST':
     new_user = request.get_json()
-    x = User(name = new_user["name"], email = new_user["email"])
+    x = User(first_name = new_user["first_name"], last_name = new_user["last_name"], email = new_user["email"])
     x.set_password(new_user["password"])
     db.session.add(x)
     db.session.commit()
-    user_id = x.id
+    user_id = x.user_id
     i = User.serialize(User.query.get_or_404(user_id))
     return i
 
