@@ -15,7 +15,7 @@
     }
 }
 
-//testfunktion
+//testfunktion med hårdkodade testprodukter (att fungera som "databas" så länge)
 function createProducts(instrCategory){
 
     //testgitarrer
@@ -24,11 +24,13 @@ function createProducts(instrCategory){
     let testgitarr3 = new Product("3", "gitarrer", "bäst", "aaa", "carl bildt", "2000 rubel", "blå", "1948","carlbildt.png", "mycket bra skick" );
     let testgitarr4 = new Product("4", "gitarrer", "bäst", "aaa", "carl bildt", "2000 rubel", "blå", "1948","carlbildt.png", "mycket bra skick" );
     let testgitarr5 = new Product("5", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
-    //let testgitarr6 = new Product("6", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
+    let testgitarr6 = new Product("6", "gitarrer" , "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
+    let testgitarr7 = new Product("11", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "elgitarröd.jpeg", "helt fantastisk");
+    let testgitarr8 = new Product("12", "gitarrer", "märke", "modell", "en annan gitarr ", "100 kr", "svart", "333", "elgitarsvart.jpg", "helt fantastisk");
 
     //testpianon
     let testpiano = new Product("7", "pianon", "Babock", "idk", "Mycket fint piano", "100000 kr", "Svart", "2005", "piano.jpeg", "Svindyrt piano i bra skick");
-    let testpiano2 = new Product("10", "pianon", "trevlig", " 1", "Fredrik", "1000000000000000 kr", "lila", "1993", "testbildkassa.png", "väldigt dyr");
+    let testpiano2 = new Product("10", "pianon", "trevlig", " 1", "Fredrik", "100000000000 kr", "lila", "1993", "testbildkassa.png", "väldigt dyr");
 
     //testtrummor
     let testtrumma = new Product("8", "trumset", "märke", "idk", "nej", "nej", "svart", "2020", "trumset.jpeg", "trummor");
@@ -36,19 +38,39 @@ function createProducts(instrCategory){
     //teststudio
     let teststudio = new Product("9", "studio", "Behringer", "någon modell", "Trevlig mixer", "20000 kr" , "Grå", "2021", "mixer.png", "Helt bra analog mixer");
 
+    const allinstruments = [testgitarr, testgitarr2, testgitarr3, testgitarr4, testgitarr5, testgitarr6, testgitarr7, testgitarr8, testpiano, testpiano2, teststudio, testtrumma];
+    const gitarrer = [];
+    const pianon = [];
+    const trummor = [];
+    const studio = [];
 
+
+    //funktion för att filtrera in i kategorier (som kan vara hårdkodade? eller också hämtas från db så småningom?)
+    for (let i = 0; i < allinstruments.length; i++) {
+        let prod = allinstruments[i];
+        switch (prod.category){
+            case "gitarrer": gitarrer.push(prod);
+                            break;
+            case "pianon" : pianon.push(prod);
+                            break;
+            case "trumset" : trummor.push(prod);
+                            break;
+            case "studio" : studio.push(prod);
+        }
+    }
+
+
+    //visar kategorier beroende på menyknapp
     if (instrCategory == "gitarrer") {
-        const gitarrer = [testgitarr, testgitarr2, testgitarr3, testgitarr4, testgitarr5];
         return gitarrer;
     } else if (instrCategory == "pianon"){
-        const pianon = [testpiano, testpiano2];
         return pianon;
     } else if (instrCategory == "trummor"){
-        const trummor = [testtrumma];
         return trummor;
     } else if (instrCategory == "studio") {
-        const studio = [teststudio];
         return studio;
+    } else {
+        return allinstruments;
     }
 }
 
@@ -80,7 +102,7 @@ function createProducts(instrCategory){
 
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
 
-       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'>" + products[i].name + "</h5><p class='card-text'> <b>Kategori: </b> "+ products[i].category +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "<br> <b>Pris:</b> " + products[i].price + "</p></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>info</button></div></div>");
+       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'>" + products[i].name + "</h5><p class='card-text'> <b>Kategori: </b> "+ products[i].category +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b><h4>" + products[i].price + "</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
 
         
 
