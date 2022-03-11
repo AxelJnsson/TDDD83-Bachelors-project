@@ -13,7 +13,7 @@ $('#aboutButton').click(function (e) {
 
   $('#gitarButton2').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-
+    showProdInfo();
     e.preventDefault();
   });
 
@@ -22,6 +22,5 @@ $('#homeButton').click(function (e) {
   $("#mainViewContainer").html($("#view-home").html())  
     e.preventDefault();
 });
-
 
 
