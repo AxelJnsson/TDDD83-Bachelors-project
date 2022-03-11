@@ -22,6 +22,7 @@ function createGuitar(){
     let testgitarr3 = new Product("3", "bäst", "aaa", "carl bildt", "2000 rubel", "blå", "1948","carlbildt.png", "mycket bra skick" );
     let testgitarr4 = new Product("4", "bäst", "aaa", "carl bildt", "2000 rubel", "blå", "1948","carlbildt.png", "mycket bra skick" );
     let testgitarr5 = new Product("5", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
+    //let testgitarr6 = new Product("6", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
 
 
     const gitarrer = [testgitarr, testgitarr2, testgitarr3, testgitarr4, testgitarr5];
@@ -53,9 +54,9 @@ function createGuitar(){
             j++;
         }
 
-       $("#testdiv").append("<div class='row' id='"+j+"'></div>");
- 
-       $("#"+j).append("<div class='col-sm'><div class='card'><img class='card-img-top'  src='"+ guitars[i].image +"' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + guitars[i].name + "</h5><p class='card-text'> <b>Märke:</b> " + guitars[i].brand + "<br> <b>Modell:</b> " + guitars[i].model + "<br> <b>Pris:</b> " + guitars[i].price + "</p></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>info</button></div></div>");
+        $("#testdiv").append("<div class='row' id='"+j+"'></div>");
+
+       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ guitars[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'>" + guitars[i].name + "</h5><p class='card-text'> <b>Märke:</b> " + guitars[i].brand + "<br> <b>Modell:</b> " + guitars[i].model + "<br> <b>Pris:</b> " + guitars[i].price + "</p></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>info</button></div></div>");
 
         
 
