@@ -11,9 +11,27 @@ $('#aboutButton').click(function (e) {
     e.preventDefault();
   });
 
-  $('#gitarButton2').click(function (e) {   
+  $('#guitarButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo();
+    showProdInfo("gitarrer");
+    e.preventDefault();
+  });
+
+  $('#pianoButton').click(function (e) {   
+    $("#mainViewContainer").html($("#view-product").html())  
+    showProdInfo("pianon");
+    e.preventDefault();
+  });
+
+  $('#drumButton').click(function (e) {   
+    $("#mainViewContainer").html($("#view-product").html())  
+    showProdInfo("trummor");
+    e.preventDefault();
+  });
+
+  $('#studioButton').click(function (e) {   
+    $("#mainViewContainer").html($("#view-product").html())  
+    showProdInfo("studio");
     e.preventDefault();
   });
 
