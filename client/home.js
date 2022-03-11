@@ -11,6 +11,12 @@ $('#aboutButton').click(function (e) {
     e.preventDefault();
   });
 
+  $('#allInstrButton').click(function (e) {   
+    $("#mainViewContainer").html($("#view-product").html())  
+    showProdInfo("allt");
+    e.preventDefault();
+  });
+
   $('#guitarButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
     showProdInfo("gitarrer");
