@@ -13,38 +13,52 @@ $('#aboutButton').click(function (e) {
 
   $('#allInstrButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo("allt");
+    showProdInfo("allt", null);
     e.preventDefault();
   });
 
   $('#guitarButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo("gitarrer");
+    showProdInfo("gitarrer", null);
     e.preventDefault();
   });
 
   $('#pianoButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo("pianon");
+    showProdInfo("pianon", null);
     e.preventDefault();
   });
 
   $('#drumButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo("trummor");
+    showProdInfo("trummor", null);
     e.preventDefault();
   });
 
   $('#studioButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo("studio");
+    showProdInfo("studio", null);
     e.preventDefault();
   });
 
+  $('#yamahaTestButton').click(function (e) {   
+    $("#mainViewContainer").html($("#view-product").html())  
+    showProdInfo("", "Yamaha");
+    e.preventDefault();
+  });
 
 $('#homeButton').click(function (e) {
   $("#mainViewContainer").html($("#view-home").html())  
     e.preventDefault();
 });
 
+
+//testfunktion för filtrering
+function checkItem(){
+  var checkBox = document.getElementById("checkItem9");
+
+  if (checkBox.checked == true) {
+    alert("ja");
+  }
+}
 

@@ -16,7 +16,7 @@
 }
 
 //testfunktion med hårdkodade testprodukter (att fungera som "databas" så länge)
-function createProducts(instrCategory){
+function createProducts(instrCategory, filterQ){
 
     //testgitarrer
     let testgitarr = new Product("1", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
@@ -26,10 +26,10 @@ function createProducts(instrCategory){
     let testgitarr5 = new Product("5", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
     let testgitarr6 = new Product("6", "gitarrer" , "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
     let testgitarr7 = new Product("11", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "elgitarröd.jpeg", "helt fantastisk");
-    let testgitarr8 = new Product("12", "gitarrer", "märke", "modell", "en annan gitarr ", "100 kr", "svart", "333", "elgitarsvart.jpg", "helt fantastisk");
+    let testgitarr8 = new Product("12", "gitarrer", "Yamaha", "modell", "en annan gitarr ", "100 kr", "svart", "333", "elgitarsvart.jpg", "helt fantastisk");
 
     //testpianon
-    let testpiano = new Product("7", "pianon", "Babock", "idk", "Mycket fint piano", "100000 kr", "Svart", "2005", "piano.jpeg", "Svindyrt piano i bra skick");
+    let testpiano = new Product("7", "pianon", "Yamaha", "idk", "Mycket fint piano", "100000 kr", "Svart", "2005", "piano.jpeg", "Svindyrt piano i bra skick");
     let testpiano2 = new Product("10", "pianon", "trevlig", " 1", "Fredrik", "100000000000 kr", "lila", "1993", "testbildkassa.png", "väldigt dyr");
 
     //testtrummor
@@ -60,20 +60,49 @@ function createProducts(instrCategory){
     }
 
 
-    //visar kategorier beroende på menyknapp
+    //visar kategorier beroende på menyknapp och ev. filter
     if (instrCategory == "gitarrer") {
-        return gitarrer;
+         if (filterQ != null) {
+            return filtertest(gitarrer, filterQ);
+        } else {
+            return gitarrer;
+        };
     } else if (instrCategory == "pianon"){
-        return pianon;
+        if (filterQ != null) {
+            return filtertest(pianon, filterQ);
+        } else {
+            return pianon;
+        }    
     } else if (instrCategory == "trummor"){
-        return trummor;
+        if (filterQ != null) {
+            return filtertest(trummor, filterQ);
+        } else {
+            return trummor;
+        }    
     } else if (instrCategory == "studio") {
-        return studio;
+        if (filterQ != null) {
+            return filtertest(studio, filterQ);
+        } else {
+            return studio;
+        }    
     } else {
-        return allinstruments;
+        if (filterQ != null) {
+            return filtertest(allinstruments, filterQ);
+        } else {
+            return allinstruments;
+        }
     }
 }
 
+//testfunktion för filtrering på märke (funkar!)
+function filtertest(arr, input){
+    alert(input);
+    var filteredResult = arr.filter(function (el) {
+        return el.brand == input;
+    });
+
+    return filteredResult;
+}
 
   function showProdModal(){
     $("#productModal").modal('toggle');
@@ -83,12 +112,13 @@ function createProducts(instrCategory){
   }
 
 
-  function showProdInfo(category) {
+  function showProdInfo(category, filterquery) {
     $(".product-modal-body").empty();
     $("#testrow").empty();
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
     let instrumentCategory = category; 
-    let products = createProducts(instrumentCategory);
+    let filter = filterquery;
+    let products = createProducts(instrumentCategory, filter);
     //alert(guitars.length);
 
     let j = 0;
