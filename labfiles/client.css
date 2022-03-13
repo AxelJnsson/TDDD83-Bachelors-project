@@ -1,0 +1,48 @@
+/*comment for forced change*/
+
+body {
+    background-image: url("https://wallpaper.dog/large/20501172.jpg");
+}
+
+#openingHours {
+  /*  margin-left: 100px; */
+    border-style:groove;
+}
+
+.container {
+    background-color: mintcream;
+    border-style: groove;
+    border-width: 5px;
+    border-color:black;
+    opacity: 0.7;
+}
+
+.card-container {
+    color : blue;
+}
+
+/*#qualitycontent {
+    background-color: mintcream;
+    border-style: groove;
+    border-width: 5px;
+    border-color:black;
+    opacity: 0.7;
+}*/
+
+/*#contact {
+    background-color: mintcream;
+    border-style: groove;
+    border-width: 5px;
+    border-color:black;
+    opacity: 0.7;
+}*/
+
+.bullet {
+   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+#qualityparagraph {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+}
