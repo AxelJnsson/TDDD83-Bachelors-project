@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
     <title>Välkommen till ToneHub</title>   
 
 </head>
@@ -65,17 +66,23 @@
         <div class="collapse navbar-collapse" id="navbarNav2"> 
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#" id="gitarButton2">Gitarr</a>
+              <a class="nav-link" href="#" id="allInstrButton">Alla instrument</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="registerButton2">Piano & Keyboard</a>
+              <a class="nav-link" href="#" id="guitarButton">Gitarr</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="pianoButton">Piano & Keyboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" id="aboutButton2">Trummor</a>
+            <a class="nav-link" href="#" id="drumButton">Trummor</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="logoutButton2">Studioutrustning</a>
+          <a class="nav-link" href="#" id="studioButton">Studioutrustning</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="yamahaTestButton">Testknapp för sortering på märke (ska tas bort)</a>
+    </li>
           </ul>
         </div>
    
@@ -211,6 +218,20 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                          <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0">
+                            
+                              <span class="text-secondary">Y</span>
+                            </a>
+                              <ul class="collapse nav flex-column" id="submenu5" data-bs-parent="#sideMenu">
+                              <li class="w-100">
+                                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem9">
+                                <label class="form-check-label" for="defaultCheck1">
+                                  <span class="text-info">Yamaha</span>
+                                </label>
+                              </li>
+                          </ul>
+                          </li>
                     </ul>
                     <hr>
                     
@@ -231,10 +252,13 @@
 
   </script>
 
+<!--kommenterar bort denna nu, förlåt mig fredrik :(-->
+
   <script id="view-product" type="text/html">
-      <div class="row mb-3 gx-5" >
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="gitarblå.jpg" alt="Card image cap">
+   <!--   <div class="row align-self-center" >
+        <div class="col-sm" id="productcol">
+        <div class="card" id= "productcard" >
+          <img class="card-img-top"  src="gitarblå.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Blå gitar</h5>
             <p class="card-text">Denna är inte så bra men blå</p>
@@ -242,16 +266,20 @@
             <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
           </div>
         </div>
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="gitarklassisk.jpg" alt="Card image cap">
+        </div>
+        <div class="col-sm" id="productcol">
+        <div class="card" >
+          <img class="card-img-top"  src="gitarklassisk.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Vanlig gitar</h5>
             <p class="card-text">Tråkig gitar</p>
        
             <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
           </div>
-        </div>        
-        <div class="card" style="width: 18rem;">
+        </div>       
+        </div> 
+        <div class="col-sm" id="productcol">
+        <div class="card"  >
           <img class="card-img-top" src="gitarsvart.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Svart gitar</h5>
@@ -260,18 +288,24 @@
             <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
           </div>
         </div>
-      <div class="row mb-3 gx-5" >
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="elgitarröd.jpeg" alt="Card image cap">
+        </div>
+        </div>
+      
+      <div class="row" >
+        <div class="col-sm" id="productcol">
+        <div class="card"  >
+          <img class="card-img-top"  src="elgitarröd.jpeg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">röd elgitar</h5>
             <p class="card-text">En väldigt frän gitar</p>
        
             <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
           </div>
-        </div>        
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="elgitarwood.jpg" alt="Card image cap">
+        </div>   
+        </div>
+        <div class="col-sm" id="productcol">     
+        <div class="card" >
+          <img class="card-img-top"  src="elgitarwood.jpg" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Elgitar trä</h5>
             <p class="card-text">Ful gitar men funkar</p>
@@ -279,16 +313,26 @@
             <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
           </div>
         </div>
-    
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="elgitarsvart.jpg" alt="Card image cap">
+        </div>
+        <div class="col-sm" id="productcol">
+          <div class="card" >
+            <img class="card-img-top"  src="elgitarsvart.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Svart elgitar</h5>
-              <p class="card-text">Elfitar i cool färg</p>
+              <p class="card-text">Elgitar i cool färg</p>
          
               <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
             </div>
           </div>
+        </div> -->
+
+          <!--test-space för append av kort-->
+          <!--<div class="row" id="testrow">
+          
+         </div>-->
+         <div id="testdiv"></div>
+
+
   </script>
   
 
@@ -394,7 +438,7 @@
       <br>
       <img src="skitfulgitarr.png" width="100" height="100" id="homeButton">
       <br>
-      <img src="skitfulgitarr.png" width="100" height="100" id="homeButton">
+  ,    <img src="skitfulgitarr.png" width="100" height="100" id="homeButton">
       <br>
       <img src="logga.png" width="100" height="100" id="homeButton">
       <br>
@@ -408,7 +452,7 @@
 
 
 
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard=false data-backdrop='static'>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -425,6 +469,7 @@
       </div>
     
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" id="addToCart">Lägg i varukorgen</button>
         <button type="button" class="btn btn-secondary"  data-dismiss="modal" id="closeProductModal">Stäng</button>
       </div>
     </div>
