@@ -16,7 +16,8 @@ color TEXT NOT NULL,
 year INTEGER NOT NULL,
 type TEXT NOT NULL,
 new_or_not INTEGER DEFAULT 1,
-seller INTEGER NOT NULL
+seller INTEGER NOT NULL,
+quantity INTEGER NOT NULL
 );
 
 CREATE TABLE user (
@@ -41,7 +42,7 @@ CREATE TABLE  used_product (
     user_id INTEGER,
     email TEXT NOT NULL,
     first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL   
+    last_name TEXT NOT NULL 
 );
 
 CREATE TABLE new_product (

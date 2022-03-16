@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from faulthandler import dump_traceback_later
-from msilib import Table
+#from msilib import Table
 from sqlite3 import OperationalError
 from flask import Flask
 from flask import jsonify
@@ -41,10 +41,10 @@ class Product(db.Model):
 
 
   def __repr__(self):
-    return '<Product {}: {} {} {} {} {} {} {} {}>'.format(self.id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type, self.added)
+    return '<Product {}: {} {} {} {} {} {} {} {}>'.format(self.id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type, self.added, self.quantity)
 
   def serialize(self):
-    return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type)
+    return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type, quantity = self.quantity)
 
 class User(db.Model):
   user_id = db.Column(db.Integer, primary_key = True)
@@ -68,6 +68,7 @@ class User(db.Model):
 class Cart(db.Model):
   id = db.Column(db.Integer, primary_key = True)
   quant = db.Column(db.Integer, nullable = True)
+  reserver_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=True)
 
   def __repr__(self):
     return '<Users cart {}: {} {}>'.format(self.id, self.quant)
