@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS product ;
 DROP TABLE IF EXISTS user ;
 DROP TABLE IF EXISTS used_product ;
 DROP TABLE IF EXISTS new_product ;
+DROP TABLE IF EXISTS cart ;
 
 SELECT 'Creating tables' AS 'Message';
 
@@ -16,7 +17,6 @@ color TEXT NOT NULL,
 year INTEGER NOT NULL,
 type TEXT NOT NULL,
 new_or_not INTEGER DEFAULT 1,
-seller INTEGER NOT NULL,
 quantity INTEGER NOT NULL
 );
 
@@ -55,3 +55,9 @@ color TEXT NOT NULL,
 year INTEGER NOT NULL,
 type TEXT NOT NULL
 );
+
+CREATE TABLE cart (
+id INTEGER PRIMARY KEY,
+quantity INTEGER,
+reserver_id INTEGER NOT NULL
+)

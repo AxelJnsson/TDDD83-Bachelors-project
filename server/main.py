@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from email.policy import default
 from faulthandler import dump_traceback_later
 #from msilib import Table
 from sqlite3 import OperationalError
@@ -8,8 +9,8 @@ from flask import request
 from flask_bcrypt import Bcrypt
 import sqlite3
 from sqlite3 import OperationalError
-#from sqlalchemy import null
-#from sqlalchemy import create_engine
+from sqlalchemy import null
+from sqlalchemy import create_engine
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from flask_jwt_extended import JWTManager
@@ -41,7 +42,7 @@ class Product(db.Model):
 
 
   def __repr__(self):
-    return '<Product {}: {} {} {} {} {} {} {} {}>'.format(self.id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type, self.added, self.quantity)
+    return '<Product {}: {} {} {} {} {} {} {} {}>'.format(self.id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type, self.quantity)
 
   def serialize(self):
     return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type, quantity = self.quantity)
@@ -53,11 +54,11 @@ class User(db.Model):
   last_name = db.Column (db.String, nullable = False)
   is_admin =db.Column(db.Boolean, default = False, nullable =True)
   password_hash = db.Column(db.String, nullable = False)
-  cart = db.relationship('Cart', backref='user', lazy = True) #https://fabric.inc/blog/shopping-cart-database-design/
+ # cart = db.relationship('Cart', backref='user', lazy = True) #https://fabric.inc/blog/shopping-cart-database-design/
 
 
   def __repr__(self):
-    return '<User {}: {} {}>'.format(self.id, self.email, self.first_name, self.last_name)
+    return '<User {}: {} {}>'.format(self.user_id, self.email, self.first_name, self.last_name)
 
   def serialize(self):
     return dict(user_id=self.user_id, email=self.email, first_name=self.first_name, last_name= self.last_name, is_admin=self.is_admin)
@@ -65,16 +66,33 @@ class User(db.Model):
   def set_password(self, password):
     self.password_hash= bcrypt.generate_password_hash(password).decode('utf8')
 
-class Cart(db.Model):
+class Shopping_Session(db.Model):
+  __tablename__ = 'shopping_session'
   id = db.Column(db.Integer, primary_key = True)
-  quant = db.Column(db.Integer, nullable = True)
-  reserver_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=True)
-
+  user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=True)
+  total = db.Column(db.Integer, nullable = True, default = 0)
+  cart_item = db.relationship('Cart_Item', backref='shopping_session', lazy = True)
+  
   def __repr__(self):
-    return '<Users cart {}: {} {}>'.format(self.id, self.quant)
+    return '<Shopping Session {}: {} {} {}>'.format(self.id, self.user_id, self.total, self.cart_item)
 
   def serialize(self):
-    return dict(id=self.id, quant=self.quant)
+    return dict(id=self.id, total=self.total)
+
+class Cart_Item(db.Model):
+  id = db.Column(db.Integer, primary_key = True)
+  product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable = True)
+  quantity = db.Column(db.Integer, nullable = True)
+  session_id = db.Column(db.Integer, db.ForeignKey('shopping_session.id'), nullable = True)
+  #session = db.relationship('Shopping_Session', back_populates='cart_item', lazy = True)
+
+  def __repr__(self):
+    return '<User {}: {} {} {} {}>'.format(self.id, self.product_id, self.quantity, self.session_id)
+
+#tror inte denna kommer behövas eftersom produkterna skriver ut sig själva
+  # def serialize(self):
+  #   return dict(id=self.id, product_id=self.product_id, quantity=self.quantity, session_id= self.session_id)
+  
 
 #Sets up database from database_schema
 def executeTestSQL(filename):
@@ -132,6 +150,9 @@ def login():
           dict = {"token" : access_token,
                   "user" : x.serialize() 
                   }
+          session = Shopping_Session(user_id = x.user_id) #skapar en ny session när någon loggar in
+          db.session.add(session)
+          db.session.commit()
           return jsonify(dict), 200
         else:
           return "wrong password", 401
@@ -195,7 +216,7 @@ def products():
 
   elif request.method == 'POST':
     new_product = request.get_json()
-    x = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"])
+    x = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"], quantity = new_product["quantity"])
     db.session.add(x)
     db.session.commit()
     product_id = x.id
@@ -207,7 +228,7 @@ def products():
 @app.route('/user/<int:user_id>', methods = ['GET', 'PUT', 'DELETE'])
 def users(user_id):
   if request.method == 'GET':
-    temp = User.query.filter_by(id = user_id).first_or_404()
+    temp = User.query.filter_by(user_id = user_id).first_or_404()
     return jsonify(temp.serialize())
   elif request.method == 'PUT':
     user = request.get_json()
@@ -241,21 +262,54 @@ def user():
     i = User.serialize(User.query.get_or_404(user_id))
     return i
 
+
+ #gammal version. Kanske fungerar
+# @app.route('/product/<int:product_id>/adding', methods= ['POST'])
+# @jwt_required()
+# def productadd(product_id):
+
+#    if request.method == 'POST':
+#      temp = Product.query.filter_by(id = product_id).first_or_404()
+#      x = get_jwt_identity().get('id')
+#      temp_user = User.query.filter_by(user_id = x).first_or_404()
+#      if temp.quantity > 0:
+#        setattr(temp, "added", True)
+#        setattr(temp_user, "cart", product_id)
+#        db.session.commit()       
+#      return "success : true"
+#    else:
+#      return "success : false"
+
+
 @app.route('/product/<int:product_id>/adding', methods= ['POST'])
 @jwt_required()
 def productadd(product_id):
 
   if request.method == 'POST':
-    temp = Product.query.filter_by(id = product_id).first_or_404()
-    x = int(get_jwt_identity().get('id'))
-    temp_user = User.query.filter_by(id = x.id).first_or_404()
-    if temp.quantity > 0:
-      setattr(temp, "added", True)
-      setattr(temp_user, "cart", product_id)
-      db.session.commit()       
+    user = get_jwt_identity().get('user_id')
+    product = Product.query.filter_by(id = product_id).first_or_404()
+    if product.quantity > 0:
+    #lägg till dessa senare
+    #  x = product.quantity
+    #  x = x - 1
+    #  data_to_updateProduct = {"quantity" : x}
+      #Product.query.filter_by(id = product_id).update(data_to_updateProduct)
+
+      print(user)
+      z = Shopping_Session.query.filter_by(user_id = user).first_or_404()
+      print(z.id)
+      y = Cart_Item.query.filter_by(session_id = z.id).first_or_404()
+      y = y + 1
+      data_to_updateCartItem = {"product_id" : product_id, "quantity" : y}
+      Cart_Item.query.filter_by(user_id = user['user_id']).update(data_to_updateCartItem)
+
+      db.session.commit()
+
     return "success : true"
   else:
     return "success : false"
+
+
 
 # @app.route('/produect/<int:product_id>/unadding', methods= ['POST'])
 # @jwt_required()
