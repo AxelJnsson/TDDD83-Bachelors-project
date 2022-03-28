@@ -4,10 +4,15 @@ VALUES ('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000
 INSERT INTO user(email, first_name, last_name, password_hash)
 VALUES ('david@gmail.com', 'David', 'Carlsson', 'katt123');
 
-
-
 INSERT INTO new_product(product_id, brand, model, name, price, color, year, type)
 SELECT product_id, brand, model, name, price, color, year, type
 FROM product
 WHERE new_or_not = '1';
+
+INSERT INTO used_product(product_id, brand, model, name, price, color, year, type, user_id, email, first_name, last_name)
+SELECT A.product_id, A.brand, A.model, A.name, A.price, A.color, A.year, A.type, B.user_id, B.email, B.first_name, B.last_name
+FROM A.product, B.user
+WHERE B.user_id IN (SELECT seller
+                    FROM product
+                    WHERE new_or_not = '0' AND seller /= '1');
 
