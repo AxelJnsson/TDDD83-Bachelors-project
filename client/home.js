@@ -3,6 +3,8 @@ $(document).ready(function(){
     $("#mainViewContainer").html($("#view-home").html())  
  })
 
+ var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
+
 $('#aboutButton').click(function (e) {
    
    
@@ -13,37 +15,72 @@ $('#aboutButton').click(function (e) {
 
   $('#allInstrButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo("allt", null);
+    //showProdInfo("allt", null);
+    showProdInfo("", filterBrand, filterCategory, filterModel, filterColor, filterName, filterPrice, filterYear);
     e.preventDefault();
   });
 
   $('#guitarButton').click(function (e) {   
-    $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo("gitarrer", null);
+    $("#mainViewContainer").html($("#view-product").html())
+    filterCategory = "gitarrer";
+    filterColor = undefined;
+    filterName = undefined;
+    filterPrice = undefined; 
+    filterYear = undefined;
+    filterModel = undefined;
+    filterBrand = undefined;  
+    showProdInfo("", filterBrand, filterCategory, filterModel, filterColor, filterName, filterPrice, filterYear);
     e.preventDefault();
   });
 
   $('#pianoButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo("pianon", null);
+    filterCategory = "pianon";  
+    filterColor = undefined;
+    filterName = undefined;
+    filterPrice = undefined; 
+    filterYear = undefined;
+    filterModel = undefined;
+    filterBrand = undefined;
+    showProdInfo("", filterBrand, filterCategory, filterModel, filterColor, filterName, filterPrice, filterYear);
     e.preventDefault();
   });
 
   $('#drumButton').click(function (e) {   
-    $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo("trummor", null);
+    $("#mainViewContainer").html($("#view-product").html())
+    filterCategory = "trummor";  
+    filterColor = undefined;
+    filterName = undefined;
+    filterPrice = undefined; 
+    filterYear = undefined;
+    filterModel = undefined;
+    filterBrand = undefined;
+    showProdInfo("", filterBrand, filterCategory, filterModel, filterColor, filterName, filterPrice, filterYear);
     e.preventDefault();
   });
 
   $('#studioButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo("studio", null);
+    filterCategory = "studio";
+    filterColor = undefined;
+    filterName = undefined;
+    filterPrice = undefined; 
+    filterYear = undefined;
+    filterModel = undefined;
+    filterBrand = undefined;
+    alert(filterCategory + filterModel);
+    showProdInfo("", filterBrand, filterCategory, filterModel, filterColor, filterName, filterPrice, filterYear);
     e.preventDefault();
   });
 
   $('#yamahaTestButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    showProdInfo("", "Yamaha");
+    filterBrand = "Yamaha";
+    filterCategory = "pianon";
+    filterModel = "idk";
+    filterColor, filterName, filterPrice, filterYear = undefined;
+    alert(filterBrand + filterCategory + filterModel);
+    showProdInfo("", filterBrand, filterCategory, filterModel, filterColor, filterName, filterPrice, filterYear);
     e.preventDefault();
   });
 
