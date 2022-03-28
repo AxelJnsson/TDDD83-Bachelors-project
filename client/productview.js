@@ -103,45 +103,44 @@ function filtertest(arr, inputBrand){
 
     // return filteredResult;
 
-    var filterprod = new Product(null, null, inputBrand, null, null, null, null, null, null, null);
-        // this.id = id;
-        // category = category;
-        //brand
-        // this.model = model;
-        // this.name = name;
-        // this.price = price;
-        // this.color = color;
-        // this.year = year;
-        // this.image = image;
-        // this.otherinfo = otherinfo;
-        alert(filterprod.brand);  
-    
+  //  var filterprod = {id: "7", category : null, brand: inputBrand, model: null, name: null, price: null, color: null, year: null, image: null, otherinfo: null}; 
+    var filterprod = {brand: inputBrand, color:"Svart"}; 
 
-      var arr1= arr.filter(function(item) {
-        const filteredproducts = [];
+    const filteredproducts = [];
+
+        var arr1 = arr.filter(function(item) {
        
     //         //if (Object.prototype.hasOwnProperty.call(filterprod, key)) {
     //             // do stuff
                 
                  for (var key in filterprod) {
-                    
-                    //   if (item[key] == undefined || item[key] != filterprod[key]){
-                    //       found = false;
-                    //       return found;
-                    //   }
+                    //alert(item[key] + filterprod[key]);
+
+                       if (item[key] != filterprod[key]) 
+                            return false;
+                            //return false;
+                            //alert("do nothing");
+                       
                    // alert(item[key] + filterprod[key]);
-                    if (item[key] == filterprod[key]){
-                        filteredproducts.push(item);
-                        alert("funkar");
-                    }
-                    //  alert("funkar det nu?");
+                    //if (item[key] == filterprod[key]){
+                        // else {
+                        // filteredproducts.push(item);
+                        // alert("funkar");
+                        // }
+                        //return true;
                  }
-             //    alert(filteredproducts.brand.);
+
+                    return true;
+                    //  alert("funkar det nu?");
+                 
+                // alert("d");
+                //alert(filteredproducts[item].brand);
                 return filteredproducts;
-       });
+       });     
+       alert("Yamaha + Svart");
 
-       
-
+      // return filteredproducts;
+       return arr1;
      
 }
 
