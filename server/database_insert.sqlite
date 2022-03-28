@@ -1,8 +1,10 @@
 INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, seller)
-VALUES ('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000, 'Black', 2022, 'Piano', 1, 1);
+VALUES ('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000, 'Black', 2022, 'Piano', 1, 1),
+       ('Thomann', 'Alphorn Spitzenklasse in F#', 'Thomann Alphorn Spitzenklasse in F#', 31890, 'White', 2022, 'Alphorn', 0, 2);
 
 INSERT INTO user(email, first_name, last_name, password_hash)
-VALUES ('david@gmail.com', 'David', 'Carlsson', 'katt123');
+VALUES ('david@gmail.com', 'David', 'Carlsson', 'katt123'),
+       ('jonathan@hotmail.com', 'Jonathan', 'Johansson', 'hund456');
 
 INSERT INTO new_product(product_id, brand, model, name, price, color, year, type)
 SELECT product_id, brand, model, name, price, color, year, type
@@ -13,6 +15,6 @@ INSERT INTO used_product(product_id, brand, model, name, price, color, year, typ
 SELECT A.product_id, A.brand, A.model, A.name, A.price, A.color, A.year, A.type, B.user_id, B.email, B.first_name, B.last_name
 FROM product A, user B
 WHERE B.user_id = A.seller AND B.user_id IN (SELECT seller
-                                            FROM product
-                                            WHERE new_or_not = '0' AND seller != '1');
+                                             FROM product
+                                             WHERE new_or_not = '0');
 
