@@ -95,13 +95,64 @@ function createProducts(instrCategory, filterQ){
 }
 
 //testfunktion för filtrering på märke (funkar!)
-function filtertest(arr, input){
-    alert(input);
-    var filteredResult = arr.filter(function (el) {
-        return el.brand == input;
-    });
+function filtertest(arr, inputBrand){
+    // alert(inputBrand);
+    // var filteredResult = arr.filter(function (el) {
+    //     return el.brand == inputBrand;
+    // });
 
-    return filteredResult;
+    // return filteredResult;
+
+    var filterprod = new Product(null, null, inputBrand, null, null, null, null, null, null, null);
+        // this.id = id;
+        // category = category;
+        //brand
+        // this.model = model;
+        // this.name = name;
+        // this.price = price;
+        // this.color = color;
+        // this.year = year;
+        // this.image = image;
+        // this.otherinfo = otherinfo;
+        alert(filterprod.brand);  
+    
+
+      var arr1= arr.filter(function(item) {
+        const filteredproducts = [];
+       
+    //         //if (Object.prototype.hasOwnProperty.call(filterprod, key)) {
+    //             // do stuff
+                
+                 for (var key in filterprod) {
+                    
+                    //   if (item[key] == undefined || item[key] != filterprod[key]){
+                    //       found = false;
+                    //       return found;
+                    //   }
+                   // alert(item[key] + filterprod[key]);
+                    if (item[key] == filterprod[key]){
+                        filteredproducts.push(item);
+                        alert("funkar");
+                    }
+                    //  alert("funkar det nu?");
+                 }
+             //    alert(filteredproducts.brand.);
+                return filteredproducts;
+       });
+
+       
+
+     
+}
+
+function filtertest2(arr){
+    var filterprod = new Product(null, null, inputBrand, null, null, null, null, null, null, null);
+    let filteredproducts;
+    for (var key in filterprod) {
+        if (item[key] == filterprod[key]){
+            filterprod.push(item);
+        }
+    }
 }
 
   function showProdModal(){
