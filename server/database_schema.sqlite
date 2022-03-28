@@ -20,11 +20,12 @@ year INTEGER NOT NULL,
 type TEXT NOT NULL,
 new_or_not INTEGER DEFAULT 1,
 quantity INTEGER NOT NULL
+seller INTEGER DEFAULT 1
 );
 
 CREATE TABLE user (
     user_id INTEGER,
-    email TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     is_admin INTEGER DEFAULT 0,
@@ -49,6 +50,7 @@ CREATE TABLE  used_product (
 
 CREATE TABLE new_product (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
+product_id INTEGER PRIMARY KEY,
 brand TEXT NOT NULL,
 model TEXT NOT NULL,
 name TEXT NOT NULL,
