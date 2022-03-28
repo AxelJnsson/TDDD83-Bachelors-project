@@ -11,8 +11,8 @@ WHERE new_or_not = '1';
 
 INSERT INTO used_product(product_id, brand, model, name, price, color, year, type, user_id, email, first_name, last_name)
 SELECT A.product_id, A.brand, A.model, A.name, A.price, A.color, A.year, A.type, B.user_id, B.email, B.first_name, B.last_name
-FROM A.product, B.user
-WHERE B.user_id IN (SELECT seller
-                    FROM product
-                    WHERE new_or_not = '0' AND seller /= '1');
+FROM product A, user B
+WHERE B.user_id = A.seller AND B.user_id IN (SELECT seller
+                                            FROM product
+                                            WHERE new_or_not = '0' AND seller != '1');
 
