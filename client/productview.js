@@ -16,7 +16,8 @@
 }
 
 //testfunktion med hårdkodade testprodukter (att fungera som "databas" så länge)
-function createProducts(instrCategory, filterQ){
+function createProducts(instrCategory, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear){
+
 
     //testgitarrer
     let testgitarr = new Product("1", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
@@ -33,7 +34,7 @@ function createProducts(instrCategory, filterQ){
     let testpiano2 = new Product("10", "pianon", "trevlig", " 1", "Fredrik", "100000000000 kr", "lila", "1993", "testbildkassa.png", "väldigt dyr");
 
     //testtrummor
-    let testtrumma = new Product("8", "trumset", "märke", "idk", "nej", "nej", "svart", "2020", "trumset.jpeg", "trummor");
+    let testtrumma = new Product("8", "trummor", "märke", "idk", "nej", "nej", "svart", "2020", "trumset.jpeg", "trummor");
 
     //teststudio
     let teststudio = new Product("9", "studio", "Behringer", "någon modell", "Trevlig mixer", "20000 kr" , "Grå", "2021", "mixer.png", "Helt bra analog mixer");
@@ -46,113 +47,83 @@ function createProducts(instrCategory, filterQ){
 
 
     //funktion för att filtrera in i kategorier (som kan vara hårdkodade? eller också hämtas från db så småningom?)
-    for (let i = 0; i < allinstruments.length; i++) {
-        let prod = allinstruments[i];
-        switch (prod.category){
-            case "gitarrer": gitarrer.push(prod);
-                            break;
-            case "pianon" : pianon.push(prod);
-                            break;
-            case "trumset" : trummor.push(prod);
-                            break;
-            case "studio" : studio.push(prod);
-        }
-    }
+    // for (let i = 0; i < allinstruments.length; i++) {
+    //     let prod = allinstruments[i];
+    //     switch (prod.category){
+    //         case "gitarrer": gitarrer.push(prod);
+    //                         break;
+    //         case "pianon" : pianon.push(prod);
+    //                         break;
+    //         case "trumset" : trummor.push(prod);
+    //                         break;
+    //         case "studio" : studio.push(prod);
+    //     }
+    // }
 
 
     //visar kategorier beroende på menyknapp och ev. filter
-    if (instrCategory == "gitarrer") {
-         if (filterQ != null) {
-            return filtertest(gitarrer, filterQ);
+    // if (instrCategory == "gitarrer") {
+    //      if (filterQ != null) {
+    //         return filtertest(gitarrer, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear);
+    //     } else {
+    //         return gitarrer;
+    //     }
+    // } else if (instrCategory == "pianon"){
+    //     if (filterQ != null) {
+    //         return filtertest(pianon, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear);
+    //     } else {
+    //         return pianon;
+    //     }    
+    // } else if (instrCategory == "trummor"){
+    //     if (filterQ != null) {
+    //         return filtertest(trummor, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear);
+    //     } else {
+    //         return trummor;
+    //     }    
+    // } else if (instrCategory == "studio") {
+    //     if (filterQ != null) {
+    //         return filtertest(studio, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear);
+    //     } else {
+    //         return studio;
+    //     }    
+    // } else {
+       // alert(inputBrand + inputCategory);
+        if (inputBrand != null || inputCategory != null || inputModel != null || inputColor != null || inputName != null || inputPrice != null || inputYear != null) {
+            return filtertest(allinstruments, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear);
         } else {
-            return gitarrer;
-        };
-    } else if (instrCategory == "pianon"){
-        if (filterQ != null) {
-            return filtertest(pianon, filterQ);
-        } else {
-            return pianon;
-        }    
-    } else if (instrCategory == "trummor"){
-        if (filterQ != null) {
-            return filtertest(trummor, filterQ);
-        } else {
-            return trummor;
-        }    
-    } else if (instrCategory == "studio") {
-        if (filterQ != null) {
-            return filtertest(studio, filterQ);
-        } else {
-            return studio;
-        }    
-    } else {
-        if (filterQ != null) {
-            return filtertest(allinstruments, filterQ);
-        } else {
-            return allinstruments;
-        }
+         return allinstruments;
+        
     }
 }
 
+
 //testfunktion för filtrering på märke (funkar!)
-function filtertest(arr, inputBrand){
-    // alert(inputBrand);
-    // var filteredResult = arr.filter(function (el) {
-    //     return el.brand == inputBrand;
-    // });
-
-    // return filteredResult;
-
-  //  var filterprod = {id: "7", category : null, brand: inputBrand, model: null, name: null, price: null, color: null, year: null, image: null, otherinfo: null}; 
-    var filterprod = {brand: inputBrand, color:"Svart"}; 
-
-    const filteredproducts = [];
-
+function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear){
+    var filterprod = {category: inputCategory, brand: inputBrand, model: inputModel, name: inputName, price: inputPrice, color : inputColor, year : inputYear}; 
         var arr1 = arr.filter(function(item) {
-       
-    //         //if (Object.prototype.hasOwnProperty.call(filterprod, key)) {
-    //             // do stuff
-                
-                 for (var key in filterprod) {
-                    //alert(item[key] + filterprod[key]);
+       //    alert(filterprod.brand + filterprod.category + filterprod.model + filterprod.color + filterprod.name + filterprod.year);
 
-                       if (item[key] != filterprod[key]) 
+                 for (var key in filterprod) {
+                    // alert("hej");
+                       if (item[key] != filterprod[key] && filterprod[key] !== undefined) 
+                      // alert(item[key] + filterprod[key]);
+                    //    if(filterprod[key] === undefined){
+                    //        return true;
+                    //    }
                             return false;
-                            //return false;
-                            //alert("do nothing");
-                       
-                   // alert(item[key] + filterprod[key]);
-                    //if (item[key] == filterprod[key]){
-                        // else {
-                        // filteredproducts.push(item);
-                        // alert("funkar");
-                        // }
-                        //return true;
+                     
                  }
 
                     return true;
-                    //  alert("funkar det nu?");
-                 
-                // alert("d");
-                //alert(filteredproducts[item].brand);
-                return filteredproducts;
+
        });     
-       alert("Yamaha + Svart");
 
       // return filteredproducts;
+      alert(arr1.length);
        return arr1;
      
 }
 
-function filtertest2(arr){
-    var filterprod = new Product(null, null, inputBrand, null, null, null, null, null, null, null);
-    let filteredproducts;
-    for (var key in filterprod) {
-        if (item[key] == filterprod[key]){
-            filterprod.push(item);
-        }
-    }
-}
 
   function showProdModal(){
     $("#productModal").modal('toggle');
@@ -162,13 +133,19 @@ function filtertest2(arr){
   }
 
 
-  function showProdInfo(category, filterquery) {
+  function showProdInfo(category, filterBrand, filterCategory, filterModel, filterColor, filterName, filterPrice, filterYear) {
     $(".product-modal-body").empty();
     $("#testrow").empty();
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
     let instrumentCategory = category; 
-    let filter = filterquery;
-    let products = createProducts(instrumentCategory, filter);
+    let inputBrand = filterBrand;
+    let inputCategory = filterCategory;
+    let inputModel = filterModel;
+    let inputColor = filterColor;
+    let inputName = filterName;
+    let inputPrice = filterPrice;
+    let inputYear = filterYear;
+    let products = createProducts(instrumentCategory, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear);
     //alert(guitars.length);
 
     let j = 0;
