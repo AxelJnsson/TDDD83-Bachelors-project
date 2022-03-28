@@ -16,7 +16,7 @@
 }
 
 //testfunktion med hårdkodade testprodukter (att fungera som "databas" så länge)
-function createProducts(instrCategory, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear){
+function createProducts(filterQueries){
 
 
     //testgitarrer
@@ -88,8 +88,8 @@ function createProducts(instrCategory, inputBrand, inputCategory, inputModel, in
     //     }    
     // } else {
        // alert(inputBrand + inputCategory);
-        if (inputBrand != null || inputCategory != null || inputModel != null || inputColor != null || inputName != null || inputPrice != null || inputYear != null) {
-            return filtertest(allinstruments, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear);
+        if (filterQueries.brand != null || filterQueries.category != null || filterQueries.model != null || filterQueries.color != null || filterQueries.name != null || filterQueries.price != null || filterQueries.year != null) {
+            return filtertest(allinstruments, filterQueries.brand, filterQueries.category, filterQueries.model, filterQueries.color, filterQueries.name, filterQueries.price, filterQueries.year);
         } else {
          return allinstruments;
         
