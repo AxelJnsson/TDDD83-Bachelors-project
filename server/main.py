@@ -30,7 +30,7 @@ jwt = JWTManager(app)
 
 
 class Product(db.Model):
-  id = db.Column(db.Integer, primary_key = True)
+  product_id = db.Column(db.Integer, primary_key = True)
   brand = db.Column(db.String, nullable = False)
   model = db.Column(db.String, nullable = False)
   name = db.Column(db.String, nullable = False)
@@ -38,12 +38,14 @@ class Product(db.Model):
   color = db.Column(db.String, nullable = False)
   year = db.Column(db.Integer, nullable = False)
   type = db.Column(db.String, nullable = False)
+  new_or_not = db.Column(db.Integer, nullable = False)
+  seller = db.Column(db.Integer, nullable = False)
 
   def __repr__(self):
-    return '<Product {}: {} {} {} {} {} {} {}>'.format(self.id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type)
+    return '<Product {}: {} {} {} {} {} {} {} {} {}>'.format(self.product_id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type, self.new_or_not, self.seller)
 
   def serialize(self):
-    return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type)
+    return dict(id=self.product_id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type, new_or_not = self.new_or_not, seller = self.seller)
 
 class User(db.Model):
   user_id = db.Column(db.Integer, primary_key = True)
@@ -144,25 +146,25 @@ def signup():
     return i
 
 @app.route('/product/<int:product_id>', methods = ['GET', 'DELETE', 'PUT'] )
-def product(product_id):
+def product(id):
     if request.method == 'GET':
-      temp = Product.query.filter_by(id = product_id).first_or_404()
+      temp = Product.query.filter_by(product_id = id).first_or_404()
     # if temp.user is not None:
     #   return jsonify(temp.serialize2())
     # else:
       return jsonify(temp.serialize())
     elif request.method == 'PUT':
      product = request.get_json()
-     product["id"]= product_id
-     Product.query.filter_by(id = product_id).update(product)     
-     temp = Product.query.filter_by(id = product_id).first_or_404()
+     product["product_id"]= id
+     Product.query.filter_by(product_id = id).update(product)     
+     temp = Product.query.filter_by(product_id = id).first_or_404()
     
      
      db.session.commit()
      
      return jsonify(temp.serialize())
     elif request.method == 'DELETE':
-      new_product = Product.query.get_or_404(product_id)
+      new_product = Product.query.get_or_404(id)
       db.session.delete(new_product)
       db.session.commit()
       return "OK", 200
@@ -180,11 +182,14 @@ def products():
 
   elif request.method == 'POST':
     new_product = request.get_json()
-    x = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"])
+    x = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"], new_or_not = new_product["new_or_not"], seller = new_product["seller"])
     db.session.add(x)
     db.session.commit()
-    product_id = x.id
+    product_id = x.product_id
     i = Product.serialize(Product.query.get_or_404(product_id))
+    if x.new_or_not == 0: 
+        old_product = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"], new_or_not = new_product["new_or_not"], seller = new_product["seller"])
+
     return i
 
   return "401"

@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS product ;
-DROP TABLE IF EXISTS user ;
+DROP TABLE IF EXISTS product CASCADE;
+DROP TABLE IF EXISTS user CASCADE;
 DROP TABLE IF EXISTS used_product ;
 DROP TABLE IF EXISTS new_product ;
 
@@ -15,8 +15,8 @@ price INTEGER NOT NULL,
 color TEXT NOT NULL,
 year INTEGER NOT NULL,
 type TEXT NOT NULL,
-new_or_not INTEGER DEFAULT 1,
-seller INTEGER DEFAULT 1
+new_or_not INTEGER NOT NULL,
+seller INTEGER NOT NULL 
 );
 
 CREATE TABLE user (
@@ -31,26 +31,12 @@ CREATE TABLE user (
 
 CREATE TABLE  used_product (
     product_id INTEGER PRIMARY KEY,
-    brand TEXT NOT NULL,
-    model TEXT NOT NULL,
-    name TEXT NOT NULL,
-    price INTEGER NOT NULL,
-    color TEXT NOT NULL,
-    year INTEGER NOT NULL,
-    type TEXT NOT NULL,
-    user_id INTEGER,
-    email TEXT NOT NULL,
-    first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL   
+    user_id INTEGER, 
+    FOREIGN KEY(product_id) REFERENCES product(product_id),
+    FOREIGN KEY(user_id) REFERENCES user(user_id)
 );
 
 CREATE TABLE new_product (
-product_id INTEGER PRIMARY KEY,
-brand TEXT NOT NULL,
-model TEXT NOT NULL,
-name TEXT NOT NULL,
-price INTEGER NOT NULL,
-color TEXT NOT NULL,
-year INTEGER NOT NULL,
-type TEXT NOT NULL
+  product_id INTEGER PRIMARY KEY,
+FOREIGN KEY(product_id) REFERENCES product(product_id)
 );
