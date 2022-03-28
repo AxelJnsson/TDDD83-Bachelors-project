@@ -113,7 +113,7 @@ def login():
     users = User.query.all()
     for x in users:
       if x.email == indata["email"]:
-        if bcrypt.check_password_hash(x.password_hash, indata['password']):
+        if bcrypt.check_password_hash(x.password_hash, indata["password"]):
           access_token = create_access_token(identity = x.serialize())
           dict = {"token" : access_token,
                   "user" : x.serialize() 

@@ -21,7 +21,7 @@ seller INTEGER DEFAULT 1
 
 CREATE TABLE user (
     user_id INTEGER,
-    email TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     is_admin INTEGER DEFAULT 0,
