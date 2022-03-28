@@ -63,6 +63,9 @@ class User(db.Model):
   def serialize(self):
     return dict(user_id=self.user_id, email=self.email, first_name=self.first_name, last_name= self.last_name, is_admin=self.is_admin)
 
+  #def serialize2(self, session):
+   # return dict(user_id=self.user_id, email=self.email, first_name=self.first_name, last_name= self.last_name, is_admin=self.is_admin, shopping_session = session)
+
   def set_password(self, password):
     self.password_hash= bcrypt.generate_password_hash(password).decode('utf8')
 
@@ -77,18 +80,20 @@ class Shopping_Session(db.Model):
     return '<Shopping Session {}: {} {} {}>'.format(self.id, self.user_id, self.total, self.cart_item)
 
   def serialize(self):
-    return dict(id=self.id, total=self.total)
+    return dict(id=self.id, user_id=self.user_id, total=self.total)
 
 class Cart_Item(db.Model):
   id = db.Column(db.Integer, primary_key = True)
   product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable = True)
-  quantity = db.Column(db.Integer, nullable = True)
+  quantity = db.Column(db.Integer, nullable = True, default = 0)
   session_id = db.Column(db.Integer, db.ForeignKey('shopping_session.id'), nullable = True)
   #session = db.relationship('Shopping_Session', back_populates='cart_item', lazy = True)
 
   def __repr__(self):
-    return '<User {}: {} {} {} {}>'.format(self.id, self.product_id, self.quantity, self.session_id)
+    return '<Product {}: {} {} {} {}>'.format(self.id, self.product_id, self.quantity, self.session_id)
 
+  def serialize(self):
+    return dict(id=self.id, product_id=self.product_id, quantity=self.quantity)
 #tror inte denna kommer behövas eftersom produkterna skriver ut sig själva
   # def serialize(self):
   #   return dict(id=self.id, product_id=self.product_id, quantity=self.quantity, session_id= self.session_id)
@@ -229,7 +234,14 @@ def products():
 def users(user_id):
   if request.method == 'GET':
     temp = User.query.filter_by(user_id = user_id).first_or_404()
-    return jsonify(temp.serialize())
+    temp_Session = Shopping_Session.query.filter_by(user_id = user_id).first_or_404()
+    temp_Item = Cart_Item.query.filter_by(session_id = temp_Session.id)
+    item_list = []
+    for x in temp_Item:
+      item_list.append(x.serialize())
+
+    return jsonify(temp.serialize(), temp_Session.serialize(), item_list)
+
   elif request.method == 'PUT':
     user = request.get_json()
     user["id"] = user_id
@@ -298,10 +310,16 @@ def productadd(product_id):
       print(user)
       z = Shopping_Session.query.filter_by(user_id = user).first_or_404()
       print(z.id)
-      y = Cart_Item.query.filter_by(session_id = z.id).first_or_404()
-      y = y + 1
+
+      cart_item = Cart_Item(product_id = product.id, session_id = z.id) #skapar en ny session när någon loggar in
+      db.session.add(cart_item)
+      db.session.commit()
+
+      item = Cart_Item.query.filter_by(session_id = z.id).first_or_404()
+      print(item.quantity)
+      y = item.quantity + 1
       data_to_updateCartItem = {"product_id" : product_id, "quantity" : y}
-      Cart_Item.query.filter_by(user_id = user['user_id']).update(data_to_updateCartItem)
+      Cart_Item.query.filter_by(session_id = z.id).update(data_to_updateCartItem)
 
       db.session.commit()
 

@@ -3,6 +3,8 @@ DROP TABLE IF EXISTS user ;
 DROP TABLE IF EXISTS used_product ;
 DROP TABLE IF EXISTS new_product ;
 DROP TABLE IF EXISTS cart ;
+DROP TABLE IF EXISTS shopping_session ;
+DROP TABLE IF EXISTS cart_item ;
 
 SELECT 'Creating tables' AS 'Message';
 
@@ -60,4 +62,21 @@ CREATE TABLE cart (
 id INTEGER PRIMARY KEY,
 quantity INTEGER,
 reserver_id INTEGER NOT NULL
-)
+);
+
+CREATE TABLE shopping_session (
+id INTEGER PRIMARY KEY,
+user_id  INTEGER,
+total INTEGER,
+cart_item INTEGER,
+FOREIGN KEY(user_id) REFERENCES user(id)
+);
+
+CREATE TABLE cart_item (
+id INTEGER PRIMARY KEY,
+product_id INTEGER,
+session_id INTEGER,
+quantity INTEGER,
+FOREIGN KEY(product_id) REFERENCES product(id),
+FOREIGN KEY(session_id) REFERENCES shopping_session(id)
+);
