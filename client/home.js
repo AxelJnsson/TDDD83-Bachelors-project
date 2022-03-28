@@ -16,6 +16,13 @@ $('#aboutButton').click(function (e) {
   $('#allInstrButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
     //showProdInfo("allt", null);
+    filterCategory = undefined;
+    filterColor = undefined;
+    filterName = undefined;
+    filterPrice = undefined; 
+    filterYear = undefined;
+    filterModel = undefined;
+    filterBrand = undefined;  
     showProdInfo("", filterBrand, filterCategory, filterModel, filterColor, filterName, filterPrice, filterYear);
     e.preventDefault();
   });
