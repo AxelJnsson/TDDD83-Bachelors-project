@@ -1,7 +1,8 @@
+
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS used_product ;
-DROP TABLE IF EXISTS new_product ;
+DROP TABLE IF EXISTS used_product;
+DROP TABLE IF EXISTS new_product;
 
 SELECT 'Creating tables' AS 'Message';
 
@@ -42,20 +43,4 @@ CREATE TABLE new_product (
 FOREIGN KEY(product_id) REFERENCES product(product_id)
 );
 
-CREATE TRIGGER insertIntoNew
-AFTER INSERT ON product
-WHEN new_or_not = 1
-BEGIN
-INSERT INTO new_product(product_id)
-VALUES(NEW.product_id);
-END;
 
-CREATE TRIGGER insertIntoOld
-AFTER INSERT ON product
-WHEN new_or_not = 0
-BEGIN
-INSERT INTO used_product(product_id, user_id)
-SELECT NEW.product_id, B.user_id
-FROM product, user B
-WHERE B.user_id = NEW.seller 
-END ;

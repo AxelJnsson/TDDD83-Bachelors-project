@@ -95,6 +95,22 @@ def addTestSQL(filename):
     except OperationalError as msg:
       print("Command skipped: ", msg)
 
+#Inserts data from database_insert
+def addTestSQL(filename):
+  fd = open(filename, 'r')
+  sqlFile = fd.read()
+  fd.close()
+  i=0
+
+  sqlCommands = sqlFile.split(';')
+  
+  for command in sqlCommands:
+    try:
+      db.session.execute(command)
+      db.session.commit()
+    except OperationalError as msg:
+      print("Command skipped: ", msg)
+
 #Does the setupdatabase routine
 def setUpDatabase():
   #global connection 
