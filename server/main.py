@@ -31,7 +31,7 @@ jwt = JWTManager(app)
 
 
 class Product(db.Model):
-  id = db.Column(db.Integer, primary_key = True)
+  product_id = db.Column(db.Integer, primary_key = True)
   brand = db.Column(db.String, nullable = False)
   model = db.Column(db.String, nullable = False)
   name = db.Column(db.String, nullable = False)
@@ -44,17 +44,17 @@ class Product(db.Model):
   seller = db.Column(db.Integer, nullable = False)
 
   def __repr__(self):
-    return '<Product {}: {} {} {} {} {} {} {} {} {}>'.format(self.product_id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type, self.new_or_not, self.seller)
+    return '<Product {}: {} {} {} {} {} {} {} {} {} {}>'.format(self.product_id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type, self.new_or_not, self.quantity, self.seller)
 
   def serialize(self):
-    return dict(product_id=self.product_id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type, new_or_not = self.new_or_not, seller = self.seller)
+    return dict(product_id=self.product_id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type, new_or_not = self.new_or_not, quantity = self.quantity, seller = self.seller)
 
 class User(db.Model):
   user_id = db.Column(db.Integer, primary_key = True)
   email = db.Column(db.String, nullable = False)
   first_name = db.Column (db.String, nullable = False)
   last_name = db.Column (db.String, nullable = False)
-  is_admin =db.Column(db.Boolean, default = False, nullable =True)
+  is_admin =db.Column(db.Integer, default = 0, nullable = False)
   password_hash = db.Column(db.String, nullable = False)
  # cart = db.relationship('Cart', backref='user', lazy = True) #https://fabric.inc/blog/shopping-cart-database-design/
 
@@ -86,7 +86,7 @@ class Shopping_Session(db.Model):
 
 class Cart_Item(db.Model):
   id = db.Column(db.Integer, primary_key = True)
-  product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable = True)
+  product_id = db.Column(db.Integer, db.ForeignKey('product.product_id'), nullable = True)
   quantity = db.Column(db.Integer, nullable = True, default = 0)
   session_id = db.Column(db.Integer, db.ForeignKey('shopping_session.id'), nullable = True)
   #session = db.relationship('Shopping_Session', back_populates='cart_item', lazy = True)
@@ -319,56 +319,27 @@ def user():
     return i
 
 
- #gammal version. Kanske fungerar
-# @app.route('/product/<int:product_id>/adding', methods= ['POST'])
-# @jwt_required()
-# def productadd(product_id):
-
-#    if request.method == 'POST':
-#      temp = Product.query.filter_by(id = product_id).first_or_404()
-#      x = get_jwt_identity().get('id')
-#      temp_user = User.query.filter_by(user_id = x).first_or_404()
-#      if temp.quantity > 0:
-#        setattr(temp, "added", True)
-#        setattr(temp_user, "cart", product_id)
-#        db.session.commit()       
-#      return "success : true"
-#    else:
-#      return "success : false"
-
-
 @app.route('/product/<int:product_id>/adding', methods= ['POST'])
 @jwt_required()
 def productadd(product_id):
 
   if request.method == 'POST':
     user = get_jwt_identity().get('user_id')
-    product = Product.query.filter_by(id = product_id).first_or_404()
+    product = Product.query.filter_by(product_id = product_id).first_or_404()
     if product.quantity > 0:
-    #lägg till dessa senare
-    #  x = product.quantity
-    #  x = x - 1
-    #  data_to_updateProduct = {"quantity" : x}
-      #Product.query.filter_by(id = product_id).update(data_to_updateProduct)
+      x = product.quantity
+      x = x - 1
+      data_to_updateProduct = {"quantity" : x}
+      Product.query.filter_by(product_id = product_id).update(data_to_updateProduct)
 
-     
       z = Shopping_Session.query.filter_by(user_id = user).first_or_404()
-      
-
       items = Cart_Item.query.filter_by(session_id = z.id).all()
-      
-      # item_list = []
-
-      # for x in items:
-      #   item_list.append(x.serialize())
-
-
+    
       if not items:
-        cart_item = Cart_Item(product_id = product.id, session_id = z.id) #skapar en ny cart_item
+        cart_item = Cart_Item(product_id = product.product_id, session_id = z.id) #skapar en ny cart_item
         db.session.add(cart_item)
         db.session.commit()
         print("bla")  
-
 
       items = Cart_Item.query.filter_by(session_id = z.id).all()
       sum = 0
@@ -376,28 +347,15 @@ def productadd(product_id):
         if x.product_id == product_id:
           sum = sum + 1
 
-      print(sum)
       if sum == 0:
-        cart_item = Cart_Item(product_id = product.id, session_id = z.id) #skapar en ny cart_item
+        cart_item = Cart_Item(product_id = product.product_id, session_id = z.id) #skapar en ny cart_item
         db.session.add(cart_item)
         db.session.commit()
-        print("tjo") 
       
-      # for x in items:
-      #   if x.product_id != product_id:
-      #     cart_item = Cart_Item(product_id = product.id, session_id = z.id) #skapar en ny cart_item
-      #     db.session.add(cart_item)
-      #     db.session.commit()
-      #     print("tjo")  
-
-      
-      item = Cart_Item.query.filter_by(session_id = z.id, product_id = product.id).first_or_404()
-      print("hej")  
+      item = Cart_Item.query.filter_by(session_id = z.id, product_id = product.product_id).first_or_404()
       y = item.quantity + 1
-      #ta bort senare om den under fungerar
-      #data_to_updateCartItem = {"product_id" : product_id, "quantity" : y}
       data_to_updateCartItem = {"quantity" : y}
-      Cart_Item.query.filter_by(session_id = z.id, product_id = product.id).update(data_to_updateCartItem)
+      Cart_Item.query.filter_by(session_id = z.id, product_id = product.product_id).update(data_to_updateCartItem)
       db.session.commit()
      
 
@@ -407,19 +365,36 @@ def productadd(product_id):
 
 
 
-# @app.route('/produect/<int:product_id>/unadding', methods= ['POST'])
-# @jwt_required()
-# def carsub(product_id):
+@app.route('/product/<int:product_id>/unadding', methods= ['POST'])
+@jwt_required()
+def carsub(product_id):
 
-#   if request.method == 'POST':
-#     temp = Product.query.filter_by(id = product_id).first_or_404()
-#     x = int(get_jwt_identity().get('id'))
-#     if temp.user_id == x:
-#       setattr(temp, "user_id", None)
-#       db.session.commit()       
-#       return "Avbokad"
-#     else:
-#       return "Inte din bokning"
+  
+  if request.method == 'POST':
+    user = get_jwt_identity().get('user_id')
+    product = Product.query.filter_by(product_id = product_id).first_or_404()
+    
+
+    z = Shopping_Session.query.filter_by(user_id = user).first_or_404()
+    print("hej")
+    item = Cart_Item.query.filter_by(session_id = z.id, product_id = product.product_id).first_or_404()
+
+    if item.quantity == 1:
+      db.session.delete(item)
+    else:
+      y = item.quantity - 1
+      data_to_updateCartItem = {"quantity" : y}
+      Cart_Item.query.filter_by(session_id = z.id, product_id = product.product_id).update(data_to_updateCartItem)
+    
+    x = product.quantity
+    x = x + 1
+    data_to_updateProduct = {"quantity" : x}
+    Product.query.filter_by(product_id = product_id).update(data_to_updateProduct)
+    db.session.commit()
+
+    return "Tog bort produkt"
+  else:
+    return "Produkten finns inte i din varukorg"
 
 if __name__ == "__main__":
   app.run(debug=True)

@@ -1,8 +1,7 @@
 DROP TABLE IF EXISTS product ;
-DROP TABLE IF EXISTS user ;
+--DROP TABLE IF EXISTS user ;
 DROP TABLE IF EXISTS used_product ;
 DROP TABLE IF EXISTS new_product ;
-DROP TABLE IF EXISTS cart ;
 DROP TABLE IF EXISTS shopping_session ;
 DROP TABLE IF EXISTS cart_item ;
 
@@ -11,7 +10,7 @@ SELECT 'Creating tables' AS 'Message';
 
 
 CREATE TABLE IF NOT EXISTS product (
-id INTEGER PRIMARY KEY AUTOINCREMENT,
+product_id INTEGER PRIMARY KEY AUTOINCREMENT,
 brand TEXT NOT NULL,
 model TEXT NOT NULL,
 name TEXT NOT NULL,
@@ -24,7 +23,7 @@ quantity INTEGER NOT NULL,
 seller INTEGER DEFAULT 1
 );
 
-CREATE TABLE user (
+CREATE TABLE IF NOT EXISTS user (
     user_id INTEGER,
     email TEXT NOT NULL UNIQUE,
     first_name TEXT NOT NULL,
@@ -35,8 +34,7 @@ CREATE TABLE user (
 );
 
 CREATE TABLE  used_product (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    product_id INTEGER,
+    product_id INTEGER PRIMARY KEY AUTOINCREMENT,
     brand TEXT NOT NULL,
     model TEXT NOT NULL,
     name TEXT NOT NULL,
@@ -56,8 +54,7 @@ CREATE TABLE  used_product (
    
 
 CREATE TABLE new_product (
-id INTEGER PRIMARY KEY AUTOINCREMENT,
-product_id INTEGER,
+product_id INTEGER PRIMARY KEY AUTOINCREMENT,
 brand TEXT NOT NULL,
 model TEXT NOT NULL,
 name TEXT NOT NULL,
@@ -66,12 +63,6 @@ color TEXT NOT NULL,
 year INTEGER NOT NULL,
 type TEXT NOT NULL,
 FOREIGN KEY(product_id) REFERENCES product(product_id)
-);
-
-CREATE TABLE cart (
-id INTEGER PRIMARY KEY,
-quantity INTEGER,
-reserver_id INTEGER NOT NULL
 );
 
 CREATE TABLE shopping_session (
