@@ -31,7 +31,7 @@ jwt = JWTManager(app)
 
 
 class Product(db.Model):
-  product_id = db.Column(db.Integer, primary_key = True)
+  id = db.Column(db.Integer, primary_key = True)
   brand = db.Column(db.String, nullable = False)
   model = db.Column(db.String, nullable = False)
   name = db.Column(db.String, nullable = False)
@@ -40,6 +40,7 @@ class Product(db.Model):
   year = db.Column(db.Integer, nullable = False)
   type = db.Column(db.String, nullable = False)
   new_or_not = db.Column(db.Integer, nullable = False)
+  quantity = db.Column(db.Integer, nullable = True)
   seller = db.Column(db.Integer, nullable = False)
 
   def __repr__(self):
@@ -368,11 +369,14 @@ def productadd(product_id):
         db.session.commit()
         print("bla")  
 
+
+      items = Cart_Item.query.filter_by(session_id = z.id).all()
       sum = 0
       for x in items:
         if x.product_id == product_id:
           sum = sum + 1
 
+      print(sum)
       if sum == 0:
         cart_item = Cart_Item(product_id = product.id, session_id = z.id) #skapar en ny cart_item
         db.session.add(cart_item)
