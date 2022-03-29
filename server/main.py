@@ -307,21 +307,52 @@ def productadd(product_id):
     #  data_to_updateProduct = {"quantity" : x}
       #Product.query.filter_by(id = product_id).update(data_to_updateProduct)
 
-      print(user)
+     
       z = Shopping_Session.query.filter_by(user_id = user).first_or_404()
-      print(z.id)
+      
 
-      cart_item = Cart_Item(product_id = product.id, session_id = z.id) #skapar en ny session när någon loggar in
-      db.session.add(cart_item)
-      db.session.commit()
+      items = Cart_Item.query.filter_by(session_id = z.id).all()
+      
+      # item_list = []
 
-      item = Cart_Item.query.filter_by(session_id = z.id).first_or_404()
-      print(item.quantity)
+      # for x in items:
+      #   item_list.append(x.serialize())
+
+
+      if not items:
+        cart_item = Cart_Item(product_id = product.id, session_id = z.id) #skapar en ny cart_item
+        db.session.add(cart_item)
+        db.session.commit()
+        print("bla")  
+
+      sum = 0
+      for x in items:
+        if x.product_id == product_id:
+          sum = sum + 1
+
+      if sum == 0:
+        cart_item = Cart_Item(product_id = product.id, session_id = z.id) #skapar en ny cart_item
+        db.session.add(cart_item)
+        db.session.commit()
+        print("tjo") 
+      
+      # for x in items:
+      #   if x.product_id != product_id:
+      #     cart_item = Cart_Item(product_id = product.id, session_id = z.id) #skapar en ny cart_item
+      #     db.session.add(cart_item)
+      #     db.session.commit()
+      #     print("tjo")  
+
+      
+      item = Cart_Item.query.filter_by(session_id = z.id, product_id = product.id).first_or_404()
+      print("hej")  
       y = item.quantity + 1
-      data_to_updateCartItem = {"product_id" : product_id, "quantity" : y}
-      Cart_Item.query.filter_by(session_id = z.id).update(data_to_updateCartItem)
-
+      #ta bort senare om den under fungerar
+      #data_to_updateCartItem = {"product_id" : product_id, "quantity" : y}
+      data_to_updateCartItem = {"quantity" : y}
+      Cart_Item.query.filter_by(session_id = z.id, product_id = product.id).update(data_to_updateCartItem)
       db.session.commit()
+     
 
     return "success : true"
   else:
