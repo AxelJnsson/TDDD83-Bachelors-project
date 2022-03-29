@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from faulthandler import dump_traceback_later
 from sqlite3 import OperationalError
+from tkinter.tix import Select
 from flask import Flask
 from flask import jsonify
 from flask import request
@@ -30,7 +31,7 @@ jwt = JWTManager(app)
 
 
 class Product(db.Model):
-  id = db.Column(db.Integer, primary_key = True)
+  product_id = db.Column(db.Integer, primary_key = True)
   brand = db.Column(db.String, nullable = False)
   model = db.Column(db.String, nullable = False)
   name = db.Column(db.String, nullable = False)
@@ -38,12 +39,14 @@ class Product(db.Model):
   color = db.Column(db.String, nullable = False)
   year = db.Column(db.Integer, nullable = False)
   type = db.Column(db.String, nullable = False)
+  new_or_not = db.Column(db.Integer, nullable = False)
+  seller = db.Column(db.Integer, nullable = False)
 
   def __repr__(self):
-    return '<Product {}: {} {} {} {} {} {} {}>'.format(self.id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type)
+    return '<Product {}: {} {} {} {} {} {} {} {} {}>'.format(self.product_id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type, self.new_or_not, self.seller)
 
   def serialize(self):
-    return dict(id=self.id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type)
+    return dict(product_id=self.product_id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type, new_or_not = self.new_or_not, seller = self.seller)
 
 class User(db.Model):
   user_id = db.Column(db.Integer, primary_key = True)
@@ -93,12 +96,30 @@ def addTestSQL(filename):
     except OperationalError as msg:
       print("Command skipped: ", msg)
 
+#Inserts data into new and old products
+def InsertNewAndOldSQL(filename):
+  fd = open(filename, 'r')
+  sqlFile = fd.read()
+  fd.close()
+  i=0
+
+  sqlCommands = sqlFile.split(';')
+  
+  for command in sqlCommands:
+    try:
+      db.session.execute(command)
+      db.session.commit()
+    except OperationalError as msg:
+      print("Command skipped: ", msg)
+
+
 #Does the setupdatabase routine
 def setUpDatabase():
   #global connection 
   #connection = db.session.connection()
   executeTestSQL('database_schema.sqlite')
   addTestSQL('database_insert.sqlite')
+  InsertNewAndOldSQL('database_alternative_insert.sqlite')
   #connection.close()
   print("Succesfully loaded database")
 setUpDatabase()
@@ -130,7 +151,7 @@ def client():
   return app.send_static_file("home.html")
   
 
-@app.route('/sign-up', methods= ['GET', 'POST'])
+@app.route('/sign-up', methods= [ 'POST'])
 def signup():
 
   if request.method == 'POST':
@@ -146,25 +167,24 @@ def signup():
 @app.route('/product/<int:product_id>', methods = ['GET', 'DELETE', 'PUT'] )
 def product(product_id):
     if request.method == 'GET':
-      temp = Product.query.filter_by(id = product_id).first_or_404()
-    # if temp.user is not None:
-    #   return jsonify(temp.serialize2())
-    # else:
+      temp = Product.query.filter_by(product_id = product_id).first_or_404()
+ 
       return jsonify(temp.serialize())
     elif request.method == 'PUT':
      product = request.get_json()
-     product["id"]= product_id
-     Product.query.filter_by(id = product_id).update(product)     
-     temp = Product.query.filter_by(id = product_id).first_or_404()
+     product["product_id"]= product_id
+     Product.query.filter_by(product_id = product_id).update(product)     
+     temp = Product.query.filter_by(product_id = product_id).first_or_404()
     
      
      db.session.commit()
-     
+     InsertNewAndOldSQL('database_alternative_insert.sqlite')
      return jsonify(temp.serialize())
     elif request.method == 'DELETE':
       new_product = Product.query.get_or_404(product_id)
       db.session.delete(new_product)
       db.session.commit()
+      InsertNewAndOldSQL('database_alternative_insert.sqlite')
       return "OK", 200
 
 
@@ -180,25 +200,50 @@ def products():
 
   elif request.method == 'POST':
     new_product = request.get_json()
-    x = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"])
+    x = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"], new_or_not = new_product["new_or_not"], seller = new_product["seller"])
     db.session.add(x)
     db.session.commit()
-    product_id = x.id
+    product_id = x.product_id
     i = Product.serialize(Product.query.get_or_404(product_id))
+    InsertNewAndOldSQL('database_alternative_insert.sqlite')
     return i
 
   return "401"
 
+@app.route('/newproduct', methods = ['GET'] )
+def newproducts():
+  if request.method == 'GET':
+    
+    product = Product.query.filter_by(new_or_not = 1)
+    product_list =[]
+
+    for x in product:
+      product_list.append(x.serialize())
+    return jsonify(product_list)
+  return "401"
+
+@app.route('/oldproduct', methods = ['GET'] )
+def oldproducts():
+  if request.method == 'GET':
+    product = Product.query.filter_by(new_or_not = 0)
+    product_list =[]
+
+    for x in product:
+      product_list.append(x.serialize())
+    return jsonify(product_list)
+  return "401"
+
+
 @app.route('/user/<int:user_id>', methods = ['GET', 'PUT', 'DELETE'])
 def users(user_id):
   if request.method == 'GET':
-    temp = User.query.filter_by(id = user_id).first_or_404()
+    temp = User.query.filter_by(user_id = user_id).first_or_404()
     return jsonify(temp.serialize())
   elif request.method == 'PUT':
     user = request.get_json()
-    user["id"] = user_id
-    User.query.filter_by(id = user_id).update(user)
-    temp = User.query.filter_by(id = user_id).first_or_404()
+    user["user_id"] = user_id
+    User.query.filter_by(user_id = user_id).update(user)
+    temp = User.query.filter_by(user_id = user_id).first_or_404()
     db.session.commit()
     return jsonify(temp.serialize())
   elif request.method == 'DELETE':
