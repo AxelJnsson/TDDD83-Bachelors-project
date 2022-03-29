@@ -11,7 +11,7 @@ SELECT 'Creating tables' AS 'Message';
 
 
 CREATE TABLE IF NOT EXISTS product (
-id INTEGER PRIMARY KEY AUTOINCREMENT,
+product_id INTEGER PRIMARY KEY AUTOINCREMENT,
 brand TEXT NOT NULL,
 model TEXT NOT NULL,
 name TEXT NOT NULL,
@@ -35,7 +35,8 @@ CREATE TABLE user (
 );
 
 CREATE TABLE  used_product (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_id INTEGER,
     brand TEXT NOT NULL,
     model TEXT NOT NULL,
     name TEXT NOT NULL,
