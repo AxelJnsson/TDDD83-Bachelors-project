@@ -95,6 +95,22 @@ def addTestSQL(filename):
     except OperationalError as msg:
       print("Command skipped: ", msg)
 
+#Inserts data into new and old products
+def InsertNewAndOldSQL(filename):
+  fd = open(filename, 'r')
+  sqlFile = fd.read()
+  fd.close()
+  i=0
+
+  sqlCommands = sqlFile.split(';')
+  
+  for command in sqlCommands:
+    try:
+      db.session.execute(command)
+      db.session.commit()
+    except OperationalError as msg:
+      print("Command skipped: ", msg)
+
 #Does the setupdatabase routine
 def setUpDatabase():
   #global connection 
@@ -187,9 +203,7 @@ def products():
     db.session.commit()
     product_id = x.product_id
     i = Product.serialize(Product.query.get_or_404(product_id))
-    if x.new_or_not == 0: 
-        old_product = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"], new_or_not = new_product["new_or_not"], seller = new_product["seller"])
-
+    InsertNewAndOldSQL('database_alternative_insert')
     return i
 
   return "401"
