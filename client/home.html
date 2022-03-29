@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="cehckout.css">
     <title>Välkommen till ToneHub</title>   
 
 </head>
@@ -446,11 +447,23 @@
       <img src="testbildkassa.png" width="100" height="100" id="homeButton">
       <br>
   </div> 
-  </div> 
+  <form id="payment-form">
+    <div id="payment-element">
+      <!--Stripe.js injects the Payment Element-->
+    </div>
+    <button id="submit">
+      <div class="spinner hidden" id="spinner"></div>
+      <span id="button-text">Pay now</span>
+    </button>
+    <div id="payment-message" class="hidden"></div>
+  </form>
   <form action="/create-checkout-session" method="POST">
     <button type="submit">Checkout</button>
   </form>
+  </div> 
+ 
   <button type="button" class="btn btn-primary" id="toPaymentButton" onclick="stripeTestFunction()">Till betalning</button>
+
 </script>
 
 
@@ -500,8 +513,9 @@
     <script src="basket.js"></script>
     <script src="loggInOut.js"></script>
     <script src="productview.js"></script>
-    <script src="stripetest.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="stripetest.js"></script>
+    <script src="checkout.js" defer></script>
     <script src="register.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>

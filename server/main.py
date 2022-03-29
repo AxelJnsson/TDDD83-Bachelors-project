@@ -6,6 +6,8 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 from flask import redirect
+import json
+
 from flask_bcrypt import Bcrypt
 import sqlite3
 from sqlite3 import OperationalError
@@ -19,10 +21,6 @@ from sqlalchemy import engine_from_config
 import stripe
 import os
 
-#stripe_keys = {
- #   "secret_key": os.environ["STRIPE_SECRET_KEY"],
- #   "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
-#}
 
 
 
@@ -155,6 +153,29 @@ def create_checkout_session():
   )
 
   return redirect(session.url, code=303)
+def calculate_order_amount(items):
+    # Replace this constant with a calculation of the order's amount
+    # Calculate the order total on the server to prevent
+    # people from directly manipulating the amount on the client
+    return 1400
+
+@app.route('/create-payment-intent', methods=['POST'])
+def create_payment():
+    try:
+        data = json.loads(request.data)
+        # Create a PaymentIntent with the order amount and currency
+        intent = stripe.PaymentIntent.create(
+            amount=calculate_order_amount(data['items']),
+            currency='eur',
+            automatic_payment_methods={
+                'enabled': True,
+            },
+        )
+        return jsonify({
+            'clientSecret': intent['client_secret']
+        })
+    except Exception as e:
+        return jsonify(error=str(e)), 403
   
 
 @app.route("/login", methods = ['POST'])
