@@ -3,10 +3,11 @@ from email.policy import default
 from faulthandler import dump_traceback_later
 #from msilib import Table
 from sqlite3 import OperationalError
-from tkinter.tix import Select
+#!from tkinter.tix import Select
 from flask import Flask
 from flask import jsonify
 from flask import request
+from flask import redirect
 from flask_bcrypt import Bcrypt
 import sqlite3
 from sqlite3 import OperationalError
@@ -18,6 +19,14 @@ from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from sqlalchemy import Column, Integer, table
 from sqlalchemy import engine_from_config
+import stripe
+import os
+
+#stripe_keys = {
+ #   "secret_key": os.environ["STRIPE_SECRET_KEY"],
+ #   "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
+#}
+
 
 
 app = Flask(__name__, static_folder='../client', static_url_path='/')
@@ -27,6 +36,8 @@ app.config['JWT_SECRET_KEY'] = "svargissadstrang"
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
+
+
 
 
 
@@ -162,6 +173,31 @@ setUpDatabase()
 
 
 
+
+stripe.api_key = 'sk_test_51KiDHOFa9gwuZdKJw6ouVqm5m6mUYok8kEYg3BYtOH1kqnAFvH9YiOe7IGd7sMGm0zTvR4XYwTxI66u0TVYdiOjN00AeMRr3Nz'
+
+@app.route('/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+  session = stripe.checkout.Session.create(
+    line_items=[{
+      'price_data': {
+        'currency': 'SEK',
+        'product_data': {
+          'name': 'Total',
+         
+        },
+        'unit_amount': 1000,
+      },
+      'quantity': 1,
+    }],
+    mode='payment',
+    success_url='http://localhost:5000/',
+    cancel_url='http://localhost:5000/',
+
+  )
+
+  return redirect(session.url, code=303)
+  
 #Route for login-method
 @app.route("/login", methods = ['POST'])
 def login():
@@ -185,8 +221,7 @@ def login():
     return "no such user", 401
 
 @app.route('/')
-def client():
-  
+def client():  
   return app.send_static_file("home.html")
   
 
