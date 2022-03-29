@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS cart_item ;
 SELECT 'Creating tables' AS 'Message';
 
 
+
 CREATE TABLE IF NOT EXISTS product (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
 brand TEXT NOT NULL,
@@ -45,8 +46,13 @@ CREATE TABLE  used_product (
     user_id INTEGER,
     email TEXT NOT NULL,
     first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL 
+    last_name TEXT NOT NULL ,  
+    FOREIGN KEY(product_id) REFERENCES product(product_id),
+    FOREIGN KEY(user_id) REFERENCES user(user_id)
 );
+
+
+   
 
 CREATE TABLE new_product (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -57,7 +63,8 @@ name TEXT NOT NULL,
 price INTEGER NOT NULL,
 color TEXT NOT NULL,
 year INTEGER NOT NULL,
-type TEXT NOT NULL
+type TEXT NOT NULL,
+FOREIGN KEY(product_id) REFERENCES product(product_id)
 );
 
 CREATE TABLE cart (
