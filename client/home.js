@@ -17,11 +17,11 @@ $('#aboutButton').click(function (e) {
   $('#allInstrButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
     //showProdInfo("allt", null);
-    alert("hej");
     for(item in filterQueries)   {
-      item = undefined;
-      alert(item);
+      filterQueries[item] = undefined;
+     // alert(item);
     }
+    alert(filterQueries.category); //test, ska stå undefined
     showProdInfo(filterQueries);
     e.preventDefault();
   });
@@ -72,9 +72,10 @@ $('#aboutButton').click(function (e) {
     for(item in filterQueries)   {
       filterQueries[item] = undefined;
     }      
-    filterQueries.brand = "Yamaha";
-    filterQueries.category = "pianon";
-    filterQueries.model = "idk";
+    //filterQueries.brand = "Yamaha"; //test
+    //filterQueries.category = "pianon"; //test
+    filterQueries.model = "idk"; //test
+    alert("alla som har märke 'idk'");
     showProdInfo(filterQueries);
     e.preventDefault();
   });
