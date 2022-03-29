@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from faulthandler import dump_traceback_later
 from sqlite3 import OperationalError
-from tkinter.tix import Select
+#!from tkinter.tix import Select
 from flask import Flask
 from flask import jsonify
 from flask import request
