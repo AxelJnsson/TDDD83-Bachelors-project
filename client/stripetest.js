@@ -1,23 +1,22 @@
-// fetch("/config")
-// .then((result) => { return result.json(); })
-// .then((data) => {
-// // Initialize Stripe.js
-// const stripe = Stripe(data.publicKey);
-// });
-
 
 
 function stripeTestFunction(){
+  fetch("/config")
+  .then((result) => { return result.json(); })
+  .then((data) => {
+  //Initialize Stripe.js
+  const stripe = Stripe(data.publicKey);
+  });
 
-    $.ajax ({  
-        url:'/config',
-        datatype: 'JSON',
-        contentType: "application/json",
-        success: function(cars) {    
-        }
-      })
+    // $.ajax ({  
+    //     url:'/config',
+    //     datatype: 'JSON',
+    //     contentType: "application/json",
+    //     success: function() {
 
-    alert("hej");
+    //     }
+    //   })
+
     fetch("/create-checkout-session")
     .then((result) => { return result.json(); })
     .then((data) => {
