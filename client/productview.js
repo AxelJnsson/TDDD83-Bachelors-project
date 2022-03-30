@@ -16,8 +16,9 @@
 }
 
 //testfunktion med hårdkodade testprodukter (att fungera som "databas" så länge)
-function createProducts(filterQueries){
+//function createProducts(filterQueries){
 
+    function createProducts(filteringByArrayTest){
 
     //testgitarrer
     let testgitarr = new Product("1", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
@@ -42,16 +43,17 @@ function createProducts(filterQueries){
     const allinstruments = [testgitarr, testgitarr2, testgitarr3, testgitarr4, testgitarr5, testgitarr6, testgitarr7, testgitarr8, testpiano, testpiano2, teststudio, testtrumma];
    
   
-        if (filterQueries.brand != null || filterQueries.category != null || filterQueries.model != null || filterQueries.color != null || filterQueries.name != null || filterQueries.price != null || filterQueries.year != null) {
-            return filtertest(allinstruments, filterQueries.brand, filterQueries.category, filterQueries.model, filterQueries.color, filterQueries.name, filterQueries.price, filterQueries.year);
-        } else {
-         return allinstruments;
+    //     if (filterQueries.brand != null || filterQueries.category != null || filterQueries.model != null || filterQueries.color != null || filterQueries.name != null || filterQueries.price != null || filterQueries.year != null) {
+    //         return filtertest(allinstruments, filterQueries.brand, filterQueries.category, filterQueries.model, filterQueries.color, filterQueries.name, filterQueries.price, filterQueries.year);
+    //     } else {
+    //      return allinstruments;
         
-    }
+    // }
+   return filtertest2(allinstruments, filteringByArrayTest);
 }
 
 
-//testfunktion för filtrering på märke (funkar!), kanske bör ändra namn dock
+//gammal filtreringsfunktion, låter ligga kvar så länge
 function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear){
     var filterprod = {category: inputCategory, brand: inputBrand, model: inputModel, name: inputName, price: inputPrice, color : inputColor, year : inputYear}; 
         var arr1 = arr.filter(function(item) {
@@ -68,6 +70,68 @@ function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inpu
      
 }
 
+//riktig filtrering
+function filtertest2(arr, testingArrayFilters){
+    const categories = testingArrayFilters[0];
+    //alert(categories[0] + categories[1]);
+    const brands = testingArrayFilters[1];
+    const models = testingArrayFilters[2];
+    const names = testingArrayFilters[3];
+    const prices = testingArrayFilters[4];
+    const colors = testingArrayFilters[5];
+    const years = testingArrayFilters[6];
+   
+    
+    var filteredstuff = arr;
+    //alert(filteredstuff.length);
+
+    if(categories.length !== 0) {
+        filteredstuff = filteredstuff.filter( el => 
+            categories.indexOf(el.category) >= 0);
+    }
+
+
+    if(brands.length !== 0) {
+        filteredstuff = filteredstuff.filter( el => 
+            brands.indexOf(el.brand) >= 0);
+    }
+
+    if(models.length !== 0) {
+        filteredstuff = filteredstuff.filter( el => 
+            models.indexOf(el.model) >= 0);
+    }
+
+    if (names.length !== 0) {
+        filteredstuff = filteredstuff.filter( el => 
+            names.indexOf(el.name) >= 0);
+    }
+
+    if (prices.length !== 0) {
+        filteredstuff = filteredstuff.filter( el => 
+            prices.indexOf(el.price) >= 0);
+    }
+
+    if (colors.length !== 0) {
+        filteredstuff = filteredstuff.filter( el => 
+            colors.indexOf(el.color) >= 0);
+    }
+
+    if (years.length !== 0) {
+        filteredstuff = filteredstuff.filter( el => 
+            years.indexOf(el.year) >= 0);
+    }
+    
+    alert("Antal produkter: " + filteredstuff.length);
+       
+        
+        return filteredstuff;
+
+    }
+   
+    
+  // return arr1;
+
+
 
   function showProdModal(){
     $("#productModal").modal('toggle');
@@ -82,6 +146,7 @@ function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inpu
     $("#testrow").empty();
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
     let filterQ = filterQueries;
+    //alert(filterQ[0][0]);
     //alert(filterQ.brand + filterQ.category + filterQ.model + filterQ.color + filterQ.name + filterQ.price + filterQ.year);
     let products = createProducts(filterQ);
 
