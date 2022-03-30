@@ -4,6 +4,15 @@ $(document).ready(function(){
  })
 
  var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
+ //test för en till dimension av filtrering
+ const filtercategories = [];
+ const filterbrands = [];
+ const filtermodels = [];
+ const filtercolors = [];
+ const filternames = [];
+ const filterprices = [];
+ const filteryears = [];
+ let filterQ = [filtercategories, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears];
  const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
@@ -78,8 +87,16 @@ $('#aboutButton').click(function (e) {
     //filterQueries.brand = "Yamaha"; //test
     //filterQueries.category = "pianon"; //test
     filterQueries.model = "idk"; //test
-    alert("alla som har märke 'idk'");
-    showProdInfo(filterQueries);
+    var testcategory1 = "gitarrer";
+    var testcategory2 = "pianon";
+    var testbrand1 = "Yamaha";
+    var testmodell = "idk";
+    filtercategories.push(testcategory1, testcategory2);
+    filterbrands.push(testbrand1);
+    filtermodels.push(testmodell);
+    // alert(filtercategories[0] + filtercategories[1]);
+    // alert(filterQ[0][1]);
+    showProdInfo(filterQ);
     e.preventDefault();
   });
 
