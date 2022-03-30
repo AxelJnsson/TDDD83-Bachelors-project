@@ -3,7 +3,7 @@ $(document).ready(function(){
     $("#mainViewContainer").html($("#view-home").html())  
  })
 
- var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
+ //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
  //test för en till dimension av filtrering
  const filtercategories = [];
  const filterbrands = [];
@@ -13,7 +13,7 @@ $(document).ready(function(){
  const filterprices = [];
  const filteryears = [];
  let filterQ = [filtercategories, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears];
- const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
+ //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-about").html())    
@@ -25,77 +25,71 @@ $('#aboutButton').click(function (e) {
     e.preventDefault();
   });
 
+  function resetFilter(){
+      filtercategories.length = 0;
+      filterbrands.length = 0;
+      filtermodels.length = 0;
+      filtercolors.length = 0;
+      filternames.length = 0;
+      filterprices.length = 0;
+      filteryears.length = 0;
+  }
 
   $('#allInstrButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
     //showProdInfo("allt", null);
-    for(item in filterQueries)   {
-      filterQueries[item] = undefined;
-     // alert(item);
-    }
-    alert(filterQueries.category); //test, ska stå undefined
-    showProdInfo(filterQueries);
+    resetFilter();
+    showProdInfo(filterQ);
     e.preventDefault();
   });
 
   $('#guitarButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())
-    for(item in filterQueries)   {
-      filterQueries[item] = undefined;
-    }
-    filterQueries.category = "gitarrer"; 
-    showProdInfo(filterQueries);
+    resetFilter();
+    var defCategory = "gitarrer";
+    filtercategories.push(defCategory);
+    showProdInfo(filterQ);
     e.preventDefault();
   });
 
   $('#pianoButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    for(item in filterQueries)   {
-      filterQueries[item] = undefined;
-    }
-    filterQueries.category = "pianon";
-    showProdInfo(filterQueries);
+    resetFilter();
+    filtercategories.push("pianon");
+    showProdInfo(filterQ);
     e.preventDefault();
   });
 
   $('#drumButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())
-    for(item in filterQueries)   {
-      filterQueries[item] = undefined;
-    }    
-    filterQueries.category = "trummor";
+    resetFilter();
+    filtercategories.push("trummor");
 
-    showProdInfo(filterQueries);
+    showProdInfo(filterQ);
     e.preventDefault();
   });
 
   $('#studioButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
-    for(item in filterQueries)   {
-      filterQueries[item] = undefined;
-    }    
-    filterQueries.category = "studio";
-    showProdInfo(filterQueries);
+    resetFilter();
+    filtercategories.push("studio");
+    showProdInfo(filterQ);
     e.preventDefault();
   });
 
   $('#yamahaTestButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())
-    for(item in filterQueries)   {
-      filterQueries[item] = undefined;
-    }      
-    //filterQueries.brand = "Yamaha"; //test
-    //filterQueries.category = "pianon"; //test
-    filterQueries.model = "idk"; //test
+    resetFilter();
     var testcategory1 = "gitarrer";
     var testcategory2 = "pianon";
     var testbrand1 = "Yamaha";
-    var testmodell = "idk";
+    //var testmodell = "idk";
     filtercategories.push(testcategory1, testcategory2);
     filterbrands.push(testbrand1);
-    filtermodels.push(testmodell);
+    //filtermodels.push(testmodell);
     // alert(filtercategories[0] + filtercategories[1]);
     // alert(filterQ[0][1]);
+    alert("Gitarrer och pianon av märke yamaha");
     showProdInfo(filterQ);
     e.preventDefault();
   });

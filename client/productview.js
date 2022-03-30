@@ -53,7 +53,7 @@
 }
 
 
-//testfunktion för filtrering på märke (funkar!), kanske bör ändra namn dock
+//gammal filtreringsfunktion, låter ligga kvar så länge
 function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear){
     var filterprod = {category: inputCategory, brand: inputBrand, model: inputModel, name: inputName, price: inputPrice, color : inputColor, year : inputYear}; 
         var arr1 = arr.filter(function(item) {
@@ -70,6 +70,7 @@ function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inpu
      
 }
 
+//riktig filtrering
 function filtertest2(arr, testingArrayFilters){
     const categories = testingArrayFilters[0];
     //alert(categories[0] + categories[1]);
@@ -79,20 +80,16 @@ function filtertest2(arr, testingArrayFilters){
     const prices = testingArrayFilters[4];
     const colors = testingArrayFilters[5];
     const years = testingArrayFilters[6];
-   //var arr1 = arr.filter( function(el) {
-    //alert("vi kommer hit");
-   // for(var key in testingArrayFilters) {
-     //  if (testingArrayFilters[key].length != 0) {
-    //alert(years.length);
+   
+    
     var filteredstuff = arr;
-    alert(filteredstuff.length);
+    //alert(filteredstuff.length);
 
     if(categories.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             categories.indexOf(el.category) >= 0);
     }
 
-    alert(filteredstuff.length);
 
     if(brands.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
@@ -124,7 +121,7 @@ function filtertest2(arr, testingArrayFilters){
             years.indexOf(el.year) >= 0);
     }
     
-     alert("hej");  
+    alert("Antal produkter: " + filteredstuff.length);
        
         
         return filteredstuff;
@@ -149,7 +146,7 @@ function filtertest2(arr, testingArrayFilters){
     $("#testrow").empty();
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
     let filterQ = filterQueries;
-    alert(filterQ[0][0]);
+    //alert(filterQ[0][0]);
     //alert(filterQ.brand + filterQ.category + filterQ.model + filterQ.color + filterQ.name + filterQ.price + filterQ.year);
     let products = createProducts(filterQ);
 
