@@ -95,7 +95,6 @@
 
   </nav>
 
-  <!-- Sidebar -->
 
 
 
@@ -287,10 +286,12 @@
     </div>
   </div>
 
-  <script id="view-cashregister" type="text/html">
-  <h1 style="position: absolute; left: 300px; top: 190px;">
-   Välkommen till kassan
-  </h1>
+<script id="view-cashregister" type="text/html">
+  <div>
+    <h1>
+      Välkommen till kassan
+     </h1>
+  </div>
   <div id="cashRegisterArea">
     <div id="scrollableItemsInBasket">
       <img src="logga.png" width="100" height="100" id="homeButton">
@@ -308,11 +309,10 @@
       <img src="testbildkassa.png" width="100" height="100" id="homeButton">
       <br>
   </div> 
-  </div> 
   <form action="/create-checkout-session" method="POST">
-    <button type="submit">Checkout</button>
+    <button onclick="stripeTestFunction()" class="btn btn-primary" id="toPaymentButton" type="submit">Till betalning</button>
   </form>
-  <button type="button" class="btn btn-primary" id="toPaymentButton" onclick="stripeTestFunction()">Till betalning</button>
+  </div> 
 </script>
 
 
@@ -343,7 +343,6 @@
   </div>
 
   <div class="wrapper" id="wrap">
-    <div class="container" id="sidebarArea">
       <div class="row gap-4">
         <div class="col-3 bg-light">
           <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black min-vh-100">
@@ -495,7 +494,6 @@
           asdasdasdsa
         </div>      
       </div>
-    </div>
   </div>
   
   
