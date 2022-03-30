@@ -16,7 +16,6 @@ from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from sqlalchemy import engine_from_config
 
-
 app = Flask(__name__, static_folder='../client', static_url_path='/')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -24,11 +23,6 @@ app.config['JWT_SECRET_KEY'] = "svargissadstrang"
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
-
-
-
-
-
 
 class Product(db.Model):
   product_id = db.Column(db.Integer, primary_key = True)
