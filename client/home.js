@@ -6,13 +6,16 @@ $(document).ready(function(){
  var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
  const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
-$('#aboutButton').click(function (e) {
-   
-   
-    $("#mainViewContainer").html($("#view-about").html())  
-   
+$('#aboutButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-about").html())    
     e.preventDefault();
   });
+
+  $('#userButton').click(function (e) {   
+    $("#mainViewContainer").html($("#view-about").html())     
+    e.preventDefault();
+  });
+
 
   $('#allInstrButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
