@@ -21,7 +21,8 @@ $('#aboutButton').click(function (e) {
   });
 
   $('#userButton').click(function (e) {   
-    $("#mainViewContainer").html($("#view-about").html())     
+    $("#mainViewContainer").html($("#view-user").html()) 
+    displayUser();    
     e.preventDefault();
   });
 
