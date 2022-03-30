@@ -7,11 +7,16 @@ class User {
         this.is_admin = is_admin;
     }
 }
+//let active_user = new User(3, "Fredrik.Lindberg@gmail.com", "Fredrik", "Lindberg", True);
 
-var active_user = new User(3, "fred@fred", "fredrik", "lindberg", True);
 
 
 function displayUser() {
+    
+    let active_user = new User("3", "Fredrik.Lindberg@gmail.com", "Fredrik", "Lindberg", "True");
+    $("#profname").append("<h5 class='card-title'>" + active_user.first_name + " " + active_user.last_name +"</h5>");
+    $("#profmail").append("<h5 class='card-title'>" + active_user.email + "</h5>");
+   // $(".card-container").append('<div class="card" style="width:400px"><div class="card-body"><h4 class="card-title"></h4><p class="card-text"></p></div></div>');                    
 
-    $("#").append("<div class='col-auto mb-3'><div class='card-body'><h5 class='card-title'>" + active_user.id + "</h5><p class='card-text'> <b>Email </b> "+ active_user.email +"<br> <b>Namn:</b> " + active_user.first_name+active_user.last_name + "<br> <b>Admin:</b> " + active_user.is_admin + "</p></div>");
+
 }
