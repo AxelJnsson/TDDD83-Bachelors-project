@@ -29,9 +29,13 @@
   margin: 0 auto;
 }
 #mainViewContainer {
-  max-width: 60vw;
-  max-height: 60vh;
-  display: inline;
+  /* max-width: 60vw; */
+  /* max-height: 60vh; */
+  /* display: inline; */
 }
-
+.footer {
+  position: absolute; 
+    left: 0 ; right: 0; bottom: 0; 
+    height:[footer-height] 
+}
 
