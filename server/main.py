@@ -186,7 +186,7 @@ def create_checkout_session():
           'name': 'Total',
          
         },
-        'unit_amount': 1000,
+        'unit_amount': 112100,
       },
       'quantity': 1,
     }],

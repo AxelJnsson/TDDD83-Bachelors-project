@@ -18,6 +18,12 @@ $('#shopFromBasketButton').click(function (e) {
   e.preventDefault();
   $("#basketModal").modal('hide');
   $("#mainViewContainer").html($("#view-cashregister").html());
+  var div = document.getElementById('totalsumLine');
+  div.innerHTML += "Total: " + "1023kr"
+
+
+
+
   });
 
 // function toCheckout(){
