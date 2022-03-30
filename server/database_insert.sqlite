@@ -1,12 +1,19 @@
+INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity)
+VALUES ('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000, 'Black', 2022, 'Piano', 1, 5);
+
+INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity)
+VALUES ('Marshal', 'Speaker1', 'Marshal speaker', 2000, 'White', 2019, 'Speaker', 1, 7);
+INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity, seller)
+VALUES ('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000, 'Black', 2022, 'Piano', 1, 6, 1),
+       ('Thomann', 'Alphorn Spitzenklasse in F#', 'Thomann Alphorn Spitzenklasse in F#', 31890, 'White', 2022, 'Alphorn', 0, 5, 2);
 
 
-INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, seller)
-VALUES ('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000, 'Black', 2022, 'Piano', 1, 1),
-       ('Thomann', 'Alphorn Spitzenklasse in F#', 'Thomann Alphorn Spitzenklasse in F#', 31890, 'White', 2022, 'Alphorn', 0, 2);
+INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity, seller)
+VALUES ('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000, 'Black', 2022, 'Piano', 1, 4, 1),
+       ('Thomann', 'Alphorn Spitzenklasse in F#', 'Thomann Alphorn Spitzenklasse in F#', 31890, 'White', 2022, 'Alphorn', 0, 5, 2);
 
-INSERT INTO user(email, first_name, last_name, password_hash)
-VALUES ('david@gmail.com', 'David', 'Carlsson', 'katt123'),
-       ('jonathan@hotmail.com', 'Jonathan', 'Johansson', 'hund456');
-
+--INSERT INTO user(email, first_name, last_name, password_hash)
+--VALUES ('david@gmail.com', 'David', 'Carlsson', 'katt123'),
+  --     ('jonathan@hotmail.com', 'Jonathan', 'Johansson', 'hund456');
 
 
