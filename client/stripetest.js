@@ -8,16 +8,7 @@
 
 
 function stripeTestFunction(){
-
-    $.ajax ({  
-        url:'/config',
-        datatype: 'JSON',
-        contentType: "application/json",
-        success: function(cars) {    
-        }
-      })
-
-    alert("hej");
+  price=100
     fetch("/create-checkout-session")
     .then((result) => { return result.json(); })
     .then((data) => {
