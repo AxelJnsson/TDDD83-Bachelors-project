@@ -1,7 +1,19 @@
 $(document).ready(function(){
     // Kod i detta block körs när dokumentet laddats klart.    
     $("#mainViewContainer").html($("#view-home").html())
+   
     filterconditions.push("Ny", "Begagnad");  
+    var signedIn;
+    if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
+      signedIn = true;
+    } else {
+      signedIn = false;
+    }
+    
+    $('#registerButton').toggleClass('d-none', !signedIn);
+    $('#loginButton').toggleClass('d-none', !signedIn);
+    $('#logoutButton').toggleClass('d-none', signedIn);
+    
  })
 
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
@@ -21,6 +33,8 @@ $('#aboutButton').click(function (e) {
     $("#mainViewContainer").html($("#view-about").html())    
     e.preventDefault();
   });
+
+
 
   $('#userButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-user").html()) 
