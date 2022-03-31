@@ -193,6 +193,7 @@ def create_checkout_session():
   return redirect(session.url, code=303)
   
 #Route for login-method
+# Vet inte om for loopen i denna metod är optimal, känns långsamt att loopa igenom alla användare
 @app.route("/login", methods = ['POST'])
 def login():
   if request.method == 'POST':
@@ -219,12 +220,12 @@ def client():
   return app.send_static_file("home.html")
   
 #Route allowing the user to sign up
-@app.route('/sign-up', methods= [ 'POST'])
+@app.route('/sign-up', methods= ['POST'])
 def signup():
 
   if request.method == 'POST':
-    new_user = request.get_json()
-    x = User(first_name = new_user["first_name"], last_name = new_user["last_name"], email = new_user["email"])
+    new_user = request.get_json()    
+    x = User(last_name = new_user["last_name"], first_name = new_user["firstname"],  email = new_user["email"])
     x.set_password(new_user["password"])
     db.session.add(x)
     db.session.commit()
