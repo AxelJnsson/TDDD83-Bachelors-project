@@ -10,7 +10,7 @@ from flask import request
 from flask import redirect
 from flask_bcrypt import Bcrypt
 import sqlite3
-from sqlite3 import OperationalError
+#from sqlite3 import OperationalError
 from sqlalchemy import null
 from sqlalchemy import create_engine
 from flask_sqlalchemy import SQLAlchemy
