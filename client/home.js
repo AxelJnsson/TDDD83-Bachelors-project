@@ -29,28 +29,21 @@ $(document).ready(function(){
  let filterQ = [filtercategories, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filterconditions];
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
-<<<<<<< HEAD
-$('#aboutButton').click(function (e) {
-   
-    $("#mainViewContainer").html($("#view-about").html())  
-   
-    e.preventDefault();
-  });
-
-$('contactButton').click(function(e){
-  
-  window.scroll(400, 400);
-   e.preventDefault();
-  
-
-  });
-
-=======
 $('#aboutButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-about").html())    
     e.preventDefault();
+  
   });
 
+  $('#homeButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-about").html())  
+     e.preventDefault();
+   });
+
+$('#contactButton').click(function (e) {      
+   $("#mainViewContainer").html($("#view-contact").html())    
+    e.preventDefault();
+  });
 
 
   $('#userButton').click(function (e) {   
@@ -70,7 +63,6 @@ $('#aboutButton').click(function (e) {
       //filterconditions.length = 0;
   }
 
->>>>>>> b3518a2ab9145da43f784afeea31088134c5c0a9
   $('#allInstrButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
     //showProdInfo("allt", null);
