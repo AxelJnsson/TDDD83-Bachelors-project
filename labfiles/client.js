@@ -241,7 +241,7 @@ function signUp() {
   $.ajax ({  
     url:'/sign-up',
     type: 'POST',
-  datatype: 'JSON',
+    datatype: 'JSON',
     contentType: "application/json",
     data: JSON.stringify({
       "name":name, "mail":mail, "password":password}), 
@@ -250,6 +250,7 @@ function signUp() {
          $(".container").html($("#view-home").html());
     }
   });
+  alert("hej");
 }
 
 function logIn() {
