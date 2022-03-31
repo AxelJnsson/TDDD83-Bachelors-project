@@ -85,7 +85,21 @@ function filtertest2(arr, testingArrayFilters){
    
     
     var filteredstuff = arr;
-    //alert(filteredstuff.length);
+
+    //  for (var i = 0; i < testingArrayFilters.length; i++) {
+    //      for (item in arr) {
+    //         var current = testingArrayFilters[i];
+    //         item++;
+    //         //alert(item);
+    //         if(testingArrayFilters[i].length !== 0) {
+    //             filteredstuff = filteredstuff.filter( el => 
+    //             current.indexOf(el.item) >= 0);
+    //         }
+          
+    //      }        
+    //  }
+
+
 
     if (categories.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
@@ -184,6 +198,19 @@ function filtertest2(arr, testingArrayFilters){
 
     });
     
+    sideBar(products);
+
+  }
+
+
+  function sideBar(products){
+      $("#brandArea").empty();
+      //alert("funkar");
+      let prod = products;
+      for(var i = 0; i < prod.length; i++){
+        $("#brandArea").append("<input class='form-check-inpu from-check-inline' type='checkbox' value='' id='checkItem1'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  prod[i].brand +  " </span></label><br>");
+
+      }
   }
 
 $('#closeProductModal').on("click" ,function (e) {
