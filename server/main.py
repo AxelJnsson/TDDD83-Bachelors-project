@@ -27,7 +27,6 @@ import os
  #   "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
 #}
 
-
 app = Flask(__name__, static_folder='../client', static_url_path='/')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -35,10 +34,6 @@ app.config['JWT_SECRET_KEY'] = "svargissadstrang"
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
-
-
-
-
 
 class Product(db.Model):
   product_id = db.Column(db.Integer, primary_key = True)
@@ -67,7 +62,6 @@ class User(db.Model):
   is_admin =db.Column(db.Integer, default = 0, nullable = False)
   password_hash = db.Column(db.String, nullable = False)
  # cart = db.relationship('Cart', backref='user', lazy = True) #https://fabric.inc/blog/shopping-cart-database-design/
-
 
   def __repr__(self):
     return '<User {}: {} {}>'.format(self.user_id, self.email, self.first_name, self.last_name)
@@ -223,7 +217,7 @@ def login():
 def client():  
   return app.send_static_file("home.html")
   
-
+#Route allowing the user to sign up
 @app.route('/sign-up', methods= [ 'POST'])
 def signup():
 
@@ -284,6 +278,7 @@ def products():
 
   return "401"
 
+#Route for getting only new products
 @app.route('/newproduct', methods = ['GET'] )
 def newproducts():
   if request.method == 'GET':
@@ -296,6 +291,7 @@ def newproducts():
     return jsonify(product_list)
   return "401"
 
+#Route for getting only old products
 @app.route('/oldproduct', methods = ['GET'] )
 def oldproducts():
   if request.method == 'GET':
@@ -307,7 +303,7 @@ def oldproducts():
     return jsonify(product_list)
   return "401"
 
-
+#Route for getting, changing or deleting specific users
 @app.route('/user/<int:user_id>', methods = ['GET', 'PUT', 'DELETE'])
 def users(user_id):
   if request.method == 'GET':
@@ -333,6 +329,7 @@ def users(user_id):
     db.session.commit()
     return "200 OK"
 
+#Route for getting all users or adding a user
 @app.route('/user', methods = ['GET', 'POST'])
 def user():
   if request.method == 'GET':
