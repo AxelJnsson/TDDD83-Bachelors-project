@@ -16,19 +16,44 @@ $('#xButtonLogin').click(function (e) {
 $('#LoginFinishButton').click(function (e) {
     e.preventDefault();
     var inputEmail = $("#inputEmailForm").val();
-    var inputPassword = $("#inputPasswordForm").val();
-    alert("Du försökte logga in med\n emailen: " + inputEmail+ "\noch lösenordet: "+inputPassword+"\n Men asså det går inte att logga in än.");
-    $("#loginModal").modal('hide');
+    var inputPassword = $("#inputPasswordForm").val();     
+      $.ajax ({  
+        url:'/login',
+        type: 'POST',
+      datatype: 'JSON',
+        contentType: "application/json",
+        data: JSON.stringify({
+          "email":inputEmail, "password":inputPassword}), 
+        success: function(i) { 
+            
+         sessionStorage.setItem('auth', JSON.stringify(i));     
+         $(".container").html($("#view-home").html());
+         window.location.reload(); 
+           
+        },
+        error: function(){
+          alert("Wrong username or password!");
+        }
+        // statuscode: {
+        //   401: function() {
+        //     alert("Wrong username or password!");
+        //     $(".container").html($("#view-home").html());
+    
+        //   }
+        //}
+      });    
   });
   
 $('#logoutButton').click(function (e) {
-  alert("vi får väll låtsas att du loggade ut nu")
+  $(".container").html($("#view-home").html())
+  sessionStorage.removeItem('auth');
+  alert("Du loggas ut!");
+  window.location.reload();
   });
 
   $('#registerButton').click(function (e) {
     $(".container").html($("#view-signup").html())
     
-    //$("#signupknapp").append(' <button type="button" class="btn btn-primary" id="signupButton" onclick="signUp()">Registrera</button>');
    /* e.preventDefault(); */
   });
 
