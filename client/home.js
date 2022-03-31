@@ -8,10 +8,17 @@ $(document).ready(function(){
 
 $('#aboutButton').click(function (e) {
    
-   
     $("#mainViewContainer").html($("#view-about").html())  
    
     e.preventDefault();
+  });
+
+$('contactButton').click(function(e){
+  
+  window.scroll(400, 400);
+   e.preventDefault();
+  
+
   });
 
   $('#allInstrButton').click(function (e) {   
