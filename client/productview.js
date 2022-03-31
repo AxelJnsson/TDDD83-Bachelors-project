@@ -1,6 +1,6 @@
 //funkar inte än att hämta in klasser från productclasses.js så lägger den här så länge  
   class Product {
-    constructor(id, category, brand, model, name, price, color, year, image, otherinfo){
+    constructor(id, category, brand, model, name, price, color, year, condition, image, otherinfo){
         this.id = id;
         this.category = category;
         this.brand = brand;
@@ -9,6 +9,7 @@
         this.price = price;
         this.color = color;
         this.year = year;
+        this.condition = condition;
         this.image = image;
         this.otherinfo = otherinfo;     
 
@@ -21,24 +22,24 @@
     function createProducts(filteringByArrayTest){
 
     //testgitarrer
-    let testgitarr = new Product("1", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
-    let testgitarr2 = new Product("2", "gitarrer", "giiiiitarrrrrr", "m", "ännu bättre", "2000 rubel", "rosa", "2020", "gitarklassisk.jpg", "nyskick");
-    let testgitarr3 = new Product("3", "gitarrer", "bäst", "aaa", "carl bildt", "2000 rubel", "blå", "1948","carlbildt.png", "mycket bra skick" );
-    let testgitarr4 = new Product("4", "gitarrer", "bäst", "aaa", "carl bildt", "2000 rubel", "blå", "1948","carlbildt.png", "mycket bra skick" );
-    let testgitarr5 = new Product("5", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
-    let testgitarr6 = new Product("6", "gitarrer" , "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "skitfulgitarr.png", "helt fantastisk");
-    let testgitarr7 = new Product("11", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "elgitarröd.jpeg", "helt fantastisk");
-    let testgitarr8 = new Product("12", "gitarrer", "Yamaha", "modell", "en annan gitarr ", "100 kr", "svart", "333", "elgitarsvart.jpg", "helt fantastisk");
+    let testgitarr = new Product("1", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "Ny", "skitfulgitarr.png", "helt fantastisk");
+    let testgitarr2 = new Product("2", "gitarrer", "giiiiitarrrrrr", "m", "ännu bättre", "2000 rubel", "rosa", "2020", "Begagnad", "gitarklassisk.jpg", "nyskick");
+    let testgitarr3 = new Product("3", "gitarrer", "bäst", "aaa", "carl bildt", "2000 rubel", "blå", "1948", "Begagnad", "carlbildt.png", "mycket bra skick" );
+    let testgitarr4 = new Product("4", "gitarrer", "bäst", "aaa", "carl bildt", "2000 rubel", "blå", "1948", "Begagnad","carlbildt.png", "mycket bra skick" );
+    let testgitarr5 = new Product("5", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000","Ny", "skitfulgitarr.png", "helt fantastisk");
+    let testgitarr6 = new Product("6", "gitarrer" , "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "Ny", "skitfulgitarr.png", "helt fantastisk");
+    let testgitarr7 = new Product("11", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "Ny", "elgitarröd.jpeg", "helt fantastisk");
+    let testgitarr8 = new Product("12", "gitarrer", "Yamaha", "modell", "en annan gitarr ", "100 kr", "svart", "333", "Begagnad", "elgitarsvart.jpg", "helt fantastisk");
 
     //testpianon
-    let testpiano = new Product("7", "pianon", "Yamaha", "idk", "Mycket fint piano", "100000 kr", "Svart", "2005", "piano.jpeg", "Svindyrt piano i bra skick");
-    let testpiano2 = new Product("10", "pianon", "trevlig", " 1", "Fredrik", "100000000000 kr", "lila", "1993", "testbildkassa.png", "väldigt dyr");
+    let testpiano = new Product("7", "pianon", "Yamaha", "idk", "Mycket fint piano", "100000 kr", "Svart", "2005", "Begagnad", "piano.jpeg", "Svindyrt piano i bra skick");
+    let testpiano2 = new Product("10", "pianon", "trevlig", " 1", "Fredrik", "100000000000 kr", "lila", "1993", "Ny", "testbildkassa.png", "väldigt dyr");
 
     //testtrummor
-    let testtrumma = new Product("8", "trummor", "märke", "idk", "nej", "nej", "svart", "2020", "trumset.jpeg", "trummor");
+    let testtrumma = new Product("8", "trummor", "märke", "idk", "nej", "nej", "svart", "2020","Begagnad", "trumset.jpeg", "trummor");
 
     //teststudio
-    let teststudio = new Product("9", "studio", "Behringer", "någon modell", "Trevlig mixer", "20000 kr" , "Grå", "2021", "mixer.png", "Helt bra analog mixer");
+    let teststudio = new Product("9", "studio", "Behringer", "någon modell", "Trevlig mixer", "20000 kr" , "Grå", "2021", "Ny", "mixer.png", "Helt bra analog mixer");
 
     const allinstruments = [testgitarr, testgitarr2, testgitarr3, testgitarr4, testgitarr5, testgitarr6, testgitarr7, testgitarr8, testpiano, testpiano2, teststudio, testtrumma];
    
@@ -80,23 +81,23 @@ function filtertest2(arr, testingArrayFilters){
     const prices = testingArrayFilters[4];
     const colors = testingArrayFilters[5];
     const years = testingArrayFilters[6];
+    const conditions = testingArrayFilters[7];
    
     
     var filteredstuff = arr;
     //alert(filteredstuff.length);
 
-    if(categories.length !== 0) {
+    if (categories.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             categories.indexOf(el.category) >= 0);
     }
 
-
-    if(brands.length !== 0) {
+    if (brands.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             brands.indexOf(el.brand) >= 0);
     }
 
-    if(models.length !== 0) {
+    if (models.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             models.indexOf(el.model) >= 0);
     }
@@ -120,6 +121,11 @@ function filtertest2(arr, testingArrayFilters){
         filteredstuff = filteredstuff.filter( el => 
             years.indexOf(el.year) >= 0);
     }
+
+    //if (conditions.length !== 0) {
+        filteredstuff = filteredstuff.filter( el => 
+            conditions.indexOf(el.condition) >= 0);
+    //}
     
     alert("Antal produkter: " + filteredstuff.length);
        
@@ -161,7 +167,7 @@ function filtertest2(arr, testingArrayFilters){
 
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
 
-       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'>" + products[i].name + "</h5><p class='card-text'> <b>Kategori: </b> "+ products[i].category +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b><h4>" + products[i].price + "</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
+       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br>Skick: "+ products[i].condition +" </h5><p class='card-text'> <b>Kategori: </b> "+ products[i].category +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b><h4>" + products[i].price + "</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
 
         
 

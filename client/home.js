@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // Kod i detta block körs när dokumentet laddats klart.    
-    $("#mainViewContainer").html($("#view-home").html())  
+    $("#mainViewContainer").html($("#view-home").html())
+    filterconditions.push("Ny", "Begagnad");  
  })
 
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
@@ -12,7 +13,8 @@ $(document).ready(function(){
  const filternames = [];
  const filterprices = [];
  const filteryears = [];
- let filterQ = [filtercategories, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears];
+ const filterconditions = [];
+ let filterQ = [filtercategories, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filterconditions];
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
@@ -34,12 +36,14 @@ $('#aboutButton').click(function (e) {
       filternames.length = 0;
       filterprices.length = 0;
       filteryears.length = 0;
+      //filterconditions.length = 0;
   }
 
   $('#allInstrButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
     //showProdInfo("allt", null);
     resetFilter();
+    //filterconditions.push("Ny", "Begagnad");
     showProdInfo(filterQ);
     e.preventDefault();
   });
@@ -83,6 +87,8 @@ $('#aboutButton').click(function (e) {
     resetFilter();
     var testcategory1 = "gitarrer";
     var testcategory2 = "pianon";
+    //var testcategory3 = "trummor";
+
     var testbrand1 = "Yamaha";
     //var testmodell = "idk";
     filtercategories.push(testcategory1, testcategory2);
@@ -102,11 +108,71 @@ $('#homeButton').click(function (e) {
 
 
 //testfunktion för filtrering
-function checkItem(){
-  var checkBox = document.getElementById("checkItem9");
+function checkNewStuff(){
+  var checkBox = document.getElementById("newProd");
 
   if (checkBox.checked == true) {
-    alert("ja");
+    if (filterconditions.length !== 0)
+    {
+      for(item in filterconditions) {
+        if(filterconditions[item] !== "Ny")
+        filterconditions.push("Ny");
+      }
+    } else {
+      filterconditions.push("Ny");
+    }
+    
+  } else {
+    if(filterconditions.length !== 1) {
+      for(item in filterconditions) {
+        if(filterconditions[item] == "Ny"){
+          filterconditions.splice(item,1);
+        }
+      }
+    } else {
+      filterconditions.length = 0;
+    }
+   
+    
   }
+  alert(filterQ[7][0] + filterQ[7][1])
+  $("#mainViewContainer").html($("#view-product").html())  
+
+  showProdInfo(filterQ);
+}
+
+  function checkOldStuff(){
+    var checkBox = document.getElementById("secondHandProd");
+  
+    if (checkBox.checked == true) {
+      if (filterconditions.length !== 0){
+        for(item in filterconditions) {
+          if(filterconditions[item] !== "Begagnad") {
+            filterconditions.push("Begagnad");
+  
+          }
+        }
+      } else {
+        filterconditions.push("Begagnad");
+      }
+    
+    } else {
+      if(filterconditions.length !== 1){
+        for(item in filterconditions) {
+          if(filterconditions[item] == "Begagnad")
+          filterconditions.splice(item,1);
+        }
+      } else {
+        filterconditions.length = 0;
+        alert("tom");
+      }
+     
+      
+    }
+    alert(filterQ[7][0] + filterQ[7][1])
+    $("#mainViewContainer").html($("#view-product").html())  
+
+      showProdInfo(filterQ);
+
 }
 
