@@ -193,6 +193,7 @@ def create_checkout_session():
   return redirect(session.url, code=303)
   
 #Route for login-method
+# Vet inte om for loopen i denna metod är optimal, känns långsamt att loopa igenom alla användare
 @app.route("/login", methods = ['POST'])
 def login():
   if request.method == 'POST':
