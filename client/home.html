@@ -340,7 +340,7 @@
   </div>
   <div id="cashRegisterArea">
     <div id="scrollableItemsInBasket">
-      <img src="logga.png" width="100" height="100" id="homeButton">
+      <!-- <img src="logga.png" width="100" height="100" id="homeButton">
       <br>
       <img src="skitfulgitarr.png" width="100" height="100" id="homeButton">
       <br>
@@ -353,12 +353,29 @@
       <img src="search-icon.png" width="100" height="100" id="homeButton">
       <br>
       <img src="testbildkassa.png" width="100" height="100" id="homeButton">
+      <br> -->
+  </div> 
+  <div id="amountArea">   
+    <h1 style="text-align:center">
+      Din Total
+    </h1>
+    <h6 style="margin-left: 7%;">
       <br>
-  </div> 
-  <form action="/create-checkout-session" method="POST">
-    <button onclick="stripeTestFunction()" class="btn btn-primary" id="toPaymentButton" type="submit">Till betalning</button>
-  </form>
-  </div> 
+      <br>
+      Deltotal:
+      <br>
+      <br>
+      Frakt:
+      <br>
+      <br>
+    </h6>
+    <h5 style="margin-left: 6%;" id="totalsumLine">
+    </h5>
+    <form action="/create-checkout-session" method="POST">
+      <button onclick="stripeTestFunction()" class="btn btn-primary" id="toPaymentButton" type="submit">Till betalning</button>
+    </form>
+  </div>
+</div>
 </script>
 
 
