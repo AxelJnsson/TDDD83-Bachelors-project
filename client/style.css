@@ -41,7 +41,7 @@
   float:left;
   margin-top: 2%;
   margin-left: 2%;
-  width: 400px;
+  width: 600px;
   height: 560px;
   border-style:double;
   border-radius: 7px;
@@ -62,4 +62,19 @@
 #prodimg {
     height: 250px;
     width: 250px;
+}
+
+[id^='productInScrollableAreaDiv']{
+  background-color: rgb(157, 157, 157);
+  width: 600px;
+  height: 150px;
+  border-style: solid;
+  border-width: thin;
+  border-color: rgb(0, 0, 0);
+}
+
+[id^='removeProductFromRegister']{
+  float: right;
+  margin-top: 10%;
+  margin-right: 5%;
 }
