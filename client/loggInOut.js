@@ -24,3 +24,4 @@ $('#LoginFinishButton').click(function (e) {
 $('#logoutButton').click(function (e) {
   alert("vi får väll låtsas att du loggade ut nu")
   });
+
