@@ -10,7 +10,7 @@ from flask import request
 from flask import redirect
 from flask_bcrypt import Bcrypt
 import sqlite3
-from sqlite3 import OperationalError
+#from sqlite3 import OperationalError
 from sqlalchemy import null
 from sqlalchemy import create_engine
 from flask_sqlalchemy import SQLAlchemy
@@ -27,8 +27,6 @@ import os
  #   "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
 #}
 
-
-
 app = Flask(__name__, static_folder='../client', static_url_path='/')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -36,10 +34,6 @@ app.config['JWT_SECRET_KEY'] = "svargissadstrang"
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
-
-
-
-
 
 class Product(db.Model):
   product_id = db.Column(db.Integer, primary_key = True)
@@ -68,7 +62,6 @@ class User(db.Model):
   is_admin =db.Column(db.Integer, default = 0, nullable = False)
   password_hash = db.Column(db.String, nullable = False)
  # cart = db.relationship('Cart', backref='user', lazy = True) #https://fabric.inc/blog/shopping-cart-database-design/
-
 
   def __repr__(self):
     return '<User {}: {} {}>'.format(self.user_id, self.email, self.first_name, self.last_name)
@@ -108,6 +101,7 @@ class Cart_Item(db.Model):
   def serialize(self):
     return dict(id=self.id, product_id=self.product_id, quantity=self.quantity)
 #tror inte denna kommer behövas eftersom produkterna skriver ut sig själva
+#Behövs inte den så att man får datan på rätt format?
   # def serialize(self):
   #   return dict(id=self.id, product_id=self.product_id, quantity=self.quantity, session_id= self.session_id)
   
@@ -224,13 +218,13 @@ def login():
 def client():  
   return app.send_static_file("home.html")
   
-
-@app.route('/sign-up', methods= [ 'POST'])
+#Route allowing the user to sign up
+@app.route('/sign-up', methods= ['POST'])
 def signup():
 
   if request.method == 'POST':
-    new_user = request.get_json()
-    x = User(first_name = new_user["first_name"], last_name = new_user["last_name"], email = new_user["email"])
+    new_user = request.get_json()    
+    x = User(last_name = new_user["last_name"], first_name = new_user["firstname"],  email = new_user["email"])
     x.set_password(new_user["password"])
     db.session.add(x)
     db.session.commit()
@@ -285,6 +279,7 @@ def products():
 
   return "401"
 
+#Route for getting only new products
 @app.route('/newproduct', methods = ['GET'] )
 def newproducts():
   if request.method == 'GET':
@@ -297,6 +292,7 @@ def newproducts():
     return jsonify(product_list)
   return "401"
 
+#Route for getting only old products
 @app.route('/oldproduct', methods = ['GET'] )
 def oldproducts():
   if request.method == 'GET':
@@ -308,7 +304,7 @@ def oldproducts():
     return jsonify(product_list)
   return "401"
 
-
+#Route for getting, changing or deleting specific users
 @app.route('/user/<int:user_id>', methods = ['GET', 'PUT', 'DELETE'])
 def users(user_id):
   if request.method == 'GET':
@@ -334,6 +330,7 @@ def users(user_id):
     db.session.commit()
     return "200 OK"
 
+#Route for getting all users or adding a user
 @app.route('/user', methods = ['GET', 'POST'])
 def user():
   if request.method == 'GET':

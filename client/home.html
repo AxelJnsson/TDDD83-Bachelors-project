@@ -49,6 +49,9 @@
           <a class="nav-link" href="#" id="loginButton">Logga in</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="#" id="userButton">Din sida</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#" id="logoutButton">Logga ut</a>
         </li>
       </ul>
@@ -88,7 +91,7 @@
           <a class="nav-link" href="#" id="studioButton">Studioutrustning</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="yamahaTestButton">Testknapp för sortering på märke (ska tas bort)</a>
+          <a class="nav-link" href="#" id="yamahaTestButton">Testknapp för filtrering (ska tas bort)</a>
         </li>
       </ul>
     </div>
@@ -192,6 +195,41 @@
 
   </script>
 
+<!--Användarsida-->
+
+  <script id="view-user" type="text/html">
+    <div class="container rounded bg-white mt-5 mb-5">
+      <div class="row">
+          <div class="col-md-3 border-right">
+              <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold" id = "profname"></span><span class="text-black-50" id="profmail" ></span><span> </span></div>
+          </div>
+          <div class="col-md-5 border-right">
+              <div class="p-3 py-5">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h4 class="text-right">Profile Settings</h4>
+                      <button type="button" class="btn btn-primary" id="changeAdress">Ändra</button>
+                  </div>
+                     <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="text-right">Adress</h5>
+                <!--    <button type="button" class="btn btn-primary" id="changeAdress">Ändra</button> -->
+                  </div>     
+                  <div id="profAdress" style="padding-bottom:20px"></div>                
+                
+                  <div class="d-flex justify-content-between align-items-center mb-3" id="profKontakt">
+                    <h5 class="text-right">Kontaktuppgifter</h5>
+                  <!--  <button type="button" class="btn btn-primary" id="changeContact">Ändra</button> -->
+                  </div>
+                  <div id="profContact" style="padding-bottom:20px"></div>
+                  <div class="d-flex justify-content-between align-items-center mb-3" id="profSekretess">
+                    <h5 class="text-right">Sekretess</h5>
+                  <!--  <button type="button" class="btn btn-primary" id="changeSekre">Ändra</button> -->
+                  </div>
+                  <div id="profSek" style="padding-bottom:20px"></div>
+      </div>
+  </div>
+  </div>
+  </div>
+</script>
 
 
 
@@ -269,13 +307,21 @@
             <input class="form-control" id="inputEmailRegisterForm">
           </div>
           <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input class="form-control" id="inputPasswordRegisterForm">
+            <label for="inputFirstname">Förnamn:</label>
+            <input class="form-control" id="inputFirstname">
           </div>
           <div class="form-group">
+            <label for="inputLastname">Efternamn:</label>
+            <input class="form-control" id="inputLastname">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Passwords</label>
+            <input class="form-control" id="inputPasswordRegisterForm">
+          </div>
+         <!-- <div class="form-group">
             <label for="inputPassword">Password igen</label>
             <input class="form-control" id="inputPasswordAgainRegisterForm">
-          </div>
+          </div> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeRegisterButton">Stäng</button>
@@ -365,11 +411,11 @@
               <span class="fs-5 d-none d-sm-inline text-secondary">Filtrera mera!</span>
             </a>
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="newProd" checked>
+              <input class="form-check-input" type="checkbox" id="newProd" checked onclick="checkNewStuff()">
               <label class="form-check-label" for="flexSwitchCheckChecked">Nya Produkter</label>
             </div>
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="secondHandProd" checked>
+              <input class="form-check-input" type="checkbox" id="secondHandProd" checked onclick="checkOldStuff()">
               <label class="form-check-label" for="flexSwitchCheckChecked">Begagnade</label>
             </div>
             <ul class="nav nav-pills flex-column" id="sideMenu">
@@ -655,6 +701,7 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
   <script src="home.js"></script>
+  <script src="accountPage.js"></script>
   <script src="basket.js"></script>
   <script src="loggInOut.js"></script>
   <script src="productview.js"></script>

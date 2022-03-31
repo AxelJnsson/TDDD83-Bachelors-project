@@ -18,9 +18,6 @@ CREATE TABLE  used_product (
     FOREIGN KEY(user_id) REFERENCES user(user_id)
 );
 
-
-   
-
 CREATE TABLE new_product (
 product_id INTEGER PRIMARY KEY,
 brand TEXT NOT NULL,
