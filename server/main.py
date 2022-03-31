@@ -101,6 +101,7 @@ class Cart_Item(db.Model):
   def serialize(self):
     return dict(id=self.id, product_id=self.product_id, quantity=self.quantity)
 #tror inte denna kommer behövas eftersom produkterna skriver ut sig själva
+#Behövs inte den så att man får datan på rätt format?
   # def serialize(self):
   #   return dict(id=self.id, product_id=self.product_id, quantity=self.quantity, session_id= self.session_id)
   
