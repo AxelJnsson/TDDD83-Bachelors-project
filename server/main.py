@@ -283,13 +283,16 @@ def products():
 #Route for getting only new products
 @app.route('/newproduct', methods = ['GET'] )
 def newproducts():
+ 
   if request.method == 'GET':
     
     product = Product.query.filter_by(new_or_not = 1)
     product_list =[]
+    
 
     for x in product:
       product_list.append(x.serialize())
+      
     return jsonify(product_list)
   return "401"
 
