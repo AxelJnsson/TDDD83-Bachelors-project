@@ -13,9 +13,10 @@ $(document).ready(function(){
     $('#registerButton').toggleClass('d-none', !signedIn);
     $('#loginButton').toggleClass('d-none', !signedIn);
     $('#logoutButton').toggleClass('d-none', signedIn);
+    $('#annonsButton').toggleClass('d-none', signedIn);
     
  })
-
+ 
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
  //test för en till dimension av filtrering
  const filtercategories = [];
@@ -35,8 +36,9 @@ $('#aboutButton').click(function (e) {
   
   });
 
-  $('#homeButton').click(function (e) {      
-    $("#mainViewContainer").html($("#view-home").html())
+
+  $('#annonsButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-createAdd").html())
      e.preventDefault();
    });
 
