@@ -14,6 +14,7 @@ $(document).ready(function(){
     $('#loginButton').toggleClass('d-none', !signedIn);
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
+    $('#userButton').toggleClass('d-none', signedIn);
     
  })
  
