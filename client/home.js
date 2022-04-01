@@ -123,24 +123,24 @@ $('#homeButton').click(function (e) {
 
 
 //testfunktion för filtrering
-function checkNewStuff(){
-  var checkBox = document.getElementById("newProd");
+function checkNeworOldStuff(checkid, query){
+  var checkBox = document.getElementById(checkid);
 
   if (checkBox.checked == true) {
     if (filterconditions.length !== 0)
     {
       for(item in filterconditions) {
-        if(filterconditions[item] !== "Ny")
-        filterconditions.push("Ny");
+        if(filterconditions[item] !== query)
+        filterconditions.push(query);
       }
     } else {
-      filterconditions.push("Ny");
+      filterconditions.push(query);
     }
     
   } else {
     if(filterconditions.length !== 1) {
       for(item in filterconditions) {
-        if(filterconditions[item] == "Ny"){
+        if(filterconditions[item] == query){
           filterconditions.splice(item,1);
         }
       }
@@ -156,38 +156,5 @@ function checkNewStuff(){
   showProdInfo(filterQ);
 }
 
-  function checkOldStuff(){
-    var checkBox = document.getElementById("secondHandProd");
-  
-    if (checkBox.checked == true) {
-      if (filterconditions.length !== 0){
-        for(item in filterconditions) {
-          if(filterconditions[item] !== "Begagnad") {
-            filterconditions.push("Begagnad");
-  
-          }
-        }
-      } else {
-        filterconditions.push("Begagnad");
-      }
-    
-    } else {
-      if(filterconditions.length !== 1){
-        for(item in filterconditions) {
-          if(filterconditions[item] == "Begagnad")
-          filterconditions.splice(item,1);
-        }
-      } else {
-        filterconditions.length = 0;
-        alert("tom");
-      }
-     
-      
-    }
-    alert(filterQ[7][0] + filterQ[7][1])
-    $("#mainViewContainer").html($("#view-product").html())  
 
-      showProdInfo(filterQ);
-
-}
 

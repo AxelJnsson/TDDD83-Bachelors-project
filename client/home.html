@@ -413,11 +413,11 @@
               <span class="fs-5 d-none d-sm-inline text-secondary">Filtrera mera!</span>
             </a>
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="newProd" checked onclick="checkNewStuff()">
+              <input class="form-check-input" type="checkbox" id="newProd" checked onclick="checkNeworOldStuff('newProd', 'Ny')">
               <label class="form-check-label" for="flexSwitchCheckChecked">Nya Produkter</label>
             </div>
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="secondHandProd" checked onclick="checkOldStuff()">
+              <input class="form-check-input" type="checkbox" id="secondHandProd" checked onclick="checkNeworOldStuff('secondHandProd', 'Begagnad')">
               <label class="form-check-label" for="flexSwitchCheckChecked">Begagnade</label>
             </div>
             <ul class="nav nav-pills flex-column" id="sideMenu">
@@ -432,12 +432,6 @@
                     <label class="form-check-label" for="defaultCheck1">
                       <span class="text-info">Item 1</span>
                     </label> -->
-                  </li>
-                  <li>
-                    <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem2">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 2</span>
-                    </label>
                   </li>
                 </ul>
               </li>
