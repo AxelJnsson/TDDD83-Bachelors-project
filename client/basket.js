@@ -39,3 +39,43 @@ function removeFromRegister(id){
   var breakBetween = document.getElementById("breakBetweenProducts"+id[id.length-1])
   breakBetween.remove();
 }
+
+function stripeTestFunction(){
+  $.ajax ({
+    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/create-checkout-session',
+    type: 'POST',
+    datatype: 'JSON',
+    contentType: "application/json",
+    data: JSON.stringify({
+      "price":123123}),
+    success: function(data) {    
+      return stripe.redirectToCheckout({sessionId: data.sessionId})
+    }
+  }) 
+
+
+
+
+
+  // productPrice=100
+  //   fetch("/create-checkout-session", {
+  //     method: 'POST',
+	//     body: JSON.stringify({
+  //       price: productPrice,
+  //     }), // The data
+	//     headers: {
+	// 	'Content-type': '' // The type of data you're sending
+  //     }
+  //   })
+  //   .then((result) => { return result.json(); })
+  //   .then((data) => {
+  //     console.log(data);
+  //     // Redirect to Stripe Checkout
+  //     return stripe.redirectToCheckout({sessionId: data.sessionId})
+  //   })
+  //   .then((res) => {
+  //     console.log(res);
+  //   });
+  //   console.log("allabarn");
+}
