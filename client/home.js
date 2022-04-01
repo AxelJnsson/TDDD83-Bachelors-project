@@ -38,7 +38,8 @@ $('#aboutButton').click(function (e) {
 
   $('#userButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-user").html()) 
-    displayUser();    
+    displayUser();  
+    getNewProducts();  
     e.preventDefault();
   });
 

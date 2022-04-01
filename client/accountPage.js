@@ -29,9 +29,14 @@ function displayUser() {
     $("#profAdress").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value="+active_user.adress+">");
     $("#profContact").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value="+anv.email+">");
     $("#profSek").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value="+anv.is_admin+">");
-        
+ 
+    
     }
 });
+
+function changeUser() {
+  
+}
 
 
 }
