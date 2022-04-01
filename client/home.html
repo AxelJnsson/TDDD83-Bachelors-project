@@ -222,8 +222,134 @@
   <!--kommenterar bort denna nu, förlåt mig fredrik :(-->
 
   <script id="view-product" type="text/html">
-   
-  <div id="testdiv"></div>
+    <div class="sticky" style="float:left">      
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black min-vh-100">
+        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
+          <span class="fs-5 d-none d-sm-inline text-secondary">Filtrera mera!</span>
+        </a>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="newProd" checked onclick="checkNeworOldStuff('newProd', 'Ny')">
+          <label class="form-check-label" for="flexSwitchCheckChecked">Nya Produkter</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="secondHandProd" checked onclick="checkNeworOldStuff('secondHandProd', 'Begagnad')">
+          <label class="form-check-label" for="flexSwitchCheckChecked">Begagnade</label>
+        </div>
+        <ul class="nav nav-pills flex-column" id="sideMenu">
+          <li>
+            <a class="nav-link px-0" href="#submenu1" data-bs-toggle="collapse" aria-expanded="false"
+              aria-controls="submenu1">
+              <span class="text-secondary">Märken</span>
+            </a>
+            <ul class="collapse nav flex-column" id="submenu1">
+              <li class="w-100" id="brandArea">
+                <!-- <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem1">
+                <label class="form-check-label" for="defaultCheck1">
+                  <span class="text-info">Item 1</span>
+                </label> -->
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0">
+
+
+              <span class="text-secondary">Modeller</span>
+            </a>
+            <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#sideMenu">
+              <li class="w-100">
+                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem3">
+                <label class="form-check-label" for="defaultCheck1">
+                  <span class="text-info">Item 3</span>
+                </label>
+              </li>
+              <li>
+                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem4">
+                <label class="form-check-label" for="defaultCheck1">
+                  <span class="text-info">Item 4</span>
+                </label>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0">
+
+              <span class="text-secondary">Färger</span>
+            </a>
+            <ul class="collapse nav flex-column" id="submenu3" data-bs-parent="#sideMenu">
+              <li class="w-100">
+                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem5">
+                <label class="form-check-label" for="defaultCheck1">
+                  <span class="text-info">Item 5</span>
+                </label>
+              </li>
+              <li>
+                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem6">
+                <label class="form-check-label" for="defaultCheck1">
+                  <span class="text-info">Item 6</span>
+                </label>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0">
+
+              <span class="text-secondary">Pris</span>
+            </a>
+            <ul class="collapse nav flex-column" id="submenu4" data-bs-parent="#sideMenu">
+              <li class="w-100">
+                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem7">
+                <label class="form-check-label" for="defaultCheck1">
+                  <span class="text-info">Item 7</span>
+                </label>
+              </li>
+              <li>
+                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem8">
+                <label class="form-check-label" for="defaultCheck1">
+                  <span class="text-info">Item 8</span>
+                </label>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0">
+
+              <span class="text-secondary">År</span>
+            </a>
+            <ul class="collapse nav flex-column" id="submenu5" data-bs-parent="#sideMenu">
+              <li class="w-100">
+                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem9">
+                <label class="form-check-label" for="defaultCheck1">
+                  <span class="text-info">Item 9</span>
+                </label>
+              </li>
+              <li>
+                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem10">
+                <label class="form-check-label" for="defaultCheck1">
+                  <span class="text-info">Item 10</span>
+                </label>
+              </li>
+              <li>
+                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem11">
+                <label class="form-check-label" for="defaultCheck1">
+                  <span class="text-info">Item 11</span>
+                </label>
+              </li>
+              <li>
+                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem12">
+                <label class="form-check-label" for="defaultCheck1">
+                  <span class="text-info">Item 12</span>
+                </label>
+              </li>
+            </ul>
+          </li>
+      
+        </ul>
+        <hr>
+      </div>
+    </div>
+    <div class="center" id="testdiv"></div>
+  
 
 
   </script>
@@ -267,7 +393,7 @@
 
 <!--Homepage-->
 <script id="view-home" type="text/html">  
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column"  style=" background-image: url('homepage2.png');  background-size: cover";>
+    <div   class="center" style="padding: 25px 50px 75px 100px; background-image: url('homepage2.png');   min-height: 800px;">
       <header class="masthead mb-auto">
         <div class="inner">                  
         </div>
@@ -528,133 +654,7 @@
 
   <div class="wrapper" id="wrap">
       <div class="row gap-4">
-        <div class="col-3 bg-light">
-          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black min-vh-100">
-            <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
-              <span class="fs-5 d-none d-sm-inline text-secondary">Filtrera mera!</span>
-            </a>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="newProd" checked onclick="checkNeworOldStuff('newProd', 'Ny')">
-              <label class="form-check-label" for="flexSwitchCheckChecked">Nya Produkter</label>
-            </div>
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="secondHandProd" checked onclick="checkNeworOldStuff('secondHandProd', 'Begagnad')">
-              <label class="form-check-label" for="flexSwitchCheckChecked">Begagnade</label>
-            </div>
-            <ul class="nav nav-pills flex-column" id="sideMenu">
-              <li>
-                <a class="nav-link px-0" href="#submenu1" data-bs-toggle="collapse" aria-expanded="false"
-                  aria-controls="submenu1">
-                  <span class="text-secondary">Märken</span>
-                </a>
-                <ul class="collapse nav flex-column" id="submenu1">
-                  <li class="w-100" id="brandArea">
-                    <!-- <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem1">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 1</span>
-                    </label> -->
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0">
-
-
-                  <span class="text-secondary">Modeller</span>
-                </a>
-                <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#sideMenu">
-                  <li class="w-100">
-                    <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem3">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 3</span>
-                    </label>
-                  </li>
-                  <li>
-                    <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem4">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 4</span>
-                    </label>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0">
-
-                  <span class="text-secondary">Färger</span>
-                </a>
-                <ul class="collapse nav flex-column" id="submenu3" data-bs-parent="#sideMenu">
-                  <li class="w-100">
-                    <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem5">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 5</span>
-                    </label>
-                  </li>
-                  <li>
-                    <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem6">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 6</span>
-                    </label>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0">
-
-                  <span class="text-secondary">Pris</span>
-                </a>
-                <ul class="collapse nav flex-column" id="submenu4" data-bs-parent="#sideMenu">
-                  <li class="w-100">
-                    <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem7">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 7</span>
-                    </label>
-                  </li>
-                  <li>
-                    <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem8">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 8</span>
-                    </label>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0">
-
-                  <span class="text-secondary">År</span>
-                </a>
-                <ul class="collapse nav flex-column" id="submenu5" data-bs-parent="#sideMenu">
-                  <li class="w-100">
-                    <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem9">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 9</span>
-                    </label>
-                  </li>
-                  <li>
-                    <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem10">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 10</span>
-                    </label>
-                  </li>
-                  <li>
-                    <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem11">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 11</span>
-                    </label>
-                  </li>
-                  <li>
-                    <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem12">
-                    <label class="form-check-label" for="defaultCheck1">
-                      <span class="text-info">Item 12</span>
-                    </label>
-                  </li>
-                </ul>
-              </li>
-          
-            </ul>
-            <hr>
-
-          </div>
-        </div>
+        
 
         <div class="col" id="mainViewContainer">
         </div>      
@@ -667,7 +667,7 @@
 
     <!--Iconer osv om man vill-->
 
-    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom" >
       <div class="me-5 d-none d-lg-block">
         <i class="fa-solid fa-laptop"></i>
         <span>Get connected with us on social networks:</span>
@@ -701,11 +701,11 @@
 
     <!-- Section: Links  -->
     <section class="">
-      <div class="container text-center text-md-start mt-5" id ="down">
+      <div class="container text-center text-md-start mt-5"  id ="down">
         <!-- Grid row -->
         <div class="row mt-3">
           <!-- Grid column -->
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" >
             <!-- Content -->
             <h6 class="text-uppercase fw-bold mb-4">
               <i class="fa-solid fa-music"></i> ToneHub
