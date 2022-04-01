@@ -13,6 +13,7 @@ $(document).ready(function(){
     $('#registerButton').toggleClass('d-none', !signedIn);
     $('#loginButton').toggleClass('d-none', !signedIn);
     $('#logoutButton').toggleClass('d-none', signedIn);
+    $('#userButton').toggleClass('d-none', signedIn);
     
  })
 

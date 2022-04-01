@@ -7,7 +7,7 @@ function getNewProducts(){
          type: 'GET',
          success: function(u) {            
             var produkt = u;           
-        alert(produkt[1].name);
+        /*alert(produkt[1].name);*/
       
          
      },
