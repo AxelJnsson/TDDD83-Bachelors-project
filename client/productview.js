@@ -54,6 +54,7 @@
 }
 
 
+
 //gammal filtreringsfunktion, låter ligga kvar så länge
 function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear){
     var filterprod = {category: inputCategory, brand: inputBrand, model: inputModel, name: inputName, price: inputPrice, color : inputColor, year : inputYear}; 

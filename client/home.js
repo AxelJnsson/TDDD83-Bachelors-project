@@ -35,6 +35,25 @@ $('#aboutButton').click(function (e) {
   });
 
 
+  function startshopp() {
+    $("#mainViewContainer").html($("#view-product").html())  
+    //showProdInfo("allt", null);
+    resetFilter();
+    //filterconditions.push("Ny", "Begagnad");
+    showProdInfo(filterQ);
+    e.preventDefault();
+
+  }
+/*$('#startShopping').click(function (e) {      
+  $("#mainViewContainer").html($("#view-product").html())  
+    //showProdInfo("allt", null);
+    resetFilter();
+    //filterconditions.push("Ny", "Begagnad");
+    showProdInfo(filterQ);
+    e.preventDefault();
+  });*/
+
+
 
   $('#userButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-user").html()) 
