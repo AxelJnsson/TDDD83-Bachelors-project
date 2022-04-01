@@ -36,12 +36,11 @@ $('#aboutButton').click(function (e) {
   });
 
   $('#homeButton').click(function (e) {      
-    $("#mainViewContainer").html($("#view-home").html())  
+    $("#mainViewContainer").html($("#view-home").html())
      e.preventDefault();
    });
 
-$('#contactButton').click(function (e) {      
-   $("#mainViewContainer").html($("#view-contact").html())    
+$('#contactButton').click(function (e) {          
     e.preventDefault();
   });
 
