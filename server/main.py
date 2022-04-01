@@ -270,7 +270,7 @@ def products():
 
   elif request.method == 'POST':
     new_product = request.get_json()
-    x = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"], new_or_not = new_product["new_or_not"], seller = new_product["seller"])
+    x = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"], new_or_not = new_product["new_or_not"], seller = new_product["seller"], quantity = 1)
     db.session.add(x)
     db.session.commit()
     product_id = x.product_id
