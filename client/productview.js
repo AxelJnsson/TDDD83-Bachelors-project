@@ -207,8 +207,18 @@ function filtertest2(arr, testingArrayFilters){
       $("#brandArea").empty();
       //alert("funkar");
       let prod = products;
-      for(var i = 0; i < prod.length; i++){
-        $("#brandArea").append("<input class='form-check-inpu from-check-inline' type='checkbox' value='' id='checkItem1'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  prod[i].brand +  " </span></label><br>");
+
+      const c = [];
+
+      for(var j = 0; j < prod.length; j++){
+        c.push(prod[j].brand);
+      }
+
+      var unique = c.filter((v, i, a) => a.indexOf(v) === i);
+
+
+      for(var i = 0; i < unique.length; i++){
+        $("#brandArea").append("<input class='form-check-inpu from-check-inline' type='checkbox' value='' id='checkItem1'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  unique[i] +  " </span></label><br>");
 
       }
   }
