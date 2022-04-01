@@ -178,6 +178,7 @@ function filtertest2(arr, testingArrayFilters){
         //funktion för att skriva ut produkterna 3 och 3
         if (i%4 == 0) {
             j++;
+            //alert(j")
         }
 
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
