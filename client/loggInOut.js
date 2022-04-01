@@ -73,6 +73,7 @@ $('#logoutButton').click(function (e) {
       success: function(i) { 
            alert("Din användare är skapad!");
            $(".container").html($("#view-home").html());
+           $("#registerModal").modal('hide');
       }
     });
   

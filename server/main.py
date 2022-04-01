@@ -323,9 +323,10 @@ def users(user_id):
 #, temp_Session.serialize(), item_list
   elif request.method == 'PUT':
     user = request.get_json()
-    user["user_id"] = user_id
-    User.query.filter_by(user_id = user_id).update(user)
-    temp = User.query.filter_by(user_id = user_id).first_or_404()
+    x = User.query.filter_by(user_id = user_id).first_or_404()
+    user["password_hash"] = bcrypt.generate_password_hash(user["password_hash"]).decode('utf8')
+    User.query.filter_by(user_id = user_id).update(user)     
+    temp = User.query.filter_by(user_id = user_id).first_or_404()    
     db.session.commit()
     return jsonify(temp.serialize())
   elif request.method == 'DELETE':
