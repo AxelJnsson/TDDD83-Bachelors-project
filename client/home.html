@@ -15,6 +15,7 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="home.css">
+  
   <title>Välkommen till ToneHub</title>
 
 </head>
@@ -24,7 +25,7 @@
 
   <!--Övre navbar-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">
+    <a class="nav-link" href="#">
       <img src="logga.png" width="100" height="100" id="homeButton">
     </a>
     <div class="form-group">
@@ -35,7 +36,9 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#" id="contactButton">Kontakt</a>
+          <a class="nav-link" href="#" id="contactButton" 
+          onClick="document.getElementById('down').scrollIntoView();"
+          >Kontakt</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" id="aboutButton">Om oss</a>
@@ -100,17 +103,112 @@
 
 
 
-
-
-
-
   <script id="view-about" type="text/html">
     <div class="center"  id="about">  
-        <p >Här har ni  information om oss:)</p>     
-     
+      <h1>Välkommen till ToneHub!</h1>
+      <p> Our vision is to simplify consumer’s online shopping of musical instruments and audio equipment. The goal
+        is to minimize the time and effort consumers must spend to make a purchase they feel pleased and satisfied
+        with.</p>
+      
     </div>
+    <pre class="tab"></pre>
+    <pre class="tab"></pre>
 
+    <h2 style="text-align:center" id = titleAbout >Vilka är vi?</h2>
+    <h2></h2>
+    <pre class="tab"></pre>
+    <pre class="tab"></pre>
+
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="carlbildt.png" style="width:100%">
+      <div class="container">
+        <h2>Fredrik</h2>
+        <p class="title">CEO & Founder</p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <img src="carlbildt.png"  style="width:100%">
+      <div class="container">
+        <h2>Fredrik</h2>
+        <p class="title">CEO & Founder</p>
+      </div>
+    </div>
+  </div> <div class="column">
+    <div class="card">
+      <img src="carlbildt.png"  style="width:100%">
+      <div class="container">
+        <h2>Fredrik</h2>
+        <p class="title">CEO & Founder</p>
+      </div>
+    </div>
+  </div> 
+  
+  <div class="column">
+    <div class="card">
+      <img src="carlbildt.png"  style="width:100%">
+      <div class="container">
+        <h2>Fredrik</h2>
+        <p class="title">CEO & Founder</p>
+      </div>
+    </div>
+  </div> <div class="column">
+    <div class="card">
+      <img src="carlbildt.png"  style="width:100%">
+      <div class="container">
+        <h2>Fredrik</h2>
+        <p class="title">CEO & Founder</p>
+      </div>
+    </div>
+  </div> <div class="column">
+    <div class="card">
+      <img src="carlbildt.png"  style="width:100%">
+      <div class="container">
+        <h2>Fredrik</h2>
+        <p class="title">CEO & Founder</p>
+      </div>
+    </div>
+  </div> 
+
+  <div class="column">
+    <div class="card">
+      <img src="carlbildt.png"  style="width:100%">
+      <div class="container">
+        <h2>Fredrik</h2>
+        <p class="title">CEO & Founder</p>
+      </div>
+    </div>
+  </div> <div class="column">
+    <div class="card">
+      <img src="carlbildt.png"  style="width:100%">
+      <div class="container">
+        <h2>Fredrik</h2>
+        <p class="title">CEO & Founder</p>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <img src="carlbildt.png"  style="width:100%">
+      <div class="container">
+        <h2>David Carlsson</h2>
+        <p class="title">Utvecklingsansvarig</p>
+      </div>
+    </div>
+  </div>
+</div>
+    
+  <script id="view-contact" type="text/html">
+    <div class="center"  id="contact">  
+        <p >Kontakta oss!</p>     
+       
+    </div>
   </script>
+
+  
 
   <!--kommenterar bort denna nu, förlåt mig fredrik :(-->
 
@@ -232,6 +330,37 @@
 </script>
 
 
+<!--Homepage-->
+<script id="view-home" type="text/html">
+  
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column" style="background-image: url('homepage2.png');  background-size: cover";>
+      <header class="masthead mb-auto">
+        <div class="inner">
+                  
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Av musikälskare för musikälskare</h1>
+        <!-- <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p> -->
+        <p class="lead">
+          <a href="#" id="startShopping" onclick="startshopp()" class="btn btn-lg btn-secondary">Börja handla!</a>
+        </p>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+        </div>
+      </footer>
+    </div>
+
+
+  
+   
+  
+
+
+</script>
 
 
 
@@ -571,8 +700,8 @@
 
           </div>
         </div>
+
         <div class="col" id="mainViewContainer">
-          asdasdasdsa
         </div>      
       </div>
   </div>
@@ -617,7 +746,7 @@
 
     <!-- Section: Links  -->
     <section class="">
-      <div class="container text-center text-md-start mt-5">
+      <div class="container text-center text-md-start mt-5" id ="down">
         <!-- Grid row -->
         <div class="row mt-3">
           <!-- Grid column -->
@@ -720,6 +849,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
   <script src="home.js"></script>
   <script src="accountPage.js"></script>
   <script src="getproducts.js"></script>
@@ -738,6 +870,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&v=weekly"
+    async
+    ></script>
 </body>
 
 </html>

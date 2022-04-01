@@ -33,7 +33,35 @@ $(document).ready(function(){
 $('#aboutButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-about").html())    
     e.preventDefault();
+  
   });
+
+  $('#homeButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-home").html())
+     e.preventDefault();
+   });
+
+$('#contactButton').click(function (e) {          
+    e.preventDefault();
+  });
+
+  function startshopp() {
+    $("#mainViewContainer").html($("#view-product").html())  
+    //showProdInfo("allt", null);
+    resetFilter();
+    //filterconditions.push("Ny", "Begagnad");
+    showProdInfo(filterQ);
+    e.preventDefault();
+
+  }
+/*$('#startShopping').click(function (e) {      
+  $("#mainViewContainer").html($("#view-product").html())  
+    //showProdInfo("allt", null);
+    resetFilter();
+    //filterconditions.push("Ny", "Begagnad");
+    showProdInfo(filterQ);
+    e.preventDefault();
+  });*/
 
 
 
