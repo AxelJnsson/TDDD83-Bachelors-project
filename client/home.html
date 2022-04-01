@@ -49,7 +49,7 @@
           <a class="nav-link" href="#" id="loginButton">Logga in</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="userButton">Din sida</a>
+          <a class="nav-link" href="#" id="userButton">Min sida</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" id="logoutButton">Logga ut</a>
@@ -206,8 +206,8 @@
           <div class="col-md-5 border-right">
               <div class="p-3 py-5">
                   <div class="d-flex justify-content-between align-items-center mb-3">
-                      <h4 class="text-right">Profile Settings</h4>
-                      <button type="button" class="btn btn-primary" id="changeUser">Ändra</button>
+                      <h4 class="text-right">Min info</h4>
+                      <button type="button" class="btn btn-primary" id="editUserButton">Ändra</button>
                   </div>
                      <div class="d-flex justify-content-between align-items-center mb-3">
                     <h5 class="text-right">Adress</h5>
@@ -322,6 +322,44 @@
             <label for="inputPassword">Password igen</label>
             <input class="form-control" id="inputPasswordAgainRegisterForm">
           </div> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeRegisterButton">Stäng</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="registerFinishButton">Registrera
+            dig</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registrera dig</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xRegister">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input class="form-control" id="inputEmailRegisterForm">
+          </div>
+          <div class="form-group">
+            <label for="inputFirstname">Förnamn:</label>
+            <input class="form-control" id="inputFirstname">
+          </div>
+          <div class="form-group">
+            <label for="inputLastname">Efternamn:</label>
+            <input class="form-control" id="inputLastname">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Passwords</label>
+            <input class="form-control" id="inputPasswordRegisterForm">
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeRegisterButton">Stäng</button>
