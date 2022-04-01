@@ -26,11 +26,7 @@ $('#LoginFinishButton').click(function (e) {
           "email":inputEmail, "password":inputPassword}), 
         success: function(i) { 
             
-         sessionStorage.setItem('auth', JSON.stringify(i));   
-         sessionStorage.setItem('anvF', JSON.stringify(i.user.first_name));  
-         sessionStorage.setItem('anvL', JSON.stringify(i.user.last_name));  
-         sessionStorage.setItem('anvE', JSON.stringify(i.user.email));  
-         sessionStorage.setItem('anvA', JSON.stringify(i.user.is_admin));  
+         sessionStorage.setItem('auth', JSON.stringify(i));           
          $(".container").html($("#view-home").html());
          window.location.reload(); 
            
