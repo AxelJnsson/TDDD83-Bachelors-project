@@ -36,7 +36,7 @@ $('#aboutButton').click(function (e) {
   });
 
   $('#homeButton').click(function (e) {      
-    $("#mainViewContainer").html($("#view-about").html())  
+    $("#mainViewContainer").html($("#view-home").html())  
      e.preventDefault();
    });
 
