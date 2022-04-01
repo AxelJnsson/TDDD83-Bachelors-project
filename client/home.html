@@ -15,6 +15,11 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   
   <title>Välkommen till ToneHub</title>
 
@@ -52,7 +57,11 @@
           <a class="nav-link" href="#" id="loginButton">Logga in</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="userButton">Min sida</a>
+          <a class="nav-link" href="#" id="annonsButton">Skapa annons</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="userButton">Din sida</a>
+          
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" id="logoutButton">Logga ut</a>
@@ -213,81 +222,7 @@
   <!--kommenterar bort denna nu, förlåt mig fredrik :(-->
 
   <script id="view-product" type="text/html">
-   <!--   <div class="row align-self-center" >
-        <div class="col-sm" id="productcol">
-        <div class="card" id= "productcard" >
-          <img class="card-img-top"  src="gitarblå.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Blå gitar</h5>
-            <p class="card-text">Denna är inte så bra men blå</p>
-       
-            <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
-          </div>
-        </div>
-        </div>
-        <div class="col-sm" id="productcol">
-        <div class="card" >
-          <img class="card-img-top"  src="gitarklassisk.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Vanlig gitar</h5>
-            <p class="card-text">Tråkig gitar</p>
-       
-            <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
-          </div>
-        </div>       
-        </div> 
-        <div class="col-sm" id="productcol">
-        <div class="card"  >
-          <img class="card-img-top" src="gitarsvart.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Svart gitar</h5>
-            <p class="card-text">Jättefin gitar i svart färg</p>
-       
-            <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
-          </div>
-        </div>
-        </div>
-        </div>
-      
-      <div class="row" >
-        <div class="col-sm" id="productcol">
-        <div class="card"  >
-          <img class="card-img-top"  src="elgitarröd.jpeg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">röd elgitar</h5>
-            <p class="card-text">En väldigt frän gitar</p>
-       
-            <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
-          </div>
-        </div>   
-        </div>
-        <div class="col-sm" id="productcol">     
-        <div class="card" >
-          <img class="card-img-top"  src="elgitarwood.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">Elgitar trä</h5>
-            <p class="card-text">Ful gitar men funkar</p>
-       
-            <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
-          </div>
-        </div>
-        </div>
-        <div class="col-sm" id="productcol">
-          <div class="card" >
-            <img class="card-img-top"  src="elgitarsvart.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Svart elgitar</h5>
-              <p class="card-text">Elgitar i cool färg</p>
-         
-              <div class="p-3 border bg-light" onclick="showProdModal()">Info</div> 
-            </div>
-          </div>
-        </div> -->
-
-  <!--test-space för append av kort-->
-  <!--<div class="row" id="testrow">
-          
-         </div>-->
+   
   <div id="testdiv"></div>
 
 
@@ -331,15 +266,12 @@
 
 
 <!--Homepage-->
-<script id="view-home" type="text/html">
-  
-    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column" style="background-image: url('homepage2.png');  background-size: cover";>
+<script id="view-home" type="text/html">  
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column"  style=" background-image: url('homepage2.png');  background-size: cover";>
       <header class="masthead mb-auto">
-        <div class="inner">
-                  
+        <div class="inner">                  
         </div>
       </header>
-
       <main role="main" class="inner cover">
         <h1 class="cover-heading">Av musikälskare för musikälskare</h1>
         <!-- <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p> -->
@@ -347,17 +279,42 @@
           <a href="#" id="startShopping" onclick="startshopp()" class="btn btn-lg btn-secondary">Börja handla!</a>
         </p>
       </main>
-
       <footer class="mastfoot mt-auto">
         <div class="inner">
         </div>
       </footer>
+    
     </div>
+   <!-- <div class="w3-container w3-black w3-padding-32">
+      <h1>Subscribe</h1>
+      <p>To get special offers and VIP treatment:</p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
+      <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
+     </div>-->
+</script>
 
+<script id="view-createAdd" type="text/html">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="text-right">Skapa Annons!</h4>
+</div>
+<div class="row mt-2">
+    <div class="col-md-6"><label class="labels">Namn</label><input type="text" class="form-control" placeholder="Namn" value=""></div>
+    <div class="col-md-6"><label class="labels">Modell</label><input type="text" class="form-control" value="" placeholder="Modell på ditt instrument"></div>
+</div>
+<div class="row mt-3">
+  <!--Dessa behöver göras om till dropdown mmenyer på saker som färg, brand osv-->
+    <div class="col-md-12"><label class="labels">Brand</label><input type="text" class="form-control" placeholder="Märke på ditt instrument" value=""></div>
+    <div class="col-md-12"><label class="labels">Pris</label><input type="text" class="form-control" placeholder="Pris" value=""></div>
+    <div class="col-md-12"><label class="labels">Färg</label><input type="text" class="form-control" placeholder="Färg" value=""></div>
+    <div class="col-md-12"><label class="labels">År</label><input type="text" class="form-control" placeholder="År" value=""></div>
+    <div class="col-md-12"><label class="labels">Typ</label><input type="text" class="form-control" placeholder="Typ" value=""></div>
+    <div class="col-md-12"><label class="labels">Begagnad</label><input type="text" class="form-control" placeholder="ja eller nej" value=""></div>
+    <div class="col-md-12"><label class="labels">Säljare</label><input type="text" class="form-control" placeholder="Förifyllt" value=""></div>
+</div>
 
-  
-   
-  
+<div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Skapa annons</button></div>
+</div>
+</div>
 
 
 </script>
@@ -374,12 +331,10 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
         <div class="modal-body">
           <h1>
             Din Varukorg är tom!
           </h1>
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary"  data-dismiss="modal" id="closeBasketButton">Stäng</button>
