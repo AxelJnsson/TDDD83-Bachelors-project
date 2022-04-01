@@ -32,8 +32,17 @@ $(document).ready(function(){
 $('#aboutButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-about").html())    
     e.preventDefault();
+  
   });
 
+  $('#homeButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-home").html())
+     e.preventDefault();
+   });
+
+$('#contactButton').click(function (e) {          
+    e.preventDefault();
+  });
 
 
   $('#userButton').click(function (e) {   
