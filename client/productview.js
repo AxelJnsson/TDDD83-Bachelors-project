@@ -176,19 +176,23 @@ function sideBar(products){
 
   $('.somename').on("click" ,function (e) {
     var checkBoxId = $(this).data('id');
-    var checkBox = document.getElementById(checkBoxId);
+    //var checkBox = document.getElementById(checkBoxId);
     //alert(checkBoxId);
     if($(this).prop("checked") == true){
-        alert(unique[checkBoxId]);
+        //alert(unique[checkBoxId]);
+        filterbrands.push(unique[checkBoxId]);
+        //alert(filterbrands[0]);
+    } else {
+        if(filterbrands.length == 1) {
+            filterbrands.length = 0;
+        } else {
+            filterbrands.splice(item,1);
 
+        }
     }
-    // if (checkBox.checked) {
-    //     alert("hit");
-
-    // } else {
-    //     alert("nä");
-    // }
-    //alert("funkar detta?")
+        $("#mainViewContainer").html($("#view-product").html())  
+        showProdInfo(filterQ);
+    
   });
 
 
