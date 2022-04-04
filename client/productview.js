@@ -89,15 +89,15 @@ function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inpu
 
 //riktig filtrering
 function filtertest2(arr, testingArrayFilters){
-    const categories = testingArrayFilters[0];
-    //alert(categories[0] + categories[1]);
+    const types = testingArrayFilters[0];
+    //alert(types[0] + types[1]);
     const brands = testingArrayFilters[1];
     const models = testingArrayFilters[2];
     const names = testingArrayFilters[3];
     const prices = testingArrayFilters[4];
     const colors = testingArrayFilters[5];
     const years = testingArrayFilters[6];
-    const conditions = testingArrayFilters[7];
+    const newornots = testingArrayFilters[7];
    
     
     var filteredstuff = arr;
@@ -117,9 +117,9 @@ function filtertest2(arr, testingArrayFilters){
 
 
 
-    if (categories.length !== 0) {
+    if (types.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
-            categories.indexOf(el.category) >= 0);
+            types.indexOf(el.category) >= 0);
     }
 
     if (brands.length !== 0) {
@@ -152,9 +152,9 @@ function filtertest2(arr, testingArrayFilters){
             years.indexOf(el.year) >= 0);
     }
 
-    //if (conditions.length !== 0) {
+    //if (newornots.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
-            conditions.indexOf(el.condition) >= 0);
+            newornots.indexOf(el.condition) >= 0);
     //}
     
     alert("Antal produkter: " + filteredstuff.length);
