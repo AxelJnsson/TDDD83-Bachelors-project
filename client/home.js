@@ -2,7 +2,7 @@ $(document).ready(function(){
     // Kod i detta block körs när dokumentet laddats klart.    
     $("#mainViewContainer").html($("#view-home").html())
    
-    filternewornot.push("Ny", "Begagnad");  
+    filternewornot.push(0, 1);  
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
       signedIn = true;
@@ -92,7 +92,7 @@ $('#contactButton').click(function (e) {
   $('#guitarButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())
     resetFilter();
-    var defCategory = "gitarrer";
+    var defCategory = "gitarr";
     filtertypes.push(defCategory);
     showProdInfo(filterQ);
     e.preventDefault();
@@ -101,7 +101,7 @@ $('#contactButton').click(function (e) {
   $('#pianoButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
     resetFilter();
-    filtertypes.push("pianon");
+    filtertypes.push("piano");
     showProdInfo(filterQ);
     e.preventDefault();
   });
@@ -126,8 +126,8 @@ $('#contactButton').click(function (e) {
   $('#yamahaTestButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())
     resetFilter();
-    var testcategory1 = "gitarrer";
-    var testcategory2 = "pianon";
+    var testcategory1 = "gitarr";
+    var testcategory2 = "piano";
     //var testcategory3 = "trummor";
 
     var testbrand1 = "Yamaha";

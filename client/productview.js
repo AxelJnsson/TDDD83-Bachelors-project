@@ -25,11 +25,11 @@ function createProducts(filteringByArrayTest){
         type: 'GET',
         success: function(u) {          
             var allinstruments = u; 
-            return filtertest2(allinstruments, filteringByArrayTest);
+            filtertest2(allinstruments, filteringByArrayTest);
         },
         error: function(){
             alert("fel");
-        }
+        }    
     });
 }
 
@@ -63,19 +63,6 @@ function filtertest2(arr, testingArrayFilters){
    
     var filteredstuff = arr;
 
-    //  for (var i = 0; i < testingArrayFilters.length; i++) {
-    //      for (item in arr) {
-    //         var current = testingArrayFilters[i];
-    //         item++;
-    //         //alert(item);
-    //         if(testingArrayFilters[i].length !== 0) {
-    //             filteredstuff = filteredstuff.filter( el => 
-    //             current.indexOf(el.item) >= 0);
-    //         }
-          
-    //      }        
-    //  }
-
     if (types.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             types.indexOf(el.type) >= 0);
@@ -85,12 +72,12 @@ function filtertest2(arr, testingArrayFilters){
         filteredstuff = filteredstuff.filter( el => 
             brands.indexOf(el.brand) >= 0);
     }
-
+    
     if (models.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             models.indexOf(el.model) >= 0);
     }
-
+    
     if (names.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             names.indexOf(el.name) >= 0);
@@ -105,7 +92,7 @@ function filtertest2(arr, testingArrayFilters){
         filteredstuff = filteredstuff.filter( el => 
             colors.indexOf(el.color) >= 0);
     }
-
+    
     if (years.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             years.indexOf(el.year) >= 0);
@@ -117,38 +104,22 @@ function filtertest2(arr, testingArrayFilters){
     //}
     
     alert("Antal produkter: " + filteredstuff.length);
-            
-    return filteredstuff;
-}
-   
-// return arr1;
-
-function showProdModal(){
-    $("#productModal").modal('toggle');
-    //$("#productModal").data('bs.modal')._config.backdrop = 'static'; 
-    showProdInfo();
+    
+    appendProducts(filteredstuff);
+    //return filteredstuff;
 }
 
-
-function showProdInfo(filterQueries) {
-    $(".product-modal-body").empty();
-    $("#testrow").empty();
-    $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
-    let filterQ = filterQueries;
-    //alert(filterQ[7][0]);
-    //alert(filterQ.brand + filterQ.category + filterQ.model + filterQ.color + filterQ.name + filterQ.price + filterQ.year);
-    let products = createProducts(filterQ);
-    alert("hej");
+function appendProducts(filteredproducts){
+    var products = filteredproducts;
     let j = 0;
     //alert(j);
-
+    alert(products.length);
     for (let i=0; i < products.length; i++) {
     //funktion för att skriva ut produkterna 3 och 3
-        if (i%04 == 0) {
+        if (i%4 == 0) {
             j++;
             
         }
-
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
 
         $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br>Skick: "+ products[i].new_or_not +" </h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b><h4>" + products[i].price + "</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
@@ -164,6 +135,26 @@ function showProdInfo(filterQueries) {
         $(".product-modal-body").append("<div class='card'><div class='card-body'><h5 class='card-title'> " + products[prod_id].name +  "</h5><br><img class='card-img-top' src='"+ products[prod_id].image +"'><br><p class='card-text'> <b>Märke:</b> " + products[prod_id].brand + "<br> <b>Modell:</b> " + products[prod_id].model + "<br> <b>Färg: </b>" + products[prod_id].color + "<br> <b>År: </b>" + products[prod_id].year + "<br> <b>Pris:</b> " + products[prod_id].price + "</p></div></div>");
 
     });
+}
+   
+// return arr1;
+
+function showProdModal(){
+    $("#productModal").modal('toggle');
+    //$("#productModal").data('bs.modal')._config.backdrop = 'static'; 
+    showProdInfo();
+}
+
+
+function showProdInfo(filterQueries) {
+    $(".product-modal-body").empty();
+    $("#testrow").empty();
+    $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
+    var filterQ = filterQueries;
+    createProducts(filterQ);
+    //alert(filterQ[7][0]);
+    //alert(filterQ.brand + filterQ.category + filterQ.model + filterQ.color + filterQ.name + filterQ.price + filterQ.year);
+    
 
     sideBar(products);
 
