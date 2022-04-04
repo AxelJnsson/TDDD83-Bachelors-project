@@ -1,4 +1,5 @@
-//funkar inte än att hämta in klasser från productclasses.js så lägger den här så länge  
+//funkar inte än att hämta in klasser från productclasses.js så lägger den här så länge 
+/* 
 class Product {
     constructor(id, category, brand, model, name, price, color, year, condition, image, otherinfo){
         this.id = id;
@@ -15,7 +16,7 @@ class Product {
 
     }
 }
-
+*/
 //testfunktion med hårdkodade testprodukter (att fungera som "databas" så länge)
 //function createProducts(filterQueries){
 
@@ -38,7 +39,6 @@ function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inpu
     var filterprod = {category: inputCategory, brand: inputBrand, model: inputModel, name: inputName, price: inputPrice, color : inputColor, year : inputYear}; 
         var arr1 = arr.filter(function(item) {
                  for (var key in filterprod) {
-                    // alert("hej");
                        if (item[key] != filterprod[key] && filterprod[key] !== undefined) 
                             return false;                    
                  }
@@ -52,7 +52,6 @@ function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inpu
 //riktig filtrering
 function filtertest2(arr, testingArrayFilters){
     const types = testingArrayFilters[0];
-    //alert(types[0] + types[1]);
     const brands = testingArrayFilters[1];
     const models = testingArrayFilters[2];
     const names = testingArrayFilters[3];
@@ -112,8 +111,6 @@ function filtertest2(arr, testingArrayFilters){
 function appendProducts(filteredproducts){
     var products = filteredproducts;
     let j = 0;
-    //alert(j);
-    alert(products.length);
     for (let i=0; i < products.length; i++) {
     //funktion för att skriva ut produkterna 3 och 3
         if (i%4 == 0) {
@@ -127,7 +124,7 @@ function appendProducts(filteredproducts){
 
     $('.btnInfo').on("click" ,function (e) {
         var prod_id = $(this).data('id');
-        //alert(prod_id);
+  
         $(".product-modal-body").empty();
 
         $("#productModal").modal('toggle');
@@ -152,9 +149,6 @@ function showProdInfo(filterQueries) {
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
     var filterQ = filterQueries;
     createProducts(filterQ);
-    //alert(filterQ[7][0]);
-    //alert(filterQ.brand + filterQ.category + filterQ.model + filterQ.color + filterQ.name + filterQ.price + filterQ.year);
-    
 
     sideBar(products);
 
@@ -162,7 +156,6 @@ function showProdInfo(filterQueries) {
 
 function sideBar(products){
     $("#brandArea").empty();
-    //alert("funkar");
     let prod = products;
 
     const c = [];
