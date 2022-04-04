@@ -43,7 +43,6 @@ $('#aboutButton').click(function (e) {
    });
 
 function faqView() {
-  alert("funka råtta");
   $("#mainViewContainer").html($("#view-FAQ").html())
   e.preventDefault();
 }  
