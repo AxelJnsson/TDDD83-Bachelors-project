@@ -19,17 +19,13 @@ class Product {
 //testfunktion med hårdkodade testprodukter (att fungera som "databas" så länge)
 //function createProducts(filterQueries){
 
-function createProducts(filteringByArrayTest){
-  
-    $.ajax({  
-        headers: {
-            "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},       
+function createProducts(filteringByArrayTest){ 
+    $.ajax({        
         url:'/product',
         type: 'GET',
-        success: function(u) {            
+        success: function(u) {          
             var allinstruments = u; 
             return filtertest2(allinstruments, filteringByArrayTest);
-        /*alert(produkt[1].name);*/
         },
         error: function(){
             alert("fel");
@@ -79,8 +75,6 @@ function filtertest2(arr, testingArrayFilters){
           
     //      }        
     //  }
-
-
 
     if (types.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
@@ -141,10 +135,10 @@ function showProdInfo(filterQueries) {
     $("#testrow").empty();
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
     let filterQ = filterQueries;
-    //alert(filterQ[0][0]);
+    //alert(filterQ[7][0]);
     //alert(filterQ.brand + filterQ.category + filterQ.model + filterQ.color + filterQ.name + filterQ.price + filterQ.year);
     let products = createProducts(filterQ);
-
+    alert("hej");
     let j = 0;
     //alert(j);
 

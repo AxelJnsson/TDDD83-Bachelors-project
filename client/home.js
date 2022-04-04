@@ -84,11 +84,8 @@ $('#contactButton').click(function (e) {
     //showProdInfo("allt", null);
 
     resetFilter();
-    alert("dgdfkgl");
-
     //filternewornot.push("Ny", "Begagnad");
     showProdInfo(filterQ);
-
     e.preventDefault();
   });
 
