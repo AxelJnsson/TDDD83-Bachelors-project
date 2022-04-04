@@ -32,9 +32,8 @@ $(document).ready(function(){
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
-    $("#mainViewContainer").html($("#view-about").html())    
+    $("#mainViewContainer").html($("#view-about").html())   
     e.preventDefault();
-  
   });
 
 
@@ -43,6 +42,7 @@ $('#aboutButton').click(function (e) {
      e.preventDefault();
    });
 
+   
 $('#contactButton').click(function (e) {          
     e.preventDefault();
   });
@@ -56,14 +56,7 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
 
   }
-/*$('#startShopping').click(function (e) {      
-  $("#mainViewContainer").html($("#view-product").html())  
-    //showProdInfo("allt", null);
-    resetFilter();
-    //filterconditions.push("Ny", "Begagnad");
-    showProdInfo(filterQ);
-    e.preventDefault();
-  });*/
+
 
 
 
@@ -152,6 +145,11 @@ $('#homeButton').click(function (e) {
     e.preventDefault();
 });
 
+$('#faqButton').click(function (e) {   
+ $("#mainViewContainer").html($("#view-FAQ").html())
+  e.preventDefault();
+});
+
 
 //testfunktion för filtrering
 function checkNeworOldStuff(checkid, query){
@@ -185,6 +183,17 @@ function checkNeworOldStuff(checkid, query){
   $("#mainViewContainer").html($("#view-product").html())  
 
   showProdInfo(filterQ);
+}
+
+function regOrAnnons() {
+  if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
+ 
+    $("#loginModal").modal('toggle');
+  } else {
+    $("#mainViewContainer").html($("#view-createAdd").html())
+  }
+
+ 
 }
 
 
