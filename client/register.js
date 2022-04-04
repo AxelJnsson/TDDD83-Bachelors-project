@@ -1,4 +1,5 @@
 $('#registerButton').click(function (e) {
+    alert("heeeeeeej");
     e.preventDefault();
     $("#registerModal").modal('toggle');
   });
