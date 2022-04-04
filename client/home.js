@@ -86,7 +86,9 @@ $('#contactButton').click(function (e) {
   }
 
   $('#allInstrButton').click(function (e) {   
-    $("#mainViewContainer").html($("#view-product").html())  
+    $("#mainViewContainer").html($("#view-product").html())
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+  
     //showProdInfo("allt", null);
     resetFilter();
     //filterconditions.push("Ny", "Begagnad");

@@ -54,7 +54,6 @@
 }
 
 
-
 //gammal filtreringsfunktion, låter ligga kvar så länge
 function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear){
     var filterprod = {category: inputCategory, brand: inputBrand, model: inputModel, name: inputName, price: inputPrice, color : inputColor, year : inputYear}; 
@@ -178,7 +177,6 @@ function filtertest2(arr, testingArrayFilters){
         //funktion för att skriva ut produkterna 3 och 3
         if (i%4 == 0) {
             j++;
-          
         }
 
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
@@ -209,19 +207,16 @@ function filtertest2(arr, testingArrayFilters){
       $("#brandArea").empty();
       //alert("funkar");
       let prod = products;
-
       const c = [];
-
+      
       for(var j = 0; j < prod.length; j++){
         c.push(prod[j].brand);
       }
 
       var unique = c.filter((v, i, a) => a.indexOf(v) === i);
 
-
       for(var i = 0; i < unique.length; i++){
         $("#brandArea").append("<input class='form-check-inpu from-check-inline' type='checkbox' value='' id='checkItem1'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  unique[i] +  " </span></label><br>");
-
       }
   }
 
