@@ -20,19 +20,16 @@
 }
 
 #toPaymentButton{
+  margin-right: 30%;
+  margin-top: 40%;
   background-color:orange;
   border: black;
-  position: absolute;
-  top: 805px; 
-  left: 1090px;
   width: 200;
+  float: right;
 }
 
 #cashRegisterArea{
   background-color:rgb(240, 240, 240);
-  position: absolute;
-  left: 300px;
-  top: 250px;
   height: 600px;
   width: 1000px;
   overflow: auto;
@@ -41,18 +38,45 @@
 
 #scrollableItemsInBasket{
   background-color: lightgray;
-  position: absolute;
-  top: 280px;
-  left: 320px;
-  height: 550px;
-  width: 300px;
+  float:left;
+  margin-top: 2%;
+  margin-left: 2%;
+  width: 600px;
+  height: 560px;
   border-style:double;
   border-radius: 7px;
   border-color: rgb(0, 0, 0);
   overflow: scroll;
 }
 
+#amountArea{
+  background-color:lightgray;
+  border-radius: 4px;
+  border-color: lightslategray;
+  height: 400px;
+  width: 300px;
+  margin-left: 67%;
+  margin-top: 3%;
+}
+
 #prodimg {
     height: 250px;
     width: 250px;
 }
+
+[id^='productInScrollableAreaDiv']{
+  background-color: rgb(157, 157, 157);
+  width: 600px;
+  height: 150px;
+  border-style: solid;
+  border-width: thin;
+  border-color: rgb(0, 0, 0);
+}
+
+[id^='removeProductFromRegister']{
+  float: right;
+  margin-top: 10%;
+  margin-right: 5%;
+}
+
+
