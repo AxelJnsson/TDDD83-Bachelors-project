@@ -42,7 +42,10 @@ $('#aboutButton').click(function (e) {
      e.preventDefault();
    });
 
-   
+function faqView() {
+  $("#mainViewContainer").html($("#view-FAQ").html())
+  e.preventDefault();
+}  
 $('#contactButton').click(function (e) {          
     e.preventDefault();
   });
@@ -95,7 +98,7 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   });
 
-  $('#pianoButton').click(function (e) {   
+  $('#pianoButton').click(function (e) { 
     $("#mainViewContainer").html($("#view-product").html())  
     resetFilter();
     filtertypes.push("piano");
@@ -144,12 +147,9 @@ $('#homeButton').click(function (e) {
     e.preventDefault();
 });
 
-$('#faqButton').click(function (e) {   
- $("#mainViewContainer").html($("#view-FAQ").html())
-  e.preventDefault();
-});
-
-
+function showView(view){
+  $("#mainViewContainer").html($(view).html())
+}
 //testfunktion för filtrering
 function checkNeworOldStuff(checkid, query){
   var checkBox = document.getElementById(checkid);
