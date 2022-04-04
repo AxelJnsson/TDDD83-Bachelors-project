@@ -100,7 +100,6 @@ $('#contactButton').click(function (e) {
   });
 
   $('#pianoButton').click(function (e) { 
-    alert("funker??");  
     $("#mainViewContainer").html($("#view-product").html())  
     resetFilter();
     filtercategories.push("pianon");
