@@ -21,6 +21,39 @@ $('#shopFromBasketButton').click(function (e) {
   printBasketedProducts()
   });
 
+// $('#addProductToCart').click(function (e) {
+//   e.preventDefault();
+//   alert("hjej")
+//   });
+
+
+function addProductToCart(productToAdd){
+  alert(productToAdd)
+
+    $.ajax({        
+      url:'/product/'+productToAdd+'/adding',
+      type: 'POST',
+      success: function(u) { 
+        alert("la till")         
+      },
+      error: function(){
+          alert("la inte till");
+      }    
+  });
+    $.ajax({        
+      url:'/product/'+productToAdd+'/unadding',
+      type: 'POST',
+      success: function(u) { 
+        alert("tog bort")       
+      },
+      error: function(){
+          alert("tog inte bort");
+      }    
+  });
+
+
+}
+
   
 function printBasketedProducts(){
   var scrollableProductDiv = document.getElementById('scrollableItemsInBasket')
