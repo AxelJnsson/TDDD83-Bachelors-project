@@ -112,7 +112,7 @@ function appendProducts(filteredproducts){
     var products = filteredproducts;
     let j = 0;
     for (let i=0; i < products.length; i++) {
-    //funktion för att skriva ut produkterna 3 och 3
+    //funktion för att skriva ut produkterna 4 och 4
         if (i%4 == 0) {
             j++;
             
@@ -168,20 +168,45 @@ function sideBar(products){
     var unique = c.filter((v, i, a) => a.indexOf(v) === i);
 
     for(var i = 0; i < unique.length; i++){
-        alert("vi är här");
 
-    $("#brandArea").append("<input class='form-check-inpu from-check-inline' type='checkbox' value='' id='checkItem' onclick=" + filterBox(unique[i]) + "><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  unique[i] +  " </span></label><br>");
-  
-    function filterBox(n){
-        if(checkItem.checked == true) {
-            alert(n);
+    $("#brandArea").append("<input class='form-check-inpu from-check-inline somename' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  unique[i] +  " </span></label><br>");
+  //onclick=" +filterBox(unique[i])+ "
+    
+    }
 
-        }
+  $('.somename').on("click" ,function (e) {
+    var checkBoxId = $(this).data('id');
+    var checkBox = document.getElementById(checkBoxId);
+    //alert(checkBoxId);
+    if($(this).prop("checked") == true){
+        alert(unique[checkBoxId]);
+
     }
-    }
+    // if (checkBox.checked) {
+    //     alert("hit");
+
+    // } else {
+    //     alert("nä");
+    // }
+    //alert("funkar detta?")
+  });
+
+
+    
 
     
     
+}
+function filterBox(){
+    //alert("h");
+    var checkBoxId = $(this).data('id');
+    alert(checkBoxId);
+    var checkBox = document.getElementById(checkBoxId);
+    alert("hitttt");
+    if(checkBox.checked == true) {
+        alert("hit");
+
+    }
 }
 
 $('#closeProductModal').on("click" ,function (e) {
