@@ -56,14 +56,7 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
 
   }
-/*$('#startShopping').click(function (e) {      
-  $("#mainViewContainer").html($("#view-product").html())  
-    //showProdInfo("allt", null);
-    resetFilter();
-    //filterconditions.push("Ny", "Begagnad");
-    showProdInfo(filterQ);
-    e.preventDefault();
-  });*/
+
 
 
 
@@ -185,6 +178,17 @@ function checkNeworOldStuff(checkid, query){
   $("#mainViewContainer").html($("#view-product").html())  
 
   showProdInfo(filterQ);
+}
+
+function regOrAnnons() {
+  if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
+ 
+    $("#loginModal").modal('toggle');
+  } else {
+    $("#mainViewContainer").html($("#view-createAdd").html())
+  }
+
+ 
 }
 
 

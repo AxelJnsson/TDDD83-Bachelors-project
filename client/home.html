@@ -395,24 +395,71 @@
 
 <!--Homepage-->
 <script id="view-home" type="text/html">  
-    <div   class="center" style="padding: 25px 50px 75px 100px; background-image: url('homepage2.png');   min-height: 800px;">
-      <header class="masthead mb-auto">
-        <div class="inner">                  
-        </div>
-      </header>
-      <main role="main" class="inner cover">
-        <h1 class="cover-heading">Av musikälskare för musikälskare</h1>
-        <!-- <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p> -->
-        <p class="lead">
-          <a href="#" id="startShopping" onclick="startshopp()" class="btn btn-lg btn-secondary">Börja handla!</a>
-        </p>
-      </main>
-      <footer class="mastfoot mt-auto">
-        <div class="inner">
-        </div>
-      </footer>
-    
+  <div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="logga.png" alt="" width="250" height="200">
+    <h1 class="display-5 fw-bold">Tonehub</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Välkommen till oss, här kan du både köpa nya och begagnade instrument samt dessutom sälja dina instrument. Allt på ett ställe, vilken grej!</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Köp instrument</button>
+        <button type="button" onclick="regOrAnnons()" class="btn btn-outline-secondary btn-lg px-4">Lägg upp annons</button>
+      </div>
     </div>
+  </div>
+ 
+  <div class="container">
+    <div class="card-deck mb-3 text-center">
+      <div class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Free</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>10 users included</li>
+            <li>2 GB of storage</li>
+            <li>Email support</li>
+            <li>Help center access</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+        </div>
+      </div>
+      <div class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Pro</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>20 users included</li>
+            <li>10 GB of storage</li>
+            <li>Priority email support</li>
+            <li>Help center access</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+        </div>
+      </div>
+      <div class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">Enterprise</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>30 users included</li>
+            <li>15 GB of storage</li>
+            <li>Phone and email support</li>
+            <li>Help center access</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+        </div>
+      </div>
+    </div>
+
+   
+        
+
+</div>  
    <!-- <div class="w3-container w3-black w3-padding-32">
       <h1>Subscribe</h1>
       <p>To get special offers and VIP treatment:</p>
