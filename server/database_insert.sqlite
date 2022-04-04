@@ -1,4 +1,4 @@
-INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity)
+/*INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity)
 VALUES ('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000, 'Black', 2022, 'Piano', 1, 5);
 
 INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity)
@@ -11,6 +11,37 @@ VALUES ('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000
 INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity, seller)
 VALUES ('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000, 'Black', 2022, 'Piano', 1, 4, 1),
        ('Thomann', 'Alphorn Spitzenklasse in F#', 'Thomann Alphorn Spitzenklasse in F#', 31890, 'White', 2022, 'Alphorn', 0, 5, 2);
+*/
+
+--Insert guitars
+INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity, seller)
+VALUES ('märke',  'modell', 'bra gitarr', '100', 'svart', 'skitfulgitarr.png', 2000, 'gitarr', 1, 1, 1),
+      ('giiiiitarrrrrr',  'm', 'ännu bättre', '2000', 'rosa', 'gitarklassisk.jpg', 2020, 'gitarr', 0, 1, 1),
+      ('aaa', 'bäst',  'carl bildt', '2000', 'blå', 'carlbildt.png', 1948, 'gitarr', 0, 1, 1),
+      ('aaa', 'bäst',  'carl bildt', '2000', 'blå','carlbildt.png', 1948, 'gitarr', 0, 1, 1),
+      ('märke',  'modell', 'bra gitarr', '100', 'svart', 'skitfulgitarr.png', 2000, 'gitarr', 1, 1, 1),
+      ('märke',  'modell', 'bra gitarr', '100', 'svart', 'skitfulgitarr.png', 2000, 'gitarr', 1, 1, 1),
+      ('märke',  'modell', 'bra gitarr', '100', 'svart', 'elgitarröd.jpeg', 2000, 'gitarr', 1, 1, 1),
+      ('Yamaha',  'modell', 'en annan gitarr ', '100', 'svart', 'elgitarsvart.jpg', 333, 'gitarr', 0, 1, 1);
+
+--Insert pianos
+INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity, seller)
+VALUES ('Yamaha', 'idk', 'Mycket fint piano', 100000, 'Svart', 'piano.jpeg', 2005, 'piano', 0, 1, 1),
+      ('trevlig', '1', 'Fredrik', 100000000000, 'lila', 'testbildkassa.png', 1993, 'piano', 1, 1, 1),
+      ('Yamaha', 'CFX ENPRO Disklavier', 'Yamaha CFX ENPRO Disklavier', 1845000, 'Svart', 'yamaha_disklavier.png', 2022, 'Piano', 1, 5, 1);
+
+--Insert drums
+INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity, seller)
+VALUES ('märke', 'idk', 'nej', 'nej', 'svart', 'trumset.jpeg', 2020, 'trummor', 0, 1, 1);
+
+--Insert studios
+INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity, seller)
+VALUES ('Behringer', 'någon modell', 'Trevlig mixer', 20000, 'Grå', 'mixer.png', 2021, 'studio', 1, 1, 1);
+
+--Insert alphorns
+INSERT INTO product(brand, model, name, price, color, year, type, new_or_not, quantity, seller)
+VALUES ('Thomann', 'Alphorn Spitzenklasse in F#', 'Thomann Alphorn Spitzenklasse in F#', 31890, 'White', 'thomann_alphorn.jpg' 2022, 'Alphorn', 0, 5, 2);
+
 
 --INSERT INTO user(email, first_name, last_name, password_hash)
 --VALUES ('david@gmail.com', 'David', 'Carlsson', 'katt123'),

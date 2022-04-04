@@ -1,5 +1,5 @@
 //funkar inte än att hämta in klasser från productclasses.js så lägger den här så länge  
-  class Product {
+class Product {
     constructor(id, category, brand, model, name, price, color, year, condition, image, otherinfo){
         this.id = id;
         this.category = category;
@@ -19,8 +19,25 @@
 //testfunktion med hårdkodade testprodukter (att fungera som "databas" så länge)
 //function createProducts(filterQueries){
 
-    function createProducts(filteringByArrayTest){
-
+function createProducts(filteringByArrayTest){
+  
+    $.ajax({  
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},       
+        url:'/product',
+        type: 'GET',
+        success: function(u) {            
+            var allinstruments = u;           
+        /*alert(produkt[1].name);*/
+        
+        
+        },
+        error: function(){
+            alert("fel");
+        }
+    });
+        
+    /*
     //testgitarrer
     let testgitarr = new Product("1", "gitarrer", "märke", "modell", "bra gitarr", "100 kr", "svart", "2000", "Ny", "skitfulgitarr.png", "helt fantastisk");
     let testgitarr2 = new Product("2", "gitarrer", "giiiiitarrrrrr", "m", "ännu bättre", "2000 rubel", "rosa", "2020", "Begagnad", "gitarklassisk.jpg", "nyskick");
@@ -43,7 +60,7 @@
 
     const allinstruments = [testgitarr, testgitarr2, testgitarr3, testgitarr4, testgitarr5, testgitarr6, testgitarr7, testgitarr8, testpiano, testpiano2, teststudio, testtrumma];
    
-  
+    */
     //     if (filterQueries.brand != null || filterQueries.category != null || filterQueries.model != null || filterQueries.color != null || filterQueries.name != null || filterQueries.price != null || filterQueries.year != null) {
     //         return filtertest(allinstruments, filterQueries.brand, filterQueries.category, filterQueries.model, filterQueries.color, filterQueries.name, filterQueries.price, filterQueries.year);
     //     } else {
@@ -52,8 +69,6 @@
     // }
    return filtertest2(allinstruments, filteringByArrayTest);
 }
-
-
 
 //gammal filtreringsfunktion, låter ligga kvar så länge
 function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear){

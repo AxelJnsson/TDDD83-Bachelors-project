@@ -8,6 +8,7 @@ CREATE TABLE  used_product (
     name TEXT NOT NULL,
     price INTEGER NOT NULL,
     color TEXT NOT NULL,
+    image TEXT NOT NULL,
     year INTEGER NOT NULL,
     type TEXT NOT NULL,
     user_id INTEGER,
@@ -19,25 +20,26 @@ CREATE TABLE  used_product (
 );
 
 CREATE TABLE new_product (
-product_id INTEGER PRIMARY KEY,
-brand TEXT NOT NULL,
-model TEXT NOT NULL,
-name TEXT NOT NULL,
-price INTEGER NOT NULL,
-color TEXT NOT NULL,
-year INTEGER NOT NULL,
-type TEXT NOT NULL,
-FOREIGN KEY(product_id) REFERENCES product(product_id)
+    product_id INTEGER PRIMARY KEY,
+    brand TEXT NOT NULL,
+    model TEXT NOT NULL,
+    name TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    color TEXT NOT NULL,
+    image TEXT NOT NULL,
+    year INTEGER NOT NULL,
+    type TEXT NOT NULL,
+    FOREIGN KEY(product_id) REFERENCES product(product_id)
 );
 
-INSERT INTO used_product(product_id, brand, model, name, price, color, year, type, user_id, email, first_name, last_name)
-SELECT A.product_id, A.brand, A.model, A.name, A.price, A.color, A.year, A.type, B.user_id, B.email, B.first_name, B.last_name
+INSERT INTO used_product(product_id, brand, model, name, price, color, image, year, type, user_id, email, first_name, last_name)
+SELECT A.product_id, A.brand, A.model, A.name, A.price, A.color, A.image, A.year, A.type, B.user_id, B.email, B.first_name, B.last_name
 FROM product A, user B
 WHERE B.user_id = A.seller AND B.user_id IN (SELECT seller
                                               FROM product
                                                WHERE new_or_not = '0');
 
-INSERT INTO new_product(product_id, brand, model, name, price, color, year, type)
-SELECT product_id, brand, model, name, price, color, year, type
+INSERT INTO new_product(product_id, brand, model, name, price, color, image, year, type)
+SELECT product_id, brand, model, name, price, color, image year, type
         FROM product
         WHERE new_or_not = '1';
