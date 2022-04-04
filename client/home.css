@@ -1,5 +1,9 @@
 
 
+div {
+    display: block;
+}
+
 
 
 .card button {
@@ -31,8 +35,7 @@ div.sticky {
 }
 .center {
   margin: auto;
-  width: 80%;
- 
+  width: 80%; 
   padding: 100px;
   }
 .card-img-top{
@@ -46,11 +49,7 @@ div.sticky {
   display: inline-block;
   margin: 0 auto;
 }
-#mainViewContainer {
-  /* max-width: 60vw; */
-  /* max-height: 60vh; */
-  /* display: inline; */
-}
+
 .footer {
   position: absolute; 
     left: 0 ; right: 0; bottom: 0; 
@@ -61,6 +60,17 @@ div.sticky {
   width: 33.3%;
   margin-bottom: 14px;
   padding: 0 8px;
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+.carousel {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  position: relative;
+  margin-bottom: 4rem;
 }
 
 .card {
