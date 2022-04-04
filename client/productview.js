@@ -191,7 +191,7 @@ function filtertest2(arr, testingArrayFilters){
 
     for (let i=0; i < products.length; i++) {
         //funktion för att skriva ut produkterna 3 och 3
-        if (i%4 == 0) {
+        if (i%04 == 0) {
             j++;
           
         }
