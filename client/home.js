@@ -42,7 +42,11 @@ $('#aboutButton').click(function (e) {
      e.preventDefault();
    });
 
-   
+function faqView() {
+  alert("funka råtta");
+  $("#mainViewContainer").html($("#view-FAQ").html())
+  e.preventDefault();
+}  
 $('#contactButton').click(function (e) {          
     e.preventDefault();
   });
@@ -146,12 +150,9 @@ $('#homeButton').click(function (e) {
     e.preventDefault();
 });
 
-function faqView(){   
-  alert("funka råtta");
- $("#mainViewContainer").html($("#view-FAQ").html())
-  e.preventDefault();
+function showView(view){
+  $("#mainViewContainer").html($(view).html())
 }
-
 //testfunktion för filtrering
 function checkNeworOldStuff(checkid, query){
   var checkBox = document.getElementById(checkid);
