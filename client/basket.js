@@ -29,8 +29,12 @@ $('#shopFromBasketButton').click(function (e) {
 
 function addProductToCart(productToAdd){
   alert(productToAdd)
+  var temUserID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
 
-    $.ajax({        
+
+    $.ajax({    
+      headers: {
+        "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},    
       url:'/product/'+productToAdd+'/adding',
       type: 'POST',
       success: function(u) { 
@@ -41,6 +45,8 @@ function addProductToCart(productToAdd){
       }    
   });
     $.ajax({        
+      headers: {
+        "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
       url:'/product/'+productToAdd+'/unadding',
       type: 'POST',
       success: function(u) { 
