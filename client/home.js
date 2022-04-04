@@ -33,9 +33,7 @@ $(document).ready(function(){
 
 $('#aboutButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-about").html())   
-    alert("test"); 
     e.preventDefault();
-  
   });
 
 
@@ -154,8 +152,7 @@ $('#homeButton').click(function (e) {
     e.preventDefault();
 });
 
-$('#faqButton').click(function (e) {  
-  alert("HÄÄr");    
+$('#faqButton').click(function (e) {   
  $("#mainViewContainer").html($("#view-FAQ").html())
   e.preventDefault();
 });
