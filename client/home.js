@@ -2,7 +2,7 @@ $(document).ready(function(){
     // Kod i detta block körs när dokumentet laddats klart.    
     $("#mainViewContainer").html($("#view-home").html())
    
-    filterconditions.push("Ny", "Begagnad");  
+    filternewornot.push("Ny", "Begagnad");  
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
       signedIn = true;
@@ -20,15 +20,15 @@ $(document).ready(function(){
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
  //test för en till dimension av filtrering
- const filtercategories = [];
+ const filtertypes = [];
  const filterbrands = [];
  const filtermodels = [];
  const filtercolors = [];
  const filternames = [];
  const filterprices = [];
  const filteryears = [];
- const filterconditions = [];
- let filterQ = [filtercategories, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filterconditions];
+ const filternewornot = [];
+ let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot];
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
@@ -51,7 +51,7 @@ $('#contactButton').click(function (e) {
     $("#mainViewContainer").html($("#view-product").html())  
     //showProdInfo("allt", null);
     resetFilter();
-    //filterconditions.push("Ny", "Begagnad");
+    //filternewornot.push("Ny", "Begagnad");
     showProdInfo(filterQ);
     e.preventDefault();
 
@@ -68,21 +68,24 @@ $('#contactButton').click(function (e) {
   });
 
   function resetFilter(){
-      filtercategories.length = 0;
+      filtertypes.length = 0;
       filterbrands.length = 0;
       filtermodels.length = 0;
       filtercolors.length = 0;
       filternames.length = 0;
       filterprices.length = 0;
       filteryears.length = 0;
-      //filterconditions.length = 0;
+      //filternewornot.length = 0;
   }
 
   $('#allInstrButton').click(function (e) {   
+    alert("hej");
+
     $("#mainViewContainer").html($("#view-product").html())  
     //showProdInfo("allt", null);
+
     resetFilter();
-    //filterconditions.push("Ny", "Begagnad");
+    //filternewornot.push("Ny", "Begagnad");
     showProdInfo(filterQ);
     e.preventDefault();
   });
@@ -91,7 +94,7 @@ $('#contactButton').click(function (e) {
     $("#mainViewContainer").html($("#view-product").html())
     resetFilter();
     var defCategory = "gitarrer";
-    filtercategories.push(defCategory);
+    filtertypes.push(defCategory);
     showProdInfo(filterQ);
     e.preventDefault();
   });
@@ -99,7 +102,7 @@ $('#contactButton').click(function (e) {
   $('#pianoButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
     resetFilter();
-    filtercategories.push("pianon");
+    filtertypes.push("pianon");
     showProdInfo(filterQ);
     e.preventDefault();
   });
@@ -107,7 +110,7 @@ $('#contactButton').click(function (e) {
   $('#drumButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())
     resetFilter();
-    filtercategories.push("trummor");
+    filtertypes.push("trummor");
 
     showProdInfo(filterQ);
     e.preventDefault();
@@ -116,7 +119,7 @@ $('#contactButton').click(function (e) {
   $('#studioButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-product").html())  
     resetFilter();
-    filtercategories.push("studio");
+    filtertypes.push("studio");
     showProdInfo(filterQ);
     e.preventDefault();
   });
@@ -130,10 +133,10 @@ $('#contactButton').click(function (e) {
 
     var testbrand1 = "Yamaha";
     //var testmodell = "idk";
-    filtercategories.push(testcategory1, testcategory2);
+    filtertypes.push(testcategory1, testcategory2);
     filterbrands.push(testbrand1);
     //filtermodels.push(testmodell);
-    // alert(filtercategories[0] + filtercategories[1]);
+    // alert(filtertypes[0] + filtertypes[1]);
     // alert(filterQ[0][1]);
     alert("Gitarrer och pianon av märke yamaha");
     showProdInfo(filterQ);
@@ -156,25 +159,25 @@ function checkNeworOldStuff(checkid, query){
   var checkBox = document.getElementById(checkid);
 
   if (checkBox.checked == true) {
-    if (filterconditions.length !== 0)
+    if (filternewornot.length !== 0)
     {
-      for(item in filterconditions) {
-        if(filterconditions[item] !== query)
-        filterconditions.push(query);
+      for(item in filternewornot) {
+        if(filternewornot[item] !== query)
+        filternewornot.push(query);
       }
     } else {
-      filterconditions.push(query);
+      filternewornot.push(query);
     }
     
   } else {
-    if(filterconditions.length !== 1) {
-      for(item in filterconditions) {
-        if(filterconditions[item] == query){
-          filterconditions.splice(item,1);
+    if(filternewornot.length !== 1) {
+      for(item in filternewornot) {
+        if(filternewornot[item] == query){
+          filternewornot.splice(item,1);
         }
       }
     } else {
-      filterconditions.length = 0;
+      filternewornot.length = 0;
     }
    
     

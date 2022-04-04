@@ -84,7 +84,7 @@ function filtertest2(arr, testingArrayFilters){
 
     if (types.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
-            types.indexOf(el.category) >= 0);
+            types.indexOf(el.type) >= 0);
     }
 
     if (brands.length !== 0) {
@@ -119,7 +119,7 @@ function filtertest2(arr, testingArrayFilters){
 
     //if (newornots.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
-            newornots.indexOf(el.condition) >= 0);
+            newornots.indexOf(el.new_or_not) >= 0);
     //}
     
     alert("Antal produkter: " + filteredstuff.length);
