@@ -32,7 +32,8 @@ $(document).ready(function(){
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
-    $("#mainViewContainer").html($("#view-about").html())    
+    $("#mainViewContainer").html($("#view-about").html())   
+    alert("test"); 
     e.preventDefault();
   
   });
@@ -43,6 +44,7 @@ $('#aboutButton').click(function (e) {
      e.preventDefault();
    });
 
+   
 $('#contactButton').click(function (e) {          
     e.preventDefault();
   });
@@ -150,6 +152,12 @@ $('#contactButton').click(function (e) {
 $('#homeButton').click(function (e) {
   $("#mainViewContainer").html($("#view-home").html())  
     e.preventDefault();
+});
+
+$('#faqButton').click(function (e) {  
+  alert("HÄÄr");    
+ $("#mainViewContainer").html($("#view-FAQ").html())
+  e.preventDefault();
 });
 
 
