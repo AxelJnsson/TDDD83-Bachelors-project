@@ -103,7 +103,8 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   });
 
-  $('#pianoButton').click(function (e) {   
+  $('#pianoButton').click(function (e) { 
+    alert("funker??");  
     $("#mainViewContainer").html($("#view-product").html())  
     resetFilter();
     filtercategories.push("pianon");
@@ -152,11 +153,11 @@ $('#homeButton').click(function (e) {
     e.preventDefault();
 });
 
-$('#faqButton').click(function (e) {   
+function faqView(){   
+  alert("funka råtta");
  $("#mainViewContainer").html($("#view-FAQ").html())
   e.preventDefault();
-});
-
+}
 
 //testfunktion för filtrering
 function checkNeworOldStuff(checkid, query){
