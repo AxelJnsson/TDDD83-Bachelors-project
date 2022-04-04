@@ -22,6 +22,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+ 
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
+
+    
+
+  
+
 
   <title>Välkommen till ToneHub</title>
 
@@ -211,7 +219,7 @@
     
   <script id="view-contact" type="text/html">
     <div class="center"  id="contact">  
-        <p >Kontakta oss!</p>     
+        <p >Kontakta osss!</p>     
        
     </div>
   </script>
@@ -419,11 +427,63 @@
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Välkommen till oss, här kan du både köpa nya och begagnade instrument samt dessutom sälja dina instrument. Allt på ett ställe, vilken grej!</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Köp instrument</button>
+        <button type="button" onclick="startshopp()" class="btn btn-primary btn-lg px-4 gap-3">Köp instrument</button>
         <button type="button" onclick="regOrAnnons()" class="btn btn-outline-secondary btn-lg px-4">Lägg upp annons</button>
       </div>
     </div>
   </div>
+  <div>
+  <!--<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="400px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Example headline.</h1>
+            <p>Some representative placeholder content for the first slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="400px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="400px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>One more for good measure.</h1>
+            <p>Some representative placeholder content for the third slide of this carousel.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  </div>-->
  
   <div class="container">
     <div class="card-deck mb-3 text-center">
@@ -485,18 +545,24 @@
       <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
      </div>-->
 </script>
-
+<!--vet inte om det ska vara centrerat-->
   <script id="view-createAdd" type="text/html">
-  <div class="center" style="background-color: #b4b5be">
-  <div class="d-flex justify-content-between align-items-center mb-3" >
+  <div class="center">
+  <div class="col-md-2" style="margin:auto; padding-bottom: 20px">
     <h4 class="text-right">Skapa Annons!</h4>
   </div>
-<div class="row mt-2">
-    <div class="col-md-6"><label class="labels">Rubrik</label><input type="text" id="createText" class="form-control" placeholder="Namn" value=""></div>  
-</div>
-<div class="row mt-3">
-  <!--Dessa behöver göras om till dropdown mmenyer på saker som färg, brand osv-->      
-    <div class="selectdiv">
+<div class="row">
+    <div class="col-sm-6" ><label class="labels">Rubrik</label><input type="text" id="createText" class="form-control" placeholder="Namn" value=""></div>  
+    <div class="col-sm-6">
+      <label for="formFile" class="labels">Ladda upp bild på ditt instrument</label>
+      <input class="form-control" style="margin:auto; padding: 5px;" type="file" id="formFile">
+    </div>
+  </div>
+<div class="row mt-3">      
+    
+  
+
+      <div class="col selectdiv">
       <label>
         <select id="modelVal">
             <option selected>Modell</option>
@@ -505,6 +571,8 @@
             <option>C</option>
         </select>
     </label>
+      </div>
+      <div class="col selectdiv">
       <label>
           <select id="brandVal">
               <option selected>Märke</option>
@@ -513,6 +581,8 @@
               <option>Gibsson</option>
           </select>
       </label>
+      </div>
+      <div class="col selectdiv">
       <label>
         <select id="colorVal">
             <option selected>Färg</option>
@@ -521,12 +591,14 @@
             <option>Grön</option>
         </select>
     </label>
-    </div>  
+      </div>
+   <div class="row mt-3"> 
     <div class="col-md-6"><label class="labels">Pris</label><input type="number" id="createPris" class="form-control" placeholder="Pris" value=""></div>
     <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
     <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div>
     <div class="col-md-6"><label class="labels">Årtal</label><input type="number" id="createYear" min="1950" max="2022" class="form-control" placeholder="" value=""></div>   
     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="createAddButton" onclick="createAdd()" type="button">Skapa annons</button></div>
+</div>
 </div>
 </div>
 </div>
