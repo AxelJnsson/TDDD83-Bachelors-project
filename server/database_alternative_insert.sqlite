@@ -40,6 +40,6 @@ WHERE B.user_id = A.seller AND B.user_id IN (SELECT seller
                                                WHERE new_or_not = '0');
 
 INSERT INTO new_product(product_id, brand, model, name, price, color, image, year, type)
-SELECT product_id, brand, model, name, price, color, image year, type
+SELECT product_id, brand, model, name, price, color, image, year, type
         FROM product
         WHERE new_or_not = '1';
