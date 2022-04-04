@@ -10,7 +10,7 @@ body {
   }
   
   .selectdiv:after {
-    content: '<>';
+   
     font: 17px "Consolas", monospace;
     color: #333;
     -webkit-transform: rotate(90deg);
@@ -27,6 +27,13 @@ body {
     
     position: absolute;
     pointer-events: none;
+  }
+  .form-control {
+    
+  }
+
+  .labels {
+    padding:5px
   }
   
   .selectdiv select {

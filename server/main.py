@@ -42,6 +42,7 @@ class Product(db.Model):
   name = db.Column(db.String, nullable = False)
   price = db.Column(db.Integer, nullable = False)
   color = db.Column(db.String, nullable = False)
+  image = db.Column(db.String, nullable = False)
   year = db.Column(db.Integer, nullable = False)
   type = db.Column(db.String, nullable = False)
   new_or_not = db.Column(db.Integer, nullable = False)
@@ -49,10 +50,10 @@ class Product(db.Model):
   seller = db.Column(db.Integer, nullable = False)
 
   def __repr__(self):
-    return '<Product {}: {} {} {} {} {} {} {} {} {} {}>'.format(self.product_id, self.brand, self.model, self.name, self.price, self.color, self.year, self.type, self.new_or_not, self.quantity, self.seller)
+    return '<Product {}: {} {} {} {} {} {} {} {} {} {} {}>'.format(self.product_id, self.brand, self.model, self.name, self.price, self.color, self.image, self.year, self.type, self.new_or_not, self.quantity, self.seller)
 
   def serialize(self):
-    return dict(product_id=self.product_id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, year=self.year, type=self.type, new_or_not = self.new_or_not, quantity = self.quantity, seller = self.seller)
+    return dict(product_id=self.product_id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, image=self.image, year=self.year, type=self.type, new_or_not = self.new_or_not, quantity = self.quantity, seller = self.seller)
 
 class User(db.Model):
   user_id = db.Column(db.Integer, primary_key = True)
@@ -273,7 +274,7 @@ def products():
 
   elif request.method == 'POST':
     new_product = request.get_json()
-    x = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], year = new_product["year"], type = new_product["type"], new_or_not = new_product["new_or_not"], seller = new_product["seller"], quantity = 1)
+    x = Product(brand = new_product["brand"], model = new_product["model"], name = new_product["name"], price = new_product["price"], color = new_product["color"], image = new_product["image"], year = new_product["year"], type = new_product["type"], new_or_not = new_product["new_or_not"], seller = new_product["seller"], quantity = 1)
     db.session.add(x)
     db.session.commit()
     product_id = x.product_id
@@ -292,7 +293,6 @@ def newproducts():
     product = Product.query.filter_by(new_or_not = 1)
     product_list =[]
     
-
     for x in product:
       product_list.append(x.serialize())
       

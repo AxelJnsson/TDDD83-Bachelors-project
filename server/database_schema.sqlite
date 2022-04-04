@@ -8,17 +8,18 @@ DROP TABLE IF EXISTS cart_item ;
 SELECT 'Creating tables' AS 'Message';
 
 CREATE TABLE IF NOT EXISTS product (
-product_id INTEGER PRIMARY KEY AUTOINCREMENT,
-brand TEXT NOT NULL,
-model TEXT NOT NULL,
-name TEXT NOT NULL,
-price INTEGER NOT NULL,
-color TEXT NOT NULL,
-year INTEGER NOT NULL,
-type TEXT NOT NULL,
-new_or_not INTEGER DEFAULT 1,
-quantity INTEGER NOT NULL,
-seller INTEGER DEFAULT 1
+    product_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    brand TEXT NOT NULL,
+    model TEXT NOT NULL,
+    name TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    color TEXT NOT NULL,
+    image TEXT NOT NULL,
+    year INTEGER NOT NULL,
+    type TEXT NOT NULL,
+    new_or_not INTEGER DEFAULT 1,
+    quantity INTEGER NOT NULL,
+    seller INTEGER DEFAULT 1
 );
 
 CREATE TABLE IF NOT EXISTS user (
@@ -38,6 +39,7 @@ CREATE TABLE  used_product (
     name TEXT NOT NULL,
     price INTEGER NOT NULL,
     color TEXT NOT NULL,
+    image TEXT NOT NULL,
     year INTEGER NOT NULL,
     type TEXT NOT NULL,
     user_id INTEGER,
@@ -49,30 +51,31 @@ CREATE TABLE  used_product (
 );
 
 CREATE TABLE new_product (
-product_id INTEGER PRIMARY KEY AUTOINCREMENT,
-brand TEXT NOT NULL,
-model TEXT NOT NULL,
-name TEXT NOT NULL,
-price INTEGER NOT NULL,
-color TEXT NOT NULL,
-year INTEGER NOT NULL,
-type TEXT NOT NULL,
-FOREIGN KEY(product_id) REFERENCES product(product_id)
+    product_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    brand TEXT NOT NULL,
+    model TEXT NOT NULL,
+    name TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    color TEXT NOT NULL,
+    image TEXT NOT NULL,
+    year INTEGER NOT NULL,
+    type TEXT NOT NULL,
+    FOREIGN KEY(product_id) REFERENCES product(product_id)
 );
 
 CREATE TABLE shopping_session (
-id INTEGER PRIMARY KEY,
-user_id  INTEGER,
-total INTEGER,
-cart_item INTEGER,
-FOREIGN KEY(user_id) REFERENCES user(user_id)
+    id INTEGER PRIMARY KEY,
+    user_id  INTEGER,
+    total INTEGER,
+    cart_item INTEGER,
+    FOREIGN KEY(user_id) REFERENCES user(user_id)
 );
 
 CREATE TABLE cart_item (
-id INTEGER PRIMARY KEY,
-product_id INTEGER,
-session_id INTEGER,
-quantity INTEGER,
-FOREIGN KEY(product_id) REFERENCES product(product_id),
-FOREIGN KEY(session_id) REFERENCES shopping_session(id)
+    id INTEGER PRIMARY KEY,
+    product_id INTEGER,
+    session_id INTEGER,
+    quantity INTEGER,
+    FOREIGN KEY(product_id) REFERENCES product(product_id),
+    FOREIGN KEY(session_id) REFERENCES shopping_session(id)
 );
