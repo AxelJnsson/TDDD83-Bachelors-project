@@ -32,6 +32,18 @@ function addProductToCart(productToAdd){
   var temUserID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
 
 
+    $.ajax({
+      headers: {
+        "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},    
+      url:'/user/'+temUserID,
+      type: 'GET',
+      success: function(u) { 
+        alert(u)         
+      },
+      error: function(){
+          alert("la inte till");
+      }    
+  });
     $.ajax({    
       headers: {
         "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},    
@@ -44,20 +56,18 @@ function addProductToCart(productToAdd){
           alert("la inte till");
       }    
   });
-    $.ajax({        
-      headers: {
-        "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-      url:'/product/'+productToAdd+'/unadding',
-      type: 'POST',
-      success: function(u) { 
-        alert("tog bort")       
-      },
-      error: function(){
-          alert("tog inte bort");
-      }    
-  });
-
-
+  //   $.ajax({        
+  //     headers: {
+  //       "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+  //     url:'/product/'+productToAdd+'/unadding',
+  //     type: 'POST',
+  //     success: function(u) { 
+  //       alert("tog bort")       
+  //     },
+  //     error: function(){
+  //         alert("tog inte bort");
+  //     }    
+  // });}
 }
 
   
