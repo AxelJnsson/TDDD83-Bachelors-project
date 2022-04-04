@@ -79,14 +79,16 @@ $('#contactButton').click(function (e) {
   }
 
   $('#allInstrButton').click(function (e) {   
-    alert("hej");
 
     $("#mainViewContainer").html($("#view-product").html())  
     //showProdInfo("allt", null);
 
     resetFilter();
+    alert("dgdfkgl");
+
     //filternewornot.push("Ny", "Begagnad");
     showProdInfo(filterQ);
+
     e.preventDefault();
   });
 
