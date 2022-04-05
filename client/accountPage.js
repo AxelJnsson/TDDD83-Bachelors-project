@@ -108,5 +108,10 @@ function deleteUser() {
   });
 }
 
+function displayHistory() {
+
+  
+}
+
 
 

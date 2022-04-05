@@ -6,6 +6,19 @@ fat {
   font-weight: bold;
 
 }
+
+#orderHistory{
+  background-color: rgb(242, 235, 235);
+  float:left;
+
+  width: auto;
+  height: auto;
+  border-style:double;
+  border-radius: 7px;
+  border-color: rgb(223, 217, 217);
+  overflow: scroll;
+}
+
   
   /* IE11 hide native button (thanks Matt!) */
   select::-ms-expand {
