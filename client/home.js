@@ -101,6 +101,7 @@ $('#contactButton').click(function (e) {
     resetFilter();
     //filternewornot.push("Ny", "Begagnad");
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
     e.preventDefault();
   });
 
