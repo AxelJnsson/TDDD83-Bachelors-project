@@ -9,10 +9,6 @@
     margin: 0 auto;
 }
 
-#basketButton{
-  border: 5px solid black;
-}
-
 #registerFinishButton, #LoginFinishButton, #shopFromBasketButton{
   background-color:orange;
   border: black;

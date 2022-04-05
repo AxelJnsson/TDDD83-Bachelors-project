@@ -79,3 +79,12 @@ CREATE TABLE cart_item (
     FOREIGN KEY(product_id) REFERENCES product(product_id),
     FOREIGN KEY(session_id) REFERENCES shopping_session(id)
 );
+
+CREATE TABLE IF NOT EXISTS cart__item (
+    id INTEGER PRIMARY KEY,
+    product_id INTEGER,
+    session_id INTEGER,
+    quantity INTEGER,
+    FOREIGN KEY(product_id) REFERENCES product(product_id),
+    FOREIGN KEY(session_id) REFERENCES shopping_session(id)
+);
