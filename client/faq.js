@@ -1,5 +1,5 @@
-$('#registerButtonFaq§').click(function (e) {
-    e.preventDefault();
-    alert("Heej");
-    $("#registerModal").modal('toggle');
-  });
+ 
+function openRegModal(){
+  $("#registerModal").modal('toggle');
+  e.preventDefault();
+}
