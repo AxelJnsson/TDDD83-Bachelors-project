@@ -70,8 +70,10 @@ function displayUser() {
         type: 'GET',
         success: function(u) {
           var admin;
-            
-          var anv = u;
+          //alert("test");
+          //alert(u[0].first_name);
+          var anv = u[0];
+         
           if (anv.is_admin==0) {
             admin = "ej admin";
           } else {
