@@ -69,34 +69,44 @@ function displayUser() {
         url:'/user/' + x,
         type: 'GET',
         success: function(u) {
+          var admin;
             
           var anv = u;
+          if (anv.is_admin==0) {
+            admin = "ej admin";
+          } else {
+            admin = "admin";
+          }
           let active_user = new User("3", "Fredrik.Lindberg@gmail.com", "Fredrik", "Lindberg", "Åbylundsgatan", "True");
-          $("#profname").append("<h5 class='card-title'> "+anv.first_name + " " + anv.last_name +"</h5>");   
+          $("#profname").append("<h6 class='card-title'> "+anv.first_name + " " + anv.last_name +"</h6>");   
           $("#profAdress").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value="+active_user.adress+">");
+          //hårdkodat
+          $("#profAdress").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value='582 36 Linköping'>");
+
           $("#profContact").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value="+anv.email+">");
-          $("#profSek").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value="+anv.is_admin+">");
+          $("#profContact").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value='078 346 876 21'>");
+          $("#profSek").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value="+admin+">");
         }
     });
 }
 
-function editUser() {
-  
+function deleteUser() {
+    
   var x = JSON.parse(sessionStorage.getItem('auth')).user.user_id; 
-      
-    $.ajax({
+    
+  $.ajax({
       headers: {
         "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
       url:'/user/' + x,
-      type: 'GET',
+      type: 'DELETE',
       success: function(u) {
-          
-        var anv = u;
-        let active_user = new User("3", "Fredrik.Lindberg@gmail.com", "Fredrik", "Lindberg", "Åbylundsgatan", "True");
-        $("#profname").append("<h5 class='card-title'> "+anv.first_name + " " + anv.last_name +"</h5>");   
-        $("#profAdress").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value="+active_user.adress+">");
-        $("#profContact").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value="+anv.email+">");
-        $("#profSek").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value="+anv.is_admin+">");
+        alert("Din användare är nu raderad!!!, FU");
+        logoutUser();
+
+       
       }
-    });
+  });
 }
+
+
+

@@ -25,7 +25,9 @@ function createProducts(filteringByArrayTest){
         url:'/product',
         type: 'GET',
         success: function(u) {          
-            var allinstruments = u; 
+            var allinstruments = u;
+            //getInstruments(allinstruments);
+            //sideBar(allinstruments); 
             filtertest2(allinstruments, filteringByArrayTest);
         },
         error: function(){
@@ -34,19 +36,27 @@ function createProducts(filteringByArrayTest){
     });
 }
 
-//gammal filtreringsfunktion, låter ligga kvar så länge
-function filtertest(arr, inputBrand, inputCategory, inputModel, inputColor, inputName, inputPrice, inputYear){
-    var filterprod = {category: inputCategory, brand: inputBrand, model: inputModel, name: inputName, price: inputPrice, color : inputColor, year : inputYear}; 
-        var arr1 = arr.filter(function(item) {
-                 for (var key in filterprod) {
-                       if (item[key] != filterprod[key] && filterprod[key] !== undefined) 
-                            return false;                    
-                 }
-                    return true;
-       });     
+function createCategoriesForSidebar(){ 
+    $.ajax({        
+        url:'/product',
+        type: 'GET',
+        success: function(u) {          
+            var allinstruments = u;
+            //getInstruments(allinstruments);
+            sideBar(allinstruments); 
+            //filtertest2(allinstruments, filteringByArrayTest);
+        },
+        error: function(){
+            alert("fel");
+        }    
+    });
+}
 
-      alert("Antal produkter: " + arr1.length); //antal produkter, för test
-       return arr1;
+
+function getInstruments(allinstruments){
+    var arr = allinstruments;
+    alert(arr[0].name);
+    return arr;
 }
 
 //riktig filtrering
@@ -109,6 +119,8 @@ function filtertest2(arr, testingArrayFilters){
 }
 
 function appendProducts(filteredproducts){
+    $("#mainViewContainer").html($("#view-product").html())  
+
     var products = filteredproducts;
     let j = 0;
     for (let i=0; i < products.length; i++) {
@@ -138,7 +150,7 @@ function appendProducts(filteredproducts){
         $(".product-modal-body").append("<div class='card'><div class='card-body'><h5 class='card-title'> " + products[prod_id].name +  "</h5><br><img class='card-img-top' src='"+ products[prod_id].image +"'><br><p class='card-text'> <b>Märke:</b> " + products[prod_id].brand + "<br> <b>Modell:</b> " + products[prod_id].model + "<br> <b>Färg: </b>" + products[prod_id].color + "<br> <b>År: </b>" + products[prod_id].year + "<br> <b>Pris:</b> " + products[prod_id].price + "</p></div></div>");
 
     });
-    sideBar(products);
+    //sideBar(products);
 }
    
 // return arr1;
@@ -155,9 +167,12 @@ function showProdInfo(filterQueries) {
     $("#testrow").empty();
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
     var filterQ = filterQueries;
-    createProducts(filterQ);
+   createProducts(filterQ);
+   //alert(products[0].name);
 
-    sideBar(products);
+   //filtertest2(products, filterQ);
+
+    //return products;
 
 }
 
@@ -165,38 +180,79 @@ function sideBar(products){
     $("#brandArea").empty();
     let prod = products;
 
-    const c = [];
+    const brands = [];
+    const models = [];
 
     for(var j = 0; j < prod.length; j++){
-    c.push(prod[j].brand);
+    brands.push(prod[j].brand);
+    models.push(prod[j].model);
     }
 
-    var unique = c.filter((v, i, a) => a.indexOf(v) === i);
+    var uniqueBrands = brands.filter((v, i, a) => a.indexOf(v) === i);
+    var uniqueModels = models.filter((v, i, a) => a.indexOf(v) === i);
 
-    for(var i = 0; i < unique.length; i++){
 
-    $("#brandArea").append("<input class='form-check-inpu from-check-inline somename' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  unique[i] +  " </span></label><br>");
-  //onclick=" +filterBox(unique[i])+ "
+    for(var i = 0; i < uniqueBrands.length; i++){
+
+    $("#brandArea").append("<input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueBrands[i] +  " </span></label><br>");
+  
+      }
+      for(var i = 0 ; i < uniqueModels.length; i++) {  //onclick=" +filterBox(unique[i])+ "
+  $("#modelArea").append("<input class='form-check-inpu from-check-inline somemodel' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueModels[i] +  " </span></label><br>");
+
     
     }
 
-  $('.somename').on("click" ,function (e) {
+  $('.somebrand').on("click" ,function (e) {
     var checkBoxId = $(this).data('id');
     //var checkBox = document.getElementById(checkBoxId);
     //alert(checkBoxId);
     if($(this).prop("checked") == true){
         //alert(unique[checkBoxId]);
-        filterbrands.push(unique[checkBoxId]);
+        filterbrands.push(uniqueBrands[checkBoxId]);
         //alert(filterbrands[0]);
-    } else {
+    } else if ($(this).prop("checked") == false) {
         if(filterbrands.length == 1) {
             filterbrands.length = 0;
-        } else {
-            filterbrands.splice(item,1);
+        } else if (filterbrands.length > 1) {
+            alert("test");
+            for(item in filterbrands) {
+                if(filterbrands[item] == uniqueBrands[checkBoxId]){
+                  filterbrands.splice(item,1);
+                }
+              }
 
         }
     }
-        $("#mainViewContainer").html($("#view-product").html())  
+        $("#productViewContainer").html($("#empty").html())
+        $("#productViewContainer").html($("#view-product").html())  
+        showProdInfo(filterQ);
+    
+  });
+
+  $('.somemodel').on("click" ,function (e) {
+    var checkBoxId = $(this).data('id');
+    //var checkBox = document.getElementById(checkBoxId);
+    //alert(checkBoxId);
+    if($(this).prop("checked") == true){
+        //alert(unique[checkBoxId]);
+        filtermodels.push(uniqueModels[checkBoxId]);
+        //alert(filterbrands[0]);
+    } else if ($(this).prop("checked") == false) {
+        if(filtermodels.length == 1) {
+            filtermodels.length = 0;
+        } else if (filtermodels.length > 1) {
+            alert("test");
+            for(item in filtermodels) {
+                if(filtermodels[item] == uniqueModels[checkBoxId]){
+                  filtermodels.splice(item,1);
+                }
+              }
+
+        }
+    }
+        $("#productViewContainer").html($("#empty").html())
+        $("#productViewContainer").html($("#view-product").html())  
         showProdInfo(filterQ);
     
   });

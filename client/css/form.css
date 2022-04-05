@@ -2,7 +2,10 @@ body {
     background: #f2f2f2;
   }
   
-  
+fat {
+  font-weight: bold;
+
+}
   
   /* IE11 hide native button (thanks Matt!) */
   select::-ms-expand {

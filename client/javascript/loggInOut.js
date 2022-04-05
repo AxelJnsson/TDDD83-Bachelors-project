@@ -44,14 +44,13 @@ $('#LoginFinishButton').click(function (e) {
       });    
   });
   
-$('#logoutButton').click(function (e) {
+function logoutUser() {
   $(".container").html($("#view-home").html())
   sessionStorage.removeItem('auth');
   sessionStorage.removeItem('anv');
-  alert("Du loggas ut!");
-  window.location.reload();
-  });
 
+  window.location.reload();
+}
   $('#registerButton').click(function (e) {
     $(".container").html($("#view-signup").html())
     

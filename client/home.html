@@ -42,7 +42,7 @@
       <img src="/images/logga.png" width="100" height="100" id="homeButton">
     </a>
     <div class="form-group">
-      <input type="search" class="form-control" id="searchBar" aria-describedby="nameHelp" placeholder="Sök">
+      <input type="search" class="form-control my-2" id="searchBar" aria-describedby="nameHelp" placeholder="Sök">
     </div>
     <i class="fa-solid fa-magnifying-glass"></i>
 
@@ -71,7 +71,7 @@
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="logoutButton">Logga ut</a>
+          <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
         </li>
       </ul>
     </div>
@@ -224,7 +224,7 @@
 
 
   <script id="view-sidebar" type="text/html">
-    <!--Side bar-->
+    <!--Sidebar-->
   <div class="row ">
     <div class="col-md-3">
       <div class="d-flex sticky-top flex-column align-items-center align-items-sm-start px-3 pt-2 text-black">
@@ -263,17 +263,11 @@
               <span class="text-secondary">Modeller</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#sideMenu">
-              <li class="w-100">
-                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem3">
-                <label class="form-check-label" for="defaultCheck1">
-                  <span class="text-info">Item 3</span>
-                </label>
+              <li class="w-100" id="modelArea">
+                
               </li>
               <li>
-                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem4">
-                <label class="form-check-label" for="defaultCheck1">
-                  <span class="text-info">Item 4</span>
-                </label>
+               
               </li>
             </ul>
           </li>
@@ -376,21 +370,21 @@
             <div class="col"></div>
               <div class="row">
               <div class="col-4">
-                <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Kan jag sälja mina gamla instrument via er?</strong></h6>
+                <h6 class="text-dark"><i class="fa-solid fa-music"><strong></i> Kan jag sälja mina gamla instrument via er?</strong></h6>
                 <p class="text-dark"><strong>Självklart!</strong>
                   Tanken med ToneHub är man både ska kunna sälja och köpa begagnade instrument användare mellan. 
                   Du kan även välja att kika på våra helt nya instrument, och jämföra priserna på dessa med de begagnade direkt på sidan!
                 </p>
               </div>
               <div class="col-4">
-                <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Hur säkert är det att handla av en användare?</strong></h6>
+                <h6 class="text-dark"><i class="fa-solid fa-user-lock"><strong></i> Hur säkert är det att handla av en användare?</strong></h6>
                 <p class="text-dark">
                   Vi på ToneHub jobbar konstant med att göra vår hemsida så säker som möjligt för våra användare! Skulle det vara så att 
                   man är missnöjd med hur ett köp blivit så ta genast kontakt med vår kundtjänst för hjälp och återköp.
                 </p>
               </div>
               <div class="col-4">
-                <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Hur lång är leveranstiden?</strong></h6>
+                <h6 class="text-dark"><i class="fa-solid fa-truck"><strong></i> Hur lång är leveranstiden?</strong></h6>
                 <p class="text-dark">
                   Det beror på om du köpt via en användare eller oss. Om köpet gjorts av en annan användare ska paketet skickas inom tre vardagar
                   från köptillfälle med spårbar frakt. Har du köpt direkt från oss skickar vi innom två arbetsdagar!
@@ -398,23 +392,22 @@
               </div>
               <div class="row">
                 <div class="col-4">
-                  <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Vad kostar det att sälja via er?</strong></h6>
+                  <h6 class="text-dark"><i class="fa-solid fa-hand-holding-dollar"><strong></i> Vad kostar det att sälja via er?</strong></h6>
                   <p class="text-dark">
                     Vi har valt att endas erhålla 6% av försäljningspriset. Detta innabär att om du inte lyckas sälja det du lägger upp,
                     behöver du inte heller betala! 
                   </p>
                 </div>
               <div class="col-4">
-                <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Finns ni på fler sociala medier?</strong></h6>
+                <h6 class="text-dark"><i class="fa-solid fa-heart"><strong></i> Finns ni på fler sociala medier?</strong></h6>
                 <p class="text-dark"><strong>Ja!</strong>
                   Skrolla ned till botten av hemsidan för länk till blandannat instagram & facebook.
                 </p>
               </div>
               <div class="col-4">
-                <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Hur får jag rabbatter?</strong></h6>
+                <h6 class="text-dark"><i class="fa-solid fa-tags"><strong></i> Hur får jag rabbatter?</strong></h6>
                 <p class="text-dark">
-                  Det lättaste sättet att tillhandahålla erbjudanden och rabbater är att bli medlem! Klicka på "Registrera dig" högst upp i högra hörnet
-                  för att skapa en användare och bli en i vår stora musik-familj!
+                  Det lättaste sättet att tillhandahålla erbjudanden och rabbater är att bli medlem! Klicka på <a type="button" class="text-dark" id="secondRegButton" onclick="openRegModal()"><strong>Registrera dig</strong></a> för att skapa en användare och bli en i vår stora musik-familj!
                 </p>
               </div>
             </div>
@@ -433,28 +426,35 @@
           <div class="col-md-5 border-right">
               <div class="p-3 py-5">
                   <div class="d-flex justify-content-between align-items-center mb-3">
-                      <h4 class="text-right">Min info</h4>
+                      <h1 class="text-right fat" >Min info</h1>
+                      <div>
                       <button type="button" class="btn btn-primary" id="editUserButton" onclick="editUser2()">Redigera</button>
+                      <button type="button" class="btn btn-danger" id="editUserButton" onclick="deleteUser()">Radera konto</button>
+                      </div>
                   </div>
                      <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="text-right">Adress</h5>
+                    <h3 class="text-right">Adress:</h3>
                 <!--    <button type="button" class="btn btn-primary" id="changeAdress">Ändra</button> -->
                   </div>     
-                  <div id="profAdress" style="padding-bottom:20px"></div>                
+                  <div id="profAdress" style="padding-bottom:0px"></div>                
                 
                   <div class="d-flex justify-content-between align-items-center mb-3" id="profKontakt">
-                    <h5 class="text-right">Kontaktuppgifter</h5>
+                    <h3 class="text-right">Kontaktuppgifter:</h3>
                   <!--  <button type="button" class="btn btn-primary" id="changeContact">Ändra</button> -->
                   </div>
-                  <div id="profContact" style="padding-bottom:20px"></div>
+                  <div id="profContact" style="padding-bottom:0px"></div>
                   <div class="d-flex justify-content-between align-items-center mb-3" id="profSekretess">
-                    <h5 class="text-right">Sekretess</h5>
+                    <h3 class="text-right">Sekretess</h3>
                   <!--  <button type="button" class="btn btn-primary" id="changeSekre">Ändra</button> -->
                   </div>
-                  <div id="profSek" style="padding-bottom:20px"></div>
-      </div>
+                  <div id="profSek" style="padding-bottom:00px"></div>
+     
+                </div>
+                
   </div>
+  
   </div>
+  
   </div>
 </script>
 
@@ -477,47 +477,47 @@
     <div class="card-deck mb-3 text-center">
       <div class="card mb-4 box-shadow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Free</h4>
+          <h4 class="my-0 font-weight-normal">Skapa användare</h4>
         </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+        <div class="card-body"> 
+          <h1 class="card-title pricing-card-title">Lås upp möjligheter <small class="text-muted"></small></h1>   
           <ul class="list-unstyled mt-3 mb-4">
-            <li>10 users included</li>
-            <li>2 GB of storage</li>
-            <li>Email support</li>
-            <li>Help center access</li>
+            <li>Möjlighet att skapa egna annonser</li>
+            <li>Fri frakt</li>
+            <li>. </li>
+            <li>. </li>
           </ul>
-          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Skapa konto</button>
         </div>
       </div>
       <div class="card mb-4 box-shadow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Pro</h4>
+          <h4 class="my-0 font-weight-normal">Köp Instrument</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+          <h1 class="card-title pricing-card-title">Börja handla<small class="text-muted"></small></h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>20 users included</li>
-            <li>10 GB of storage</li>
-            <li>Priority email support</li>
-            <li>Help center access</li>
+            <li>Helt ok utbud</li>
+            <li>Olika färger</li>
+            <li>Rimliga priser</li>
+            <li>.</li>
           </ul>
-          <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+          <button type="button" class="btn btn-lg btn-block btn-primary">Handla</button>
         </div>
       </div>
       <div class="card mb-4 box-shadow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Enterprise</h4>
+          <h4 class="my-0 font-weight-normal">Kontakta oss!</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+          <h1 class="card-title pricing-card-title"> Bra kundsupport</h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>30 users included</li>
-            <li>15 GB of storage</li>
-            <li>Phone and email support</li>
-            <li>Help center access</li>
+            <li>Chatta</li>
+            <li>Email</li>
+            <li>Ring</li>
+            <li>.</li>
           </ul>
-          <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+          <button type="button" class="btn btn-lg btn-block btn-primary">Kontakt</button>
         </div>
       </div>
     </div>
@@ -783,19 +783,25 @@
     </div>
   </div>
 
-  
-
-  <div class="wrapper" id="wrap">
-    <div class="row gap-4">
-
-      <div class="col-3" id="sideBarContainer">
-    
+<div class="container" id=sidebarAndProduct>
+  <div class="row">
+    <div class="col-3" type="text/html">
+      <div class="container" id="sideBarContainer" type="text/html">
       </div>
-
-      <div class="col" id="mainViewContainer">
+    </div>
+    <div class="col" type="text/html">
+      <div class="container" id="productViewContainer" type="text/html">
       </div>
     </div>
   </div>
+</div>
+
+<script id="empty" type="text/html">
+  <div></div>
+</script>
+
+<div class="container" id="mainViewContainer" type="text/html">
+</div>
 
   <!--Footer-->
   <footer class="mt-4 text-center bg-light">
@@ -941,11 +947,20 @@
   <script src="/javascript/home.js"></script>
   <script src="/javascript/accountPage.js"></script>
   <script src="getproducts.js"></script>
+<<<<<<< HEAD
   <script src="/javascript/basket.js"></script>
   <script src="/javascript/loggInOut.js"></script>
   <script src="/javascript/createadd.js"></script>
   <script src="/javascript/productview.js"></script>
   <script src="/javascript/stripetest.js"></script>
+=======
+  <script src="basket.js"></script>
+  <script src="loggInOut.js"></script>
+  <script src="createadd.js"></script>
+  <script src="productview.js"></script>
+  <script src="faq.js"></script>
+  <script src="stripetest.js"></script>
+>>>>>>> e33ae3eab95c2c0b0d85d6eff200cac2d895aead
   <script src="https://js.stripe.com/v3/"></script>
   <script src="/javascript/register.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
