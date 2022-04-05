@@ -64,9 +64,9 @@ function filtertest2(arr, testingArrayFilters){
     const types = testingArrayFilters[0];
     const brands = testingArrayFilters[1];
     const models = testingArrayFilters[2];
-    const names = testingArrayFilters[3];
-    const prices = testingArrayFilters[4];
-    const colors = testingArrayFilters[5];
+    const colors = testingArrayFilters[3];
+    const names = testingArrayFilters[4];
+    const prices = testingArrayFilters[5];
     const years = testingArrayFilters[6];
     const newornots = testingArrayFilters[7];
    
@@ -97,10 +97,12 @@ function filtertest2(arr, testingArrayFilters){
             prices.indexOf(el.price) >= 0);
     }
 
+
     if (colors.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             colors.indexOf(el.color) >= 0);
     }
+
     
     if (years.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
@@ -112,14 +114,13 @@ function filtertest2(arr, testingArrayFilters){
             newornots.indexOf(el.new_or_not) >= 0);
     //}
     
-    alert("Antal produkter: " + filteredstuff.length);
+    //alert("Antal produkter: " + filteredstuff.length);
     
     appendProducts(filteredstuff);
     //return filteredstuff;
 }
 
 function appendProducts(filteredproducts){
-    $("#mainViewContainer").html($("#view-product").html())  
 
     var products = filteredproducts;
     let j = 0;
@@ -131,24 +132,17 @@ function appendProducts(filteredproducts){
         }
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
 
-        if (products[i].new_or_not == 1) {
-            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "<br>Skick: </b>Ny</h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br><h4><b>Pris: </b>" + products[i].price + "kr</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
-        } else if (products[i].new_or_not == 0) {
-            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "<br>Skick: </b>Begagnad</h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br><h4><b>Pris: </b>" + products[i].price + "kr</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
-        }
+        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br>Skick: "+ products[i].new_or_not +" </h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b><h4>" + products[i].price + "</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
     }
-
-//<b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b>
 
     $('.btnInfo').on("click" ,function (e) {
         var prod_id = $(this).data('id');
-  
         $(".product-modal-body").empty();
+        $("#productModalFooter").empty();
 
         $("#productModal").modal('toggle');
-        
         $(".product-modal-body").append("<div class='card'><div class='card-body'><h5 class='card-title'> " + products[prod_id].name +  "</h5><br><img class='card-img-top' src='"+ products[prod_id].image +"'><br><p class='card-text'> <b>Märke:</b> " + products[prod_id].brand + "<br> <b>Modell:</b> " + products[prod_id].model + "<br> <b>Färg: </b>" + products[prod_id].color + "<br> <b>År: </b>" + products[prod_id].year + "<br> <b>Pris:</b> " + products[prod_id].price + "</p></div></div>");
-
+        $("#productModalFooter").append('<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="addProductToCart(this.value)" value="'+products[prod_id].product_id+'" id="addProductToCartButton">Lägg i varukorgen</button>');
     });
     //sideBar(products);
 }
@@ -182,40 +176,64 @@ function sideBar(products){
 
     const brands = [];
     const models = [];
+    const colors = [];
+    const years = [];
+    const all = [];
 
     for(var j = 0; j < prod.length; j++){
-    brands.push(prod[j].brand);
-    models.push(prod[j].model);
+        brands.push(prod[j].brand);
+        models.push(prod[j].model);
+        colors.push(prod[j].color);
+        years.push(prod[j].year);
     }
 
     var uniqueBrands = brands.filter((v, i, a) => a.indexOf(v) === i);
     var uniqueModels = models.filter((v, i, a) => a.indexOf(v) === i);
+    var uniqueColors = colors.filter((v, i, a) => a.indexOf(v) === i)
+    var uniqueYears = years.filter((v, i, a) => a.indexOf(v) === i);
 
+    all.push(uniqueBrands);
+    all.push(uniqueModels);
+    all.push(uniqueColors);
+    all.push(uniqueYears);
 
-    for(var i = 0; i < uniqueBrands.length; i++){
+    //alert(all.length);
 
-    $("#brandArea").append("<input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueBrands[i] +  " </span></label><br>");
-  
-      }
-      for(var i = 0 ; i < uniqueModels.length; i++) {  //onclick=" +filterBox(unique[i])+ "
-  $("#modelArea").append("<input class='form-check-inpu from-check-inline somemodel' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueModels[i] +  " </span></label><br>");
+    // for (var i = 0; i < all.length ; i++) {
+    //     $("#sideMenu").append("<li><a class='nav-link px-0' href='#submenu1' data-bs-toggle='collapse' aria-expanded='false'aria-controls='submenu1'><span class='text-secondary'>'Märken eller något'</span></a><ul class='collapse nav flex-column' id='area"+i+"'>");
 
-    
+    //     for(var j = 0; j < all[i].length; j++){
+    //         alert(all[i][j]);
+    //         $("#area"+i).append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  all[i][j] +  " </span></label></li>");
+          
+    //     }
+    // }
+
+    for(var j = 0; j < uniqueBrands.length; j++){
+        $("#brandArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueBrands[j] +  " </span></label></li>");           
+    }
+
+    for(var i = 0 ; i < uniqueModels.length; i++) {
+        $("#modelArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somemodel' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueModels[i] +  " </span></label></li>");
+    }
+
+    for(var i = 0 ; i < uniqueColors.length; i++) {
+        $("#colorArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somecolor' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueColors[i] +  " </span></label></li>");
+    }
+
+    for(var i = 0 ; i < uniqueYears.length; i++) {
+        $("#yearArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someyear' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueYears[i] +  " </span></label></li>");
     }
 
   $('.somebrand').on("click" ,function (e) {
     var checkBoxId = $(this).data('id');
-    //var checkBox = document.getElementById(checkBoxId);
-    //alert(checkBoxId);
     if($(this).prop("checked") == true){
-        //alert(unique[checkBoxId]);
         filterbrands.push(uniqueBrands[checkBoxId]);
-        //alert(filterbrands[0]);
     } else if ($(this).prop("checked") == false) {
         if(filterbrands.length == 1) {
             filterbrands.length = 0;
         } else if (filterbrands.length > 1) {
-            alert("test");
+            //alert("test");
             for(item in filterbrands) {
                 if(filterbrands[item] == uniqueBrands[checkBoxId]){
                   filterbrands.splice(item,1);
@@ -232,20 +250,41 @@ function sideBar(products){
 
   $('.somemodel').on("click" ,function (e) {
     var checkBoxId = $(this).data('id');
-    //var checkBox = document.getElementById(checkBoxId);
-    //alert(checkBoxId);
     if($(this).prop("checked") == true){
-        //alert(unique[checkBoxId]);
         filtermodels.push(uniqueModels[checkBoxId]);
-        //alert(filterbrands[0]);
     } else if ($(this).prop("checked") == false) {
         if(filtermodels.length == 1) {
             filtermodels.length = 0;
         } else if (filtermodels.length > 1) {
-            alert("test");
+            //alert("test");
             for(item in filtermodels) {
                 if(filtermodels[item] == uniqueModels[checkBoxId]){
                   filtermodels.splice(item,1);
+                }
+              }
+
+        }
+    }
+        $("#productViewContainer").html($("#empty").html())
+        $("#productViewContainer").html($("#view-product").html())
+        //alert(filterQ[2].length);  
+        showProdInfo(filterQ);
+    
+  });
+
+  $('.somecolor').on("click" ,function (e) {
+    var checkBoxId = $(this).data('id');
+    if($(this).prop("checked") == true){
+        filtercolors.push(uniqueColors[checkBoxId]);
+        alert(filtercolors[0]);
+    } else if ($(this).prop("checked") == false) {
+        if(filtercolors.length == 1) {
+            filtercolors.length = 0;
+        } else if (filtercolors.length > 1) {
+            //alert("test");
+            for(item in filtercolors) {
+                if(filtercolors[item] == uniqueColors[checkBoxId]){
+                  filtercolors.splice(item,1);
                 }
               }
 
@@ -256,10 +295,30 @@ function sideBar(products){
         showProdInfo(filterQ);
     
   });
-
-
     
+  $('.someyear').on("click" ,function (e) {
+    var checkBoxId = $(this).data('id');
+    if($(this).prop("checked") == true){
+        filteryears.push(uniqueYears[checkBoxId]);
+        alert(filteryears[0]);
+    } else if ($(this).prop("checked") == false) {
+        if(filteryears.length == 1) {
+            filteryears.length = 0;
+        } else if (filteryears.length > 1) {
+            //alert("test");
+            for(item in filteryears) {
+                if(filteryears[item] == uniqueYears[checkBoxId]){
+                  filteryears.splice(item,1);
+                }
+              }
 
+        }
+    }
+        $("#productViewContainer").html($("#empty").html())
+        $("#productViewContainer").html($("#view-product").html())  
+        showProdInfo(filterQ);
+    
+  });
     
     
 }
