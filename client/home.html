@@ -28,8 +28,9 @@
 
 
   <title>Välkommen till ToneHub</title>
-  <!--FavIcon son tyvärr inte funkar :()-->
-  <link rel="icon" type="image/x-icon" href="/client/favicon.ico">
+  <!--FavIcon, hemmagjord ändå haha :()-->
+<link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
+  
 
 </head>
 <script src="https://kit.fontawesome.com/ba5ddd8013.js" crossorigin="anonymous"></script>
@@ -78,7 +79,7 @@
 
 
 
-    <img src="/images/basket.png" width="100" height="100" id="basketButton" frame="10">
+    <img src="/images/basket.png" width="60" height="60" id="basketButton" frame="10">
 
 
 
@@ -109,9 +110,9 @@
         <li class="nav-item">
           <a class="nav-link" href="#" id="studioButton">Studioutrustning</a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link" href="#" id="yamahaTestButton">Testknapp för filtrering (ska tas bort)</a>
-        </li>
+        </li>-->
       </ul>
     </div>
 
@@ -342,6 +343,9 @@
                 </label> -->
               </li>
             </ul>
+            <div>
+              <button id="resetFilterBtn" onclick="btnResetFilter()">Reset filter</button>
+            </div>
           </li>
 
         </ul>
@@ -782,9 +786,9 @@
     </div>
   </div>
 
-<div class="container" id=sidebarAndProduct>
+<div class="container-fluid" id=sidebarAndProduct>
   <div class="row">
-    <div class="col-3" type="text/html">
+    <div class="col-2" type="text/html">
       <div class="container" id="sideBarContainer" type="text/html">
       </div>
     </div>
@@ -799,7 +803,7 @@
   <div></div>
 </script>
 
-<div class="container" id="mainViewContainer" type="text/html">
+<div class="container-fluid" id="mainViewContainer" type="text/html">
 </div>
 
   <!--Footer-->
@@ -896,7 +900,7 @@
             </p>
             <p>
               <i class="fa-solid fa-question"></i>
-              <a class="text-reset" href="#" onclick="faqView()" id="faqButton">FAQ</a>
+              <a class="text-dark" href="#" onclick="faqView()" id="faqButton">FAQ</a>
             </p>
             <p>
               <i class="fa-solid fa-exclamation"></i>

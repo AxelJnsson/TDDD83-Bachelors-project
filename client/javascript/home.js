@@ -4,7 +4,8 @@ $(document).ready(function(){
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
    
-    filternewornot.push(0, 1);  
+    filternewornot.push(0, 1); 
+
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
       signedIn = true;
@@ -47,6 +48,12 @@ $('#aboutButton').click(function (e) {
     $("#productViewContainer").html($("#empty").html())
      e.preventDefault();
    });
+
+    
+function openRegModal(){
+  $("#registerModal").modal('toggle');
+  e.preventDefault();
+}
 
 function faqView() {
   $("#mainViewContainer").html($("#view-FAQ").html())
@@ -111,9 +118,10 @@ $('#contactButton').click(function (e) {
     $("#mainViewContainer").html($("#empty").html())
     
     resetFilter();
-    var defCategory = "gitarr";
+    var defCategory = "Gitarr";
     filtertypes.push(defCategory);
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
     e.preventDefault();
   });
 
@@ -122,8 +130,9 @@ $('#contactButton').click(function (e) {
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html()) 
     resetFilter();
-    filtertypes.push("piano");
+    filtertypes.push("Piano");
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
     e.preventDefault();
   });
 
@@ -132,9 +141,11 @@ $('#contactButton').click(function (e) {
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
     resetFilter();
-    filtertypes.push("trummor");
+    filtertypes.push("Trummor");
 
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
+
     e.preventDefault();
   });
 
@@ -143,8 +154,10 @@ $('#contactButton').click(function (e) {
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
     resetFilter();
-    filtertypes.push("studio");
+    filtertypes.push("Studio");
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
+
     e.preventDefault();
   });
 
@@ -153,8 +166,8 @@ $('#contactButton').click(function (e) {
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
     resetFilter();
-    var testcategory1 = "gitarr";
-    var testcategory2 = "piano";
+    var testcategory1 = "Gitarr";
+    var testcategory2 = "Piano";
     //var testcategory3 = "trummor";
 
     var testbrand1 = "Yamaha";
@@ -166,8 +179,29 @@ $('#contactButton').click(function (e) {
     // alert(filterQ[0][1]);
     alert("Gitarrer och pianon av märke yamaha");
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
+
     e.preventDefault();
   });
+
+  // $('#resetFilterBtn').click(function (e) {  
+  //   alert("hej");
+  //   resetFilter();
+  //   $("#sideBarContainer").html($("#view-sidebar").html())  
+  //   $("#productViewContainer").html($("#view-product").html())
+  //   $("#mainViewContainer").html($("#empty").html())
+  //   showProdInfo(filterQ);
+  //  });
+
+  function btnResetFilter(){
+    alert("Filter rensas");
+    resetFilter();
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+   }
 
 $('#homeButton').click(function (e) {
   $("#mainViewContainer").html($("#view-home").html()) 
