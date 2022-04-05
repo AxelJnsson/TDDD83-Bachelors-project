@@ -1,7 +1,7 @@
 $('#basketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('toggle');
-    printBasketedProducts();
+    getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
   });
 
 $('#closeBasketButton').click(function (e) {
@@ -25,7 +25,6 @@ $('#shopFromBasketButton').click(function (e) {
 //   e.preventDefault();
 //   alert("hjej")
 //   });
-
 
 function addProductToCart(productToAdd){
   alert(productToAdd)
@@ -99,30 +98,45 @@ function stripeTestFunction(){
     success: function(data) {    
       return stripe.redirectToCheckout({sessionId: data.sessionId})
     }
-  }) 
+  }); 
+}
+
+function getProductsToPrintInBasket(userID){
+  $.ajax ({
+    // headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/user/'+userID,
+    type: 'GET',
+    datatype: 'JSON',
+    contentType: "application/json",
+    success: function(data) {
+      arrayOfProducts = []
+      data[2].forEach(element =>arrayOfProducts.push(element))
+
+      
+      showInBasketModal(arrayOfProducts)
+    }
+  }); 
+}
+
+function showInBasketModal(products){
+
+  for (let i = 0; i <products.length; i++)
+    $.ajax ({
+      // headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+      url:'/product/'+products[i].product_id,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(product) {
+        printProductInBasketModal(product);
+      }
+    });
+}
+
+function printProductInBasketModal(product){
 
 
 
+  
 
-
-  // productPrice=100
-  //   fetch("/create-checkout-session", {
-  //     method: 'POST',
-	//     body: JSON.stringify({
-  //       price: productPrice,
-  //     }), // The data
-	//     headers: {
-	// 	'Content-type': '' // The type of data you're sending
-  //     }
-  //   })
-  //   .then((result) => { return result.json(); })
-  //   .then((data) => {
-  //     console.log(data);
-  //     // Redirect to Stripe Checkout
-  //     return stripe.redirectToCheckout({sessionId: data.sessionId})
-  //   })
-  //   .then((res) => {
-  //     console.log(res);
-  //   });
-  //   console.log("allabarn");
 }
