@@ -4,7 +4,8 @@ $(document).ready(function(){
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
    
-    filternewornot.push(0, 1);  
+    filternewornot.push(0, 1); 
+
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
       signedIn = true;
@@ -182,6 +183,25 @@ $('#contactButton').click(function (e) {
 
     e.preventDefault();
   });
+
+  // $('#resetFilterBtn').click(function (e) {  
+  //   alert("hej");
+  //   resetFilter();
+  //   $("#sideBarContainer").html($("#view-sidebar").html())  
+  //   $("#productViewContainer").html($("#view-product").html())
+  //   $("#mainViewContainer").html($("#empty").html())
+  //   showProdInfo(filterQ);
+  //  });
+
+  function btnResetFilter(){
+    alert("Filter rensas");
+    resetFilter();
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+   }
 
 $('#homeButton').click(function (e) {
   $("#mainViewContainer").html($("#view-home").html()) 
