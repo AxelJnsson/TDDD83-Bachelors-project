@@ -71,7 +71,7 @@
 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="logoutButton">Logga ut</a>
+          <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
         </li>
       </ul>
     </div>
@@ -263,17 +263,11 @@
               <span class="text-secondary">Modeller</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#sideMenu">
-              <li class="w-100">
-                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem3">
-                <label class="form-check-label" for="defaultCheck1">
-                  <span class="text-info">Item 3</span>
-                </label>
+              <li class="w-100" id="modelArea">
+                
               </li>
               <li>
-                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem4">
-                <label class="form-check-label" for="defaultCheck1">
-                  <span class="text-info">Item 4</span>
-                </label>
+               
               </li>
             </ul>
           </li>
@@ -432,28 +426,35 @@
           <div class="col-md-5 border-right">
               <div class="p-3 py-5">
                   <div class="d-flex justify-content-between align-items-center mb-3">
-                      <h4 class="text-right">Min info</h4>
+                      <h1 class="text-right fat" >Min info</h1>
+                      <div>
                       <button type="button" class="btn btn-primary" id="editUserButton" onclick="editUser2()">Redigera</button>
+                      <button type="button" class="btn btn-danger" id="editUserButton" onclick="deleteUser()">Radera konto</button>
+                      </div>
                   </div>
                      <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="text-right">Adress</h5>
+                    <h3 class="text-right">Adress:</h3>
                 <!--    <button type="button" class="btn btn-primary" id="changeAdress">Ändra</button> -->
                   </div>     
-                  <div id="profAdress" style="padding-bottom:20px"></div>                
+                  <div id="profAdress" style="padding-bottom:0px"></div>                
                 
                   <div class="d-flex justify-content-between align-items-center mb-3" id="profKontakt">
-                    <h5 class="text-right">Kontaktuppgifter</h5>
+                    <h3 class="text-right">Kontaktuppgifter:</h3>
                   <!--  <button type="button" class="btn btn-primary" id="changeContact">Ändra</button> -->
                   </div>
-                  <div id="profContact" style="padding-bottom:20px"></div>
+                  <div id="profContact" style="padding-bottom:0px"></div>
                   <div class="d-flex justify-content-between align-items-center mb-3" id="profSekretess">
-                    <h5 class="text-right">Sekretess</h5>
+                    <h3 class="text-right">Sekretess</h3>
                   <!--  <button type="button" class="btn btn-primary" id="changeSekre">Ändra</button> -->
                   </div>
-                  <div id="profSek" style="padding-bottom:20px"></div>
-      </div>
+                  <div id="profSek" style="padding-bottom:00px"></div>
+     
+                </div>
+                
   </div>
+  
   </div>
+  
   </div>
 </script>
 
@@ -476,47 +477,47 @@
     <div class="card-deck mb-3 text-center">
       <div class="card mb-4 box-shadow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Free</h4>
+          <h4 class="my-0 font-weight-normal">Skapa användare</h4>
         </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+        <div class="card-body"> 
+          <h1 class="card-title pricing-card-title">Lås upp möjligheter <small class="text-muted"></small></h1>   
           <ul class="list-unstyled mt-3 mb-4">
-            <li>10 users included</li>
-            <li>2 GB of storage</li>
-            <li>Email support</li>
-            <li>Help center access</li>
+            <li>Möjlighet att skapa egna annonser</li>
+            <li>Fri frakt</li>
+            <li>. </li>
+            <li>. </li>
           </ul>
-          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Skapa konto</button>
         </div>
       </div>
       <div class="card mb-4 box-shadow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Pro</h4>
+          <h4 class="my-0 font-weight-normal">Köp Instrument</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+          <h1 class="card-title pricing-card-title">Börja handla<small class="text-muted"></small></h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>20 users included</li>
-            <li>10 GB of storage</li>
-            <li>Priority email support</li>
-            <li>Help center access</li>
+            <li>Helt ok utbud</li>
+            <li>Olika färger</li>
+            <li>Rimliga priser</li>
+            <li>.</li>
           </ul>
-          <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+          <button type="button" class="btn btn-lg btn-block btn-primary">Handla</button>
         </div>
       </div>
       <div class="card mb-4 box-shadow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Enterprise</h4>
+          <h4 class="my-0 font-weight-normal">Kontakta oss!</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+          <h1 class="card-title pricing-card-title"> Bra kundsupport</h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>30 users included</li>
-            <li>15 GB of storage</li>
-            <li>Phone and email support</li>
-            <li>Help center access</li>
+            <li>Chatta</li>
+            <li>Email</li>
+            <li>Ring</li>
+            <li>.</li>
           </ul>
-          <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+          <button type="button" class="btn btn-lg btn-block btn-primary">Kontakt</button>
         </div>
       </div>
     </div>
