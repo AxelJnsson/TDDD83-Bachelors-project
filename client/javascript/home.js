@@ -42,7 +42,10 @@ $('#aboutButton').click(function (e) {
      e.preventDefault();
    });
 
-   
+function faqView() {
+  $("#mainViewContainer").html($("#view-FAQ").html())
+  e.preventDefault();
+}  
 $('#contactButton').click(function (e) {          
     e.preventDefault();
   });
@@ -78,8 +81,8 @@ $('#contactButton').click(function (e) {
   $('#allInstrButton').click(function (e) {   
 
     $("#mainViewContainer").html($("#view-product").html())  
+    $("#sideBarContainer").html($("#view-sidebar").html())  
     //showProdInfo("allt", null);
-
     resetFilter();
     //filternewornot.push("Ny", "Begagnad");
     showProdInfo(filterQ);
@@ -87,6 +90,8 @@ $('#contactButton').click(function (e) {
   });
 
   $('#guitarButton').click(function (e) {   
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+
     $("#mainViewContainer").html($("#view-product").html())
     resetFilter();
     var defCategory = "gitarr";
@@ -95,7 +100,9 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   });
 
-  $('#pianoButton').click(function (e) {   
+  $('#pianoButton').click(function (e) { 
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+
     $("#mainViewContainer").html($("#view-product").html())  
     resetFilter();
     filtertypes.push("piano");
@@ -104,6 +111,8 @@ $('#contactButton').click(function (e) {
   });
 
   $('#drumButton').click(function (e) {   
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+
     $("#mainViewContainer").html($("#view-product").html())
     resetFilter();
     filtertypes.push("trummor");
@@ -112,7 +121,9 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   });
 
-  $('#studioButton').click(function (e) {   
+  $('#studioButton').click(function (e) {  
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+ 
     $("#mainViewContainer").html($("#view-product").html())  
     resetFilter();
     filtertypes.push("studio");
@@ -121,6 +132,8 @@ $('#contactButton').click(function (e) {
   });
 
   $('#yamahaTestButton').click(function (e) {   
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+
     $("#mainViewContainer").html($("#view-product").html())
     resetFilter();
     var testcategory1 = "gitarr";
@@ -144,12 +157,9 @@ $('#homeButton').click(function (e) {
     e.preventDefault();
 });
 
-$('#faqButton').click(function (e) {   
- $("#mainViewContainer").html($("#view-FAQ").html())
-  e.preventDefault();
-});
-
-
+function showView(view){
+  $("#mainViewContainer").html($(view).html())
+}
 //testfunktion för filtrering
 function checkNeworOldStuff(checkid, query){
   var checkBox = document.getElementById(checkid);
@@ -178,7 +188,7 @@ function checkNeworOldStuff(checkid, query){
    
     
   }
-  alert(filterQ[7][0] + filterQ[7][1])
+  //alert(filterQ[7][0] + filterQ[7][1])
   $("#mainViewContainer").html($("#view-product").html())  
 
   showProdInfo(filterQ);

@@ -5,6 +5,10 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <!--För att slippa rensa browsercache hela tiden :))-->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -22,9 +26,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
 
   <title>Välkommen till ToneHub</title>
+  <!--FavIcon son tyvärr inte funkar :()-->
+  <link rel="icon" type="image/x-icon" href="/client/favicon.ico">
 
 </head>
 <script src="https://kit.fontawesome.com/ba5ddd8013.js" crossorigin="anonymous"></script>
@@ -212,14 +217,13 @@
     
   <script id="view-contact" type="text/html">
     <div class="center"  id="contact">  
-        <p >Kontakta osss!</p>     
+        <p >Kontakta oss!</p>     
        
     </div>
   </script>
 
-  <!--kommenterar bort denna nu, förlåt mig fredrik :(-->
 
-  <script id="view-product" type="text/html">
+  <script id="view-sidebar" type="text/html">
     <!--Side bar-->
   <div class="row ">
     <div class="col-md-3">
@@ -229,12 +233,12 @@
         </a>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="newProd" checked
-            onclick="checkNeworOldStuff('newProd', '1')">
+            onclick="checkNeworOldStuff('newProd', 1)">
           <label class="form-check-label" for="flexSwitchCheckChecked">Nya Produkter</label>
         </div>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="secondHandProd" checked
-            onclick="checkNeworOldStuff('secondHandProd', '0')">
+            onclick="checkNeworOldStuff('secondHandProd', 0)">
           <label class="form-check-label" for="flexSwitchCheckChecked">Begagnade</label>
         </div>
         <ul class="nav nav-pills flex-column" id="sideMenu">
@@ -351,29 +355,72 @@
       </div>
     </div>
 
-    <div class="col" id="testdiv"></div>
 
 
   </div>
 
   </script>
+  <script id="view-product" type="text/html">    
+    <div class="col" id="testdiv"></div>
+  </script>
 
   <!--FAQ SIDA-->
   <script id="view-FAQ" type="text/html">
-      <div class="center"  id="questions">  
-          <div class="row">
-            <div class="col-md-3">
-              Column
+          <section>
+            <h3 class="text-center mb-4 pb-2 text-dark fw-bold">FAQ</h3>
+            <div class="row">
+              <div class="col-md-3"></div>
+              <p class="text-center text-secondary col-6">
+                Här hittar du våra mest ställda frågor, och svar på dessa! Hittar du inte svaret du söker? Tveka inte på att höra av dig till oss! /Grundarna av ToneHub</p>
             </div>
-            <div class="col-md-2">
-              Column
+            <div class="col"></div>
+              <div class="row">
+              <div class="col-4">
+                <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Kan jag sälja mina gamla instrument via er?</strong></h6>
+                <p class="text-dark"><strong>Självklart!</strong>
+                  Tanken med ToneHub är man både ska kunna sälja och köpa begagnade instrument användare mellan. 
+                  Du kan även välja att kika på våra helt nya instrument, och jämföra priserna på dessa med de begagnade direkt på sidan!
+                </p>
+              </div>
+              <div class="col-4">
+                <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Hur säkert är det att handla av en användare?</strong></h6>
+                <p class="text-dark">
+                  Vi på ToneHub jobbar konstant med att göra vår hemsida så säker som möjligt för våra användare! Skulle det vara så att 
+                  man är missnöjd med hur ett köp blivit så ta genast kontakt med vår kundtjänst för hjälp och återköp.
+                </p>
+              </div>
+              <div class="col-4">
+                <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Hur lång är leveranstiden?</strong></h6>
+                <p class="text-dark">
+                  Det beror på om du köpt via en användare eller oss. Om köpet gjorts av en annan användare ska paketet skickas inom tre vardagar
+                  från köptillfälle med spårbar frakt. Har du köpt direkt från oss skickar vi innom två arbetsdagar!
+                </p>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Vad kostar det att sälja via er?</strong></h6>
+                  <p class="text-dark">
+                    Vi har valt att endas erhålla 6% av försäljningspriset. Detta innabär att om du inte lyckas sälja det du lägger upp,
+                    behöver du inte heller betala! 
+                  </p>
+                </div>
+              <div class="col-4">
+                <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Finns ni på fler sociala medier?</strong></h6>
+                <p class="text-dark"><strong>Ja!</strong>
+                  Skrolla ned till botten av hemsidan för länk till blandannat instagram & facebook.
+                </p>
+              </div>
+              <div class="col-4">
+                <h6 class="text-dark"><i class="far fa-paper-plane text-dark pe-2"><strong></i> Hur får jag rabbatter?</strong></h6>
+                <p class="text-dark">
+                  Det lättaste sättet att tillhandahålla erbjudanden och rabbater är att bli medlem! Klicka på "Registrera dig" högst upp i högra hörnet
+                  för att skapa en användare och bli en i vår stora musik-familj!
+                </p>
+              </div>
             </div>
-            <div class="col">
-              Column
-            </div>
-          </div>  
-      </div>
-    </script>
+          </div>
+          </section>
+        </script>
 
   <!--Användarsida-->
 
@@ -420,63 +467,11 @@
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Välkommen till oss, här kan du både köpa nya och begagnade instrument samt dessutom sälja dina instrument. Allt på ett ställe, vilken grej!</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" onclick="startshopp()" class="btn btn-primary btn-lg px-4 gap-3">Köp instrument</button>
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Köp instrument</button>
         <button type="button" onclick="regOrAnnons()" class="btn btn-outline-secondary btn-lg px-4">Lägg upp annons</button>
       </div>
     </div>
   </div>
-  <div>
-  <!--<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="400px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
-
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p>Some representative placeholder content for the first slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="400px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
-
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="400px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
-
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  </div>-->
  
   <div class="container">
     <div class="card-deck mb-3 text-center">
@@ -535,22 +530,18 @@
       <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
      </div>-->
 </script>
-<!--vet inte om det ska vara centrerat-->
+
   <script id="view-createAdd" type="text/html">
-  <div class="center">
-  <div class="col-md-2" style="margin:auto; padding-bottom: 20px">
+  <div class="center" style="background-color: #b4b5be">
+  <div class="d-flex justify-content-between align-items-center mb-3" >
     <h4 class="text-right">Skapa Annons!</h4>
   </div>
-<div class="row">
-    <div class="col-sm-6" ><label class="labels">Rubrik</label><input type="text" id="createText" class="form-control" placeholder="Namn" value=""></div>  
-    <div class="col-sm-6">
-      <label for="formFile" class="labels">Ladda upp bild på ditt instrument</label>
-      <input class="form-control" style="margin:auto; padding: 5px;" type="file" id="formFile">
-    </div>
-  </div>
-<div class="row mt-3">      
-
-      <div class="col selectdiv">
+<div class="row mt-2">
+    <div class="col-md-6"><label class="labels">Rubrik</label><input type="text" id="createText" class="form-control" placeholder="Namn" value=""></div>  
+</div>
+<div class="row mt-3">
+  <!--Dessa behöver göras om till dropdown mmenyer på saker som färg, brand osv-->      
+    <div class="selectdiv">
       <label>
         <select id="modelVal">
             <option selected>Modell</option>
@@ -559,8 +550,6 @@
             <option>C</option>
         </select>
     </label>
-      </div>
-      <div class="col selectdiv">
       <label>
           <select id="brandVal">
               <option selected>Märke</option>
@@ -569,8 +558,6 @@
               <option>Gibsson</option>
           </select>
       </label>
-      </div>
-      <div class="col selectdiv">
       <label>
         <select id="colorVal">
             <option selected>Färg</option>
@@ -579,14 +566,12 @@
             <option>Grön</option>
         </select>
     </label>
-      </div>
-   <div class="row mt-3"> 
+    </div>  
     <div class="col-md-6"><label class="labels">Pris</label><input type="number" id="createPris" class="form-control" placeholder="Pris" value=""></div>
     <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
     <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div>
     <div class="col-md-6"><label class="labels">Årtal</label><input type="number" id="createYear" min="1950" max="2022" class="form-control" placeholder="" value=""></div>   
     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="createAddButton" onclick="createAdd()" type="button">Skapa annons</button></div>
-</div>
 </div>
 </div>
 </div>
@@ -798,8 +783,14 @@
     </div>
   </div>
 
+  
+
   <div class="wrapper" id="wrap">
     <div class="row gap-4">
+
+      <div class="col-3" id="sideBarContainer">
+    
+      </div>
 
       <div class="col" id="mainViewContainer">
       </div>
@@ -900,7 +891,7 @@
             </p>
             <p>
               <i class="fa-solid fa-question"></i>
-              <a class="text-reset" type="button" href="#" id="faqButton">FAQ</a>
+              <a class="text-reset" href="#" onclick="faqView()" id="faqButton">FAQ</a>
             </p>
             <p>
               <i class="fa-solid fa-exclamation"></i>

@@ -112,7 +112,7 @@ function appendProducts(filteredproducts){
     var products = filteredproducts;
     let j = 0;
     for (let i=0; i < products.length; i++) {
-    //funktion för att skriva ut produkterna 3 och 3
+    //funktion för att skriva ut produkterna 4 och 4
         if (i%4 == 0) {
             j++;
             
@@ -138,6 +138,7 @@ function appendProducts(filteredproducts){
         $(".product-modal-body").append("<div class='card'><div class='card-body'><h5 class='card-title'> " + products[prod_id].name +  "</h5><br><img class='card-img-top' src='"+ products[prod_id].image +"'><br><p class='card-text'> <b>Märke:</b> " + products[prod_id].brand + "<br> <b>Modell:</b> " + products[prod_id].model + "<br> <b>Färg: </b>" + products[prod_id].color + "<br> <b>År: </b>" + products[prod_id].year + "<br> <b>Pris:</b> " + products[prod_id].price + "</p></div></div>");
 
     });
+    sideBar(products);
 }
    
 // return arr1;
@@ -172,9 +173,48 @@ function sideBar(products){
 
     var unique = c.filter((v, i, a) => a.indexOf(v) === i);
 
-
     for(var i = 0; i < unique.length; i++){
-    $("#brandArea").append("<input class='form-check-inpu from-check-inline' type='checkbox' value='' id='checkItem1'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  unique[i] +  " </span></label><br>");
+
+    $("#brandArea").append("<input class='form-check-inpu from-check-inline somename' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  unique[i] +  " </span></label><br>");
+  //onclick=" +filterBox(unique[i])+ "
+    
+    }
+
+  $('.somename').on("click" ,function (e) {
+    var checkBoxId = $(this).data('id');
+    //var checkBox = document.getElementById(checkBoxId);
+    //alert(checkBoxId);
+    if($(this).prop("checked") == true){
+        //alert(unique[checkBoxId]);
+        filterbrands.push(unique[checkBoxId]);
+        //alert(filterbrands[0]);
+    } else {
+        if(filterbrands.length == 1) {
+            filterbrands.length = 0;
+        } else {
+            filterbrands.splice(item,1);
+
+        }
+    }
+        $("#mainViewContainer").html($("#view-product").html())  
+        showProdInfo(filterQ);
+    
+  });
+
+
+    
+
+    
+    
+}
+function filterBox(){
+    //alert("h");
+    var checkBoxId = $(this).data('id');
+    alert(checkBoxId);
+    var checkBox = document.getElementById(checkBoxId);
+    alert("hitttt");
+    if(checkBox.checked == true) {
+        alert("hit");
 
     }
 }
