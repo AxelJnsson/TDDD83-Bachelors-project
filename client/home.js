@@ -1,6 +1,8 @@
 $(document).ready(function(){
     // Kod i detta block körs när dokumentet laddats klart.    
     $("#mainViewContainer").html($("#view-home").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html())
    
     filternewornot.push(0, 1);  
     var signedIn;
@@ -32,18 +34,24 @@ $(document).ready(function(){
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
-    $("#mainViewContainer").html($("#view-about").html())   
+    $("#mainViewContainer").html($("#view-about").html())  
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html()) 
     e.preventDefault();
   });
 
 
   $('#annonsButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-createAdd").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html())
      e.preventDefault();
    });
 
 function faqView() {
   $("#mainViewContainer").html($("#view-FAQ").html())
+  $("#sideBarContainer").html($("#empty").html())
+  $("#productViewContainer").html($("#empty").html())
   e.preventDefault();
 }  
 $('#contactButton').click(function (e) {          
@@ -51,7 +59,9 @@ $('#contactButton').click(function (e) {
   });
 
   function startshopp() {
-    $("#mainViewContainer").html($("#view-product").html())  
+    $("#mainViewContainer").html($("#view-product").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html())  
     //showProdInfo("allt", null);
     resetFilter();
     //filternewornot.push("Ny", "Begagnad");
@@ -61,7 +71,9 @@ $('#contactButton').click(function (e) {
   }
 
   $('#userButton').click(function (e) {   
-    $("#mainViewContainer").html($("#view-user").html()) 
+    $("#mainViewContainer").html($("#view-user").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html()) 
     displayUser();  
     getNewProducts();  
     e.preventDefault();
@@ -78,10 +90,13 @@ $('#contactButton').click(function (e) {
       //filternewornot.length = 0;
   }
 
-  $('#allInstrButton').click(function (e) {   
 
-    $("#mainViewContainer").html($("#view-product").html())  
-    $("#sideBarContainer").html($("#view-sidebar").html())  
+  $('#allInstrButton').click(function (e) {
+    $("#sideBarContainer").html($("#view-sidebar").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+
+
     //showProdInfo("allt", null);
     resetFilter();
     //filternewornot.push("Ny", "Begagnad");
@@ -91,8 +106,9 @@ $('#contactButton').click(function (e) {
 
   $('#guitarButton').click(function (e) {   
     $("#sideBarContainer").html($("#view-sidebar").html())  
-
-    $("#mainViewContainer").html($("#view-product").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    
     resetFilter();
     var defCategory = "gitarr";
     filtertypes.push(defCategory);
@@ -102,8 +118,8 @@ $('#contactButton').click(function (e) {
 
   $('#pianoButton').click(function (e) { 
     $("#sideBarContainer").html($("#view-sidebar").html())  
-
-    $("#mainViewContainer").html($("#view-product").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html()) 
     resetFilter();
     filtertypes.push("piano");
     showProdInfo(filterQ);
@@ -112,8 +128,8 @@ $('#contactButton').click(function (e) {
 
   $('#drumButton').click(function (e) {   
     $("#sideBarContainer").html($("#view-sidebar").html())  
-
-    $("#mainViewContainer").html($("#view-product").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
     resetFilter();
     filtertypes.push("trummor");
 
@@ -123,8 +139,8 @@ $('#contactButton').click(function (e) {
 
   $('#studioButton').click(function (e) {  
     $("#sideBarContainer").html($("#view-sidebar").html())  
- 
-    $("#mainViewContainer").html($("#view-product").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
     resetFilter();
     filtertypes.push("studio");
     showProdInfo(filterQ);
@@ -133,8 +149,8 @@ $('#contactButton').click(function (e) {
 
   $('#yamahaTestButton').click(function (e) {   
     $("#sideBarContainer").html($("#view-sidebar").html())  
-
-    $("#mainViewContainer").html($("#view-product").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
     resetFilter();
     var testcategory1 = "gitarr";
     var testcategory2 = "piano";
@@ -153,12 +169,16 @@ $('#contactButton').click(function (e) {
   });
 
 $('#homeButton').click(function (e) {
-  $("#mainViewContainer").html($("#view-home").html())  
+  $("#mainViewContainer").html($("#view-home").html()) 
+  $("#sideBarContainer").html($("#empty").html())
+  $("#productViewContainer").html($("#empty").html())
     e.preventDefault();
 });
 
 function showView(view){
   $("#mainViewContainer").html($(view).html())
+  $("#sideBarContainer").html($("#empty").html())
+  $("#productViewContainer").html($("#empty").html())
 }
 //testfunktion för filtrering
 function checkNeworOldStuff(checkid, query){
@@ -189,8 +209,9 @@ function checkNeworOldStuff(checkid, query){
     
   }
   //alert(filterQ[7][0] + filterQ[7][1])
-  $("#mainViewContainer").html($("#view-product").html())  
-
+  
+  $("#productViewContainer").html($("#empty").html())
+  $("#productViewContainer").html($("#view-product").html())
   showProdInfo(filterQ);
 }
 
