@@ -276,7 +276,7 @@ function sideBar(products){
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") == true){
         filtercolors.push(uniqueColors[checkBoxId]);
-        alert(filtercolors[0]);
+        //alert(filtercolors[0]);
     } else if ($(this).prop("checked") == false) {
         if(filtercolors.length == 1) {
             filtercolors.length = 0;
@@ -300,7 +300,7 @@ function sideBar(products){
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") == true){
         filteryears.push(uniqueYears[checkBoxId]);
-        alert(filteryears[0]);
+        //alert(filteryears[0]);
     } else if ($(this).prop("checked") == false) {
         if(filteryears.length == 1) {
             filteryears.length = 0;
@@ -321,17 +321,6 @@ function sideBar(products){
   });
     
     
-}
-function filterBox(){
-    //alert("h");
-    var checkBoxId = $(this).data('id');
-    alert(checkBoxId);
-    var checkBox = document.getElementById(checkBoxId);
-    alert("hitttt");
-    if(checkBox.checked == true) {
-        alert("hit");
-
-    }
 }
 
 $('#closeProductModal').on("click" ,function (e) {
