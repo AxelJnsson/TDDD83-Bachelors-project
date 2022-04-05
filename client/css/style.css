@@ -75,4 +75,12 @@
   margin-right: 5%;
 }
 
+#productDivInBaskedModal{
+  border: solid;
+}
 
+/* 
+.deleteProductFromCartButton{
+  height: 20px;
+  width: 20px;
+} */
