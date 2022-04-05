@@ -49,6 +49,12 @@ $('#aboutButton').click(function (e) {
      e.preventDefault();
    });
 
+    
+function openRegModal(){
+  $("#registerModal").modal('toggle');
+  e.preventDefault();
+}
+
 function faqView() {
   $("#mainViewContainer").html($("#view-FAQ").html())
   $("#sideBarContainer").html($("#empty").html())
