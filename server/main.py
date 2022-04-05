@@ -374,7 +374,6 @@ def productadd(product_id):
         cart_item = Cart_Item(product_id = product.product_id, session_id = z.id) #skapar en ny cart_item
         db.session.add(cart_item)
         db.session.commit()
-        
 
       items = Cart_Item.query.filter_by(session_id = z.id).all()
       sum = 0
