@@ -114,7 +114,7 @@ function filtertest2(arr, testingArrayFilters){
             newornots.indexOf(el.new_or_not) >= 0);
     //}
     
-    alert("Antal produkter: " + filteredstuff.length);
+    //alert("Antal produkter: " + filteredstuff.length);
     
     appendProducts(filteredstuff);
     //return filteredstuff;
@@ -137,13 +137,12 @@ function appendProducts(filteredproducts){
 
     $('.btnInfo').on("click" ,function (e) {
         var prod_id = $(this).data('id');
-  
         $(".product-modal-body").empty();
+        $("#productModalFooter").empty();
 
         $("#productModal").modal('toggle');
-        
         $(".product-modal-body").append("<div class='card'><div class='card-body'><h5 class='card-title'> " + products[prod_id].name +  "</h5><br><img class='card-img-top' src='"+ products[prod_id].image +"'><br><p class='card-text'> <b>Märke:</b> " + products[prod_id].brand + "<br> <b>Modell:</b> " + products[prod_id].model + "<br> <b>Färg: </b>" + products[prod_id].color + "<br> <b>År: </b>" + products[prod_id].year + "<br> <b>Pris:</b> " + products[prod_id].price + "</p></div></div>");
-
+        $("#productModalFooter").append('<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="addProductToCart(this.value)" value="'+products[prod_id].product_id+'" id="addProductToCartButton">Lägg i varukorgen</button>');
     });
     //sideBar(products);
 }
