@@ -62,18 +62,16 @@ function editUser3() {
 function displayUser() {
    
    var x = JSON.parse(sessionStorage.getItem('auth')).user.user_id; 
-    
+    displayHistory();
     $.ajax({
         headers: {
           "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
         url:'/user/' + x,
         type: 'GET',
         success: function(u) {
-          var admin;
-          //alert("test");
-          //alert(u[0].first_name);
-          var anv = u[0];
+          var admin; 
          
+         var anv = u[0] 
           if (anv.is_admin==0) {
             admin = "ej admin";
           } else {
@@ -111,7 +109,7 @@ function deleteUser() {
 }
 
 function displayHistory() {
-
+  $("#historyCol").append("<div class='col-md-6'><img src='https://bootdey.com/img/Content/user_3.jpg' class='media-object img-thumbnail' /></div>  <div class='col-md-11'> <div class='row'><div class='col-md-12'><div class='pull-right'><label class='label label-danger'>rejected</label></div><span><strong>Order name</strong></span> <span class='label label-info'>group name</span><br />Quantity : 2, cost: $323.13 <br /><a data-placement='top' class='btn btn-success btn-xs glyphicon glyphicon-ok' href='#' title='View'></a> <a data-placement='top' class='btn btn-danger btn-xs glyphicon glyphicon-trash' href='#' title='Danger'></a> <a data-placement='top' class='btn btn-info btn-xs glyphicon glyphicon-usd' href='#' title='Danger'></a></div><div class='col-md-12'>order made on: 05/31/2014 by <a href='#'>Jane Doe </a></div> <br></div>");
   
 }
 
