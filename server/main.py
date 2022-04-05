@@ -321,8 +321,10 @@ def users(user_id):
     item_list = []
     for x in temp_Item:
       item_list.append(x.serialize())
-
+   
+    
     return jsonify(temp.serialize(), temp_Session.serialize(), item_list)
+
   elif request.method == 'PUT':
     user = request.get_json()
     x = User.query.filter_by(user_id = user_id).first_or_404()

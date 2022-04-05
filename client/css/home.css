@@ -50,6 +50,9 @@ div.sticky {
   display: inline-block;
   margin: 0 auto;
 }
+.form-popup {
+  display: none;
+}
 
 .footer {
   position: absolute; 
@@ -121,7 +124,7 @@ h2 {
 }
 
 h1 {
-  color: white;
+  /*color: white; kommenterar bort den sålänge då visa texter ej syns */
 }
 
 
