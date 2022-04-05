@@ -132,14 +132,8 @@ function appendProducts(filteredproducts){
         }
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
 
-        if (products[i].new_or_not == 1) {
-            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "<br>Skick: </b>Ny</h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br><h4><b>Pris: </b>" + products[i].price + "kr</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
-        } else if (products[i].new_or_not == 0) {
-            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "<br>Skick: </b>Begagnad</h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br><h4><b>Pris: </b>" + products[i].price + "kr</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
-        }
+        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br>Skick: "+ products[i].new_or_not +" </h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b><h4>" + products[i].price + "</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
     }
-
-//<b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b>
 
     $('.btnInfo').on("click" ,function (e) {
         var prod_id = $(this).data('id');
@@ -288,7 +282,7 @@ function sideBar(products){
         if(filtercolors.length == 1) {
             filtercolors.length = 0;
         } else if (filtercolors.length > 1) {
-            alert("test");
+            //alert("test");
             for(item in filtercolors) {
                 if(filtercolors[item] == uniqueColors[checkBoxId]){
                   filtercolors.splice(item,1);
@@ -299,7 +293,6 @@ function sideBar(products){
     }
         $("#productViewContainer").html($("#empty").html())
         $("#productViewContainer").html($("#view-product").html())  
-        //alert(filterQ[3].length);
         showProdInfo(filterQ);
     
   });
@@ -313,7 +306,7 @@ function sideBar(products){
         if(filteryears.length == 1) {
             filteryears.length = 0;
         } else if (filteryears.length > 1) {
-            alert("test");
+            //alert("test");
             for(item in filteryears) {
                 if(filteryears[item] == uniqueYears[checkBoxId]){
                   filteryears.splice(item,1);
@@ -324,7 +317,6 @@ function sideBar(products){
     }
         $("#productViewContainer").html($("#empty").html())
         $("#productViewContainer").html($("#view-product").html())  
-        //alert(filterQ[3].length);
         showProdInfo(filterQ);
     
   });
