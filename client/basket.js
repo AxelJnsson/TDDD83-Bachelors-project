@@ -48,24 +48,24 @@ function addProductToCart(productToAdd){
       url:'/product/'+productToAdd+'/adding',
       type: 'POST',
       success: function(u) { 
-        alert("la till")         
+        alert("funkar")         
       },
-      error: function(){
-          alert("la inte till");
+      error: function(u){
+          alert("funkarej");
       }    
   });
-    $.ajax({        
-      headers: {
-        "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-      url:'/product/'+productToAdd+'/unadding',
-      type: 'POST',
-      success: function(u) { 
-        alert("tog bort")       
-      },
-      error: function(){
-          alert("tog inte bort");
-      }    
-  });
+  //   $.ajax({        
+  //     headers: {
+  //       "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+  //     url:'/product/'+productToAdd+'/unadding',
+  //     type: 'POST',
+  //     success: function(u) { 
+  //       alert("tog bort")       
+  //     },
+  //     error: function(){
+  //         alert("tog inte bort");
+  //     }    
+  // });
 }
 
   
