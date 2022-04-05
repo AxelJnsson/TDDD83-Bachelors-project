@@ -173,21 +173,24 @@ stripe.api_key = 'sk_test_51KiDHOFa9gwuZdKJw6ouVqm5m6mUYok8kEYg3BYtOH1kqnAFvH9Yi
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
-  session = stripe.checkout.Session.create(
-    line_items=[{
-      'price_data': {
-        'currency': 'SEK',
-        'product_data': {
-          'name': 'Total',
-         
+  if request.method == 'POST':
+    info = request.get_json()
+    price = info['price']
+    session = stripe.checkout.Session.create(
+      line_items=[{
+        'price_data': {
+          'currency': 'SEK',
+          'product_data': {
+            'name': 'GItarr',
+          
+          },
+          'unit_amount': price,
         },
-        'unit_amount': 112100,
-      },
-      'quantity': 1,
-    }],
-    mode='payment',
-    success_url='http://localhost:5000/',
-    cancel_url='http://localhost:5000/',
+        'quantity': 1,
+      }],
+      mode='payment',
+      success_url='http://localhost:5000/',
+      cancel_url='http://localhost:5000/',
 
   )
 

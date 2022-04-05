@@ -21,6 +21,53 @@ $('#shopFromBasketButton').click(function (e) {
   printBasketedProducts()
   });
 
+// $('#addProductToCart').click(function (e) {
+//   e.preventDefault();
+//   alert("hjej")
+//   });
+
+
+function addProductToCart(productToAdd){
+  alert(productToAdd)
+  //var temUserID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
+  //   $.ajax({
+  //     headers: {
+  //       "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},    
+  //     url:'/user/'+temUserID,
+  //     type: 'GET',
+  //     success: function(u) { 
+  //       alert(u)         
+  //     },
+  //     error: function(){
+  //         alert("la inte till");
+  //     }    
+  // });
+    $.ajax({    
+      headers: {
+        "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},    
+      url:'/product/'+productToAdd+'/adding',
+      type: 'POST',
+      success: function(u) { 
+        alert("funkar")         
+      },
+      error: function(u){
+          alert("funkarej");
+      }    
+  });
+  //   $.ajax({        
+  //     headers: {
+  //       "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+  //     url:'/product/'+productToAdd+'/unadding',
+  //     type: 'POST',
+  //     success: function(u) { 
+  //       alert("tog bort")       
+  //     },
+  //     error: function(){
+  //         alert("tog inte bort");
+  //     }    
+  // });
+}
+
   
 function printBasketedProducts(){
   var scrollableProductDiv = document.getElementById('scrollableItemsInBasket')
@@ -38,4 +85,44 @@ function removeFromRegister(id){
   allabarn.remove();
   var breakBetween = document.getElementById("breakBetweenProducts"+id[id.length-1])
   breakBetween.remove();
+}
+
+function stripeTestFunction(){
+  $.ajax ({
+    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/create-checkout-session',
+    type: 'POST',
+    datatype: 'JSON',
+    contentType: "application/json",
+    data: JSON.stringify({
+      "price":123123}),
+    success: function(data) {    
+      return stripe.redirectToCheckout({sessionId: data.sessionId})
+    }
+  }) 
+
+
+
+
+
+  // productPrice=100
+  //   fetch("/create-checkout-session", {
+  //     method: 'POST',
+	//     body: JSON.stringify({
+  //       price: productPrice,
+  //     }), // The data
+	//     headers: {
+	// 	'Content-type': '' // The type of data you're sending
+  //     }
+  //   })
+  //   .then((result) => { return result.json(); })
+  //   .then((data) => {
+  //     console.log(data);
+  //     // Redirect to Stripe Checkout
+  //     return stripe.redirectToCheckout({sessionId: data.sessionId})
+  //   })
+  //   .then((res) => {
+  //     console.log(res);
+  //   });
+  //   console.log("allabarn");
 }
