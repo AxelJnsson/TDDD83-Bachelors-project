@@ -8,16 +8,16 @@ fat {
 }
 
 #orderHistory{
-  background-color: rgb(242, 235, 235);
-  float:left;
-
   width: auto;
-  height: 500px;
-  border-style:double;
+  min-height: 500px;
+  max-height: 500px;  
   border-radius: 1px;
-  border-color: rgb(223, 217, 217);
   overflow: scroll;
 }
+ #order12 {
+   display: none;
+ }
+ 
 
   
   /* IE11 hide native button (thanks Matt!) */
@@ -44,10 +44,7 @@ fat {
     position: absolute;
     pointer-events: none;
   }
-  .form-control {
-    
-  }
-
+  
   .labels {
     padding:5px
   }
