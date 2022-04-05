@@ -73,7 +73,7 @@ function printBasketedProducts(){
   var scrollableProductDiv = document.getElementById('scrollableItemsInBasket')
   for (let i=0; i < 6; i++){
     let id = "productInScrollableAreaDiv"+i;
-    scrollableProductDiv.innerHTML += '<div id="productInScrollableAreaDiv'+i+'"> Produkt '+i+' <button id="removeProductFromRegister'+i+'" value="'+id+'" onclick="removeFromRegister(this.value)"> <img src="soptunnapixil.png" width="25" height="30"> </button> </div> <div id="breakBetweenProducts'+i+'"> <br> </div>'
+    scrollableProductDiv.innerHTML += '<div id="productInScrollableAreaDiv'+i+'"> Produkt '+i+' <button id="removeProductFromRegister'+i+'" value="'+id+'" onclick="removeFromRegister(this.value)"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button> </div> <div id="breakBetweenProducts'+i+'"> <br> </div>'
   }
     var div = document.getElementById('totalsumLine');
     div.innerHTML += "Total: " + "1023kr"

@@ -316,14 +316,13 @@ def oldproducts():
 def users(user_id):
   if request.method == 'GET':
     temp = User.query.filter_by(user_id = user_id).first_or_404()
-   # temp_Session = Shopping_Session.query.filter_by(user_id = user_id).first_or_404()
-   # temp_Item = Cart_Item.query.filter_by(session_id = temp_Session.id)
-    #item_list = []
-    #for x in temp_Item:
-     # item_list.append(x.serialize())
+    temp_Session = Shopping_Session.query.filter_by(user_id = user_id).first_or_404()
+    temp_Item = Cart_Item.query.filter_by(session_id = temp_Session.id)
+    item_list = []
+    for x in temp_Item:
+      item_list.append(x.serialize())
 
-    return jsonify(temp.serialize())
-#, temp_Session.serialize(), item_list
+    return jsonify(temp.serialize(), temp_Session.serialize(), item_list)
   elif request.method == 'PUT':
     user = request.get_json()
     x = User.query.filter_by(user_id = user_id).first_or_404()
