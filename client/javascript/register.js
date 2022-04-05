@@ -3,6 +3,12 @@ $('#registerButton').click(function (e) {
     $("#registerModal").modal('toggle');
   });
 
+ 
+function openRegModal(){
+  $("#registerModal").modal('toggle');
+  e.preventDefault();
+}
+
 $('#closeRegisterButton').click(function (e) {
     e.preventDefault();
     $("#registerModal").modal('hide');
