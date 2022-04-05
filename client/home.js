@@ -209,10 +209,9 @@ function checkNeworOldStuff(checkid, query){
     
   }
   //alert(filterQ[7][0] + filterQ[7][1])
-  $("#mainViewContainer").html($("#view-product").html()) 
-  $("#sideBarContainer").html($("#empty").html())
-  $("#productViewContainer").html($("#empty").html()) 
-
+  
+  $("#productViewContainer").html($("#empty").html())
+  $("#productViewContainer").html($("#view-product").html())
   showProdInfo(filterQ);
 }
 
