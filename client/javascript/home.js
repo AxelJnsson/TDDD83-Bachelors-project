@@ -200,6 +200,7 @@ $('#contactButton').click(function (e) {
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
    }
 
 $('#homeButton').click(function (e) {
