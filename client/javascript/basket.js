@@ -18,14 +18,14 @@ $('#xButtonBasket').click(function (e) {
 
 
 function addProductToCart(productToAdd){
-  alert(productToAdd)
+  // alert(productToAdd)
     $.ajax({    
       headers: {
         "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},    
       url:'/product/'+productToAdd+'/adding',
       type: 'POST',
       success: function(u) { 
-          alert("funkar")
+          // alert("funkar")
           $.ajax({    
             url:'/product/'+ productToAdd,
             type: 'GET',
@@ -91,10 +91,21 @@ function printEmptyBasketModal(){
 }
 
 function printProductInBasketModal(product){
-  $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr </div> <button class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
+  $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr </div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
 }
 
 function deleteProductFromCart(productID){
+  $.ajax ({
+    url:'/product/'+productID,
+    type: 'GET',
+    datatype: 'JSON',
+    contentType: "application/json",
+    success: function(product) {
+      updateprice((parseInt(product.price))*-1);
+      showPriceInModal(sessionStorage.getItem('price'));
+    }
+  });
+
   $.ajax ({
     headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
     url:'/product/'+productID+'/unadding',
@@ -103,7 +114,7 @@ function deleteProductFromCart(productID){
     contentType: "application/json",
 
     success: function(product) {
-      alert("tog bort")
+      // alert("tog bort")
       getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
     },
     error: function(u){
@@ -114,7 +125,7 @@ function deleteProductFromCart(productID){
 
 function showPriceInModal(currentTotal){
   $('#basketModalPriceDiv').empty();
-  $('#basketModalPriceDiv').append('Din nuvarande Total är: '+ currentTotal+'.');
+  $('#basketModalPriceDiv').append('Din nuvarande Total är: '+ currentTotal+'kr');
 
 
 }
@@ -132,6 +143,7 @@ $('#shopFromBasketButton').click(function (e) {
   $("#productViewContainer").html($("#empty").html());
   $("#mainViewContainer").html($("#view-cashregister").html());
   printBasketedProducts(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
+  showPriceInRegister(sessionStorage.getItem('price'));
   });
 
 function printBasketedProducts(userID){
@@ -192,7 +204,7 @@ function deleteProductFromRegister(productID){
     contentType: "application/json",
 
     success: function(product) {
-      alert("tog bort")
+      // alert("tog bort")
       printBasketedProducts(JSON.parse(sessionStorage.getItem('auth')).user.user_id)
     },
     error: function(u){
@@ -202,8 +214,16 @@ function deleteProductFromRegister(productID){
 }
 
 function updateprice(price){
-  alert("uppdaterade priset med "+price+"kr")
+  // alert("uppdaterade priset med "+price+"kr")
   let oldPrice = parseInt(sessionStorage.getItem('price'));
   let newPrice = oldPrice + price;
   sessionStorage.setItem('price', newPrice);           
+}
+
+function showPriceInRegister(currentTotal){
+  $('#totalsumLine').empty();
+  $('#totalsumLine').append("Total: " + currentTotal + ".");
+
+
+
 }
