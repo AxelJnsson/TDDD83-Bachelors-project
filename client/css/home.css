@@ -2,6 +2,11 @@ div {
     display: block;
 }
 
+#magnifyingGlass {
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
 .card button {
   border: none;
   outline: 0;

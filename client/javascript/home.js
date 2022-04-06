@@ -262,4 +262,33 @@ function regOrAnnons() {
 }
 
 
+  function getSearchProducts() {
+    $.ajax({        
+      url:'/product',
+      type: 'GET',
+      success: function(u) {  
+          alert(u[1][1]);        
+          return u;
+      },
+      error: function(){
+          alert("error");
+      }    
+    });
+  }
+  
+  
+  function search() {
+    alert("hej");
+    x = getSearchProducts();
+    alert("hej3");
+    alert(x[1].name);
+
+    const instance = new mdb.Datatable(document.getElementById('datatable'), productList)
+
+    instance.input-group(e.target.value);
+
+  }
+
+
+
 
