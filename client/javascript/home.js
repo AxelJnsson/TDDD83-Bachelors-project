@@ -18,7 +18,7 @@ $(document).ready(function(){
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
-    sessionStorage.setItem('price', parseInt(0));           
+    sessionStorage.setItem('price', parseInt(0));    
   })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
