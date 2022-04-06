@@ -175,7 +175,7 @@ stripe.api_key = 'sk_test_51KiDHOFa9gwuZdKJw6ouVqm5m6mUYok8kEYg3BYtOH1kqnAFvH9Yi
 def create_checkout_session():
   if request.method == 'POST':
     info = request.get_json()
-    price = info['price']
+    total = request.get_json()['price']
     session = stripe.checkout.Session.create(
       line_items=[{
         'price_data': {
@@ -184,7 +184,7 @@ def create_checkout_session():
             'name': 'GItarr',
           
           },
-          'unit_amount': price,
+          'unit_amount': total,
         },
         'quantity': 1,
       }],

@@ -67,8 +67,6 @@ function getProductsToPrintInBasket(userID){
 }
 
 function showInBasketModal(products, hasProducts){
-
-
   if (hasProducts){
     for (let i = 0; i <products.length; i++)
     $.ajax ({
@@ -77,7 +75,7 @@ function showInBasketModal(products, hasProducts){
       datatype: 'JSON',
       contentType: "application/json",
       success: function(product) {
-        printProductInBasketModal(product);
+        printProductInBasketModal(product,products[i].quantity);
       }
     });
   } else{
@@ -90,8 +88,8 @@ function printEmptyBasketModal(){
   $('#bodyBasketModal').append("Varukorgen är tom!")
 }
 
-function printProductInBasketModal(product){
-  $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr </div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
+function printProductInBasketModal(product, quantity){
+  $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+'</div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
 }
 
 function deleteProductFromCart(productID){
@@ -188,7 +186,7 @@ function stripeTestFunction(){
       datatype: 'JSON',
       contentType: "application/json",
       data: JSON.stringify({
-      "price":123123}),
+      "price":sessionStorage.getItem('price')}),
       success: function(data) {    
       return stripe.redirectToCheckout({sessionId: data.sessionId})
       }
@@ -222,8 +220,5 @@ function updateprice(price){
 
 function showPriceInRegister(currentTotal){
   $('#totalsumLine').empty();
-  $('#totalsumLine').append("Total: " + currentTotal + ".");
-
-
-
+  $('#totalsumLine').append("Total: " + currentTotal + "kr");
 }
