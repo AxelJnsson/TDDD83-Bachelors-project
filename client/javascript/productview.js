@@ -149,6 +149,7 @@ function sideBar(products){
     const models = [];
     const colors = [];
     const years = [];
+    const priceintervals = [];
     const all = [];
 
     for(var j = 0; j < prod.length; j++){
@@ -156,6 +157,11 @@ function sideBar(products){
         models.push(prod[j].model);
         colors.push(prod[j].color);
         years.push(prod[j].year);
+
+        // if(prod[j].price < 10000 && prod[j].price > 5000){
+            
+        // }
+
     }
 
     var uniqueBrands = brands.filter((v, i, a) => a.indexOf(v) === i);
@@ -163,10 +169,10 @@ function sideBar(products){
     var uniqueColors = colors.filter((v, i, a) => a.indexOf(v) === i)
     var uniqueYears = years.filter((v, i, a) => a.indexOf(v) === i);
 
-    all.push(uniqueBrands);
-    all.push(uniqueModels);
-    all.push(uniqueColors);
-    all.push(uniqueYears);
+    // all.push(uniqueBrands);
+    // all.push(uniqueModels);
+    // all.push(uniqueColors);
+    // all.push(uniqueYears);
 
     
 
