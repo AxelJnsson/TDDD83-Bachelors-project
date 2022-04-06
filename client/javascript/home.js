@@ -275,12 +275,38 @@ function regOrAnnons() {
     });
   }
   
-  function search(x) {
-    alert(x[1].name);
+  function search(productList) {
 
-    const instance = new mdb.Datatable(document.getElementById('datatable'), productList)
+    var productList2 = [];
 
-    instance.input-group(e.target.value);
+    /*for (let i = 0; i < x.length; i++) {
+      productList2[0] = x[i].brand;
+      productList2[1] = x[i].model;
+      productList2[2] = x[i].name;
+      productList2[3] = x[i].color;
+      productList2[4] = x[i].type;
+
+      productList[i] = productList2;
+    }*/
+
+    var input = document.getElementById('datatable-search-input');
+    inputWord = input.value.toUpperCase();
+
+  // Loop through all list items, and hide those who don't match the search query
+    for (a = 0; a < productList.length; a++) {
+      productList2[0] = x[a].brand;
+      productList2[1] = x[a].model;
+      productList2[2] = x[a].name;
+      productList2[3] = x[a].color;
+      productList2[4] = x[a].type;
+      for (b = 0; b < 4; b++) {
+        word = productList2[b];    
+        //txtValue = word.textContent || word.innerText;
+        if (word.toUpperCase().indexOf(inputWord) > -1) {
+          alert("din sökning machar ett instrument");
+        }
+      }
+    }
 
   }
 
