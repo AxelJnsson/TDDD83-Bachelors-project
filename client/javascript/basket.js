@@ -1,9 +1,9 @@
 //BASKET
-
 $('#basketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('toggle');
     getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
+    showPriceInModal(sessionStorage.getItem('price'));
   });
 
 $('#closeBasketButton').click(function (e) {
@@ -25,7 +25,17 @@ function addProductToCart(productToAdd){
       url:'/product/'+productToAdd+'/adding',
       type: 'POST',
       success: function(u) { 
-        alert("funkar")         
+          alert("funkar")
+          $.ajax({    
+            url:'/product/'+ productToAdd,
+            type: 'GET',
+            success: function(product) { 
+              updateprice(parseInt(product.price));
+            },
+            error: function(u){
+                alert("uppdaterade inte priset. ägd.");
+            }    
+        });
       },
       error: function(u){
           alert("funkarej");
@@ -42,15 +52,25 @@ function getProductsToPrintInBasket(userID){
     contentType: "application/json",
     success: function(data) {
       arrayOfProducts = []
+      let hasProducts = false;
       data[2].forEach(element =>arrayOfProducts.push(element))
-      showInBasketModal(arrayOfProducts)
+      if (arrayOfProducts.length < 1){
+        showInBasketModal(arrayOfProducts, hasProducts)
+
+      }else{
+
+        showInBasketModal(arrayOfProducts,hasProducts=true);
+
+      }
     }
   }); 
 }
 
-function showInBasketModal(products){
+function showInBasketModal(products, hasProducts){
 
-  for (let i = 0; i <products.length; i++)
+
+  if (hasProducts){
+    for (let i = 0; i <products.length; i++)
     $.ajax ({
       url:'/product/'+products[i].product_id,
       type: 'GET',
@@ -60,6 +80,14 @@ function showInBasketModal(products){
         printProductInBasketModal(product);
       }
     });
+  } else{
+    printEmptyBasketModal()
+  }
+}
+
+function printEmptyBasketModal(){
+  $('#bodyBasketModal').empty();
+  $('#bodyBasketModal').append("Varukorgen är tom!")
 }
 
 function printProductInBasketModal(product){
@@ -84,7 +112,12 @@ function deleteProductFromCart(productID){
   });
 }
 
+function showPriceInModal(currentTotal){
+  $('#basketModalPriceDiv').empty();
+  $('#basketModalPriceDiv').append('Din nuvarande Total är: '+ currentTotal+'.');
 
+
+}
 
 
 
@@ -95,11 +128,14 @@ function deleteProductFromCart(productID){
 $('#shopFromBasketButton').click(function (e) {
   e.preventDefault();
   $("#basketModal").modal('hide');
+  $("#sideBarContainer").html($("#empty").html());
+  $("#productViewContainer").html($("#empty").html());
   $("#mainViewContainer").html($("#view-cashregister").html());
-  printBasketedProducts(JSON.parse(sessionStorage.getItem('auth')).user.user_id)
+  printBasketedProducts(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
   });
 
 function printBasketedProducts(userID){
+  $('#scrollableItemsInBasket').empty();
   $.ajax ({
     url:'/user/'+userID,
     type: 'GET',
@@ -129,7 +165,7 @@ function showInRegister(products){
 }
 
 function printProductInBasketRegister(product){
-  $('#scrollableItemsInBasket').append("asdasdasdas");
+  $('#scrollableItemsInBasket').append('<div id="productDivInRegister">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr </div> <button class="deleteProductFromRegisterButton" onClick="deleteProductFromRegister(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
 }
 
 function stripeTestFunction(){
@@ -145,4 +181,29 @@ function stripeTestFunction(){
       return stripe.redirectToCheckout({sessionId: data.sessionId})
       }
   }); 
+}
+
+function deleteProductFromRegister(productID){
+  $.ajax ({
+    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/product/'+productID+'/unadding',
+    type: 'POST',
+    datatype: 'JSON',
+    contentType: "application/json",
+
+    success: function(product) {
+      alert("tog bort")
+      printBasketedProducts(JSON.parse(sessionStorage.getItem('auth')).user.user_id)
+    },
+    error: function(u){
+      alert("tog inte bort fk u");
+    } 
+  });
+}
+
+function updateprice(price){
+  alert("uppdaterade priset med "+price+"kr")
+  let oldPrice = parseInt(sessionStorage.getItem('price'));
+  let newPrice = oldPrice + price;
+  sessionStorage.setItem('price', newPrice);           
 }
