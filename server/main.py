@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 from email.policy import default
 from faulthandler import dump_traceback_later
 #from msilib import Table
@@ -21,6 +22,8 @@ from sqlalchemy import Column, Integer, table
 from sqlalchemy import engine_from_config
 import stripe
 import os
+import cv2
+from PIL import Image
 
 #stripe_keys = {
  #   "secret_key": os.environ["STRIPE_SECRET_KEY"],
@@ -175,7 +178,8 @@ stripe.api_key = 'sk_test_51KiDHOFa9gwuZdKJw6ouVqm5m6mUYok8kEYg3BYtOH1kqnAFvH9Yi
 def create_checkout_session():
   if request.method == 'POST':
     info = request.get_json()
-    price = info['price']
+    print("haksjdnaksjdnjkasndkjnaskjdnkasndnaksjndjknaskjndkjasndkjnaskjndkanskdnajksndknjas")
+    total = info["price"]
     session = stripe.checkout.Session.create(
       line_items=[{
         'price_data': {
@@ -184,7 +188,7 @@ def create_checkout_session():
             'name': 'GItarr',
           
           },
-          'unit_amount': price,
+          'unit_amount': total,
         },
         'quantity': 1,
       }],
@@ -194,7 +198,7 @@ def create_checkout_session():
 
   )
 
-  return redirect(session.url, code=303)
+  return session.url
   
 #Route for login-method
 # Vet inte om for loopen i denna metod är optimal, känns långsamt att loopa igenom alla användare
@@ -284,6 +288,16 @@ def products():
 
   return "401"
 
+  #Route för att lägga till bilder i filsystem
+@app.route('/saveImg', methods = ['POST'])
+def saveImg():
+  if request.method == 'POST':
+    img = request.files.get('file')
+    img = img.save('savedimage.jpg')
+    #cv2.imwrite('savedimage.jpg', img)    
+   
+  return "200"
+
 #Route for getting only new products
 @app.route('/newproduct', methods = ['GET'] )
 def newproducts():
@@ -321,8 +335,10 @@ def users(user_id):
     item_list = []
     for x in temp_Item:
       item_list.append(x.serialize())
-
+   
+    
     return jsonify(temp.serialize(), temp_Session.serialize(), item_list)
+
   elif request.method == 'PUT':
     user = request.get_json()
     x = User.query.filter_by(user_id = user_id).first_or_404()

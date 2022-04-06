@@ -6,6 +6,19 @@ fat {
   font-weight: bold;
 
 }
+
+#orderHistory{
+  width: auto;
+  min-height: 500px;
+  max-height: 500px;  
+  border-radius: 1px;
+  overflow: scroll;
+}
+ #order12 {
+   display: none;
+ }
+ 
+
   
   /* IE11 hide native button (thanks Matt!) */
   select::-ms-expand {
@@ -31,10 +44,7 @@ fat {
     position: absolute;
     pointer-events: none;
   }
-  .form-control {
-    
-  }
-
+  
   .labels {
     padding:5px
   }

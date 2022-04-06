@@ -1,25 +1,3 @@
-//funkar inte än att hämta in klasser från productclasses.js så lägger den här så länge 
-/* 
-class Product {
-    constructor(id, category, brand, model, name, price, color, year, condition, image, otherinfo){
-        this.id = id;
-        this.category = category;
-        this.brand = brand;
-        this.model = model;
-        this.name = name;
-        this.price = price;
-        this.color = color;
-        this.year = year;
-        this.condition = condition;
-        this.image = image;
-        this.otherinfo = otherinfo;     
-
-    }
-}
-*/
-//testfunktion med hårdkodade testprodukter (att fungera som "databas" så länge)
-//function createProducts(filterQueries){
-
 function createProducts(filteringByArrayTest){ 
     $.ajax({        
         url:'/product',
@@ -27,7 +5,6 @@ function createProducts(filteringByArrayTest){
         success: function(u) {          
             var allinstruments = u;
             //getInstruments(allinstruments);
-            //sideBar(allinstruments); 
             filtertest2(allinstruments, filteringByArrayTest);
         },
         error: function(){
@@ -36,28 +13,7 @@ function createProducts(filteringByArrayTest){
     });
 }
 
-function createCategoriesForSidebar(){ 
-    $.ajax({        
-        url:'/product',
-        type: 'GET',
-        success: function(u) {          
-            var allinstruments = u;
-            //getInstruments(allinstruments);
-            sideBar(allinstruments); 
-            //filtertest2(allinstruments, filteringByArrayTest);
-        },
-        error: function(){
-            alert("fel");
-        }    
-    });
-}
 
-
-function getInstruments(allinstruments){
-    var arr = allinstruments;
-    alert(arr[0].name);
-    return arr;
-}
 
 //riktig filtrering
 function filtertest2(arr, testingArrayFilters){
@@ -117,11 +73,13 @@ function filtertest2(arr, testingArrayFilters){
     //alert("Antal produkter: " + filteredstuff.length);
     
     appendProducts(filteredstuff);
+    sideBar(filteredstuff); 
     //return filteredstuff;
 }
 
 function appendProducts(filteredproducts){
-
+    $("#productViewContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#view-product").html())  
     var products = filteredproducts;
     let j = 0;
     for (let i=0; i < products.length; i++) {
@@ -132,12 +90,16 @@ function appendProducts(filteredproducts){
         }
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
 
-        if (products[i].new_or_not == 0) {
-            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Begagnad</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
-        } else if (products[i].new_or_not == 1) {
-            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Ny</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
+        var condition;
+
+        if(products[i].new_or_not == 0) {
+            condition = "Begagnad";
+        } else {
+            condition = "Ny"
         }
-}
+
+        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br>Skick: "+ condition +" </h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b><h4>" + products[i].price + "</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
+    }
 
     $('.btnInfo').on("click" ,function (e) {
         var prod_id = $(this).data('id');
@@ -174,8 +136,13 @@ function showProdInfo(filterQueries) {
 
 }
 
+var brandClicked = false;
+var modelClicked = false;
+var colorClicked = false;
+var yearClicked = false;
+
 function sideBar(products){
-    $("#brandArea").empty();
+
     let prod = products;
 
     const brands = [];
@@ -201,6 +168,8 @@ function sideBar(products){
     all.push(uniqueColors);
     all.push(uniqueYears);
 
+    
+
     //alert(all.length);
 
     // for (var i = 0; i < all.length ; i++) {
@@ -213,29 +182,49 @@ function sideBar(products){
     //     }
     // }
 
-    for(var j = 0; j < uniqueBrands.length; j++){
-        $("#brandArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueBrands[j] +  " </span></label></li>");           
+    if(brandClicked == false) {
+        $("#brandArea").empty();
+        for(var j = 0; j < uniqueBrands.length; j++){
+            $("#brandArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueBrands[j] +  " </span></label></li>");           
+        }
     }
 
-    for(var i = 0 ; i < uniqueModels.length; i++) {
-        $("#modelArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somemodel' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueModels[i] +  " </span></label></li>");
+    if(modelClicked == false){
+        $("#modelArea").empty();
+        for(var i = 0 ; i < uniqueModels.length; i++) {
+            $("#modelArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somemodel' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueModels[i] +  " </span></label></li>");
+        }
     }
 
-    for(var i = 0 ; i < uniqueColors.length; i++) {
-        $("#colorArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somecolor' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueColors[i] +  " </span></label></li>");
+    if(colorClicked == false){
+        $("#colorArea").empty();
+        for(var i = 0 ; i < uniqueColors.length; i++) {
+            $("#colorArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somecolor' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueColors[i] +  " </span></label></li>");
+        }
     }
 
-    for(var i = 0 ; i < uniqueYears.length; i++) {
-        $("#yearArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someyear' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueYears[i] +  " </span></label></li>");
+    if(yearClicked == false) {
+        $("#yearArea").empty();
+        for(var i = 0 ; i < uniqueYears.length; i++) {
+            $("#yearArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someyear' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueYears[i] +  " </span></label></li>");
+        }
     }
 
   $('.somebrand').on("click" ,function (e) {
+    e.stopImmediatePropagation();
     var checkBoxId = $(this).data('id');
-    if($(this).prop("checked") == true){
+    if($(this).prop("checked") === true){
         filterbrands.push(uniqueBrands[checkBoxId]);
-    } else if ($(this).prop("checked") == false) {
+        //alert(filterbrands.length);
+        brandClicked = true;
+        //alert(brandClicked);
+
+    } else if ($(this).prop("checked") === false) {
         if(filterbrands.length == 1) {
+            //alert(filterbrands.length);
+            brandClicked = false;
             filterbrands.length = 0;
+            //alert(brandClicked);
         } else if (filterbrands.length > 1) {
             //alert("test");
             for(item in filterbrands) {
@@ -253,12 +242,16 @@ function sideBar(products){
   });
 
   $('.somemodel').on("click" ,function (e) {
+    e.stopImmediatePropagation();
+
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") == true){
         filtermodels.push(uniqueModels[checkBoxId]);
+        modelClicked = true;
     } else if ($(this).prop("checked") == false) {
         if(filtermodels.length == 1) {
             filtermodels.length = 0;
+            modelClicked = false;
         } else if (filtermodels.length > 1) {
             //alert("test");
             for(item in filtermodels) {
@@ -277,13 +270,17 @@ function sideBar(products){
   });
 
   $('.somecolor').on("click" ,function (e) {
+    e.stopImmediatePropagation();
+
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") == true){
         filtercolors.push(uniqueColors[checkBoxId]);
-        alert(filtercolors[0]);
+        colorClicked = true;
+        //alert(filtercolors[0]);
     } else if ($(this).prop("checked") == false) {
         if(filtercolors.length == 1) {
             filtercolors.length = 0;
+            colorClicked = false;
         } else if (filtercolors.length > 1) {
             //alert("test");
             for(item in filtercolors) {
@@ -293,6 +290,7 @@ function sideBar(products){
               }
 
         }
+        
     }
         $("#productViewContainer").html($("#empty").html())
         $("#productViewContainer").html($("#view-product").html())  
@@ -301,13 +299,17 @@ function sideBar(products){
   });
     
   $('.someyear').on("click" ,function (e) {
+    e.stopImmediatePropagation();
+
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") == true){
         filteryears.push(uniqueYears[checkBoxId]);
-        alert(filteryears[0]);
+        yearClicked = true;
+        //alert(filteryears[0]);
     } else if ($(this).prop("checked") == false) {
         if(filteryears.length == 1) {
             filteryears.length = 0;
+            yearClicked = false;
         } else if (filteryears.length > 1) {
             //alert("test");
             for(item in filteryears) {
@@ -317,6 +319,7 @@ function sideBar(products){
               }
 
         }
+        
     }
         $("#productViewContainer").html($("#empty").html())
         $("#productViewContainer").html($("#view-product").html())  
@@ -325,17 +328,6 @@ function sideBar(products){
   });
     
     
-}
-function filterBox(){
-    //alert("h");
-    var checkBoxId = $(this).data('id');
-    alert(checkBoxId);
-    var checkBox = document.getElementById(checkBoxId);
-    alert("hitttt");
-    if(checkBox.checked == true) {
-        alert("hit");
-
-    }
 }
 
 $('#closeProductModal').on("click" ,function (e) {

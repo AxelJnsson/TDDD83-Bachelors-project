@@ -11,6 +11,7 @@
   <meta http-equiv="Expires" content="0" />
 
   <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
@@ -42,10 +43,30 @@
     <a class="nav-link" href="#">
       <img src="/images/logga.png" width="100" height="100" id="homeButton">
     </a>
-    <div class="form-group">
-      <input type="search" class="form-control my-2" id="searchBar" aria-describedby="nameHelp" placeholder="Sök">
+    <!-- <div>
+      <div class="input-group">
+        <div class="form-outline">
+          <input  type="search" id="form1" class="form-control" placeholder="Search.." id="datatable-search-input" onkeyup="getSearchProducts()" />
+        </div>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div> -->
+ 
+    <div>
+      <div class="input-group">
+        <div class="form-outline">
+          <input type="search" class="form-control" placeholder="Search.." id="datatable-search-input" onkeyup="getSearchProducts()">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="getSearchProducts()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
     </div>
-    <i class="fa-solid fa-magnifying-glass"></i>
+    
+    <!-- <i class="fa-solid fa-magnifying-glass" id="magnifyingGlass" ></i> -->
+    
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
@@ -111,14 +132,16 @@
           <a class="nav-link" href="#" id="studioButton">Studioutrustning</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="yamahaTestButton">Testknapp för filtrering (ska tas bort)</a>
+          <a class="nav-link" href="#" id="alphornButton">Alphorn</a>
         </li>
       </ul>
     </div>
 
   </nav>
 
-  <script id="view-about" type="text/html">
+<script id="view-about" type="text/html">
+  <pre class="tab"></pre>
+    <pre class="tab"></pre>
     <div class="center"  id="about">  
       <h1>Välkommen till ToneHub!</h1>
       <p> Our vision is to simplify consumer’s online shopping of musical instruments and audio equipment. The goal
@@ -129,15 +152,10 @@
     <pre class="tab"></pre>
     <pre class="tab"></pre>
 
-    <h2 style="text-align:center" id = titleAbout >Vilka är vi?</h2>
-    <h2></h2>
-    <pre class="tab"></pre>
-    <pre class="tab"></pre>
-
-<div class="row">
+<!-- <div class="row">
   <div class="column">
     <div class="card">
-      <img src="/images/carlbildt.png" style="width:100%">
+      <img src="/images/carlbildt.png" id = image style="width:100%">
       <div class="container">
         <h2>Fredrik</h2>
         <p class="title">CEO & Founder</p>
@@ -146,82 +164,90 @@
   </div>
   <div class="column">
     <div class="card">
-      <img src="/images/carlbildt.png"  style="width:100%">
+      <img src="/images/carlbildt.png" id = image style="width:100%">
       <div class="container">
         <h2>Fredrik</h2>
         <p class="title">CEO & Founder</p>
       </div>
     </div>
   </div> <div class="column">
-    <div class="card">
-      <img src="/images/carlbildt.png"  style="width:100%">
-      <div class="container">
-        <h2>Fredrik</h2>
-        <p class="title">CEO & Founder</p>
-      </div>
-    </div>
-  </div> 
-  
-  <div class="column">
-    <div class="card">
-      <img src="/images/carlbildt.png"  style="width:100%">
-      <div class="container">
-        <h2>Fredrik</h2>
-        <p class="title">CEO & Founder</p>
-      </div>
-    </div>
-  </div> <div class="column">
-    <div class="card">
-      <img src="/images/carlbildt.png"  style="width:100%">
-      <div class="container">
-        <h2>Fredrik</h2>
-        <p class="title">CEO & Founder</p>
-      </div>
-    </div>
-  </div> <div class="column">
-    <div class="card">
-      <img src="/images/carlbildt.png"  style="width:100%">
-      <div class="container">
-        <h2>Fredrik</h2>
-        <p class="title">CEO & Founder</p>
-      </div>
-    </div>
-  </div> 
+ 
+</div> -->
 
-  <div class="column">
-    <div class="card">
-      <img src="/images/carlbildt.png"  style="width:100%">
-      <div class="container">
-        <h2>Fredrik</h2>
-        <p class="title">CEO & Founder</p>
-      </div>
+<div class="wrapper">
+  <h2>Vårt Team</h2>
+  <div class="team">
+
+    <div class="unit">
+      <img src="/images/carlbildt.png" alt="">
+      <p>Anna Petersson</p>
+      <p>Arkitektur</p>
+
     </div>
-  </div> <div class="column">
-    <div class="card">
-      <img src="/images/carlbildt.png"  style="width:100%">
-      <div class="container">
-        <h2>Fredrik</h2>
-        <p class="title">CEO & Founder</p>
-      </div>
+    <div class="unit">
+      <img src="/images/carlbildt.png" alt="">
+      <p>Axel Jönsson</p>
+      <p>Lokalbokning</p>
+
     </div>
-  </div>
-  <div class="column">
-    <div class="card">
-      <img src="/images/carlbildt.png"  style="width:100%">
-      <div class="container">
-        <h2>David Carlsson</h2>
-        <p class="title">Utvecklingsansvarig</p>
-      </div>
+
+    <div class="unit">
+      <img src="/images/carlbildt.png" alt="">
+      <p>David Carlsson</p>
+      <p>Back-end</p>
+
+    </div>
+
+    <div class="unit">
+      <img src="/images/carlbildt.png" alt="">
+      <p>Fredrik Lindberg</p>
+      <p>Scrum master</p>
+
+    </div>
+
+    <div class="unit">
+      <img src="/images/carlbildt.png" alt="">
+      <p>Joel Nilsson</p>
+      <p>Mötesordförande</p>
+
+    </div>
+
+    <div class="unit">
+      <img src="/images/carlbildt.png" alt="">
+      <p>Jonathan Johansson</p>
+      <p>Gitansvarig</p>
+
+    </div>
+
+    <div class="unit">
+      <img src="/images/carlbildt.png" alt="">
+      <p>Oscar Söderlund</p>
+      <p>Front-end</p>
+
+    </div>
+
+    <div class="unit">
+      <img src="/images/carlbildt.png" alt="">
+      <p>Unn Zachrison</p>
+      <p>Dokumentansvarig</p>
+
+    </div>
+
+    <div class="unit">
+      <img src="/images/carlbildt.png" alt="">
+      <p>Wiktor Hübsch</p>
+      <p>Testansvarig</p>
     </div>
   </div>
 </div>
+</script>
     
   <script id="view-contact" type="text/html">
     <div class="center"  id="contact">  
         <p >Kontakta oss!</p>     
        
     </div>
-  </script>
+ </script>
 
 
   <script id="view-sidebar" type="text/html">
@@ -343,6 +369,9 @@
                 </label> -->
               </li>
             </ul>
+            <div>
+              <button id="resetFilterBtn" onclick="btnResetFilter()">Reset filter</button>
+            </div>
           </li>
 
         </ul>
@@ -448,15 +477,22 @@
                     <h3 class="text-right">Sekretess</h3>
                   <!--  <button type="button" class="btn btn-primary" id="changeSekre">Ändra</button> -->
                   </div>
-                  <div id="profSek" style="padding-bottom:00px"></div>
-     
-                </div>
-                
-  </div>
-  
-  </div>
-  
-  </div>
+                  <div id="profSek" style="padding-bottom:00px"></div>                 
+                </div>                
+             </div>
+          <div class="col-md-4 ">
+            <div class="p-3 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h1 class="text-right">Orderhistorik</h1>
+            </div>
+              <div id="orderHistory">                  
+                  <div class="row" id="historyCol">            
+                  </div>
+              </div>
+               </div>                     
+          </div>  
+       </div>  
+    </div>
 </script>
 
 
@@ -532,13 +568,18 @@
      </div>-->
 </script>
 
+<!--skapa annonssida-->
   <script id="view-createAdd" type="text/html">
-  <div class="center" style="background-color: #b4b5be">
+  <div class="center" >
   <div class="d-flex justify-content-between align-items-center mb-3" >
     <h4 class="text-right">Skapa Annons!</h4>
   </div>
 <div class="row mt-2">
     <div class="col-md-6"><label class="labels">Rubrik</label><input type="text" id="createText" class="form-control" placeholder="Namn" value=""></div>  
+    <div class="col-md-6">
+      <label for="formFile" id="createImg" style="padding: 5px;" class="form-label">Ladda upp bild</label>
+      <input class="form-control" type="file" id="formFile">
+    </div>
 </div>
 <div class="row mt-3">
   <!--Dessa behöver göras om till dropdown mmenyer på saker som färg, brand osv-->      
@@ -546,17 +587,14 @@
       <label>
         <select id="modelVal">
             <option selected>Modell</option>
-            <option>A</option>  
-            <option>B</option>
-            <option>C</option>
+           
+         
         </select>
     </label>
       <label>
-          <select id="brandVal">
-              <option selected>Märke</option>
-              <option>Yamaha</option>
-              <option>Boos</option>
-              <option>Gibsson</option>
+          <select id="brandVal" onchange="updateChoice()">
+              <option  selected>Märke</option>
+             
           </select>
       </label>
       <label>
@@ -572,7 +610,7 @@
     <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
     <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div>
     <div class="col-md-6"><label class="labels">Årtal</label><input type="number" id="createYear" min="1950" max="2022" class="form-control" placeholder="" value=""></div>   
-    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="createAddButton" onclick="createAdd()" type="button">Skapa annons</button></div>
+    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="createAddButton" onclick="downloadImg()" type="button">Skapa annons</button></div>
 </div>
 </div>
 </div>
@@ -590,12 +628,12 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <h1>
-            Din Varukorg är tom!
-          </h1>
+        <div class="modal-body" id="bodyBasketModal">
         </div>
         <div class="modal-footer">
+          <div id="basketModalPriceDiv" style="margin-right: 30%;">
+
+          </div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton">Stäng</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal" id="shopFromBasketButton">Till
             Kassan</button>
@@ -752,9 +790,9 @@
     </h6>
     <h5 style="margin-left: 6%;" id="totalsumLine">
     </h5>
-    <form action="/create-checkout-session" method="POST">
+    <div>
       <button onclick="stripeTestFunction()" class="btn btn-primary" id="toPaymentButton" type="submit">Till betalning</button>
-    </form>
+    </div>
   </div>
 </div>
 </script>
@@ -957,6 +995,7 @@
   <script src="/javascript/stripetest.js"></script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="/javascript/register.js"></script>
+  <script src="/javascript/cashregister.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
     crossorigin="anonymous"></script>
