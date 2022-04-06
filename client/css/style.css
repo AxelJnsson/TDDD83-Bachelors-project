@@ -1,0 +1,90 @@
+#navbarNav2 > ul > li{
+    display: inline-block;
+}
+
+  #navbarNav2 > ul {
+    width: auto;
+    float: none;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+#registerFinishButton, #LoginFinishButton, #shopFromBasketButton{
+  background-color:orange;
+  border: black;
+  border-radius: 4px;
+}
+
+#toPaymentButton{
+  margin-right: 30%;
+  margin-top: 40%;
+  background-color:orange;
+  border: black;
+  width: 200;
+  float: right;
+}
+
+#cashRegisterArea{
+  background-color:rgb(240, 240, 240);
+  height: 600px;
+  width: 1000px;
+  overflow: auto;
+
+}
+
+#scrollableItemsInBasket{
+  background-color: lightgray;
+  float:left;
+  margin-top: 2%;
+  margin-left: 2%;
+  width: 600px;
+  height: 560px;
+  border-style:double;
+  border-radius: 7px;
+  border-color: rgb(0, 0, 0);
+  overflow: scroll;
+}
+
+#amountArea{
+  background-color:lightgray;
+  border-radius: 4px;
+  border-color: lightslategray;
+  height: 400px;
+  width: 300px;
+  margin-left: 67%;
+  margin-top: 3%;
+}
+
+#prodimg {
+    height: 250px;
+    width: 250px;
+}
+
+[id^='productInScrollableAreaDiv']{
+  background-color: rgb(157, 157, 157);
+  width: 600px;
+  height: 150px;
+  border-style: solid;
+  border-width: thin;
+  border-color: rgb(0, 0, 0);
+}
+
+[id^='removeProductFromRegister']{
+  float: right;
+  margin-top: 10%;
+  margin-right: 5%;
+}
+
+#productDivInBaskedModal{
+  border: solid;
+}
+
+/* 
+.deleteProductFromCartButton{
+  height: 20px;
+  width: 20px;
+} */
+
+#productDivInRegister{
+  border-style: solid;
+}

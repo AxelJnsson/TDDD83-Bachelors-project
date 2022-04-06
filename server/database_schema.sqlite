@@ -1,27 +1,31 @@
-DROP TABLE IF EXISTS product ;
-DROP TABLE IF EXISTS user ;
-DROP TABLE IF EXISTS used_product ;
-DROP TABLE IF EXISTS new_product ;
+DROP TABLE IF EXISTS product;
+--DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS used_product;
+DROP TABLE IF EXISTS new_product;
+DROP TABLE IF EXISTS shopping_session;
+DROP TABLE IF EXISTS cart_item;
+DROP TABLE IF EXISTS cart__item;
 
 SELECT 'Creating tables' AS 'Message';
 
-
 CREATE TABLE IF NOT EXISTS product (
-product_id INTEGER PRIMARY KEY AUTOINCREMENT,
-brand TEXT NOT NULL,
-model TEXT NOT NULL,
-name TEXT NOT NULL,
-price INTEGER NOT NULL,
-color TEXT NOT NULL,
-year INTEGER NOT NULL,
-type TEXT NOT NULL,
-new_or_not INTEGER DEFAULT 1,
-seller INTEGER NOT NULL
+    product_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    brand TEXT NOT NULL,
+    model TEXT NOT NULL,
+    name TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    color TEXT NOT NULL,
+    image TEXT NOT NULL,
+    year INTEGER NOT NULL,
+    type TEXT NOT NULL,
+    new_or_not INTEGER DEFAULT 1,
+    quantity INTEGER NOT NULL,
+    seller INTEGER DEFAULT 1
 );
 
-CREATE TABLE user (
+CREATE TABLE IF NOT EXISTS user (
     user_id INTEGER,
-    email TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     is_admin INTEGER DEFAULT 0,
@@ -30,27 +34,58 @@ CREATE TABLE user (
 );
 
 CREATE TABLE  used_product (
-    product_id INTEGER PRIMARY KEY,
+    product_id INTEGER PRIMARY KEY AUTOINCREMENT,
     brand TEXT NOT NULL,
     model TEXT NOT NULL,
     name TEXT NOT NULL,
     price INTEGER NOT NULL,
     color TEXT NOT NULL,
+    image TEXT NOT NULL,
     year INTEGER NOT NULL,
     type TEXT NOT NULL,
     user_id INTEGER,
     email TEXT NOT NULL,
     first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL   
+    last_name TEXT NOT NULL ,  
+    FOREIGN KEY(product_id) REFERENCES product(product_id),
+    FOREIGN KEY(user_id) REFERENCES user(user_id)
 );
 
 CREATE TABLE new_product (
-product_id INTEGER PRIMARY KEY AUTOINCREMENT,
-brand TEXT NOT NULL,
-model TEXT NOT NULL,
-name TEXT NOT NULL,
-price INTEGER NOT NULL,
-color TEXT NOT NULL,
-year INTEGER NOT NULL,
-type TEXT NOT NULL
+    product_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    brand TEXT NOT NULL,
+    model TEXT NOT NULL,
+    name TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    color TEXT NOT NULL,
+    image TEXT NOT NULL,
+    year INTEGER NOT NULL,
+    type TEXT NOT NULL,
+    FOREIGN KEY(product_id) REFERENCES product(product_id)
+);
+
+CREATE TABLE shopping_session (
+    id INTEGER PRIMARY KEY,
+    user_id  INTEGER,
+    total INTEGER,
+    cart_item INTEGER,
+    FOREIGN KEY(user_id) REFERENCES user(user_id)
+);
+
+CREATE TABLE cart_item (
+    id INTEGER PRIMARY KEY,
+    product_id INTEGER,
+    session_id INTEGER,
+    quantity INTEGER,
+    FOREIGN KEY(product_id) REFERENCES product(product_id),
+    FOREIGN KEY(session_id) REFERENCES shopping_session(id)
+);
+
+CREATE TABLE IF NOT EXISTS cart__item (
+    id INTEGER PRIMARY KEY,
+    product_id INTEGER,
+    session_id INTEGER,
+    quantity INTEGER,
+    FOREIGN KEY(product_id) REFERENCES product(product_id),
+    FOREIGN KEY(session_id) REFERENCES shopping_session(id)
 );
