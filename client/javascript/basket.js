@@ -179,6 +179,7 @@ function printProductInBasketRegister(product){
 }
 
 function stripeTestFunction(){
+  alert("as")
   $.ajax ({
       headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
       url:'/create-checkout-session',
@@ -186,9 +187,10 @@ function stripeTestFunction(){
       datatype: 'JSON',
       contentType: "application/json",
       data: JSON.stringify({
-      "price":sessionStorage.getItem('price')}),
-      success: function(data) {    
-      return stripe.redirectToCheckout({sessionId: data.sessionId})
+      "price":(sessionStorage.getItem('price')*100)}),
+      success: function(checkoutUrl) {    
+      // return stripe.redirectToCheckout({sessionId: data.sessionId})
+      window.location.href = checkoutUrl
       }
   }); 
 }

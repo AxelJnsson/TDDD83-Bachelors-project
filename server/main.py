@@ -175,7 +175,8 @@ stripe.api_key = 'sk_test_51KiDHOFa9gwuZdKJw6ouVqm5m6mUYok8kEYg3BYtOH1kqnAFvH9Yi
 def create_checkout_session():
   if request.method == 'POST':
     info = request.get_json()
-    total = request.get_json()['price']
+    print("haksjdnaksjdnjkasndkjnaskjdnkasndnaksjndjknaskjndkjasndkjnaskjndkanskdnajksndknjas")
+    total = info["price"]
     session = stripe.checkout.Session.create(
       line_items=[{
         'price_data': {
@@ -194,7 +195,7 @@ def create_checkout_session():
 
   )
 
-  return redirect(session.url, code=303)
+  return session.url
   
 #Route for login-method
 # Vet inte om for loopen i denna metod är optimal, känns långsamt att loopa igenom alla användare
