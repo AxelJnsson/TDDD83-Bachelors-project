@@ -25,10 +25,20 @@ $('#LoginFinishButton').click(function (e) {
         data: JSON.stringify({
           "email":inputEmail, "password":inputPassword}), 
         success: function(i) { 
-            
-         sessionStorage.setItem('auth', JSON.stringify(i));           
-         $(".container").html($("#view-home").html());
-         window.location.reload(); 
+         
+         //var user = i["user"];
+         
+         sessionStorage.setItem('auth', JSON.stringify(i));
+         alert(JSON.stringify(sessionStorage.getItem('auth')));
+         if (user["is_admin"] == 1) {
+          $(".container").html($("#view-home").html());
+         } else {
+          $(".container").html($("#view-home").html());
+          window.location.reload(); 
+         }
+         
+
+         
            
         },
         error: function(){
