@@ -267,8 +267,7 @@ function regOrAnnons() {
       url:'/product',
       type: 'GET',
       success: function(u) {  
-          alert(u[1][1]);        
-          return u;
+          search(u);
       },
       error: function(){
           alert("error");
@@ -276,11 +275,7 @@ function regOrAnnons() {
     });
   }
   
-  
-  function search() {
-    alert("hej");
-    x = getSearchProducts();
-    alert("hej3");
+  function search(x) {
     alert(x[1].name);
 
     const instance = new mdb.Datatable(document.getElementById('datatable'), productList)
