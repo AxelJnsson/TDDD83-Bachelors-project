@@ -132,7 +132,7 @@ function displayHistory() {
 
  
 for (let i=0; i < orderlista.length; i++) {
- var html = '<div class="col-md-6" onclick="openForm('+i+')" style="padding-top: 25px;"><img src="https://bootdey.com/img/Content/user_3.jpg" class="media-object img-thumbnail" /></div>\
+ var html = '<div class="col-md-6" onclick="openForm('+i+')" style="padding-top: 25px;"><img src="/images/order.png" class="media-object img-thumbnail" /></div>\
  <div class="col-md-11" style="display: none" id="order'+i+'" >\
      <div class="row">\
          <div class="col-md-12">\

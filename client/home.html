@@ -549,12 +549,16 @@
 </script>
 
   <script id="view-createAdd" type="text/html">
-  <div class="center" style="background-color: #b4b5be">
+  <div class="center" >
   <div class="d-flex justify-content-between align-items-center mb-3" >
     <h4 class="text-right">Skapa Annons!</h4>
   </div>
 <div class="row mt-2">
     <div class="col-md-6"><label class="labels">Rubrik</label><input type="text" id="createText" class="form-control" placeholder="Namn" value=""></div>  
+    <div class="col-md-6">
+      <label for="formFile" id="createImg" style="padding: 5px;" class="form-label">Ladda upp bild</label>
+      <input class="form-control" type="file" id="formFile">
+    </div>
 </div>
 <div class="row mt-3">
   <!--Dessa behöver göras om till dropdown mmenyer på saker som färg, brand osv-->      
@@ -562,9 +566,8 @@
       <label>
         <select id="modelVal">
             <option selected>Modell</option>
-            <option>A</option>  
-            <option>B</option>
-            <option>C</option>
+           
+         
         </select>
     </label>
       <label>
