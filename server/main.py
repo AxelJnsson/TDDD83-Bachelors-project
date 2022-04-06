@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 from email.policy import default
 from faulthandler import dump_traceback_later
 #from msilib import Table
@@ -21,6 +22,8 @@ from sqlalchemy import Column, Integer, table
 from sqlalchemy import engine_from_config
 import stripe
 import os
+import cv2
+from PIL import Image
 
 #stripe_keys = {
  #   "secret_key": os.environ["STRIPE_SECRET_KEY"],
@@ -283,6 +286,16 @@ def products():
     return i
 
   return "401"
+
+  #Route för att lägga till bilder i filsystem
+@app.route('/saveImg', methods = ['POST'])
+def saveImg():
+  if request.method == 'POST':
+    img = request.files.get('file')
+    img = img.save('savedimage.jpg')
+    #cv2.imwrite('savedimage.jpg', img)    
+   
+  return "200"
 
 #Route for getting only new products
 @app.route('/newproduct', methods = ['GET'] )
