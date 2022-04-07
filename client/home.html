@@ -388,6 +388,18 @@
     <div class="col" id="testdiv"></div>
   </script>
 
+  <script id="noProductView" type="text/html">
+    <div class="row">
+      <div class="col-2"></div>   
+      <div class="col-6 text-center" id="noProduct">
+        <h1><strong>Din sökning gav inga träffar</strong></h1>
+        <h6 class="text-secondary">Försök gärna igen med en ny sökning</h6>
+        <img src="images/noProd.png" />
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </script>
+
   <!--FAQ SIDA-->
   <script id="view-FAQ" type="text/html">
           <section>
@@ -945,7 +957,7 @@
             </p>
             <p>
               <i class="fa-solid fa-question"></i>
-              <a class="text-dark" href="#" onclick="faqView()" id="faqButton">FAQ</a>
+              <a class="text-dark" onclick="faqView()" id="faqButton">FAQ</a>
             </p>
             <p>
               <i class="fa-solid fa-exclamation"></i>
