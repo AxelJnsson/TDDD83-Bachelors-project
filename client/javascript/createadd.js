@@ -33,8 +33,9 @@ function createAdd() {
 const filtertypes2 = [];
  const filterbrands2 = [];
  const filtermodels2 = [];
+ const filterColor2 = [];
  
- let filterQ2 = [filtertypes2, filterbrands2, filtermodels2];
+ let filterQ2 = [filtertypes2, filterbrands2, filtermodels2, filterColor2];
 
 function fillOptions1(){ 
   $.ajax({        
@@ -54,7 +55,7 @@ function fillOptions1(){
 
 var brandClicked1 = false;
 var modelClicked1 = false;
-
+var typeClicked1 = false;
 
 
 
@@ -64,7 +65,9 @@ function updateChoice() {
 }else{
   filterbrands2.length = 0;
   filterbrands2.push($("#brandVal").val());
+  brandClicked1 = true;
 }
+typeClicked1 = false;
 createSelects(filterQ2);
 
 }
@@ -74,10 +77,16 @@ if($("#typVal").val() == "Kategori") {
 
 } else {
   filtertypes2.length = 0;
+  filterbrands2.length = 0;
   filtertypes2.push($("#typVal").val());
+  typeClicked1 = true;
+
 }
+brandClicked1 = false;
+
 createSelects(filterQ2);
 $("#brandVal").empty(); 
+
 
 
 }
@@ -92,34 +101,42 @@ function fillOptions2(products) {
   const brands = [];
   const models = [];  
   const type = [];
+  
 
   
   for(var j = 0; j < prod.length; j++){
     brands.push(prod[j].brand);
     models.push(prod[j].model);
     type.push(prod[j].type)    
+   
 }
 
     var uniqueBrands = brands.filter((v, i, a) => a.indexOf(v) === i);
     var uniqueModels = models.filter((v, i, a) => a.indexOf(v) === i);
     var uniqueType = type.filter((v, i, a) => a.indexOf(v) === i);
+    
    // var uniqueColors = colors.filter((v, i, a) => a.indexOf(v) === i)
    // var uniqueYears = years.filter((v, i, a) => a.indexOf(v) === i);
 
     
-  
+  if(!brandClicked1) {
     for(var j = 0; j < uniqueBrands.length; j++){
       $("#brandVal").append("<option >"+uniqueBrands[j]+"</options>");           
-  }
+  }}
   
+  if(!typeClicked1) {
   for(var j = 0; j < uniqueType.length; j++){
     $("#typVal").append("<option >"+uniqueType[j]+"</options>");           
 }
-
+  }
   
   for(var i = 0 ; i < uniqueModels.length; i++) {
     $("#modelVal").append("<option >"+uniqueModels[i]+"</options>");   
-}}
+}
+
+
+
+}
 
 function createSelects(filteringByArrayTest){ 
 
