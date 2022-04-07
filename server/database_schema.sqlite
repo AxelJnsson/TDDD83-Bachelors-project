@@ -89,3 +89,24 @@ CREATE TABLE IF NOT EXISTS cart__item (
     FOREIGN KEY(product_id) REFERENCES product(product_id),
     FOREIGN KEY(session_id) REFERENCES shopping_session(id)
 );
+
+CREATE TABLE IF NOT EXISTS order_history (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER,
+  FOREIGN KEY(user_id) REFERENCES user(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS order (
+  order_nr INTEGER PRIMARY KEY AUTOINCREMENT,
+  amount INTEGER,
+  order_history_id INTEGER,   
+  FOREIGN KEY(order_history_id) REFERENCES order_history(id)
+);
+
+CREATE TABLE IF NOT EXISTS order_item (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+order_nr INTEGER NOT NULL,
+quantity INTEGER,
+FOREIGN KEY(order_nr) REFERENCES order(order_nr),
+FOREIGN KEY(id) REFERENCES product(product_id)
+);
