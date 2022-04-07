@@ -4,7 +4,6 @@ $(document).ready(function(){
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
    
-    filternewornot.push(0, 1); 
 
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
@@ -107,6 +106,7 @@ $('#contactButton').click(function (e) {
     //showProdInfo("allt", null);
     resetFilter();
     //filternewornot.push("Ny", "Begagnad");
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
     e.preventDefault();
@@ -120,6 +120,7 @@ $('#contactButton').click(function (e) {
     resetFilter();
     var defCategory = "Gitarr";
     filtertypes.push(defCategory);
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
     e.preventDefault();
@@ -131,6 +132,7 @@ $('#contactButton').click(function (e) {
     $("#mainViewContainer").html($("#empty").html()) 
     resetFilter();
     filtertypes.push("Piano");
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
     e.preventDefault();
@@ -142,10 +144,9 @@ $('#contactButton').click(function (e) {
     $("#mainViewContainer").html($("#empty").html())
     resetFilter();
     filtertypes.push("Trummor");
-
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
-
     e.preventDefault();
   });
 
@@ -155,29 +156,23 @@ $('#contactButton').click(function (e) {
     $("#mainViewContainer").html($("#empty").html())
     resetFilter();
     filtertypes.push("Studio");
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
 
     e.preventDefault();
   });
 
-  $('#yamahaTestButton').click(function (e) {   
+  $('#alphornButton').click(function (e) {   
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
     resetFilter();
-    var testcategory1 = "Gitarr";
-    var testcategory2 = "Piano";
-    //var testcategory3 = "trummor";
-
-    var testbrand1 = "Yamaha";
-    //var testmodell = "idk";
-    filtertypes.push(testcategory1, testcategory2);
-    filterbrands.push(testbrand1);
-    //filtermodels.push(testmodell);
-    // alert(filtertypes[0] + filtertypes[1]);
-    // alert(filterQ[0][1]);
-    alert("Gitarrer och pianon av märke yamaha");
+    var testcategory1 = "Alphorn";
+    
+    filtertypes.push(testcategory1);
+   
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
 
