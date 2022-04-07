@@ -185,6 +185,11 @@ function sideBar(products){
     var uniqueColors = colors.filter((v, i, a) => a.indexOf(v) === i)
     var uniqueYears = years.filter((v, i, a) => a.indexOf(v) === i);
 
+    uniqueBrands.sort();
+    uniqueModels.sort();
+    uniqueColors.sort();
+    uniqueYears.sort();
+
     // all.push(uniqueBrands);
     // all.push(uniqueModels);
     // all.push(uniqueColors);
