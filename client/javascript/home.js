@@ -304,7 +304,7 @@ function search(productList) {
   //Iterera över varje ord i den sökta strängen
   if (splitWords.length > 1) {
     for (a = 0; a < splitWords.length; a++) {
-      if (splitWords[a] != " ") {
+      if (splitWords[a] != (null || " ")) {
       //Jämför attributen för varje produkt med det sökta ordet
         for (b = 0; b < productList.length; b++) {
           productList2[0] = productList[b].brand;
@@ -314,23 +314,25 @@ function search(productList) {
           productList2[4] = productList[b].type;
           productList2[5] = productList[b].product_id;
           //Iterera över varje attribut för produkten
+          aloop:
           for (c = 0; c < 5; c++) {
-            word = productList2[b];    
+            word = productList2[c];    
             //Matchar något av attributen med sökordet?
             if (word.toUpperCase().indexOf(splitWords[a]) > -1) {
               //Höj ratingen om produkten redan finns i searchResults, lägg till produkten annars
+              bloop:
               for (d = 0; d < searchResults.length; d++) {
                 if (searchResults[d].product_id == productList[b].product_id) {             
                   searchResults[d].price = searchResults[d].price + 1;              
                   y++;
-                  break;
+                  break bloop;
                 }  
               }
               if (y == 0) {
                 searchResults.push(productList[b]);
                 searchResults[searchResults.length - 1].price = 1;
               }
-              break;
+              break aloop;
             }
           }
         }
@@ -338,7 +340,8 @@ function search(productList) {
     }
   }
 
-  searchResults.price.sort(function(a, b){return b - a});
+  searchResults.sort(function(a, b)
+  {return b.price - a.price});
 
   for (a = 0; a < searchResults.length; a++) {
     for (b = 0; b < productList.length; b++) {
