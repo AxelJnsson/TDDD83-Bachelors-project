@@ -40,7 +40,7 @@
 
   <!--Övre navbar-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
-    <a class="nav-link" href="#">
+    <a class="nav-link-image" href="#">
       <img src="/images/tonehub_logga.png" width="100" height="100" id="homeButton">
     </a>
     <!-- <div>
@@ -107,7 +107,7 @@
   </nav>
 
   <!--Nedre navbar-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="annap">
+  <nav class="navbar navbar-expand-lg" id="annap">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -117,7 +117,7 @@
     <div class="collapse navbar-collapse" id="navbarNav2">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#" id="allInstrButton">Alla instrument</a>
+          <a class="nav-link" href="#"  id="allInstrButton">Alla instrument</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" onclick="gitarrView()" id="guitarButton">Gitarr</a>
@@ -253,11 +253,11 @@
   <script id="view-sidebar" type="text/html">
     <!--Sidebar-->
   
-  <div class="row" id="testest">
+  <div class="row" id="innerSidebar">
     <div class="col">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
-          <span class="fs-5 d-none d-sm-inline text-secondary">Filtrera mera!</span>
+          <span class="fs-5 d-none d-sm-inline">Kategori</span>
         </a>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="newProd" checked
@@ -273,7 +273,7 @@
           <li>
             <a class="nav-link px-0" href="#submenu1" data-toggle="collapse" aria-expanded="false"
               aria-controls="submenu1">
-              <span class="text-secondary">Märken</span>
+              <span class="text-justright">Märken</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu1">
               <li class="w-100" id="brandArea">
@@ -288,7 +288,7 @@
             <a href="#submenu2" data-toggle="collapse" class="nav-link px-0">
 
 
-              <span class="text-secondary">Modeller</span>
+              <span class="text-justright">Modeller</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#sideMenu">
               <li class="w-100" id="modelArea">
@@ -302,7 +302,7 @@
           <li>
             <a href="#submenu3" data-toggle="collapse" class="nav-link px-0">
 
-              <span class="text-secondary">Färger</span>
+              <span class="text-justright">Färger</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu3" data-bs-parent="#sideMenu">
               <li class="w-100" id="colorArea">
@@ -322,19 +322,19 @@
           <li>
             <a href="#submenu4" data-toggle="collapse" class="nav-link px-0">
 
-              <span class="text-secondary">Pris</span>
+              <span class="text-justright">Pris</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu4" data-bs-parent="#sideMenu">
               <li class="w-100" id="priceArea">
                 <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem7">
                 <label class="form-check-label" for="defaultCheck1">
-                  <span class="text-info">Item 7</span>
+                  <span class="text-justright">Item 7</span>
                 </label>
               </li>
               <li>
                 <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem8">
                 <label class="form-check-label" for="defaultCheck1">
-                  <span class="text-info">Item 8</span>
+                  <span class="text-justright">Item 8</span>
                 </label>
               </li>
             </ul>
@@ -342,7 +342,7 @@
           <li>
             <a href="#submenu5" data-toggle="collapse" class="nav-link px-0">
 
-              <span class="text-secondary">År</span>
+              <span class="text-justright">År</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu5" data-bs-parent="#sideMenu">
               <li class="w-100" id="yearArea">
@@ -371,7 +371,7 @@
               </li>
             </ul>
             <div>
-              <button id="resetFilterBtn" class="btn btn-primary" onclick="btnResetFilter()">Reset filter</button>
+              <button id="resetFilterBtn" class="btn" onclick="btnResetFilter()">Återställ filter</button>
             </div>
           </li>
 
@@ -448,9 +448,9 @@
                 </p>
               </div>
               <div class="col-4">
-                <h6 class="text-dark"><i class="fa-solid fa-tags"><strong></i> Hur får jag rabbatter?</strong></h6>
+                <h6 class="text-dark"><i class="fa-solid fa-tags"><strong></i> Hur får jag rabatter?</strong></h6>
                 <p class="text-dark">
-                  Det lättaste sättet att tillhandahålla erbjudanden och rabbater är att bli medlem! Klicka på <a type="button" class="text-dark" id="secondRegButton" onclick="openRegModal()"><strong>Registrera dig</strong></a> för att skapa en användare och bli en i vår stora musik-familj!
+                  Det lättaste sättet att tillhandahålla erbjudanden och rabatter är att bli medlem! Klicka på <a type="button" class="text-dark" id="secondRegButton" onclick="openRegModal()"><strong>Registrera dig</strong></a> för att skapa en användare och bli en i vår stora musik-familj!
                 </p>
               </div>
             </div>
