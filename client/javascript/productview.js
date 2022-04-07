@@ -1,11 +1,11 @@
-function createProducts(filteringByArrayTest){ 
+function createProducts(filteringByArray){ 
     $.ajax({        
         url:'/product',
         type: 'GET',
         success: function(u) {          
             var allinstruments = u;
             //getInstruments(allinstruments);
-            filtertest2(allinstruments, filteringByArrayTest);
+         filtering(allinstruments,filteringByArray);
         },
         error: function(){
             alert("fel");
@@ -16,17 +16,34 @@ function createProducts(filteringByArrayTest){
 
 
 //riktig filtrering
-function filtertest2(arr, testingArrayFilters){
-    const types = testingArrayFilters[0];
-    const brands = testingArrayFilters[1];
-    const models = testingArrayFilters[2];
-    const colors = testingArrayFilters[3];
-    const names = testingArrayFilters[4];
-    const prices = testingArrayFilters[5];
-    const years = testingArrayFilters[6];
-    const newornots = testingArrayFilters[7];
+function filtering(arr, filterQueries){
+    const types = filterQueries[0];
+    const brands = filterQueries[1];
+    const models = filterQueries[2];
+    const colors = filterQueries[3];
+    const names = filterQueries[4];
+    const prices = filterQueries[5];
+    const years = filterQueries[6];
+    const newornots = filterQueries[7];
    
     var filteredstuff = arr;
+
+    const priceinterval1 = [];
+    const priceinterval2 = [];
+    const priceinterval3 = [];
+
+    // if(prod[j].price >= 10000){
+    //     priceinterval1.push(prod[j]);
+    //  } else if (prod[j].price < 10000 && prod[j].price >= 5000) {
+    //     priceinterval2.push(prod[j]);
+    //  } else if (prod[j].price < 5000) {
+    //      priceinterval3.push(prod[j]);
+    //  }
+
+    //  const or = (...fns) => n => fns.some(fn => fn(n));
+
+    //  const priceintervals = [priceinterval1, priceinterval2, priceinterval3];
+
 
     if (types.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
@@ -130,7 +147,7 @@ function showProdInfo(filterQueries) {
    createProducts(filterQ);
    //alert(products[0].name);
 
-   //filtertest2(products, filterQ);
+   // filtering(products, filterQ);
 
     //return products;
 
@@ -149,7 +166,7 @@ function sideBar(products){
     const models = [];
     const colors = [];
     const years = [];
-    const priceintervals = [];
+   
     const all = [];
 
     for(var j = 0; j < prod.length; j++){
@@ -158,11 +175,10 @@ function sideBar(products){
         colors.push(prod[j].color);
         years.push(prod[j].year);
 
-        // if(prod[j].price < 10000 && prod[j].price > 5000){
-            
-        // }
+         
 
     }
+
 
     var uniqueBrands = brands.filter((v, i, a) => a.indexOf(v) === i);
     var uniqueModels = models.filter((v, i, a) => a.indexOf(v) === i);
