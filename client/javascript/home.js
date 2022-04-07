@@ -273,6 +273,11 @@ function getSearchProducts() {
 function search(productList) {
   var productList2 = [];
   var searchResults = [];
+  var prices = [];
+
+  for (a = 0; a < productList.length; a++) {
+    prices.push(productList[a].price);
+  }
 
   var input = document.getElementById('datatable-search-input');
   inputWord = input.value.toUpperCase();
@@ -309,13 +314,12 @@ function search(productList) {
         for (b = 0; b < productList.length; b++) {
           productList2[0] = productList[b].brand;
           productList2[1] = productList[b].model;
-          productList2[2] = productList[b].name;
-          productList2[3] = productList[b].color;
-          productList2[4] = productList[b].type;
-          productList2[5] = productList[b].product_id;
+          productList2[2] = productList[b].color;
+          productList2[3] = productList[b].type;
+          productList2[4] = productList[b].product_id;
           //Iterera över varje attribut för produkten
           aloop:
-          for (c = 0; c < 5; c++) {
+          for (c = 0; c < 4; c++) {
             word = productList2[c];    
             //Matchar något av attributen med sökordet?
             if (word.toUpperCase().indexOf(splitWords[a]) > -1) {
@@ -323,7 +327,10 @@ function search(productList) {
               bloop:
               for (d = 0; d < searchResults.length; d++) {
                 if (searchResults[d].product_id == productList[b].product_id) {             
-                  searchResults[d].price = searchResults[d].price + 1;              
+                  searchResults[d].price = searchResults[d].price + 1;  
+                  if (c == 3) {
+                    searchResults[d].price = searchResults[d].price + 1; 
+                  }            
                   y++;
                   break bloop;
                 }  
@@ -331,6 +338,9 @@ function search(productList) {
               if (y == 0) {
                 searchResults.push(productList[b]);
                 searchResults[searchResults.length - 1].price = 1;
+                if (c == 3) {
+                  searchResults[d].price = searchResults[d].price + 1; 
+                } 
               }
               break aloop;
             }
@@ -344,10 +354,9 @@ function search(productList) {
   {return b.price - a.price});
 
   for (a = 0; a < searchResults.length; a++) {
-    for (b = 0; b < productList.length; b++) {
-      if (searchResults[a].product_id == productList[b].product_id) {
-        searchResults[a].price = productList[b].price;
-        break;
+    for (b = 0; b < prices.length; b++) {
+      if (searchResults[a].product_id == b) {
+        searchResults[a].price = prices[b];
       }
     }
   }
