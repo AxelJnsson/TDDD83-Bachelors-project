@@ -276,7 +276,11 @@ function search(productList) {
 
   var input = document.getElementById('datatable-search-input');
   inputWord = input.value.toUpperCase();
+
 // Loop through all list items, and hide those who don't match the search query
+
+  var i = 0;
+
   for (a = 0; a < productList.length; a++) {
     productList2[0] = productList[a].brand;
     productList2[1] = productList[a].model;
@@ -288,11 +292,40 @@ function search(productList) {
       word = productList2[b];    
       if (word.toUpperCase().indexOf(inputWord) > -1) {
         //alert("din sökning machar ett instrument");   
-        searchResults.push(productList[a]);        
+        searchResults.push(productList[a]);
+        searchResults[i].price = 1;
+        i++;        
         break;
       }
     }
   }
+  var splitWords = [];
+  splitWords = inputWord.split(" ");
+
+  for (a = 0; a < splitWords.length; a++) {
+    for (b = 0; b < productList.length; b++) {
+      productList2[0] = productList[b].brand;
+      productList2[1] = productList[b].model;
+      productList2[2] = productList[b].name;
+      productList2[3] = productList[b].color;
+      productList2[4] = productList[b].type;
+      productList2[5] = productList[b].product_id;
+      for (c = 0; c < 5; c++) {
+        word = productList2[b];    
+        if (word.toUpperCase().indexOf(splitWords[a]) > -1) {
+          //alert("din sökning machar ett instrument");   
+          searchResults.push(productList[b]);
+          searchResults[i].price = 1;
+          i++;        
+          break;
+        }
+      }
+    }
+
+  }
+
+
+
   loadSearchResults(searchResults);
 }
 
