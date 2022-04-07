@@ -1,11 +1,11 @@
-function createProducts(filteringByArrayTest){ 
+function createProducts(filteringByArray){ 
     $.ajax({        
         url:'/product',
         type: 'GET',
         success: function(u) {          
             var allinstruments = u;
             //getInstruments(allinstruments);
-            filtertest2(allinstruments, filteringByArrayTest);
+         filtering(allinstruments,filteringByArray);
         },
         error: function(){
             alert("fel");
@@ -16,15 +16,15 @@ function createProducts(filteringByArrayTest){
 
 
 //riktig filtrering
-function filtertest2(arr, testingArrayFilters){
-    const types = testingArrayFilters[0];
-    const brands = testingArrayFilters[1];
-    const models = testingArrayFilters[2];
-    const colors = testingArrayFilters[3];
-    const names = testingArrayFilters[4];
-    const prices = testingArrayFilters[5];
-    const years = testingArrayFilters[6];
-    const newornots = testingArrayFilters[7];
+function filtering(arr, filterQueries){
+    const types = filterQueries[0];
+    const brands = filterQueries[1];
+    const models = filterQueries[2];
+    const colors = filterQueries[3];
+    const names = filterQueries[4];
+    const prices = filterQueries[5];
+    const years = filterQueries[6];
+    const newornots = filterQueries[7];
    
     var filteredstuff = arr;
 
@@ -147,7 +147,7 @@ function showProdInfo(filterQueries) {
    createProducts(filterQ);
    //alert(products[0].name);
 
-   //filtertest2(products, filterQ);
+   // filtering(products, filterQ);
 
     //return products;
 
