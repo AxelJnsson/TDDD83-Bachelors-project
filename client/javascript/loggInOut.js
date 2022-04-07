@@ -71,7 +71,9 @@ function logoutUser() {
          "firstname":first_name, "last_name": lastName, "email":email, "password":password}), 
       success: function(i) { 
            alert("Din användare är skapad!");
-           $(".container").html($("#view-home").html());
+           $("#sideBarContainer").html($("#empty").html())
+           $("#productViewContainer").html($("#empty").html())
+           $("#mainViewContainer").html($("#view-home").html())
            $("#registerModal").modal('hide');
       }
     });
