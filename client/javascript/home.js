@@ -257,4 +257,49 @@ function regOrAnnons() {
 }
 
 
+function getSearchProducts() {
+  $.ajax({        
+    url:'/product',
+    type: 'GET',
+    success: function(u) {  
+        search(u);
+    },
+    error: function(){
+        alert("error");
+    }    
+  });
+}
+
+function search(productList) {
+  var productList2 = [];
+  var searchResults = [];
+
+  var input = document.getElementById('datatable-search-input');
+  inputWord = input.value.toUpperCase();
+// Loop through all list items, and hide those who don't match the search query
+  for (a = 0; a < productList.length; a++) {
+    productList2[0] = productList[a].brand;
+    productList2[1] = productList[a].model;
+    productList2[2] = productList[a].name;
+    productList2[3] = productList[a].color;
+    productList2[4] = productList[a].type;
+    productList2[5] = productList[a].product_id;
+    for (b = 0; b < 5; b++) {
+      word = productList2[b];    
+      if (word.toUpperCase().indexOf(inputWord) > -1) {
+        //alert("din sökning machar ett instrument");   
+        searchResults.push(productList[a]);        
+        break;
+      }
+    }
+  }
+  loadSearchResults(searchResults);
+}
+
+function loadSearchResults(searchList) {
+  $("#sideBarContainer").html($("#view-sidebar").html())
+  $("#productViewContainer").html($("#view-product").html())
+  $("#mainViewContainer").html($("#empty").html())
+  appendProducts(searchList);
+}
 
