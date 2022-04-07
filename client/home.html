@@ -585,18 +585,24 @@
   <!--Dessa behöver göras om till dropdown mmenyer på saker som färg, brand osv-->      
     <div class="selectdiv">
       <label>
+        <select id="typVal" onchange="updateChoice2()">
+            <option selected>Kategori</option>        
+        </select>
+    </label>
+    <label>
+      <select id="brandVal" onchange="updateChoice()">
+          <option  selected>Märke</option>
+         
+      </select>
+  </label>
+      <label>
         <select id="modelVal">
             <option selected>Modell</option>
            
          
         </select>
     </label>
-      <label>
-          <select id="brandVal" onchange="updateChoice()">
-              <option  selected>Märke</option>
-             
-          </select>
-      </label>
+     
       <label>
         <select id="colorVal">
             <option selected>Färg</option>
@@ -607,8 +613,8 @@
     </label>
     </div>  
     <div class="col-md-6"><label class="labels">Pris</label><input type="number" id="createPris" class="form-control" placeholder="Pris" value=""></div>
-    <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
-    <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div>
+   <!-- <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
+    <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div> -->
     <div class="col-md-6"><label class="labels">Årtal</label><input type="number" id="createYear" min="1950" max="2022" class="form-control" placeholder="" value=""></div>   
     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="createAddButton" onclick="createAdd()" type="button">Skapa annons</button></div>
 </div>

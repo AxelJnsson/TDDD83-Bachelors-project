@@ -59,37 +59,50 @@ var modelClicked1 = false;
 
 
 function updateChoice() {
- alert($("#brandVal").val());
   if($("#brandVal").val() == "Märke") {
     
 }else{
   filterbrands2.length = 0;
   filterbrands2.push($("#brandVal").val());
- 
 }
 createSelects(filterQ2);
 
 }
 
+function updateChoice2() {
+if($("#typVal").val() == "Kategori") {    
+
+} else {
+  filtertypes2.length = 0;
+  filtertypes2.push($("#typVal").val());
+}
+createSelects(filterQ2);
+$("#brandVal").empty(); 
+
+
+}
 
 
 function fillOptions2(products) {
-  $("#modelVal").empty(); 
+ 
   let prod = products;
-  
+  $("#modelVal").empty(); 
   
 
   const brands = [];
   const models = [];  
+  const type = [];
 
   
   for(var j = 0; j < prod.length; j++){
     brands.push(prod[j].brand);
-    models.push(prod[j].model);    
+    models.push(prod[j].model);
+    type.push(prod[j].type)    
 }
 
     var uniqueBrands = brands.filter((v, i, a) => a.indexOf(v) === i);
     var uniqueModels = models.filter((v, i, a) => a.indexOf(v) === i);
+    var uniqueType = type.filter((v, i, a) => a.indexOf(v) === i);
    // var uniqueColors = colors.filter((v, i, a) => a.indexOf(v) === i)
    // var uniqueYears = years.filter((v, i, a) => a.indexOf(v) === i);
 
@@ -98,7 +111,10 @@ function fillOptions2(products) {
     for(var j = 0; j < uniqueBrands.length; j++){
       $("#brandVal").append("<option >"+uniqueBrands[j]+"</options>");           
   }
-   
+  
+  for(var j = 0; j < uniqueType.length; j++){
+    $("#typVal").append("<option >"+uniqueType[j]+"</options>");           
+}
 
   
   for(var i = 0 ; i < uniqueModels.length; i++) {
@@ -106,7 +122,7 @@ function fillOptions2(products) {
 }}
 
 function createSelects(filteringByArrayTest){ 
- 
+
   $.ajax({        
       url:'/product',
       type: 'GET',
@@ -125,7 +141,7 @@ function createSelects(filteringByArrayTest){
 
 //riktig filtrering
 function filtertestSelect(arr, testingArrayFilters){
-  
+
   const types2 = testingArrayFilters[0];
   const brands2 = testingArrayFilters[1];
   const models2 = testingArrayFilters[2];
@@ -133,10 +149,10 @@ function filtertestSelect(arr, testingArrayFilters){
  
   var filteredstuff2 = arr;
 
-  //if (types.length !== 0) {
-   //   filteredstuff = filteredstuff.filter( el => 
-         // types.indexOf(el.type) >= 0);
- // }
+  if (types2.length !== 0) {
+      filteredstuff2 = filteredstuff2.filter( el => 
+          types2.indexOf(el.type) >= 0);
+  }
 
   if (brands2.length !== 0) {
       filteredstuff2 = filteredstuff2.filter( el => 
@@ -152,7 +168,6 @@ function downloadImg(url) {
       fd.append('url', url)
       fd.append('file',files);
     
-      alert("1");
      
       $.ajax({
           url: '/saveImg',
