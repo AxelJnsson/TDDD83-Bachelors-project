@@ -16,6 +16,7 @@ $('#xButtonBasket').click(function (e) {
   $("#basketModal").modal('hide');
   });
 
+  
 
 function addProductToCart(productToAdd){
   // alert(productToAdd)
@@ -31,6 +32,8 @@ function addProductToCart(productToAdd){
             type: 'GET',
             success: function(product) { 
               updateprice(parseInt(product.price));
+              $("#productModal").modal('hide');
+             
             },
             error: function(u){
                 alert("uppdaterade inte priset. ägd.");
