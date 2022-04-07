@@ -67,6 +67,7 @@ function faqView() {
   $("#mainViewContainer").html($("#view-FAQ").html())
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
+  document.getElementById('top').scrollIntoView();
   e.preventDefault();
 }  
 $('#contactButton').click(function (e) {          
