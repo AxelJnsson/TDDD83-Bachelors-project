@@ -22,8 +22,8 @@ from sqlalchemy import Column, Integer, table
 from sqlalchemy import engine_from_config
 import stripe
 import os
-import cv2
-from PIL import Image
+#import cv2
+#from PIL import Image
 
 #stripe_keys = {
  #   "secret_key": os.environ["STRIPE_SECRET_KEY"],
