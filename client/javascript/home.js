@@ -52,6 +52,14 @@ function openRegModal(){
   $("#registerModal").modal('toggle');
   e.preventDefault();
 }
+function snapchatImage(){
+  $("#snapchatModal").modal('toggle');
+  e.preventDefault();
+}
+$('#xButtonSnap').click(function (e) {
+  e.preventDefault();
+  $("#snapchatModal").modal('hide');
+});
 
 function faqView() {
   $("#mainViewContainer").html($("#view-FAQ").html())
@@ -74,7 +82,7 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
 
   }
-
+ 
   $('#userButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-user").html())
     $("#sideBarContainer").html($("#empty").html())
@@ -111,10 +119,17 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   });
 
-  $('#guitarButton').click(function (e) {   
+  /*function gitarrView(){
+      $("#sideBarContainer").html($("#view-sidebar").html())  
+      $("#productViewContainer").html($("#view-product").html())
+      $("#mainViewContainer").html($("#empty").html())
+   };*/
+
+   function gitarrView(){  
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
     
     resetFilter();
     var defCategory = "Gitarr";
@@ -123,36 +138,39 @@ $('#contactButton').click(function (e) {
     showProdInfo(filterQ);
     createCategoriesForSidebar();
     e.preventDefault();
-  });
+  };
 
-  $('#pianoButton').click(function (e) { 
+  function pianoView(){  
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html()) 
+    document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Piano");
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
     e.preventDefault();
-  });
+  };
 
-  $('#drumButton').click(function (e) {   
+  function drumView(){
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Trummor");
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
     e.preventDefault();
-  });
+  };
 
-  $('#studioButton').click(function (e) {  
+  function studioView(){
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Studio");
     filternewornot.push(0, 1); 
@@ -160,7 +178,7 @@ $('#contactButton').click(function (e) {
     createCategoriesForSidebar();
 
     e.preventDefault();
-  });
+  };
 
   $('#alphornButton').click(function (e) {   
     $("#sideBarContainer").html($("#view-sidebar").html())  
@@ -209,6 +227,7 @@ function showView(view){
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
 }
+
 //testfunktion för filtrering
 function checkNeworOldStuff(checkid, query){
   var checkBox = document.getElementById(checkid);
