@@ -33,6 +33,7 @@ function addProductToCart(productToAdd){
             success: function(product) { 
               updateprice(parseInt(product.price));
               $("#productModal").modal('hide');
+             
             },
             error: function(u){
                 alert("uppdaterade inte priset. ägd.");
