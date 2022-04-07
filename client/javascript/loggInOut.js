@@ -28,8 +28,8 @@ $('#LoginFinishButton').click(function (e) {
             
          sessionStorage.setItem('auth', JSON.stringify(i));           
          $(".container").html($("#view-home").html());
+         updateUserPriceAtLogin(i);  
          window.location.reload(); 
-           
         },
         error: function(){
           alert("Wrong username or password!");
@@ -78,5 +78,6 @@ function logoutUser() {
   
   });
 
-  
-  
+//  function updateUserPriceAtLogin(userAndToken){
+//     alert(userAndToken)
+//   }
