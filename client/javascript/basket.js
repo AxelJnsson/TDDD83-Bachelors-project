@@ -227,3 +227,22 @@ function showPriceInRegister(currentTotal){
   $('#totalsumLine').empty();
   $('#totalsumLine').append("Total: " + currentTotal + "kr");
 }
+
+function addOrdersAndItemsToHistory () {
+//INTE DEN KOD SOM SKA VARA KSA SKRIVAS OM
+  $.ajax ({
+    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/product/'+productID+'/unadding',
+    type: 'POST',
+    datatype: 'JSON',
+    contentType: "application/json",
+
+    success: function(product) {
+      // alert("tog bort")
+      getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
+    },
+    error: function(u){
+      alert("tog inte bort fk u");
+    } 
+  });
+}

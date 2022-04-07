@@ -383,6 +383,7 @@ def createorders(user_id):
 @app.route('/orderitem/<int:user_id>', methods =['POST'])
 def createorderitem(user_id):
   if request.method == 'POST':
+    product_nr = request.get_json()
     orderhist = Order_history.query.filter_by(user_id)
     x = Orders(order_history_id = orderhist.id)
     db.session.add(x)
