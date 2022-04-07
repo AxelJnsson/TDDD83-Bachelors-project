@@ -28,6 +28,23 @@ function filtertest2(arr, testingArrayFilters){
    
     var filteredstuff = arr;
 
+    const priceinterval1 = [];
+    const priceinterval2 = [];
+    const priceinterval3 = [];
+
+    // if(prod[j].price >= 10000){
+    //     priceinterval1.push(prod[j]);
+    //  } else if (prod[j].price < 10000 && prod[j].price >= 5000) {
+    //     priceinterval2.push(prod[j]);
+    //  } else if (prod[j].price < 5000) {
+    //      priceinterval3.push(prod[j]);
+    //  }
+
+    //  const or = (...fns) => n => fns.some(fn => fn(n));
+
+    //  const priceintervals = [priceinterval1, priceinterval2, priceinterval3];
+
+
     if (types.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             types.indexOf(el.type) >= 0);
@@ -149,7 +166,7 @@ function sideBar(products){
     const models = [];
     const colors = [];
     const years = [];
-    const priceintervals = [];
+   
     const all = [];
 
     for(var j = 0; j < prod.length; j++){
@@ -158,11 +175,10 @@ function sideBar(products){
         colors.push(prod[j].color);
         years.push(prod[j].year);
 
-        // if(prod[j].price < 10000 && prod[j].price > 5000){
-            
-        // }
+         
 
     }
+
 
     var uniqueBrands = brands.filter((v, i, a) => a.indexOf(v) === i);
     var uniqueModels = models.filter((v, i, a) => a.indexOf(v) === i);
