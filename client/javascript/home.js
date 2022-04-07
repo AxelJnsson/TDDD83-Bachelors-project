@@ -6,18 +6,29 @@ $(document).ready(function(){
    
     filternewornot.push(0, 1); 
 
+
+    
+    
+
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
       signedIn = true;
     } else {
       signedIn = false;
+      var admin;
+      if (JSON.parse(sessionStorage.getItem('auth')).user.is_admin === 1) {
+        admin = true;
+      } else {
+        admin = false;
+      }
     }
-    
+
     $('#registerButton').toggleClass('d-none', !signedIn);
     $('#loginButton').toggleClass('d-none', !signedIn);
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
+    $('#adminButton').toggleClass('d-none', !admin);
     sessionStorage.setItem('price', parseInt(0));           
   })
  
@@ -44,6 +55,13 @@ $('#aboutButton').click(function (e) {
 
   $('#annonsButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-createAdd").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html())
+     e.preventDefault();
+   });
+
+   $('#adminButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-adminPage").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
      e.preventDefault();

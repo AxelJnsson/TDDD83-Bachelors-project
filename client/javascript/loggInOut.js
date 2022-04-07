@@ -26,20 +26,11 @@ $('#LoginFinishButton').click(function (e) {
           "email":inputEmail, "password":inputPassword}), 
         success: function(i) { 
          
-         //var user = i["user"];
-         
          sessionStorage.setItem('auth', JSON.stringify(i));
-         alert(JSON.stringify(sessionStorage.getItem('auth')));
-         if (user["is_admin"] == 1) {
-          $(".container").html($("#view-home").html());
-         } else {
+        
           $(".container").html($("#view-home").html());
           window.location.reload(); 
-         }
-         
-
-         
-           
+  
         },
         error: function(){
           alert("Wrong username or password!");
