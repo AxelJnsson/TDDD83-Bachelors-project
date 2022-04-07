@@ -252,9 +252,10 @@
 
   <script id="view-sidebar" type="text/html">
     <!--Sidebar-->
-  <div class="row">
-    <div class="col">
-      <div class="d-flex sticky-top flex-column align-items-center align-items-sm-start px-3 pt-2 text-black">
+  
+  <div class="row" id="testest">
+    <div class="col overflow-y: auto">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
           <span class="fs-5 d-none d-sm-inline text-secondary">Filtrera mera!</span>
         </a>
@@ -376,7 +377,6 @@
 
         </ul>
         <hr>
-      </div>
     </div>
 
 
@@ -398,6 +398,7 @@
       </div>
       <div class="col-4"></div>
     </div>
+  </div>
   </script>
 
   <!--FAQ SIDA-->
@@ -848,7 +849,7 @@
 <div class="container-fluid bg-light" id=sidebarAndProduct>
   <div class="row">
     <div class="col-2" type="text/html">
-      <div class="container" id="sideBarContainer" type="text/html">
+      <div class="container sticky-top" id="sideBarContainer" type="text/html">
       </div>
     </div>
     <div class="col" type="text/html">
