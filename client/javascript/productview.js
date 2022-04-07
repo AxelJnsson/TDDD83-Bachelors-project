@@ -84,10 +84,10 @@ function appendProducts(filteredproducts){
     let j = 0;
     for (let i=0; i < products.length; i++) {
     //funktion för att skriva ut produkterna 4 och 4
-        if (i%4 == 0) {
-            j++;
+        //if (i%4 == 0) {
+            //j++;
             
-        }
+        //} Tog bort, snyggare att dom lägger sig rätt beroende på skärmstorlek! <333 /Unn
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
 
         var condition;

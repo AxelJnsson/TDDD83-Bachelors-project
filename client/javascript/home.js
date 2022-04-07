@@ -18,8 +18,8 @@ $(document).ready(function(){
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
-    sessionStorage.setItem('price', parseInt(0));    
-  })
+    
+ })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
  //test för en till dimension av filtrering
@@ -44,7 +44,6 @@ $('#aboutButton').click(function (e) {
 
   $('#annonsButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-createAdd").html())
-    fillOptions1();
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
      e.preventDefault();
@@ -109,6 +108,7 @@ $('#contactButton').click(function (e) {
     resetFilter();
     //filternewornot.push("Ny", "Begagnad");
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
     e.preventDefault();
   });
 
@@ -121,6 +121,7 @@ $('#contactButton').click(function (e) {
     var defCategory = "Gitarr";
     filtertypes.push(defCategory);
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
     e.preventDefault();
   });
 
@@ -131,6 +132,7 @@ $('#contactButton').click(function (e) {
     resetFilter();
     filtertypes.push("Piano");
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
     e.preventDefault();
   });
 
@@ -142,6 +144,7 @@ $('#contactButton').click(function (e) {
     filtertypes.push("Trummor");
 
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
 
     e.preventDefault();
   });
@@ -153,25 +156,30 @@ $('#contactButton').click(function (e) {
     resetFilter();
     filtertypes.push("Studio");
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
 
     e.preventDefault();
   });
 
-
-  $('#alphornButton').click(function (e) {   
+  $('#yamahaTestButton').click(function (e) {   
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
     resetFilter();
-    
+    var testcategory1 = "Gitarr";
+    var testcategory2 = "Piano";
+    //var testcategory3 = "trummor";
+
+    var testbrand1 = "Yamaha";
     //var testmodell = "idk";
-    filtertypes.push("Alphorn");
-    //filterbrands.push(testbrand1);
+    filtertypes.push(testcategory1, testcategory2);
+    filterbrands.push(testbrand1);
     //filtermodels.push(testmodell);
     // alert(filtertypes[0] + filtertypes[1]);
     // alert(filterQ[0][1]);
-    //alert("Gitarrer och pianon av märke yamaha");
+    alert("Gitarrer och pianon av märke yamaha");
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
 
     e.preventDefault();
   });
@@ -252,54 +260,6 @@ function regOrAnnons() {
 
  
 }
-
-
-  function getSearchProducts() {
-    $.ajax({        
-      url:'/product',
-      type: 'GET',
-      success: function(u) {  
-          search(u);
-      },
-      error: function(){
-          alert("error");
-      }    
-    });
-  }
-  
-  function search(productList) {
-    var productList2 = [];
-    var searchResults = [];
-
-    var input = document.getElementById('datatable-search-input');
-    inputWord = input.value.toUpperCase();
-  // Loop through all list items, and hide those who don't match the search query
-    for (a = 0; a < productList.length; a++) {
-      productList2[0] = productList[a].brand;
-      productList2[1] = productList[a].model;
-      productList2[2] = productList[a].name;
-      productList2[3] = productList[a].color;
-      productList2[4] = productList[a].type;
-      productList2[5] = productList[a].product_id;
-      for (b = 0; b < 5; b++) {
-        word = productList2[b];    
-        if (word.toUpperCase().indexOf(inputWord) > -1) {
-          //alert("din sökning machar ett instrument");   
-          searchResults.push(productList[a]);        
-          break;
-        }
-      }
-    }
-    loadSearchResults(searchResults);
-  }
-
-  function loadSearchResults(searchList) {
-    $("#sideBarContainer").html($("#view-sidebar").html())
-    $("#productViewContainer").html($("#view-product").html())
-    $("#mainViewContainer").html($("#empty").html())
-    appendProducts(searchList);
-  }
-
 
 
 
