@@ -18,14 +18,14 @@ $('#xButtonBasket').click(function (e) {
 
 
 function addProductToCart(productToAdd){
-  alert(productToAdd)
+  // alert(productToAdd)
     $.ajax({    
       headers: {
         "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},    
       url:'/product/'+productToAdd+'/adding',
       type: 'POST',
       success: function(u) { 
-          alert("funkar")
+          // alert("funkar")
           $.ajax({    
             url:'/product/'+ productToAdd,
             type: 'GET',
@@ -67,8 +67,6 @@ function getProductsToPrintInBasket(userID){
 }
 
 function showInBasketModal(products, hasProducts){
-
-
   if (hasProducts){
     for (let i = 0; i <products.length; i++)
     $.ajax ({
@@ -77,7 +75,7 @@ function showInBasketModal(products, hasProducts){
       datatype: 'JSON',
       contentType: "application/json",
       success: function(product) {
-        printProductInBasketModal(product);
+        printProductInBasketModal(product,products[i].quantity);
       }
     });
   } else{
@@ -90,11 +88,22 @@ function printEmptyBasketModal(){
   $('#bodyBasketModal').append("Varukorgen är tom!")
 }
 
-function printProductInBasketModal(product){
-  $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr </div> <button class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
+function printProductInBasketModal(product, quantity){
+  $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+'</div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
 }
 
 function deleteProductFromCart(productID){
+  $.ajax ({
+    url:'/product/'+productID,
+    type: 'GET',
+    datatype: 'JSON',
+    contentType: "application/json",
+    success: function(product) {
+      updateprice((parseInt(product.price))*-1);
+      showPriceInModal(sessionStorage.getItem('price'));
+    }
+  });
+
   $.ajax ({
     headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
     url:'/product/'+productID+'/unadding',
@@ -103,7 +112,7 @@ function deleteProductFromCart(productID){
     contentType: "application/json",
 
     success: function(product) {
-      alert("tog bort")
+      // alert("tog bort")
       getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
     },
     error: function(u){
@@ -114,7 +123,7 @@ function deleteProductFromCart(productID){
 
 function showPriceInModal(currentTotal){
   $('#basketModalPriceDiv').empty();
-  $('#basketModalPriceDiv').append('Din nuvarande Total är: '+ currentTotal+'.');
+  $('#basketModalPriceDiv').append('Din nuvarande Total är: '+ currentTotal+'kr');
 
 
 }
@@ -132,6 +141,7 @@ $('#shopFromBasketButton').click(function (e) {
   $("#productViewContainer").html($("#empty").html());
   $("#mainViewContainer").html($("#view-cashregister").html());
   printBasketedProducts(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
+  showPriceInRegister(sessionStorage.getItem('price'));
   });
 
 function printBasketedProducts(userID){
@@ -169,6 +179,7 @@ function printProductInBasketRegister(product){
 }
 
 function stripeTestFunction(){
+  alert("as")
   $.ajax ({
       headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
       url:'/create-checkout-session',
@@ -176,9 +187,10 @@ function stripeTestFunction(){
       datatype: 'JSON',
       contentType: "application/json",
       data: JSON.stringify({
-      "price":123123}),
-      success: function(data) {    
-      return stripe.redirectToCheckout({sessionId: data.sessionId})
+      "price":(sessionStorage.getItem('price')*100)}),
+      success: function(checkoutUrl) {    
+      // return stripe.redirectToCheckout({sessionId: data.sessionId})
+      window.location.href = checkoutUrl
       }
   }); 
 }
@@ -192,7 +204,7 @@ function deleteProductFromRegister(productID){
     contentType: "application/json",
 
     success: function(product) {
-      alert("tog bort")
+      // alert("tog bort")
       printBasketedProducts(JSON.parse(sessionStorage.getItem('auth')).user.user_id)
     },
     error: function(u){
@@ -202,8 +214,13 @@ function deleteProductFromRegister(productID){
 }
 
 function updateprice(price){
-  alert("uppdaterade priset med "+price+"kr")
+  // alert("uppdaterade priset med "+price+"kr")
   let oldPrice = parseInt(sessionStorage.getItem('price'));
   let newPrice = oldPrice + price;
   sessionStorage.setItem('price', newPrice);           
+}
+
+function showPriceInRegister(currentTotal){
+  $('#totalsumLine').empty();
+  $('#totalsumLine').append("Total: " + currentTotal + "kr");
 }
