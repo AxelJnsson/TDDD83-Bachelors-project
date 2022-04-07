@@ -194,4 +194,6 @@ p {
   background-repeat: no-repeat;
   border:none;
   font-family: 'Gill Sans';
+  overflow-y: scroll;
+  height: 660px
   }
