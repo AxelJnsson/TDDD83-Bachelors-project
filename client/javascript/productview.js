@@ -1,11 +1,11 @@
-function createProducts(filteringByArrayTest){ 
+function createProducts(filteringByArray){ 
     $.ajax({        
         url:'/product',
         type: 'GET',
         success: function(u) {          
             var allinstruments = u;
             //getInstruments(allinstruments);
-            filtertest2(allinstruments, filteringByArrayTest);
+         filtering(allinstruments,filteringByArray);
         },
         error: function(){
             alert("fel");
@@ -16,17 +16,34 @@ function createProducts(filteringByArrayTest){
 
 
 //riktig filtrering
-function filtertest2(arr, testingArrayFilters){
-    const types = testingArrayFilters[0];
-    const brands = testingArrayFilters[1];
-    const models = testingArrayFilters[2];
-    const colors = testingArrayFilters[3];
-    const names = testingArrayFilters[4];
-    const prices = testingArrayFilters[5];
-    const years = testingArrayFilters[6];
-    const newornots = testingArrayFilters[7];
+function filtering(arr, filterQueries){
+    const types = filterQueries[0];
+    const brands = filterQueries[1];
+    const models = filterQueries[2];
+    const colors = filterQueries[3];
+    const names = filterQueries[4];
+    const prices = filterQueries[5];
+    const years = filterQueries[6];
+    const newornots = filterQueries[7];
    
     var filteredstuff = arr;
+
+    const priceinterval1 = [];
+    const priceinterval2 = [];
+    const priceinterval3 = [];
+
+    // if(prod[j].price >= 10000){
+    //     priceinterval1.push(prod[j]);
+    //  } else if (prod[j].price < 10000 && prod[j].price >= 5000) {
+    //     priceinterval2.push(prod[j]);
+    //  } else if (prod[j].price < 5000) {
+    //      priceinterval3.push(prod[j]);
+    //  }
+
+    //  const or = (...fns) => n => fns.some(fn => fn(n));
+
+    //  const priceintervals = [priceinterval1, priceinterval2, priceinterval3];
+
 
     if (types.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
@@ -90,15 +107,21 @@ function appendProducts(filteredproducts){
         //} Tog bort, snyggare att dom lägger sig rätt beroende på skärmstorlek! <333 /Unn
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
 
-        var condition;
+        if (products[i].new_or_not == 0) {
+            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Begagnad</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
+        } else if (products[i].new_or_not == 1) {
+            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Ny</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
+        } 
 
-        if(products[i].new_or_not == 0) {
-            condition = "Begagnad";
-        } else {
-            condition = "Ny"
-        }
+        //var condition;
 
-        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br>Skick: "+ condition +" </h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b><h4>" + products[i].price + "</h4></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
+        //if(products[i].new_or_not == 0) {
+          //  condition = "Begagnad";
+        //} else {
+          //  condition = "Ny"
+        //}
+
+        //$("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br>Skick: "+ condition +" </h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b><h4>" + products[i].price + "</h4></div>" + "<button class='btn btn-primary btn-sm btnInfo' style='font-size:20px' data-id='"+ i + "'>Visa Info</button></div></div>");
     }
 
     $('.btnInfo').on("click" ,function (e) {
@@ -110,6 +133,9 @@ function appendProducts(filteredproducts){
         $(".product-modal-body").append("<div class='card'><div class='card-body'><h5 class='card-title'> " + products[prod_id].name +  "</h5><br><img class='card-img-top' src='"+ products[prod_id].image +"'><br><p class='card-text'> <b>Märke:</b> " + products[prod_id].brand + "<br> <b>Modell:</b> " + products[prod_id].model + "<br> <b>Färg: </b>" + products[prod_id].color + "<br> <b>År: </b>" + products[prod_id].year + "<br> <b>Pris:</b> " + products[prod_id].price + "</p></div></div>");
         $("#productModalFooter").append('<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="addProductToCart(this.value)" value="'+products[prod_id].product_id+'" id="addProductToCartButton">Lägg i varukorgen</button>');
     });
+    if (products.length <= 0){
+        $("#productViewContainer").html($("#noProductView").html())    
+    }
     //sideBar(products);
 }
    
@@ -130,7 +156,7 @@ function showProdInfo(filterQueries) {
    createProducts(filterQ);
    //alert(products[0].name);
 
-   //filtertest2(products, filterQ);
+   // filtering(products, filterQ);
 
     //return products;
 
@@ -149,7 +175,7 @@ function sideBar(products){
     const models = [];
     const colors = [];
     const years = [];
-    const priceintervals = [];
+   
     const all = [];
 
     for(var j = 0; j < prod.length; j++){
@@ -158,16 +184,20 @@ function sideBar(products){
         colors.push(prod[j].color);
         years.push(prod[j].year);
 
-        // if(prod[j].price < 10000 && prod[j].price > 5000){
-            
-        // }
+         
 
     }
+
 
     var uniqueBrands = brands.filter((v, i, a) => a.indexOf(v) === i);
     var uniqueModels = models.filter((v, i, a) => a.indexOf(v) === i);
     var uniqueColors = colors.filter((v, i, a) => a.indexOf(v) === i)
     var uniqueYears = years.filter((v, i, a) => a.indexOf(v) === i);
+
+    uniqueBrands.sort();
+    uniqueModels.sort();
+    uniqueColors.sort();
+    uniqueYears.sort();
 
     // all.push(uniqueBrands);
     // all.push(uniqueModels);
