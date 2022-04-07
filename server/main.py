@@ -109,7 +109,31 @@ class Cart_Item(db.Model):
 #Behövs inte den så att man får datan på rätt format?
   # def serialize(self):
   #   return dict(id=self.id, product_id=self.product_id, quantity=self.quantity, session_id= self.session_id)
+class Order_history(db.Model):
+  id = db.Column(db.Integer, primary_key = True)
+  user_id = db.Column (db.Integer, db.ForeignKey('user.user_id'))
+
+  def __repr__(self):
+    return '<Order_history {}: {} {}>'.format(self.id, self.user_id)
+
+class Orders(db.Model):
+  order_nr = db.Column(db.Integer, primary_key = True)
+  amount = db.Column(db.Integer)
+  order_history_id = db.Column(db.Integer, db.ForeignKey('order_history.id'))
   
+
+  def __repr__(self):
+    return '<Orders {}: {} {} {} >'.format(self.order_nr, self.amount, self.order_history_id)
+
+class Order_item (db.Model):
+  id = db.Column(db.Integer, db.ForeignKey('product.product_id'), primary_key = True )
+  quantity = db.Column(db.Integer)
+  order_nr = db.Column(db.Integer, db.ForeignKey('orders.order_nr'))
+  
+
+  def __repr__(self):
+    return '<Order_item {}: {} {} {} >'.format(self.id, self.quantity, self.order_nr)
+
 
 #Sets up database from database_schema
 def executeTestSQL(filename):
@@ -325,6 +349,49 @@ def newproducts():
       
     return jsonify(product_list)
   return "401"
+
+#Route for adding order history
+@app.route('/createorderhistory/<int:user_id>', methods =['POST'])
+def createorderhistory(user_id):
+  if request.method == 'POST':
+    print("tries to create")
+    x = Order_history( user_id= user_id)
+    db.session.add(x)
+    db.session.commit()
+    return 20
+
+#INTEKLAR
+@app.route('/order/<int:user_id>', methods = ['POST', 'GET'])
+def createorders(user_id):
+  if request.method == 'POST':
+    
+    orderhist = Order_history.query.filter_by(user_id)
+    x = Orders(order_history_id = orderhist.id)
+    db.session.add(x)
+    db.session.commit()
+    return 200
+  elif request.method == 'GET':
+    order = Product.query.filter_by(order_nr = Order_history.query.filter_by(user_id).user_id)
+    order_list =[]
+
+    for x in order:
+      order_list.append(x.serialize())
+    return jsonify(order_list)
+  return "401"
+
+#Route for adding orderitems
+@app.route('/orderitem/<int:user_id>', methods =['POST'])
+def createorderitem(user_id):
+  if request.method == 'POST':
+    orderhist = Order_history.query.filter_by(user_id)
+    x = Orders(order_history_id = orderhist.id)
+    db.session.add(x)
+    db.session.commit()
+    return 200
+
+#Route for getting orderitems
+
+
 
 #Route for getting only old products
 @app.route('/oldproduct', methods = ['GET'] )
