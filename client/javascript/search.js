@@ -96,7 +96,7 @@ function getSearchProducts() {
   
     for (a = 0; a < searchResults.length; a++) {
       for (b = 0; b < prices.length; b++) {
-        if (searchResults[a].product_id == b) {
+        if (searchResults[a].product_id == b + 1) {
           searchResults[a].price = prices[b];
         }
       }

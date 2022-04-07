@@ -35,6 +35,7 @@ VALUES ('Alesis', 'Turbo Mesh', 'Alesis Turbo Mesh', 3599, 'Svart', '/images/ale
        ('Yamaha', 'virveltrumma', 'Yamaha virveltrumma', 5476, 'Silver', '/images/yamahavirveltrumma.jpg', 2022, 'Trummor', 1, 7, 1),
        ('Yamaha', 'DTX10K-X', 'Yamaha DTX10K-X', 45490, 'Orange', '/images/yamahadtx10k.jpg', 2021, 'Trummor', 0, 1, 1),
        ('Pearl', 'Crystal', 'Pearl Crystal', 14590, 'Transparent', '/images/pearlcrystal.jpg', 2022, 'Trummor', 1, 1, 1),
+       ('Bongo', 'Club-Jam', 'Bongo Club-Jam', 2323, 'Orange', '/images/bongo.jpg', 1969, 'Trummor', 0, 1, 1),
        ('Tama', 'Club-Jam', 'Tama Club-Jam', 4399, 'Red', '/images/tamaclubjam.jpg', 2017, 'Trummor', 0, 1, 1);
 
 --Insert mixers and other products
@@ -43,7 +44,11 @@ VALUES ('Behringer', 'BX100', 'Behringer BX100', 20000, 'Grå', '/images/mixer.p
 
 --Insert alphorns
 INSERT INTO product(brand, model, name, price, color, image, year, type, new_or_not, quantity, seller)
-VALUES ('Thomann', 'Alphorn', 'Thomann Alphorn', 31890, 'Vit', '/images/thomann_alphorn.jpg', 2022, 'Alphorn', 0, 5, 2);
+VALUES ('Thomann', 'Alphorn', 'Thomann Alphorn', 31890, 'Vit', '/images/thomann_alphorn.jpg', 2022, 'Alphorn', 0, 5, 2),
+ ('Didgeridoo', 'Mellan', 'Aussie Classic 130cm', 15000, 'Trä', '/images/Didgeridoo.jpg', 1850, 'Alphorn', 0, 2, 1),
+ ('Vuvuzela', 'Vuvuzela2000', 'Johannesburg', 150, 'Grön', '/images/vuv.jpg', 2012, 'Alphorn', 0, 12, 1),
+ ('Kazoo', 'KazooKid', 'Kazoo Floejter', 15000, 'Alla', '/images/kazoo-floejter.jpg', 1997, 'Alphorn', 1, 12, 1),
+ ('Näsflöjt', 'Snook', 'Mäktig Näsflöjt', 25, 'Alla', '/images/nose-flojter.jpg', 2023, 'Alphorn', 1, 25, 1);
 
 
 
