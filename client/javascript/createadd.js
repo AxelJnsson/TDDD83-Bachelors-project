@@ -9,8 +9,11 @@ function createAdd() {
     var brand = $("#brandVal").val();
     var text = $("#createText").val();
     var type = $("#createkat").val();
-    var immgg = "/images/sdp2.jpg";
-  downloadImg();
+    var userNr = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
+    var url1 =  userNr+"_"+ model;
+    var image = "/images/" + url1+".jpg";
+   
+    downloadImg(url1);
     
     
     $.ajax ({       
@@ -19,7 +22,7 @@ function createAdd() {
         datatype: 'JSON',
         contentType: "application/json",
         data: JSON.stringify({
-          "brand":brand, "model":model, "image":immgg, "name":text, "type":type, "price":pris, "color":color, "year":year, "new_or_not": begagnad, "seller": saljare}),
+          "brand":brand, "model":model, "image":image, "name":text, "type":type, "price":pris, "color":color, "year":year, "new_or_not": begagnad, "seller": saljare}),
         success: function(user) {    
           alert("produkt tillagd!");
           
@@ -143,19 +146,20 @@ function filtertestSelect(arr, testingArrayFilters){
 
 }
 
-function downloadImg() {
+function downloadImg(url) {
       var fd = new FormData();
       var files = $('#formFile')[0].files[0];
-
+      fd.append('url', url)
       fd.append('file',files);
-     console.log(files);
+    
+      alert("1");
+     
       $.ajax({
           url: '/saveImg',
           type: 'POST',
           data: fd,  
           success: function(response){
-            alert("du komt hit 2");
-             
+          
           },
           cache: false,
           contentType: false,

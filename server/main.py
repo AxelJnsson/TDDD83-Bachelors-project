@@ -22,8 +22,9 @@ from sqlalchemy import Column, Integer, table
 from sqlalchemy import engine_from_config
 import stripe
 import os
-#import cv2
-#from PIL import Image
+import cv2
+from PIL import Image
+from pathlib import Path
 
 #stripe_keys = {
  #   "secret_key": os.environ["STRIPE_SECRET_KEY"],
@@ -292,8 +293,20 @@ def products():
 @app.route('/saveImg', methods = ['POST'])
 def saveImg():
   if request.method == 'POST':
-    img = request.files.get('file')
-    img = img.save('savedimage.jpg')
+    img = request.files.get('file')   
+    url = request.values.get('url')
+   
+    cwd = Path.cwd()
+    mod_path = str(Path(__file__).parent.parent)
+    path =  mod_path + '/client/images'
+    print(path)
+   
+    #filename = os.path.join(dirname, 'relative/path/to/file/you/want')
+
+   
+    #img = img.save('savedimage.jpg')
+    
+    img = img.save(f"{path}/"+url+".jpg")
     #cv2.imwrite('savedimage.jpg', img)    
    
   return "200"
