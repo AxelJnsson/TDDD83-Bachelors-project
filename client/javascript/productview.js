@@ -134,6 +134,7 @@ function appendProducts(filteredproducts){
         $("#productModalFooter").append('<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="addProductToCart(this.value)" value="'+products[prod_id].product_id+'" id="addProductToCartButton">Lägg i varukorgen</button>');
     });
     if (products.length <= 0){
+        alert("hej");
         $("#productViewContainer").html($("#noProductView").html())    
     }
     //sideBar(products);
