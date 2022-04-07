@@ -41,7 +41,7 @@
   <!--Övre navbar-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
     <a class="nav-link" href="#">
-      <img src="/images/logga.png" width="100" height="100" id="homeButton">
+      <img src="/images/tonehub_logga.png" width="100" height="100" id="homeButton">
     </a>
     <!-- <div>
       <div class="input-group">
@@ -59,7 +59,7 @@
         <div class="form-outline">
           <input type="search" class="form-control" placeholder="Search.." id="datatable-search-input" onkeyup="getSearchProducts()">
         </div>
-        <button type="button" class="btn btn-primary" onclick="getSearchProducts()">
+        <button type="button" class="btn btn-secondary" onclick="getSearchProducts()">
           <i class="fas fa-search"></i>
         </button>
       </div>
@@ -370,7 +370,7 @@
               </li>
             </ul>
             <div>
-              <button id="resetFilterBtn" onclick="btnResetFilter()">Reset filter</button>
+              <button id="resetFilterBtn" class="btn btn-primary" onclick="btnResetFilter()">Reset filter</button>
             </div>
           </li>
 
@@ -386,6 +386,18 @@
   </script>
   <script id="view-product" type="text/html">    
     <div class="col" id="testdiv"></div>
+  </script>
+
+  <script id="noProductView" type="text/html">
+    <div class="row">
+      <div class="col-2"></div>   
+      <div class="col-6 text-center" id="noProduct">
+        <h1><strong>Din sökning gav inga träffar</strong></h1>
+        <h6 class="text-secondary">Försök gärna igen med en ny sökning</h6>
+        <img src="images/noProd.png" />
+      </div>
+      <div class="col-4"></div>
+    </div>
   </script>
 
   <!--FAQ SIDA-->
@@ -499,13 +511,13 @@
 <!--Homepage-->
 <script id="view-home" type="text/html">  
   <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4" src="/images/logga.png" alt="" width="250" height="200">
-    <h1 class="display-5 fw-bold">Tonehub</h1>
+    <img class="d-block mx-auto mb-4" src="/images/tonehub_logga.png" alt="" width="200" height="200">
+    <!--<h1 class="display-5 fw-bold">Tonehub</h1>-->
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Välkommen till oss, här kan du både köpa nya och begagnade instrument samt dessutom sälja dina instrument. Allt på ett ställe, vilken grej!</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Köp instrument</button>
-        <button type="button" onclick="regOrAnnons()" class="btn btn-outline-secondary btn-lg px-4">Lägg upp annons</button>
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" >Köp instrument</button>
+        <button type="button" onclick="regOrAnnons()" class="btn btn-secondary btn-lg px-4">Lägg upp annons</button>
       </div>
     </div>
   </div>
@@ -882,7 +894,7 @@
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
       <div class="me-5 d-none d-lg-block">
         <i class="fa-solid fa-laptop"></i>
-        <span>Följ oss på våra andra socialakanaler---></span>
+        <span>Följ oss på våra andra sociala kanaler---></span>
       </div>
       <!-- Left -->
 
@@ -966,7 +978,7 @@
             </p>
             <p>
               <i class="fa-solid fa-question"></i>
-              <a class="text-dark" href="#" onclick="faqView()" id="faqButton">FAQ</a>
+              <a class="text-dark" onclick="faqView()" id="faqButton">FAQ</a>
             </p>
             <p>
               <i class="fa-solid fa-exclamation"></i>
@@ -1017,6 +1029,7 @@
   <script src="/javascript/createadd.js"></script>
   <script src="/javascript/productview.js"></script>
   <script src="/javascript/stripetest.js"></script>
+  <script src="/javascript/search.js"></script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="/javascript/register.js"></script>
   <script src="/javascript/cashregister.js"></script>
