@@ -208,6 +208,9 @@ p {
   .nav-link{
     color:rgb(50, 52, 56);
   }
+  .nav-linkTwo:focus{
+    background-color:#f8f9fa;
+  }
   .nav-link:hover{
     color: black;
   }
@@ -218,6 +221,14 @@ p {
   #sidebarAndProduct{
     color: rgb(50, 52, 56);
     padding-top: 20px
+  }
+  #top{
+    color: rgb(50, 52, 56);
+    background-size: cover;
+    background-color: #f8f9fa;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Oriya MN'; 
   }
 
   .text-justright{
@@ -232,6 +243,6 @@ p {
     background-color: rgb(192, 31, 165);
     }
   #resetFilterBtn{
-    background-color: rgb(134, 164, 202); 
+    background-color: whitesmoke; 
 
   }
