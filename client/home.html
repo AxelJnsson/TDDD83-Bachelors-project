@@ -41,7 +41,7 @@
   <!--Övre navbar-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
     <a class="nav-link" href="#">
-      <img src="/images/logga.png" width="100" height="100" id="homeButton">
+      <img src="/images/tonehub_logga.png" width="100" height="100" id="homeButton">
     </a>
     <!-- <div>
       <div class="input-group">
@@ -371,7 +371,7 @@
               </li>
             </ul>
             <div>
-              <button class="btn-success btn-sm mx-auto" type="button" style="font-size:10px;"id="resetFilterBtn" onclick="btnResetFilter()">Återtäll filter</button>
+              <button id="resetFilterBtn" class="btn btn-primary" onclick="btnResetFilter()">Reset filter</button>
             </div>
           </li>
 
@@ -512,13 +512,13 @@
 <!--Homepage-->
 <script class="bg-light" id="view-home" type="text/html">  
   <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4" src="/images/logga.png" alt="" width="200" height="200">
-    <h1 class="display-5 fw-bold">Tonehub</h1>
+    <img class="d-block mx-auto mb-4" src="/images/tonehub_logga.png" alt="" width="200" height="200">
+    <!--<h1 class="display-5 fw-bold">Tonehub</h1>-->
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Välkommen till oss, här kan du både köpa nya och begagnade instrument samt dessutom sälja dina instrument. Allt på ett ställe, vilken grej!</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Köp instrument</button>
-        <button type="button" onclick="regOrAnnons()" class="btn btn-outline-secondary btn-lg px-4">Lägg upp annons</button>
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" >Köp instrument</button>
+        <button type="button" onclick="regOrAnnons()" class="btn btn-secondary btn-lg px-4">Lägg upp annons</button>
       </div>
     </div>
   </div>
@@ -598,30 +598,51 @@
   <!--Dessa behöver göras om till dropdown mmenyer på saker som färg, brand osv-->      
     <div class="selectdiv">
       <label>
+        <select id="typVal" onchange="updateChoice2()">
+            <option selected>Kategori</option>        
+        </select>
+    </label>
+    <label>
+      <select id="brandVal" onchange="updateChoice()">
+          <option  selected>Märke</option>
+         
+      </select>
+  </label>
+      <label>
         <select id="modelVal">
             <option selected>Modell</option>
            
          
         </select>
     </label>
-      <label>
-          <select id="brandVal" onchange="updateChoice()">
-              <option  selected>Märke</option>
-             
-          </select>
-      </label>
+     
       <label>
         <select id="colorVal">
             <option selected>Färg</option>
             <option>Blå</option>
             <option>Röd</option>
             <option>Grön</option>
+            <option>Svart</option>
+            <option>Vit</option>
+            <option>Grå</option>
+            <option>Orange</option>
+            <option>Lila</option>
+            <option>Rosa</option>
+            <option>Trä</option>
+            <option>Turkos</option>
+            <option>Beige</option>
+            <option>Alu</option>
+            <option>Transparant</option>
+            <option>Gul</option>
+            <option>Brons </option>
+            <option>Brun</option>
+            
         </select>
     </label>
     </div>  
     <div class="col-md-6"><label class="labels">Pris</label><input type="number" id="createPris" class="form-control" placeholder="Pris" value=""></div>
-    <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
-    <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div>
+   <!-- <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
+    <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div> -->
     <div class="col-md-6"><label class="labels">Årtal</label><input type="number" id="createYear" min="1950" max="2022" class="form-control" placeholder="" value=""></div>   
     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="createAddButton" onclick="createAdd()" type="button">Skapa annons</button></div>
 </div>
@@ -874,7 +895,7 @@
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
       <div class="me-5 d-none d-lg-block">
         <i class="fa-solid fa-laptop"></i>
-        <span>Följ oss på våra andra socialakanaler---></span>
+        <span>Följ oss på våra andra sociala kanaler---></span>
       </div>
       <!-- Left -->
 

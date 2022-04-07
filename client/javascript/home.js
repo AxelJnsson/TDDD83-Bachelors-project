@@ -44,6 +44,7 @@ $('#aboutButton').click(function (e) {
 
   $('#annonsButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-createAdd").html())
+    fillOptions1();
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
      e.preventDefault();
@@ -111,6 +112,18 @@ $('#contactButton').click(function (e) {
       //filternewornot.length = 0;
   }
 
+ function buyInstruments(){
+  $("#sideBarContainer").html($("#view-sidebar").html())
+  $("#productViewContainer").html($("#view-product").html())
+  $("#mainViewContainer").html($("#empty").html())
+
+
+  //showProdInfo("allt", null);
+  resetFilter();
+  //filternewornot.push("Ny", "Begagnad");
+  showProdInfo(filterQ);
+  createCategoriesForSidebar();
+ }
 
   $('#allInstrButton').click(function (e) {
     $("#sideBarContainer").html($("#view-sidebar").html())
