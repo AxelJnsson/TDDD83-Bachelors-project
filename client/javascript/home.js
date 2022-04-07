@@ -57,6 +57,10 @@ function snapchatImage(){
   $("#snapchatModal").modal('toggle');
   e.preventDefault();
 }
+$('#xButtonSnap').click(function (e) {
+  e.preventDefault();
+  $("#snapchatModal").modal('hide');
+});
 
 function faqView() {
   $("#mainViewContainer").html($("#view-FAQ").html())

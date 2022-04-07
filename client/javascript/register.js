@@ -8,6 +8,11 @@ $('#closeRegisterButton').click(function (e) {
     $("#registerModal").modal('hide');
   });
 
+  $('#xRegister').click(function (e) {
+    e.preventDefault();
+    $("#registerModal").modal('hide');
+  });
+  
 
 /*
 $('#xRegister').click(function (e) {
