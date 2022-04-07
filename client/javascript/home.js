@@ -54,6 +54,10 @@ function openRegModal(){
   $("#registerModal").modal('toggle');
   e.preventDefault();
 }
+function snapchatImage(){
+  $("#snapchatModal").modal('toggle');
+  e.preventDefault();
+}
 
 function faqView() {
   $("#mainViewContainer").html($("#view-FAQ").html())
@@ -76,7 +80,7 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
 
   }
-
+ 
   $('#userButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-user").html())
     $("#sideBarContainer").html($("#empty").html())
@@ -215,6 +219,7 @@ function showView(view){
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
 }
+
 //testfunktion för filtrering
 function checkNeworOldStuff(checkid, query){
   var checkBox = document.getElementById(checkid);
