@@ -3,6 +3,7 @@ $(document).ready(function(){
     $("#mainViewContainer").html($("#view-home").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
+    document.getElementById('top').scrollIntoView();
    
 
     var signedIn;
