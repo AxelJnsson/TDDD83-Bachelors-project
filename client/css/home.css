@@ -184,4 +184,14 @@ p {
     border: 1px solid #ccc;
   }
 
-
+/* sidebar styles*/
+#testest {
+  background-color: #224562;
+  color: #224562;
+  background: url('../images/sidebar.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border:none;
+  font-family: 'Gill Sans';
+  }
