@@ -43,19 +43,9 @@
     <a class="nav-link-image" href="#">
       <img src="/images/tonehub_logga.png" width="100" height="100" id="homeButton">
     </a>
-    <!-- <div>
-      <div class="input-group">
-        <div class="form-outline">
-          <input  type="search" id="form1" class="form-control" placeholder="Search.." id="datatable-search-input" onkeyup="getSearchProducts()" />
-        </div>
-        <button type="button" class="btn btn-primary">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-    </div> -->
  
     <div>
-      <div class="input-group">
+      <div class="input-group" style="margin-left: 20px; margin-right: 10px;">
         <div class="form-outline">
           <input type="search" class="form-control" placeholder="Search.." id="datatable-search-input" onkeyup="getSearchProducts()">
         </div>
@@ -63,10 +53,7 @@
           <i class="fas fa-search"></i>
         </button>
       </div>
-    </div>
-    
-    <!-- <i class="fa-solid fa-magnifying-glass" id="magnifyingGlass" ></i> -->
-    
+    </div>    
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
@@ -389,7 +376,7 @@
   </script>
 
   <script id="noProductView" type="text/html">
-    <div class="row">
+    <div class="row" style="margin-top: 100px">
       <div class="col-2"></div>   
       <div class="col-6 text-center" id="noProduct">
         <h1><strong>Din sökning gav inga träffar</strong></h1>
@@ -524,54 +511,31 @@
   </div>
  
   <div class="container">
+    <h1 style="font-weight: bold; text-align: center;">ToneHub rekommenderar</h1>
     <div class="card-deck mb-3 text-center">
       <div class="card mb-4 box-shadow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Skapa användare</h4>
+          <h4 class="my-0 font-weight-normal">Unna dig ett piano</h4>
         </div>
-        <div class="card-body"> 
-          <h1 class="card-title pricing-card-title">Lås upp möjligheter <small class="text-muted"></small></h1>   
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>Möjlighet att skapa egna annonser</li>
-            <li>Fri frakt</li>
-            <li>. </li>
-            <li>. </li>
-          </ul>
-          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Skapa konto</button>
+        <div class="card-body" id="startCard1"> 
         </div>
       </div>
       <div class="card mb-4 box-shadow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Köp Instrument</h4>
+          <h4 class="my-0 font-weight-normal">Liva upp vardagen</h4>
         </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title">Börja handla<small class="text-muted"></small></h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>Helt ok utbud</li>
-            <li>Olika färger</li>
-            <li>Rimliga priser</li>
-            <li>.</li>
-          </ul>
-          <button type="button" class="btn btn-lg btn-block btn-primary">Handla</button>
+        <div class="card-body" id="startCard2">
         </div>
       </div>
       <div class="card mb-4 box-shadow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Kontakta oss!</h4>
+          <h4 class="my-0 font-weight-normal">Vill du reta upp grannarna?</h4>
         </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title"> Bra kundsupport</h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>Chatta</li>
-            <li>Email</li>
-            <li>Ring</li>
-            <li>.</li>
-          </ul>
-          <button type="button" class="btn btn-lg btn-block btn-primary">Kontakt</button>
+        <div class="card-body" id="startCard3">
+          
         </div>
       </div>
     </div>
-
 </div>  
 
 
@@ -887,7 +851,7 @@
   </div>
 </div>
 
-  <script id="view-cashregister" type="text/html">
+<script id="view-cashregister" type="text/html">
   <div>
     <h1>
       Välkommen till kassan
@@ -933,32 +897,32 @@
 </div>
 </script>
 
-  <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true" data-keyboard=false data-backdrop='static'>
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Produktinformation</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xProduct">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" data-keyboard=false data-backdrop='static'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Produktinformation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xProduct">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-        <div class="modal-body">
-          <div class="product-modal-body">
-
-          </div>
-        </div>
-
-        <div class="modal-footer">
-        <div id="productModalFooter" style="float: left;">
+      <div class="modal-body">
+        <div class="product-modal-body">
 
         </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeProductModal">Stäng</button>
-        </div>
+      </div>
+
+      <div class="modal-footer">
+      <div id="productModalFooter" style="float: left;">
+
+      </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeProductModal">Stäng</button>
       </div>
     </div>
   </div>
+</div>
 
 <div class="container-fluid bg-light" id=sidebarAndProduct>
   <div class="row">
@@ -1122,6 +1086,7 @@
   <script src="/javascript/loggInOut.js"></script>
   <script src="/javascript/createadd.js"></script>
   <script src="/javascript/productview.js"></script>
+  <script src="/javascript/startpageProducts.js"></script>
   <script src="/javascript/stripetest.js"></script>
   <script src="/javascript/search.js"></script>
   <script src="https://js.stripe.com/v3/"></script>

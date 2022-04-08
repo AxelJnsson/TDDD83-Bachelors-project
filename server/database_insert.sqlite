@@ -2,8 +2,8 @@
 INSERT INTO product(brand, model, name, price, color, image, year, type, new_or_not, quantity, seller)
 VALUES ('Yamaha', 'C40 Classical', 'Yamaha C40 Classical', 1479, 'Brun', '/images/yamahac40.jpg', 2022, 'Gitarr', 1, 5, 1),
       ('Epiphone',  'Les Paul', 'Epiphone Les Paul', 5485, 'Brun', '/images/epiphonelespaul.jpg', 2020, 'Gitarr', 0, 1, 1),
-      ('Carl', 'Bildt', 'Carl Bildt', '2000 rubel', 'Blå', '/images/carlbildt.png', 1948, 'Gitarr', 0, 1, 1),
-      ('Carl', 'Bildt',  'Carl Bildt', '2000 rubel', 'Blå','/images/carlbildt.png', 1948, 'Gitarr', 0, 1, 1),
+      ('Carl', 'Bildt', 'Carl Bildt', 2000, 'Blå', '/images/carlbildt.png', 1948, 'Gitarr', 0, 1, 1),
+      ('Carl', 'Bildt',  'Carl Bildt', 2000, 'Blå','/images/carlbildt.png', 1948, 'Gitarr', 0, 1, 1),
       ('Ibanez',  'JEM77P', 'Ibanez JEM77P', 16999, 'Blå', '/images/ibanezjem77p.jpg', 2022, 'Gitarr', 1, 4, 1),
       ('Klassisk',  'Gitarr', 'Klassisk gitarr', 545, 'Brun', '/images/klassiskgitarr.jpg', 2018, 'Gitarr', 0, 1, 1),
       ('Dean ML',  'Select Floyd', 'Dean ML Select Floyd', 9646, 'Brun', '/images/deanmlselect.jpg', 2022, 'Gitarr', 1, 1, 1),
@@ -48,7 +48,7 @@ VALUES ('Behringer', 'BX100', 'Behringer BX100', 20000, 'Grå', '/images/mixer.p
 INSERT INTO product(brand, model, name, price, color, image, year, type, new_or_not, quantity, seller)
 VALUES ('Thomann', 'Alphorn', 'Thomann Alphorn', 31890, 'Vit', '/images/thomann_alphorn.jpg', 2022, 'Alphorn', 0, 5, 2),
  ('Didgeridoo', 'Mellan', 'Aussie Classic 130cm', 15000, 'Trä', '/images/Didgeridoo.jpg', 1850, 'Alphorn', 0, 2, 1),
- ('Vuvuzela', 'Vuvuzela2000', 'Johannesburg', 150, 'Grön', '/images/vuv.jpg', 2012, 'Alphorn', 0, 12, 1),
+ ('Vuvuzela', 'Vuvuzela2000', 'Vuvuzela', 150, 'Grön', '/images/vuv.jpg', 2012, 'Alphorn', 0, 12, 1),
  ('Kazoo', 'KazooKid', 'Kazoo Floejter', 15000, 'Alla', '/images/kazoo-floejter.jpg', 1997, 'Alphorn', 1, 12, 1),
  ('Näsflöjt', 'Snook', 'Mäktig Näsflöjt', 25, 'Alla', '/images/nose-flojter.jpg', 2023, 'Alphorn', 1, 25, 1),
  ('Otamatone', 'techno white', 'Otamatone techno White X', 1205, 'Vit', '/images/otamatone.jpg', 2018, 'Alphorn', 0, 3, 1),
