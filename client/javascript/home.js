@@ -1,5 +1,6 @@
 $(document).ready(function(){
     // Kod i detta block körs när dokumentet laddats klart.
+    sessionStorage.setItem('price',0);
     $("#mainViewContainer").html($("#view-home").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
@@ -18,7 +19,7 @@ $(document).ready(function(){
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
- })
+  })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
  //test för en till dimension av filtrering
