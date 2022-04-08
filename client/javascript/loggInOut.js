@@ -75,7 +75,14 @@ function logoutUser() {
            $("#productViewContainer").html($("#empty").html())
            $("#mainViewContainer").html($("#view-home").html())
            $("#registerModal").modal('hide');
+           $.ajax ({  
+            url:'/createorderhistory/'+ i.user_id,
+            type: 'POST',
+            contentType: "application/json",
+          
+            success: function() { 
       }
+    })}
     });
   
   });

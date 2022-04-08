@@ -107,15 +107,21 @@ function appendProducts(filteredproducts){
         //} Tog bort, snyggare att dom lägger sig rätt beroende på skärmstorlek! <333 /Unn
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
 
-        var condition;
+        if (products[i].new_or_not == 0) {
+            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Begagnad</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<button class='btn btn-primary btn-sm btnInfo' style='font-size:10px' data-id='"+ i + "'>Visa info</button></div></div>");
+        } else if (products[i].new_or_not == 1) {
+            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Ny</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></div>" + "<button class='btn btn-primary btn-sm btnInfo' style='font-size:10px' data-id='"+ i + "'>Visa info</button></div></div>");
+        } 
 
-        if(products[i].new_or_not == 0) {
-            condition = "Begagnad";
-        } else {
-            condition = "Ny"
-        }
+        //var condition;
 
-        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br>Skick: "+ condition +" </h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b><h4>" + products[i].price + "</h4></div>" + "<button class='btn btn-primary btn-sm btnInfo' style='font-size:20px' data-id='"+ i + "'>Visa Info</button></div></div>");
+        //if(products[i].new_or_not == 0) {
+          //  condition = "Begagnad";
+        //} else {
+          //  condition = "Ny"
+        //}
+
+        //$("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br>Skick: "+ condition +" </h5><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"<br> <b>Märke:</b> " + products[i].brand + "<br> <b>Modell:</b> " + products[i].model + "</p> <b><h4>" + products[i].price + "</h4></div>" + "<button class='btn btn-primary btn-sm btnInfo' style='font-size:20px' data-id='"+ i + "'>Visa Info</button></div></div>");
     }
 
     $('.btnInfo').on("click" ,function (e) {
@@ -128,10 +134,31 @@ function appendProducts(filteredproducts){
         $("#productModalFooter").append('<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="addProductToCart(this.value)" value="'+products[prod_id].product_id+'" id="addProductToCartButton">Lägg i varukorgen</button>');
     });
     if (products.length <= 0){
+        alert("hej");
         $("#productViewContainer").html($("#noProductView").html())    
     }
     //sideBar(products);
 }
+
+// function appendProducts(filteredproducts){
+
+//     var products = filteredproducts;
+//     let j = 0;
+//     for (let i=0; i < products.length; i++) {
+//     //funktion för att skriva ut produkterna 4 och 4
+//         if (i%4 == 0) {
+//             j++;
+            
+//         }
+//         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
+
+//         if (products[i].new_or_not == 0) {
+//             $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Begagnad</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
+//         } else if (products[i].new_or_not == 1) {
+//             $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Ny</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
+//         }
+// }
+
    
 // return arr1;
 
@@ -215,28 +242,28 @@ function sideBar(products){
     if(brandClicked == false) {
         $("#brandArea").empty();
         for(var j = 0; j < uniqueBrands.length; j++){
-            $("#brandArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueBrands[j] +  " </span></label></li>");           
+            $("#brandArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueBrands[j] +  " </span></label></li>");           
         }
     }
 
     if(modelClicked == false){
         $("#modelArea").empty();
         for(var i = 0 ; i < uniqueModels.length; i++) {
-            $("#modelArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somemodel' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueModels[i] +  " </span></label></li>");
+            $("#modelArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somemodel' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueModels[i] +  " </span></label></li>");
         }
     }
 
     if(colorClicked == false){
         $("#colorArea").empty();
         for(var i = 0 ; i < uniqueColors.length; i++) {
-            $("#colorArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somecolor' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueColors[i] +  " </span></label></li>");
+            $("#colorArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somecolor' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueColors[i] +  " </span></label></li>");
         }
     }
 
     if(yearClicked == false) {
         $("#yearArea").empty();
         for(var i = 0 ; i < uniqueYears.length; i++) {
-            $("#yearArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someyear' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueYears[i] +  " </span></label></li>");
+            $("#yearArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someyear' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueYears[i] +  " </span></label></li>");
         }
     }
 
