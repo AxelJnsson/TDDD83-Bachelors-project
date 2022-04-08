@@ -1,12 +1,11 @@
 $(document).ready(function(){
-    // Kod i detta block körs när dokumentet laddats klart.
-
-    $("#mainViewContainer").html($("#view-home").html())
+    // Kod i detta block körs när dokumentet laddats klart.    
+    $("#mainViewContainer").html($("#view-homeSlide").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
     document.getElementById('top').scrollIntoView();
+    showSlides();
     createProducts2();
-   
 
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
@@ -250,9 +249,10 @@ $('#contactButton').click(function (e) {
    }
 
 $('#homeButton').click(function (e) {
-  $("#mainViewContainer").html($("#view-home").html()) 
+  $("#mainViewContainer").html($("#view-homeSlide").html()) 
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
+  showSlides();
   createProducts2();
     e.preventDefault();
 });
