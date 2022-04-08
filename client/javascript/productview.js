@@ -12,33 +12,33 @@ function createProducts(filteringByArray){
         }    
     });
 }
+    const lowerBoundPrice = []; 
+    const higherBoundPrice = [];
+    const numbersArray = [];
+
 
 function filterPriceInterval(stuffToFilter, interval){
     
     var prInterval = interval;
 
-    const lowerBoundPrice = []; 
-    const higherBoundPrice = [];
+    lowerBoundPrice.length = 0;
+    higherBoundPrice.length = 0;
 
-    //alert(prInterval.length);
 
-    for(var i = 0; i < prInterval.length ; i++) {
-       
+    for(var i = 0; i < prInterval.length ; i++) { 
             //alert(prInterval[0][0]);
             lowerBoundPrice.push(prInterval[i][0]);
             higherBoundPrice.push(prInterval[i][1]);
-        
-       
     }
-       
 
+    // alert(lowerBoundPrice[0]);
+    // alert(higherBoundPrice[0]);
 
-    const numbersArray = [];
+    numbersArray.length = 0;
     
     for(item in stuffToFilter){
             numbersArray.push(stuffToFilter[item].price);
     }
-
 
     //let matches = [];
     let nonMatches = [];
@@ -72,7 +72,6 @@ function filtering(arr, filterQueries){
     const brands = filterQueries[1];
     const models = filterQueries[2];
     const colors = filterQueries[3];
-    const names = filterQueries[4];
     const prices = filterQueries[5];
     const years = filterQueries[6];
     const newornots = filterQueries[7];
@@ -436,7 +435,6 @@ function sideBar(products){
 
   $('.someprice').on("click" ,function (e) {
     e.stopImmediatePropagation();
-    alert("Filtrering på pris funkar, men är inte helt färdigt än!")
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") == true){
         filterpriceinterval.push(priceIntervals[checkBoxId]);
@@ -456,7 +454,8 @@ function sideBar(products){
               }
 
         }
-        
+        filterprices.length = 0;
+
     }
         $("#productViewContainer").html($("#empty").html())
         $("#productViewContainer").html($("#view-product").html())  
