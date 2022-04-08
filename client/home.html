@@ -755,15 +755,55 @@
   </div>
 
   <script id="view-adminPage" type="text/html">
-    <div class="center" style="background-color: #b4b5be">
+    <div class="center">
     <div class="d-flex justify-content-between align-items-center mb-3" >
       <h4 class="text-right">Adminsida</h4>
+    </div>
+    <div class="card-container">
     </div>
   </div>
   </div>
   </div>
   
   </script>
+
+  <div class="modal fade" id="adminEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ändra användarinfo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xRegister">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="inputFirstname">Förnamn:</label>
+            <input class="form-control" id="editFirstnameField">
+          </div>
+          <div class="form-group">
+            <label for="inputLastname">Efternamn:</label>
+            <input class="form-control" id="editLastnameField">
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Email:</label>
+            <input class="form-control" id="editEmailField">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Lösenord:</label>
+            <input class="form-control" id="editPasswordField">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeEditButton1">Stäng</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="editFinishButton1"
+            onclick="adminEdit2()">Spara ändringar</button>
+        </div>
+      </div>
+    </div>
+  </div>
   
     
 
@@ -1012,6 +1052,7 @@
   <script src="https://js.stripe.com/v3/"></script>
   <script src="/javascript/register.js"></script>
   <script src="/javascript/cashregister.js"></script>
+  <script src="/javascript/adminview.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
     crossorigin="anonymous"></script>

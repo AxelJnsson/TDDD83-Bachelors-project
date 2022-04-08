@@ -233,7 +233,7 @@ def signup():
 
   if request.method == 'POST':
     new_user = request.get_json()    
-    x = User(last_name = new_user["last_name"], first_name = new_user["firstname"],  email = new_user["email"])
+    x = User(last_name = new_user["last_name"], first_name = new_user["first_name"],  email = new_user["email"], is_admin = new_user["is_admin"])
     x.set_password(new_user["password"])
     db.session.add(x)
     db.session.commit()

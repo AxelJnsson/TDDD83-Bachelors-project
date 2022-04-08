@@ -63,6 +63,7 @@ $('#aboutButton').click(function (e) {
     $("#mainViewContainer").html($("#view-adminPage").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
+    User_admin();
      e.preventDefault();
    });
 
