@@ -13,72 +13,61 @@ function createProducts(filteringByArray){
     });
 }
 
-function filterPriceInterval(stuffToFilter){
-    const lowerBoundPrice = [100, 10000]; //test
-    const higherBoundPrice = [10000, 100000];
-    const priceIntervals = [[100, 10000], [10000, 100000]];
-
-    // const x = between(priceIntervals[0][0], priceIntervals[0][1]);
-    // const y =  between(priceIntervals[1][0], priceIntervals[1][1]);
+function filterPriceInterval(stuffToFilter, interval){
     
+    var prInterval = interval;
 
-    // const between = (a, b) => n => a <= n && n <= b;
-    // const or = (...fns) => n => fns.some(fn => fn(n));
+    const lowerBoundPrice = []; 
+    const higherBoundPrice = [];
 
-    // //const bound = [[1, 3], [4, 6], [8, 10]];
-    // const bound = priceIntervals;
+    //alert(prInterval.length);
 
-    // const check = or(...bound.map(([a, b]) => between(a, b)));
-    // const [nomatch, match] =
-    // [1000,1,200,50,99999,1000,2,20,900,10].reduce(
-    //     (acc, n) =>
-    //     (acc[+check(n)].push(n), acc),
-    //         [[], []]);
+    for(var i = 0; i < prInterval.length ; i++) {
+       
+            //alert(prInterval[0][0]);
+            lowerBoundPrice.push(prInterval[i][0]);
+            higherBoundPrice.push(prInterval[i][1]);
+        
+       
+    }
+       
 
-    // const prices = [];
-    // for (item in stuffToFilter){
-    //     prices.push(stuffToFilter.price);
-    // }
-
-    // const [nomatch, match] =
-    // [prices].reduce(
-    //     (acc, n) =>
-    //     (acc[+check(n)].push(n), acc),
-    //         [[], []]);
-
-    // alert(match.length);
-    // alert(nomatch.length);
 
     const numbersArray = [];
     
     for(item in stuffToFilter){
-        numbersArray.push(stuffToFilter.price);
+            numbersArray.push(stuffToFilter[item].price);
     }
 
-    const lowerBound = [1000, 4000, 8000];
-    const higherBound = [3000, 6000, 10000];
 
-    let matches = [];
+    //let matches = [];
     let nonMatches = [];
     
     numbersArray.forEach(num => {
-    const matched = lowerBound.some((bound, i) => {
-        return num > bound && num < higherBound[i];
+    const matched = lowerBoundPrice.some((bound, i) => {
+        return num > bound && num < higherBoundPrice[i];
     });
 
-    matched ? matches.push(num) : nonMatches.push(num);
+    matched ? filterprices.push(num) : nonMatches.push(num);
     });
 
-    alert("Matchar: " + matches.length);
-    alert("Ingen match: " + nonMatches.length);
+    //  alert("Matchar: " + matches.length);
+    //  alert("Ingen match: " + nonMatches.length);
 
-    //filteredOnPrice = match;
-   // return filteredOnPrice;
+
 }
 
 
 //riktig filtrering
 function filtering(arr, filterQueries){
+    var filteredstuff = arr;
+    const priceInterval = filterQueries[8];
+
+    //alert(priceInterval.length);
+     if (priceInterval !== 0){
+         filterPriceInterval(filteredstuff, priceInterval); 
+     }
+
     const types = filterQueries[0];
     const brands = filterQueries[1];
     const models = filterQueries[2];
@@ -87,17 +76,8 @@ function filtering(arr, filterQueries){
     const prices = filterQueries[5];
     const years = filterQueries[6];
     const newornots = filterQueries[7];
-   
-    var filteredstuff = arr;
 
-    //if (prices.length !== 0) {
-        //filterPriceInterval(filteredstuff); 
-    //}
-    
-   // alert("hallå");
 
-    
-    
 
 
     if (types.length !== 0) {
@@ -248,6 +228,7 @@ var brandClicked = false;
 var modelClicked = false;
 var colorClicked = false;
 var yearClicked = false;
+var priceClicked = false;
 
 function sideBar(products){
 
@@ -257,6 +238,8 @@ function sideBar(products){
     const models = [];
     const colors = [];
     const years = [];
+
+    const priceIntervals = [[0, 1000], [1000, 5000], [5000, 10000], [10000, 100000]];
    
     const all = [];
 
@@ -325,6 +308,13 @@ function sideBar(products){
         $("#yearArea").empty();
         for(var i = 0 ; i < uniqueYears.length; i++) {
             $("#yearArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someyear' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueYears[i] +  " </span></label></li>");
+        }
+    }
+
+    if(priceClicked == false) {
+        $("#priceArea").empty();
+        for(var i = 0 ; i < priceIntervals.length; i++) {
+            $("#priceArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someprice' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  priceIntervals[i] +  " </span></label></li>");
         }
     }
 
@@ -433,6 +423,36 @@ function sideBar(products){
             for(item in filteryears) {
                 if(filteryears[item] == uniqueYears[checkBoxId]){
                   filteryears.splice(item,1);
+                }
+              }
+
+        }
+        
+    }
+        $("#productViewContainer").html($("#empty").html())
+        $("#productViewContainer").html($("#view-product").html())  
+        showProdInfo(filterQ);
+    
+  });
+
+  $('.someprice').on("click" ,function (e) {
+    e.stopImmediatePropagation();
+    alert("Filtrering på pris funkar, men är inte helt färdigt än!")
+    var checkBoxId = $(this).data('id');
+    if($(this).prop("checked") == true){
+        filterpriceinterval.push(priceIntervals[checkBoxId]);
+        
+        priceClicked = true;
+        //alert(filteryears[0]);
+    } else if ($(this).prop("checked") == false) {
+        if(filterpriceinterval.length == 1) {
+            filterpriceinterval.length = 0;
+            priceClicked = false;
+        } else if (filterpriceinterval.length > 1) {
+            //alert("test");
+            for(item in filterpriceinterval) {
+                if(filterpriceinterval[item] == priceIntervals[checkBoxId]){
+                  filterpriceinterval.splice(item,1);
                 }
               }
 

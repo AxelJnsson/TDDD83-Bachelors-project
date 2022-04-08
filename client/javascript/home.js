@@ -40,7 +40,8 @@ $(document).ready(function(){
  const filterprices = [];
  const filteryears = [];
  const filternewornot = [];
- let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot];
+ const filterpriceinterval = [];
+ let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot, filterpriceinterval];
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
