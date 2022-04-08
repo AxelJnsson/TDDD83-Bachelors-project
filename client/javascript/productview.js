@@ -237,7 +237,7 @@ function sideBar(products){
     const colors = [];
     const years = [];
 
-    const priceIntervals = [[0, 1000], [1000, 5000], [5000, 10000], [10000, 100000]];
+    const priceIntervals = [[0, 1000], [1000, 5000], [5000, 10000], [10000, 100000], [100000, 1000000000000000]]; //hårdkodade så länge
    
     const all = [];
 
@@ -245,10 +245,7 @@ function sideBar(products){
         brands.push(prod[j].brand);
         models.push(prod[j].model);
         colors.push(prod[j].color);
-        years.push(prod[j].year);
-
-         
-
+        years.push(prod[j].year);   
     }
 
 
@@ -309,10 +306,24 @@ function sideBar(products){
         }
     }
 
+    var outputInterval;
+
     if(priceClicked == false) {
         $("#priceArea").empty();
-        for(var i = 0 ; i < priceIntervals.length; i++) {
-            $("#priceArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someprice' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  priceIntervals[i] +  " </span></label></li>");
+         for(var i = 0 ; i < priceIntervals.length; i++) {
+            if(i == 0) {
+                outputInterval = "0 - 1000";
+            } else if(i == 1){
+                outputInterval = "1000 - 5000";
+            } else if(i == 2) {
+                outputInterval = "5000 - 10 000";
+            } else if (i == 3) {
+                outputInterval = "10 000 - 100 000";
+            } else {
+                outputInterval = "Över 100 000";
+            }
+
+            $("#priceArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someprice' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  outputInterval +  " </span></label></li>");
         }
     }
 
