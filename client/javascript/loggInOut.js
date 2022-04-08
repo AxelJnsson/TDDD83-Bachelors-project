@@ -25,11 +25,11 @@ $('#LoginFinishButton').click(function (e) {
         data: JSON.stringify({
           "email":inputEmail, "password":inputPassword}), 
         success: function(i) { 
-            
+        
+         sessionStorage.setItem('userID',i.user.user_id)
          sessionStorage.setItem('auth', JSON.stringify(i));           
          $(".container").html($("#view-home").html());
-         window.location.reload(); 
-           
+         window.location.reload();
         },
         error: function(){
           alert("Wrong username or password!");
@@ -87,5 +87,6 @@ function logoutUser() {
   
   });
 
-  
-  
+//  function updateUserPriceAtLogin(userAndToken){
+//     alert(userAndToken)
+//   }
