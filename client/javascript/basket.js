@@ -19,7 +19,7 @@ $('#xButtonBasket').click(function (e) {
   
 
 function addProductToCart(productToAdd){
-  // alert(productToAdd)
+  alert(productToAdd);
     $.ajax({    
       headers: {
         "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},    

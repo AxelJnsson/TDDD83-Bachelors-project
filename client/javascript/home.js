@@ -88,7 +88,7 @@ function faqView() {
 $('#contactButton').click(function (e) {          
     e.preventDefault();
   });
-
+//används ej tror jag
   function startshopp() {
     $("#mainViewContainer").html($("#view-product").html())
     $("#sideBarContainer").html($("#empty").html())
@@ -123,15 +123,17 @@ $('#contactButton').click(function (e) {
 
  function buyInstruments(){
   $("#sideBarContainer").html($("#view-sidebar").html())
-  $("#productViewContainer").html($("#view-product").html())
-  $("#mainViewContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
 
 
-  //showProdInfo("allt", null);
-  resetFilter();
-  //filternewornot.push("Ny", "Begagnad");
-  showProdInfo(filterQ);
-  createCategoriesForSidebar();
+    //showProdInfo("allt", null);
+    resetFilter();
+    //filternewornot.push("Ny", "Begagnad");
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
  }
 
   $('#allInstrButton').click(function (e) {
@@ -299,8 +301,8 @@ function regOrAnnons() {
     $("#loginModal").modal('toggle');
   } else {
     $("#mainViewContainer").html($("#view-createAdd").html())
-  }
-
- 
+  } 
 }
+
+
 

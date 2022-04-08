@@ -119,9 +119,14 @@ div.sticky {
   box-shadow: 0 0 5px ;
 }
 
+.wrapper h2 {
+  color: black;
+}
+
 
 
 h2 {
+  text-align: center;
   font-size: 35px;
   font-weight: normal;
   text-transform: uppercase;
@@ -153,6 +158,16 @@ p {
   align-items: center;
   color: white;
 }
+#homeh2 {
+  margin: 25px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color :rgb(36, 33, 33);
+
+}
+
 
 .unit img {
   border-radius: 100px;
@@ -243,4 +258,8 @@ p {
   #resetFilterBtn{
     background-color: whitesmoke; 
 
+  }
+  #home-about {
+    background-color: white;
+    color: black;
   }
