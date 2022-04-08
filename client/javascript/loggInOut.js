@@ -25,10 +25,10 @@ $('#LoginFinishButton').click(function (e) {
         data: JSON.stringify({
           "email":inputEmail, "password":inputPassword}), 
         success: function(i) { 
-            
+        
+         sessionStorage.setItem('userID',i.user.user_id)
          sessionStorage.setItem('auth', JSON.stringify(i));           
          $(".container").html($("#view-home").html());
-         updateUserPriceAtLogin(i);   
          window.location.reload();
         },
         error: function(){

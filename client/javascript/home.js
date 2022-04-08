@@ -1,6 +1,6 @@
 $(document).ready(function(){
     // Kod i detta block körs när dokumentet laddats klart.
-    sessionStorage.setItem('price',0);
+
     $("#mainViewContainer").html($("#view-home").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
@@ -10,8 +10,17 @@ $(document).ready(function(){
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
       signedIn = true;
+      console.log("inloggad " + signedIn);
     } else {
       signedIn = false;
+      console.log("inloggad" + signedIn);
+    }
+    if (sessionStorage.getItem('auth')==null){
+      sessionStorage.setItem('price',0);
+    } else{
+      if (!sessionStorage.getItem('priceUpToDate')){
+        updateUserPriceAtLogin(sessionStorage.getItem('userID'));
+      }
     }
     
     $('#registerButton').toggleClass('d-none', !signedIn);

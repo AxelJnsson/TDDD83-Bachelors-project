@@ -1,7 +1,6 @@
-function updateUserPriceAtLogin(userAndToken){
-
+function updateUserPriceAtLogin(useID){
     $.ajax ({
-        url:'/user/'+userAndToken.user.user_id,
+        url:'/user/'+useID,
         type: 'GET',
         datatype: 'JSON',
         contentType: "application/json",
@@ -20,11 +19,11 @@ function updateUserPriceAtLogin(userAndToken){
                 success: function(product) {
                     currentSessionPrice = parseInt(sessionStorage.getItem('price'));
                     amountToAddFromLogin = parseInt(product.price* arrayOfProducts[i].quantity);
-                    console.log(currentSessionPrice+amountToAddFromLogin);
                     sessionStorage.setItem(('price'),currentSessionPrice+amountToAddFromLogin);
                 }
               });
           }
         }
       }); 
+    sessionStorage.setItem('priceUpToDate', true);
   }
