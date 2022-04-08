@@ -2,7 +2,6 @@
 $('#basketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('toggle');
-    sessionStorage.setItem('price',0);
     getProductsToPrintInBasket();
   });
 
@@ -19,7 +18,6 @@ $('#xButtonBasket').click(function (e) {
   
 
 function addProductToCart(productToAdd){
-  alert(productToAdd);
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
     $.ajax({    
       headers: {
@@ -46,20 +44,21 @@ function addProductToCart(productToAdd){
       }    
   });
   } else if (!JSON.parse(sessionStorage.getItem('loggedIn'))){
-    productsInCart = JSON.parse(sessionStorage.getItem('productsInCart'));
-    if (productsInCart.hasOwnProperty(productToAdd)){
-      productsInCart[productToAdd] = productsInCart[productToAdd]+1;
+    productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    if (productsInCart.get(productToAdd)>= 1){
+      newQuantity = productsInCart.get(productToAdd)+1
+      productsInCart.set(productToAdd, newQuantity);
     }else{
-      productsInCart[productToAdd] = 1;
+      productsInCart.set(productToAdd,1)
     }
-    sessionStorage.setItem('productsInCart', JSON.stringify(productsInCart))
+    sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
   }
 
 }
 
 function getProductsToPrintInBasket(){
   $('#bodyBasketModal').empty();
-
+  sessionStorage.setItem('price',0);
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
     userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
     $.ajax ({
@@ -72,20 +71,30 @@ function getProductsToPrintInBasket(){
         let hasProducts = false;
         data[2].forEach(element =>arrayOfProducts.push(element))
         if (arrayOfProducts.length < 1){
-          showInBasketModal(arrayOfProducts, hasProducts)
-  
+          showInBasketModal(arrayOfProducts, hasProducts);
         }else{
-  
           showInBasketModal(arrayOfProducts,hasProducts=true);
-  
         }
       }
     }); 
   } else {
-    productsToPrint = JSON.parse(sessionStorage.getItem('productsInCart'));
-    for (var key of Object.keys(productsToPrint)){
-      alert(productsToPrint[key]);
-
+    productsToPrint = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    if (productsToPrint.size<1){
+      printEmptyBasketModal();
+      showPriceInModal(0);
+    }else{
+      for (let key of productsToPrint.keys()){
+        $.ajax ({
+          url:'/product/'+key,
+          type: 'GET',
+          datatype: 'JSON',
+          contentType: "application/json",
+          success: function(product) {
+            printProductInBasketModal(product,productsToPrint.get(key));
+          }
+        });
+        
+      }
     }
   }
 }
@@ -120,39 +129,49 @@ function printProductInBasketModal(product, quantity){
 }
 
 function deleteProductFromCart(productID){
-  $.ajax ({
-    url:'/product/'+productID,
-    type: 'GET',
-    datatype: 'JSON',
-    contentType: "application/json",
-    success: function(product) {
-      updateprice((parseInt(product.price))*-1);
-      showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
+    $.ajax ({
+      url:'/product/'+productID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(product) {
+        updateprice((parseInt(product.price))*-1);
+        showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
+      }
+    });
+  
+    $.ajax ({
+      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+      url:'/product/'+productID+'/unadding',
+      type: 'POST',
+      datatype: 'JSON',
+      contentType: "application/json",
+  
+      success: function(product) {
+        // alert("tog bort")
+        getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
+      },
+      error: function(u){
+        alert("tog inte bort fk u");
+      } 
+    });
+  } else{
+    productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    if (productsInCart.get(productID)==1){
+      alert(productsInCart.get(productID));
+      productsInCart.delete(productID);
+      sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
+      getProductsToPrintInBasket();
     }
-  });
-
-  $.ajax ({
-    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-    url:'/product/'+productID+'/unadding',
-    type: 'POST',
-    datatype: 'JSON',
-    contentType: "application/json",
-
-    success: function(product) {
-      // alert("tog bort")
-      getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
-    },
-    error: function(u){
-      alert("tog inte bort fk u");
-    } 
-  });
+  }
 }
 
 function showPriceInModal(currentTotal){
   $('#basketModalPriceDiv').empty();
-  $('#basketModalPriceDiv').append('Din nuvarande Total är: '+ currentTotal+'kr');
-
-
+  if (JSON.parse(sessionStorage.getItem('price'))>0){
+    $('#basketModalPriceDiv').append('Din nuvarande Total är: '+ currentTotal+'kr');
+  }
 }
 
 
