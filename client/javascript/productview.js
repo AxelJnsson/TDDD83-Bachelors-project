@@ -13,6 +13,68 @@ function createProducts(filteringByArray){
     });
 }
 
+function filterPriceInterval(stuffToFilter){
+    const lowerBoundPrice = [100, 10000]; //test
+    const higherBoundPrice = [10000, 100000];
+    const priceIntervals = [[100, 10000], [10000, 100000]];
+
+    // const x = between(priceIntervals[0][0], priceIntervals[0][1]);
+    // const y =  between(priceIntervals[1][0], priceIntervals[1][1]);
+    
+
+    // const between = (a, b) => n => a <= n && n <= b;
+    // const or = (...fns) => n => fns.some(fn => fn(n));
+
+    // //const bound = [[1, 3], [4, 6], [8, 10]];
+    // const bound = priceIntervals;
+
+    // const check = or(...bound.map(([a, b]) => between(a, b)));
+    // const [nomatch, match] =
+    // [1000,1,200,50,99999,1000,2,20,900,10].reduce(
+    //     (acc, n) =>
+    //     (acc[+check(n)].push(n), acc),
+    //         [[], []]);
+
+    // const prices = [];
+    // for (item in stuffToFilter){
+    //     prices.push(stuffToFilter.price);
+    // }
+
+    // const [nomatch, match] =
+    // [prices].reduce(
+    //     (acc, n) =>
+    //     (acc[+check(n)].push(n), acc),
+    //         [[], []]);
+
+    // alert(match.length);
+    // alert(nomatch.length);
+
+    const numbersArray = [];
+    
+    for(item in stuffToFilter){
+        numbersArray.push(stuffToFilter.price);
+    }
+
+    const lowerBound = [1000, 4000, 8000];
+    const higherBound = [3000, 6000, 10000];
+
+    let matches = [];
+    let nonMatches = [];
+    
+    numbersArray.forEach(num => {
+    const matched = lowerBound.some((bound, i) => {
+        return num > bound && num < higherBound[i];
+    });
+
+    matched ? matches.push(num) : nonMatches.push(num);
+    });
+
+    alert("Matchar: " + matches.length);
+    alert("Ingen match: " + nonMatches.length);
+
+    //filteredOnPrice = match;
+   // return filteredOnPrice;
+}
 
 
 //riktig filtrering
@@ -28,21 +90,14 @@ function filtering(arr, filterQueries){
    
     var filteredstuff = arr;
 
-    const priceinterval1 = [];
-    const priceinterval2 = [];
-    const priceinterval3 = [];
+    //if (prices.length !== 0) {
+        //filterPriceInterval(filteredstuff); 
+    //}
+    
+   // alert("hallå");
 
-    // if(prod[j].price >= 10000){
-    //     priceinterval1.push(prod[j]);
-    //  } else if (prod[j].price < 10000 && prod[j].price >= 5000) {
-    //     priceinterval2.push(prod[j]);
-    //  } else if (prod[j].price < 5000) {
-    //      priceinterval3.push(prod[j]);
-    //  }
-
-    //  const or = (...fns) => n => fns.some(fn => fn(n));
-
-    //  const priceintervals = [priceinterval1, priceinterval2, priceinterval3];
+    
+    
 
 
     if (types.length !== 0) {
@@ -60,10 +115,6 @@ function filtering(arr, filterQueries){
             models.indexOf(el.model) >= 0);
     }
     
-    if (names.length !== 0) {
-        filteredstuff = filteredstuff.filter( el => 
-            names.indexOf(el.name) >= 0);
-    }
 
     if (prices.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
