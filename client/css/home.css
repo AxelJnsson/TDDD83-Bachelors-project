@@ -184,4 +184,65 @@ p {
     border: 1px solid #ccc;
   }
 
+/* sidebar styles*/
+#innerSidebar { 
+  background-color: rgb(196, 215, 240);
+  color: black;
+  /*background: url('../images/sidebar.png');*/
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Oriya MN';
+  overflow-y: scroll;
+  height: 660px
+  }
+  #annap{
+  background-color: rgb(196, 215, 240);
+  color: rgb(50, 52, 56);
+  /*background: url('../images/sidebar.png');*/
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Oriya MN'; 
+  }
+  .nav-link{
+    color:rgb(50, 52, 56);
+  }
+  .nav-linkTwo:focus{
+    background-color:#f8f9fa;
+  }
+  .nav-link:hover{
+    color: black;
+  }
+  .nav-link:focus{
+    background-color: rgb(134, 164, 202); 
+    color: black;
+  }
+  #sidebarAndProduct{
+    color: rgb(50, 52, 56);
+    padding-top: 20px
+  }
+  #top{
+    color: rgb(50, 52, 56);
+    background-size: cover;
+    background-color: #f8f9fa;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Oriya MN'; 
+  }
 
+  .text-justright{
+    color: rgb(50, 52, 56);
+  }
+  
+  .form-check-input{
+    background-color: rgb(213, 222, 241);
+    }
+  
+  .flexSwitchCheckChecked{
+    background-color: rgb(192, 31, 165);
+    }
+  #resetFilterBtn{
+    background-color: whitesmoke; 
+
+  }

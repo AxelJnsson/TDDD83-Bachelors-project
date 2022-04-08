@@ -36,12 +36,12 @@
 </head>
 <script src="https://kit.fontawesome.com/ba5ddd8013.js" crossorigin="anonymous"></script>
 
-<body>
+<body class="bg-light">
 
   <!--Övre navbar-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="nav-link" href="#">
-      <img src="/images/logga.png" width="100" height="100" id="homeButton">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
+    <a class="nav-link-image" href="#">
+      <img src="/images/tonehub_logga.png" width="100" height="100" id="homeButton">
     </a>
     <!-- <div>
       <div class="input-group">
@@ -59,7 +59,7 @@
         <div class="form-outline">
           <input type="search" class="form-control" placeholder="Search.." id="datatable-search-input" onkeyup="getSearchProducts()">
         </div>
-        <button type="button" class="btn btn-primary" onclick="getSearchProducts()">
+        <button type="button" class="btn btn-secondary" onclick="getSearchProducts()">
           <i class="fas fa-search"></i>
         </button>
       </div>
@@ -110,7 +110,7 @@
   </nav>
 
   <!--Nedre navbar-->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white" id="annap">
+  <nav class="navbar navbar-expand-lg" id="annap">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -120,19 +120,19 @@
     <div class="collapse navbar-collapse" id="navbarNav2">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#" id="allInstrButton">Alla instrument</a>
+          <a class="nav-link" href="#"  id="allInstrButton">Alla instrument</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="guitarButton">Gitarr</a>
+          <a class="nav-link" href="#" onclick="gitarrView()" id="guitarButton">Gitarr</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="pianoButton">Piano & Keyboard</a>
+          <a class="nav-link" href="#" onclick="pianoView()" id="pianoButton">Piano & Keyboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="drumButton">Trummor</a>
+          <a class="nav-link" href="#" onclick="drumView()" id="drumButton">Trummor</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="studioButton">Studioutrustning</a>
+          <a class="nav-link" href="#" onclick="studioView()" id="pianoButton">Studioutrustning</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" id="alphornButton">Alphorn</a>
@@ -255,11 +255,12 @@
 
   <script id="view-sidebar" type="text/html">
     <!--Sidebar-->
-  <div class="row ">
-    <div class="col-md-3">
-      <div class="d-flex sticky-top flex-column align-items-center align-items-sm-start px-3 pt-2 text-black">
+  
+  <div class="row" id="innerSidebar">
+    <div class="col">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
-          <span class="fs-5 d-none d-sm-inline text-secondary">Filtrera mera!</span>
+          <span class="fs-5 d-none d-sm-inline">Kategori</span>
         </a>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="newProd" checked
@@ -275,7 +276,7 @@
           <li>
             <a class="nav-link px-0" href="#submenu1" data-toggle="collapse" aria-expanded="false"
               aria-controls="submenu1">
-              <span class="text-secondary">Märken</span>
+              <span class="text-justright">Märken</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu1">
               <li class="w-100" id="brandArea">
@@ -290,7 +291,7 @@
             <a href="#submenu2" data-toggle="collapse" class="nav-link px-0">
 
 
-              <span class="text-secondary">Modeller</span>
+              <span class="text-justright">Modeller</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#sideMenu">
               <li class="w-100" id="modelArea">
@@ -304,7 +305,7 @@
           <li>
             <a href="#submenu3" data-toggle="collapse" class="nav-link px-0">
 
-              <span class="text-secondary">Färger</span>
+              <span class="text-justright">Färger</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu3" data-bs-parent="#sideMenu">
               <li class="w-100" id="colorArea">
@@ -324,19 +325,19 @@
           <li>
             <a href="#submenu4" data-toggle="collapse" class="nav-link px-0">
 
-              <span class="text-secondary">Pris</span>
+              <span class="text-justright">Pris</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu4" data-bs-parent="#sideMenu">
               <li class="w-100" id="priceArea">
                 <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem7">
                 <label class="form-check-label" for="defaultCheck1">
-                  <span class="text-info">Item 7</span>
+                  <span class="text-justright">Item 7</span>
                 </label>
               </li>
               <li>
                 <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem8">
                 <label class="form-check-label" for="defaultCheck1">
-                  <span class="text-info">Item 8</span>
+                  <span class="text-justright">Item 8</span>
                 </label>
               </li>
             </ul>
@@ -344,7 +345,7 @@
           <li>
             <a href="#submenu5" data-toggle="collapse" class="nav-link px-0">
 
-              <span class="text-secondary">År</span>
+              <span class="text-justright">År</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu5" data-bs-parent="#sideMenu">
               <li class="w-100" id="yearArea">
@@ -373,13 +374,12 @@
               </li>
             </ul>
             <div>
-              <button id="resetFilterBtn" onclick="btnResetFilter()">Reset filter</button>
+              <button id="resetFilterBtn" class="btn" onclick="btnResetFilter()">Återställ filter</button>
             </div>
           </li>
 
         </ul>
         <hr>
-      </div>
     </div>
 
 
@@ -389,6 +389,19 @@
   </script>
   <script id="view-product" type="text/html">    
     <div class="col" id="testdiv"></div>
+  </script>
+
+  <script id="noProductView" type="text/html">
+    <div class="row">
+      <div class="col-2"></div>   
+      <div class="col-6 text-center" id="noProduct">
+        <h1><strong>Din sökning gav inga träffar</strong></h1>
+        <h6 class="text-secondary">Försök gärna igen med en ny sökning</h6>
+        <img src="images/noProd.png" />
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
   </script>
 
   <!--FAQ SIDA-->
@@ -438,9 +451,9 @@
                 </p>
               </div>
               <div class="col-4">
-                <h6 class="text-dark"><i class="fa-solid fa-tags"><strong></i> Hur får jag rabbatter?</strong></h6>
+                <h6 class="text-dark"><i class="fa-solid fa-tags"><strong></i> Hur får jag rabatter?</strong></h6>
                 <p class="text-dark">
-                  Det lättaste sättet att tillhandahålla erbjudanden och rabbater är att bli medlem! Klicka på <a type="button" class="text-dark" id="secondRegButton" onclick="openRegModal()"><strong>Registrera dig</strong></a> för att skapa en användare och bli en i vår stora musik-familj!
+                  Det lättaste sättet att tillhandahålla erbjudanden och rabatter är att bli medlem! Klicka på <a type="button" class="text-dark" id="secondRegButton" onclick="openRegModal()"><strong>Registrera dig</strong></a> för att skapa en användare och bli en i vår stora musik-familj!
                 </p>
               </div>
             </div>
@@ -500,15 +513,15 @@
 
 
 <!--Homepage-->
-<script id="view-home" type="text/html">  
+<script class="bg-light" id="view-home" type="text/html">  
   <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4" src="/images/logga.png" alt="" width="250" height="200">
-    <h1 class="display-5 fw-bold">Tonehub</h1>
+    <img class="d-block mx-auto mb-4" src="/images/tonehub_logga.png" alt="" width="200" height="200">
+    <!--<h1 class="display-5 fw-bold">Tonehub</h1>-->
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Välkommen till oss, här kan du både köpa nya och begagnade instrument samt dessutom sälja dina instrument. Allt på ett ställe, vilken grej!</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Köp instrument</button>
-        <button type="button" onclick="regOrAnnons()" class="btn btn-outline-secondary btn-lg px-4">Lägg upp annons</button>
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" >Köp instrument</button>
+        <button type="button" onclick="regOrAnnons()" class="btn btn-secondary btn-lg px-4">Lägg upp annons</button>
       </div>
     </div>
   </div>
@@ -588,32 +601,53 @@
   <!--Dessa behöver göras om till dropdown mmenyer på saker som färg, brand osv-->      
     <div class="selectdiv">
       <label>
+        <select id="typVal" onchange="updateChoice2()">
+            <option selected>Kategori</option>        
+        </select>
+    </label>
+    <label>
+      <select id="brandVal" onchange="updateChoice()">
+          <option  selected>Märke</option>
+         
+      </select>
+  </label>
+      <label>
         <select id="modelVal">
             <option selected>Modell</option>
            
          
         </select>
     </label>
-      <label>
-          <select id="brandVal" onchange="updateChoice()">
-              <option  selected>Märke</option>
-             
-          </select>
-      </label>
+     
       <label>
         <select id="colorVal">
             <option selected>Färg</option>
             <option>Blå</option>
             <option>Röd</option>
             <option>Grön</option>
+            <option>Svart</option>
+            <option>Vit</option>
+            <option>Grå</option>
+            <option>Orange</option>
+            <option>Lila</option>
+            <option>Rosa</option>
+            <option>Trä</option>
+            <option>Turkos</option>
+            <option>Beige</option>
+            <option>Alu</option>
+            <option>Transparant</option>
+            <option>Gul</option>
+            <option>Brons </option>
+            <option>Brun</option>
+            
         </select>
     </label>
     </div>  
     <div class="col-md-6"><label class="labels">Pris</label><input type="number" id="createPris" class="form-control" placeholder="Pris" value=""></div>
-    <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
-    <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div>
+   <!-- <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
+    <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div> -->
     <div class="col-md-6"><label class="labels">Årtal</label><input type="number" id="createYear" min="1950" max="2022" class="form-control" placeholder="" value=""></div>   
-    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="createAddButton" onclick="downloadImg()" type="button">Skapa annons</button></div>
+    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="createAddButton" onclick="createAdd()" type="button">Skapa annons</button></div>
 </div>
 </div>
 </div>
@@ -722,7 +756,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ändra användarinfo</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xRegister">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xeditUserModal">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -753,6 +787,15 @@
       </div>
     </div>
   </div>
+      <!--Snapchat modal-->
+<div class="modal fade" id="snapchatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-body width: 60px">
+        <img src="images/snapchat.png" />
+      </div>
+  </div>
+</div>
 
   <script id="view-adminPage" type="text/html">
     <div class="center">
@@ -880,10 +923,10 @@
     </div>
   </div>
 
-<div class="container-fluid" id=sidebarAndProduct>
+<div class="container-fluid bg-light" id=sidebarAndProduct>
   <div class="row">
     <div class="col-2" type="text/html">
-      <div class="container" id="sideBarContainer" type="text/html">
+      <div class="container sticky-top" id="sideBarContainer" type="text/html">
       </div>
     </div>
     <div class="col" type="text/html">
@@ -897,7 +940,7 @@
   <div></div>
 </script>
 
-<div class="container-fluid" id="mainViewContainer" type="text/html">
+<div class="container-fluid bg-light"  id="mainViewContainer" type="text/html">
 </div>
 
   <!--Footer-->
@@ -908,7 +951,7 @@
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
       <div class="me-5 d-none d-lg-block">
         <i class="fa-solid fa-laptop"></i>
-        <span>Följ oss på våra andra socialakanaler---></span>
+        <span>Följ oss på våra andra sociala kanaler---></span>
       </div>
       <!-- Left -->
 
@@ -926,9 +969,7 @@
         <a href="" class="me-4 text-reset">
           <i class="fab fa-instagram"></i>
         </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-github"></i>
-        </a>
+          <a><i class="fa-brands fa-snapchat" href="#" onclick="snapchatImage()"></i></a>
       </div>
       <!-- Right -->
     </section>
@@ -961,19 +1002,19 @@
             </h6>
             <p>
               <i class="fa-solid fa-guitar"></i>
-              <a href="#!" class="text-reset">Gitarr</a>
+              <a class="text-dark" onclick="gitarrView()">Gitarr</a>
             </p>
             <p>
               <i class="fa-brands fa-spotify"></i>
-              <a href="#!" class="text-reset">Piano</a>
+              <a class="text-dark" onclick="pianoView()">Piano</a>
             </p>
             <p>
               <i class="fa-solid fa-drum"></i>
-              <a href="#!" class="text-reset">Trummor</a>
+              <a class="text-dark" onclick="drumView()">Trummor</a>
             </p>
             <p>
               <i class="fa-solid fa-headphones"></i>
-              <a href="#!" class="text-reset">Tillbehör</a>
+              <a class="text-dark" onclick="studioView()">Studioutrustning</a>
             </p>
           </div>
           <!-- Grid column -->
@@ -982,7 +1023,7 @@
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
-              <i class="fa-solid fa-link"></i> Links
+              <i class="fa-solid fa-link"></i> Länkar
             </h6>
             <p>
               <i class="fa-solid fa-heart"></i>
@@ -994,7 +1035,7 @@
             </p>
             <p>
               <i class="fa-solid fa-question"></i>
-              <a class="text-dark" href="#" onclick="faqView()" id="faqButton">FAQ</a>
+              <a class="text-dark" onclick="faqView()" id="faqButton">FAQ</a>
             </p>
             <p>
               <i class="fa-solid fa-exclamation"></i>
@@ -1008,13 +1049,9 @@
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
               <i class="fa-solid fa-comment"></i>
-              Contact
-            </h6>
-            <p><i class="fas fa-home me-3"></i> Linköpings Universitet,Kandidatarbete</p>
-            <p>
-              <i class="fas fa-envelope me-3"></i>
-              tonehub@gmail.com
-            </p>
+              Kontakt</h6><p><i class="fas fa-home me-3"></i>LiU, Kandidatarbete</p>
+            
+            <p> <i class="fas fa-envelope me-3"></i>tonehub@gmail.com</p>
             <p><i class="fas fa-phone me-3"></i> 070 34 45 6410</p>
           </div>
           <!-- Grid column -->
@@ -1049,6 +1086,7 @@
   <script src="/javascript/createadd.js"></script>
   <script src="/javascript/productview.js"></script>
   <script src="/javascript/stripetest.js"></script>
+  <script src="/javascript/search.js"></script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="/javascript/register.js"></script>
   <script src="/javascript/cashregister.js"></script>

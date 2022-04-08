@@ -12,10 +12,9 @@ class User {
 
 
 class Order {
-  constructor (id, product1, product2, amount) {
+  constructor (id, products, amount){
     this.id = id;
-    this.product1 = product1;
-    this.product2 = product2;
+    this.products = products;
     this.amount = amount;
   }
 }

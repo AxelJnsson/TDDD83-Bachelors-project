@@ -3,6 +3,7 @@ $(document).ready(function(){
     $("#mainViewContainer").html($("#view-home").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
+    document.getElementById('top').scrollIntoView();
    
 
 
@@ -54,6 +55,7 @@ $('#aboutButton').click(function (e) {
 
   $('#annonsButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-createAdd").html())
+    fillOptions1();
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
      e.preventDefault();
@@ -72,11 +74,25 @@ function openRegModal(){
   $("#registerModal").modal('toggle');
   e.preventDefault();
 }
+function snapchatImage(){
+  $("#snapchatModal").modal('toggle');
+  e.preventDefault();
+}
+
+$('#xButtonSnap').click(function (e) {
+  e.preventDefault();
+  $("#snapchatModal").modal('hide');
+});
+$('#xeditUserModal').click(function (e) {
+  e.preventDefault();
+  $("#editUserModal").modal('hide');
+});
 
 function faqView() {
   $("#mainViewContainer").html($("#view-FAQ").html())
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
+  document.getElementById('top').scrollIntoView();
   e.preventDefault();
 }  
 $('#contactButton').click(function (e) {          
@@ -94,7 +110,7 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
 
   }
-
+ 
   $('#userButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-user").html())
     $("#sideBarContainer").html($("#empty").html())
@@ -115,6 +131,18 @@ $('#contactButton').click(function (e) {
       //filternewornot.length = 0;
   }
 
+ function buyInstruments(){
+  $("#sideBarContainer").html($("#view-sidebar").html())
+  $("#productViewContainer").html($("#view-product").html())
+  $("#mainViewContainer").html($("#empty").html())
+
+
+  //showProdInfo("allt", null);
+  resetFilter();
+  //filternewornot.push("Ny", "Begagnad");
+  showProdInfo(filterQ);
+  createCategoriesForSidebar();
+ }
 
   $('#allInstrButton').click(function (e) {
     $("#sideBarContainer").html($("#view-sidebar").html())
@@ -131,10 +159,17 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   });
 
-  $('#guitarButton').click(function (e) {   
+  /*function gitarrView(){
+      $("#sideBarContainer").html($("#view-sidebar").html())  
+      $("#productViewContainer").html($("#view-product").html())
+      $("#mainViewContainer").html($("#empty").html())
+   };*/
+
+   function gitarrView(){  
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
     
     resetFilter();
     var defCategory = "Gitarr";
@@ -143,36 +178,39 @@ $('#contactButton').click(function (e) {
     showProdInfo(filterQ);
     createCategoriesForSidebar();
     e.preventDefault();
-  });
+  };
 
-  $('#pianoButton').click(function (e) { 
+  function pianoView(){  
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html()) 
+    document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Piano");
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
     e.preventDefault();
-  });
+  };
 
-  $('#drumButton').click(function (e) {   
+  function drumView(){
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Trummor");
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
     e.preventDefault();
-  });
+  };
 
-  $('#studioButton').click(function (e) {  
+  function studioView(){
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Studio");
     filternewornot.push(0, 1); 
@@ -180,7 +218,7 @@ $('#contactButton').click(function (e) {
     createCategoriesForSidebar();
 
     e.preventDefault();
-  });
+  };
 
   $('#alphornButton').click(function (e) {   
     $("#sideBarContainer").html($("#view-sidebar").html())  
@@ -229,6 +267,7 @@ function showView(view){
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
 }
+
 //testfunktion för filtrering
 function checkNeworOldStuff(checkid, query){
   var checkBox = document.getElementById(checkid);
@@ -273,52 +312,5 @@ function regOrAnnons() {
   }
 
  
-}
-
-
-function getSearchProducts() {
-  $.ajax({        
-    url:'/product',
-    type: 'GET',
-    success: function(u) {  
-        search(u);
-    },
-    error: function(){
-        alert("error");
-    }    
-  });
-}
-
-function search(productList) {
-  var productList2 = [];
-  var searchResults = [];
-
-  var input = document.getElementById('datatable-search-input');
-  inputWord = input.value.toUpperCase();
-// Loop through all list items, and hide those who don't match the search query
-  for (a = 0; a < productList.length; a++) {
-    productList2[0] = productList[a].brand;
-    productList2[1] = productList[a].model;
-    productList2[2] = productList[a].name;
-    productList2[3] = productList[a].color;
-    productList2[4] = productList[a].type;
-    productList2[5] = productList[a].product_id;
-    for (b = 0; b < 5; b++) {
-      word = productList2[b];    
-      if (word.toUpperCase().indexOf(inputWord) > -1) {
-        //alert("din sökning machar ett instrument");   
-        searchResults.push(productList[a]);        
-        break;
-      }
-    }
-  }
-  loadSearchResults(searchResults);
-}
-
-function loadSearchResults(searchList) {
-  $("#sideBarContainer").html($("#view-sidebar").html())
-  $("#productViewContainer").html($("#view-product").html())
-  $("#mainViewContainer").html($("#empty").html())
-  appendProducts(searchList);
 }
 
