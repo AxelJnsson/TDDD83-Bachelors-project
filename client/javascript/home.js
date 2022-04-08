@@ -27,7 +27,7 @@ $(document).ready(function(){
     }
     if (sessionStorage.getItem('startedShopping')==null){
       idAndQuantity = {}
-      sessionStorage.setItem('productsInCart',JSON.stringify(idAndQuantity));
+      sessionStorage.setItem('productsInCart',JSON.stringify(Array.from(idAndQuantity)));
     }
 
   })
