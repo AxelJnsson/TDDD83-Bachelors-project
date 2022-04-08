@@ -99,7 +99,7 @@ function fillOptions2(products) {
   
 
   const brands = [];
-  const models = [];  
+  const models = []; 
   const type = [];
   
 
