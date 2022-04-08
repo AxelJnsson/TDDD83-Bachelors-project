@@ -24,10 +24,9 @@ $('#LoginFinishButton').click(function (e) {
         contentType: "application/json",
         data: JSON.stringify({
           "email":inputEmail, "password":inputPassword}), 
-        success: function(i) { 
-        
-         sessionStorage.setItem('userID',i.user.user_id)
-         sessionStorage.setItem('auth', JSON.stringify(i));           
+        success: function(i) {
+         sessionStorage.setItem('auth', JSON.stringify(i)); 
+         sessionStorage.setItem('userID',i.user.user_id);     
          $(".container").html($("#view-home").html());
          window.location.reload();
         },
@@ -48,6 +47,7 @@ function logoutUser() {
   $(".container").html($("#view-home").html())
   sessionStorage.removeItem('auth');
   sessionStorage.removeItem('anv');
+  sessionStorage.removeItem('userID');
 
   window.location.reload();
 }
@@ -86,7 +86,3 @@ function logoutUser() {
     });
   
   });
-
-//  function updateUserPriceAtLogin(userAndToken){
-//     alert(userAndToken)
-//   }

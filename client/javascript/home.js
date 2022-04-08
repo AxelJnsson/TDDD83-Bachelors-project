@@ -6,7 +6,6 @@ $(document).ready(function(){
     document.getElementById('top').scrollIntoView();
     showSlides();
     createProducts2();
-
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
       signedIn = true;
@@ -15,19 +14,22 @@ $(document).ready(function(){
       signedIn = false;
       console.log("inloggad" + signedIn);
     }
-    if (sessionStorage.getItem('auth')==null){
-      sessionStorage.setItem('price',0);
-    } else{
-      if (!sessionStorage.getItem('priceUpToDate')){
-        updateUserPriceAtLogin(sessionStorage.getItem('userID'));
-      }
-    }
     
     $('#registerButton').toggleClass('d-none', !signedIn);
     $('#loginButton').toggleClass('d-none', !signedIn);
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
+    if (JSON.parse(sessionStorage.getItem('auth'))==null){
+      sessionStorage.setItem('loggedIn',false);
+    }else{
+      sessionStorage.setItem('loggedIn',true);
+    }
+    if (sessionStorage.getItem('startedShopping')==null){
+      idAndQuantity = {}
+      sessionStorage.setItem('productsInCart',JSON.stringify(idAndQuantity));
+    }
+
   })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
@@ -307,6 +309,3 @@ function regOrAnnons() {
     $("#mainViewContainer").html($("#view-createAdd").html())
   } 
 }
-
-
-
