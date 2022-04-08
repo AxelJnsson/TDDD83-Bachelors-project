@@ -119,9 +119,14 @@ div.sticky {
   box-shadow: 0 0 5px ;
 }
 
+.wrapper h2 {
+  color: black;
+}
+
 
 
 h2 {
+  text-align: center;
   font-size: 35px;
   font-weight: normal;
   text-transform: uppercase;
@@ -153,6 +158,16 @@ p {
   align-items: center;
   color: white;
 }
+#homeh2 {
+  margin: 25px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color :rgb(36, 33, 33);
+
+}
+
 
 .unit img {
   border-radius: 100px;
@@ -178,6 +193,7 @@ p {
   margin-top: 8px;
   margin-right: 16px;
   font-size: 17px;
+  /*font-family: Arial, Helvetica, sans-serif;*/
 }
 
   .topnav input[type=text] {
@@ -192,7 +208,7 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Oriya MN';
+  /*font-family: 'Oriya MN';*/
   overflow-y: scroll;
   height: 660px
   }
@@ -203,7 +219,7 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Oriya MN'; 
+  /*font-family: 'Oriya MN'; */
   }
   .nav-link{
     color:rgb(50, 52, 56);
@@ -226,7 +242,7 @@ p {
     background-color: #f8f9fa;
     background-position: center;
     background-repeat: no-repeat;
-    font-family: 'Oriya MN'; 
+    /*font-family: 'Oriya MN'; */
   }
 
   .text-justright{
@@ -243,4 +259,8 @@ p {
   #resetFilterBtn{
     background-color: whitesmoke; 
 
+  }
+  #home-about {
+    background-color: white;
+    color: black;
   }

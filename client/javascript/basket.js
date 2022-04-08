@@ -19,7 +19,7 @@ $('#xButtonBasket').click(function (e) {
   
 
 function addProductToCart(productToAdd){
-  // alert(productToAdd)
+  alert(productToAdd);
     $.ajax({    
       headers: {
         "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},    
@@ -165,15 +165,15 @@ function printBasketedProducts(userID){
 function showInRegister(products){
 
   for (let i = 0; i <products.length; i++)
-  $.ajax ({
-    url:'/product/'+products[i].product_id,
-    type: 'GET',
-    datatype: 'JSON',
-    contentType: "application/json",
-    success: function(product) {
-      printProductInBasketRegister(product);
-    }
-  });
+    $.ajax ({
+      url:'/product/'+products[i].product_id,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(product) {
+        printProductInBasketRegister(product);
+      }
+    });
 
 }
 
@@ -193,6 +193,7 @@ function stripeTestFunction(){
       "price":(sessionStorage.getItem('price')*100)}),
       success: function(checkoutUrl) {    
       // return stripe.redirectToCheckout({sessionId: data.sessionId})
+      recordoOrder()
       window.location.href = checkoutUrl
       }
   }); 
@@ -217,7 +218,7 @@ function deleteProductFromRegister(productID){
 }
 
 function updateprice(price){
-  // alert("uppdaterade priset med "+price+"kr")
+  alert("uppdaterade priset med "+price+"kr")
   let oldPrice = parseInt(sessionStorage.getItem('price'));
   let newPrice = oldPrice + price;
   sessionStorage.setItem('price', newPrice);           
