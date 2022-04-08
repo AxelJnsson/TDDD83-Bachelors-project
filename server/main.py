@@ -414,7 +414,7 @@ def users(user_id):
     temp_Item = Cart_Item.query.filter_by(session_id = temp_Session.id)
     item_list = []
     for x in temp_Item:
-      item_list.append(x.serialize())
+        item_list.append(x.serialize())
    
     
     return jsonify(temp.serialize(), temp_Session.serialize(), item_list)
