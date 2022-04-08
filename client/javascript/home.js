@@ -252,6 +252,7 @@ $('#homeButton').click(function (e) {
   $("#mainViewContainer").html($("#view-home").html()) 
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
+  createProducts2();
     e.preventDefault();
 });
 
