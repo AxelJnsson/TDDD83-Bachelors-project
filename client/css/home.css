@@ -208,7 +208,6 @@ p {
   .nav-link{
     color:rgb(50, 52, 56);
   }
- 
   .nav-link:hover{
     color: black;
   }
@@ -242,5 +241,8 @@ p {
     }
   #resetFilterBtn{
     background-color: whitesmoke; 
+
+  }
+  #noProductView{
 
   }
