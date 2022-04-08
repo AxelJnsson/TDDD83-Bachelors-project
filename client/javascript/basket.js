@@ -2,8 +2,8 @@
 $('#basketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('toggle');
-    getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
-    showPriceInModal(sessionStorage.getItem('price'));
+    sessionStorage.setItem('price',0);
+    getProductsToPrintInBasket();
   });
 
 $('#closeBasketButton').click(function (e) {
@@ -20,6 +20,7 @@ $('#xButtonBasket').click(function (e) {
 
 function addProductToCart(productToAdd){
   alert(productToAdd);
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
     $.ajax({    
       headers: {
         "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},    
@@ -44,29 +45,49 @@ function addProductToCart(productToAdd){
           alert("funkarej");
       }    
   });
+  } else if (!JSON.parse(sessionStorage.getItem('loggedIn'))){
+    productsInCart = JSON.parse(sessionStorage.getItem('productsInCart'));
+    if (productsInCart.hasOwnProperty(productToAdd)){
+      productsInCart[productToAdd] = productsInCart[productToAdd]+1;
+    }else{
+      productsInCart[productToAdd] = 1;
+    }
+    sessionStorage.setItem('productsInCart', JSON.stringify(productsInCart))
+  }
+
 }
 
-function getProductsToPrintInBasket(userID){
+function getProductsToPrintInBasket(){
   $('#bodyBasketModal').empty();
-  $.ajax ({
-    url:'/user/'+userID,
-    type: 'GET',
-    datatype: 'JSON',
-    contentType: "application/json",
-    success: function(data) {
-      arrayOfProducts = []
-      let hasProducts = false;
-      data[2].forEach(element =>arrayOfProducts.push(element))
-      if (arrayOfProducts.length < 1){
-        showInBasketModal(arrayOfProducts, hasProducts)
 
-      }else{
-
-        showInBasketModal(arrayOfProducts,hasProducts=true);
-
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    $.ajax ({
+      url:'/user/'+userID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(data) {
+        arrayOfProducts = []
+        let hasProducts = false;
+        data[2].forEach(element =>arrayOfProducts.push(element))
+        if (arrayOfProducts.length < 1){
+          showInBasketModal(arrayOfProducts, hasProducts)
+  
+        }else{
+  
+          showInBasketModal(arrayOfProducts,hasProducts=true);
+  
+        }
       }
+    }); 
+  } else {
+    productsToPrint = JSON.parse(sessionStorage.getItem('productsInCart'));
+    for (var key of Object.keys(productsToPrint)){
+      alert(productsToPrint[key]);
+
     }
-  }); 
+  }
 }
 
 function showInBasketModal(products, hasProducts){
@@ -92,6 +113,9 @@ function printEmptyBasketModal(){
 }
 
 function printProductInBasketModal(product, quantity){
+
+  sessionStorage.setItem('price', JSON.parse(sessionStorage.getItem('price')) + product.price*quantity);
+  showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
   $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+'</div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
 }
 
@@ -103,7 +127,7 @@ function deleteProductFromCart(productID){
     contentType: "application/json",
     success: function(product) {
       updateprice((parseInt(product.price))*-1);
-      showPriceInModal(sessionStorage.getItem('price'));
+      showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
     }
   });
 
