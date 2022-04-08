@@ -121,6 +121,7 @@ $('#contactButton').click(function (e) {
       filternames.length = 0;
       filterprices.length = 0;
       filteryears.length = 0;
+      filterpriceinterval.length = 0;
       //filternewornot.length = 0;
   }
 

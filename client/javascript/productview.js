@@ -12,33 +12,33 @@ function createProducts(filteringByArray){
         }    
     });
 }
+    const lowerBoundPrice = []; 
+    const higherBoundPrice = [];
+    const numbersArray = [];
+
 
 function filterPriceInterval(stuffToFilter, interval){
     
     var prInterval = interval;
 
-    const lowerBoundPrice = []; 
-    const higherBoundPrice = [];
+    lowerBoundPrice.length = 0;
+    higherBoundPrice.length = 0;
 
-    //alert(prInterval.length);
 
-    for(var i = 0; i < prInterval.length ; i++) {
-       
+    for(var i = 0; i < prInterval.length ; i++) { 
             //alert(prInterval[0][0]);
             lowerBoundPrice.push(prInterval[i][0]);
             higherBoundPrice.push(prInterval[i][1]);
-        
-       
     }
-       
 
+    // alert(lowerBoundPrice[0]);
+    // alert(higherBoundPrice[0]);
 
-    const numbersArray = [];
+    numbersArray.length = 0;
     
     for(item in stuffToFilter){
             numbersArray.push(stuffToFilter[item].price);
     }
-
 
     //let matches = [];
     let nonMatches = [];
@@ -72,7 +72,6 @@ function filtering(arr, filterQueries){
     const brands = filterQueries[1];
     const models = filterQueries[2];
     const colors = filterQueries[3];
-    const names = filterQueries[4];
     const prices = filterQueries[5];
     const years = filterQueries[6];
     const newornots = filterQueries[7];
@@ -238,7 +237,7 @@ function sideBar(products){
     const colors = [];
     const years = [];
 
-    const priceIntervals = [[0, 1000], [1000, 5000], [5000, 10000], [10000, 100000]];
+    const priceIntervals = [[0, 1000], [1000, 5000], [5000, 10000], [10000, 100000], [100000, 1000000000000000]]; //hårdkodade så länge
    
     const all = [];
 
@@ -246,10 +245,7 @@ function sideBar(products){
         brands.push(prod[j].brand);
         models.push(prod[j].model);
         colors.push(prod[j].color);
-        years.push(prod[j].year);
-
-         
-
+        years.push(prod[j].year);   
     }
 
 
@@ -310,10 +306,24 @@ function sideBar(products){
         }
     }
 
+    var outputInterval;
+
     if(priceClicked == false) {
         $("#priceArea").empty();
-        for(var i = 0 ; i < priceIntervals.length; i++) {
-            $("#priceArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someprice' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  priceIntervals[i] +  " </span></label></li>");
+         for(var i = 0 ; i < priceIntervals.length; i++) {
+            if(i == 0) {
+                outputInterval = "0 - 1000";
+            } else if(i == 1){
+                outputInterval = "1000 - 5000";
+            } else if(i == 2) {
+                outputInterval = "5000 - 10 000";
+            } else if (i == 3) {
+                outputInterval = "10 000 - 100 000";
+            } else {
+                outputInterval = "Över 100 000";
+            }
+
+            $("#priceArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someprice' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  outputInterval +  " </span></label></li>");
         }
     }
 
@@ -436,7 +446,6 @@ function sideBar(products){
 
   $('.someprice').on("click" ,function (e) {
     e.stopImmediatePropagation();
-    alert("Filtrering på pris funkar, men är inte helt färdigt än!")
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") == true){
         filterpriceinterval.push(priceIntervals[checkBoxId]);
@@ -456,7 +465,8 @@ function sideBar(products){
               }
 
         }
-        
+        filterprices.length = 0;
+
     }
         $("#productViewContainer").html($("#empty").html())
         $("#productViewContainer").html($("#view-product").html())  
