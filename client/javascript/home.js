@@ -1,9 +1,10 @@
 $(document).ready(function(){
     // Kod i detta block körs när dokumentet laddats klart.    
-    $("#mainViewContainer").html($("#view-home").html())
+    $("#mainViewContainer").html($("#view-homeSlide").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
     document.getElementById('top').scrollIntoView();
+    showSlides();
    
 
     var signedIn;
@@ -237,9 +238,10 @@ $('#contactButton').click(function (e) {
    }
 
 $('#homeButton').click(function (e) {
-  $("#mainViewContainer").html($("#view-home").html()) 
+  $("#mainViewContainer").html($("#view-homeSlide").html()) 
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
+  showSlides();
     e.preventDefault();
 });
 
