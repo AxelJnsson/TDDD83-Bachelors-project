@@ -178,7 +178,7 @@ p {
   margin-top: 8px;
   margin-right: 16px;
   font-size: 17px;
-  font-family: Arial, Helvetica, sans-serif;
+  /*font-family: Arial, Helvetica, sans-serif;*/
 }
 
   .topnav input[type=text] {
@@ -193,7 +193,7 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Oriya MN';
+  /*font-family: 'Oriya MN';*/
   overflow-y: scroll;
   height: 660px
   }
@@ -204,7 +204,7 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Oriya MN'; 
+  /*font-family: 'Oriya MN'; */
   }
   .nav-link{
     color:rgb(50, 52, 56);
@@ -229,7 +229,7 @@ p {
     background-color: #f8f9fa;
     background-position: center;
     background-repeat: no-repeat;
-    font-family: 'Oriya MN'; 
+    /*font-family: 'Oriya MN'; */
   }
 
   .text-justright{

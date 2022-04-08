@@ -4,6 +4,7 @@ $(document).ready(function(){
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
     document.getElementById('top').scrollIntoView();
+    createProducts2();
    
 
     var signedIn;
