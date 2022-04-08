@@ -5,13 +5,22 @@ $(document).ready(function(){
     $("#productViewContainer").html($("#empty").html())
     document.getElementById('top').scrollIntoView();
     showSlides();
-   
+    createProducts2();
 
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
       signedIn = true;
+      console.log("inloggad " + signedIn);
     } else {
       signedIn = false;
+      console.log("inloggad" + signedIn);
+    }
+    if (sessionStorage.getItem('auth')==null){
+      sessionStorage.setItem('price',0);
+    } else{
+      if (!sessionStorage.getItem('priceUpToDate')){
+        updateUserPriceAtLogin(sessionStorage.getItem('userID'));
+      }
     }
     
     $('#registerButton').toggleClass('d-none', !signedIn);
@@ -19,8 +28,7 @@ $(document).ready(function(){
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
-    
- })
+  })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
  //test för en till dimension av filtrering
@@ -32,7 +40,8 @@ $(document).ready(function(){
  const filterprices = [];
  const filteryears = [];
  const filternewornot = [];
- let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot];
+ const filterpriceinterval = [];
+ let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot, filterpriceinterval];
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
@@ -80,7 +89,7 @@ function faqView() {
 $('#contactButton').click(function (e) {          
     e.preventDefault();
   });
-
+//används ej tror jag
   function startshopp() {
     $("#mainViewContainer").html($("#view-product").html())
     $("#sideBarContainer").html($("#empty").html())
@@ -115,15 +124,17 @@ $('#contactButton').click(function (e) {
 
  function buyInstruments(){
   $("#sideBarContainer").html($("#view-sidebar").html())
-  $("#productViewContainer").html($("#view-product").html())
-  $("#mainViewContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
 
 
-  //showProdInfo("allt", null);
-  resetFilter();
-  //filternewornot.push("Ny", "Begagnad");
-  showProdInfo(filterQ);
-  createCategoriesForSidebar();
+    //showProdInfo("allt", null);
+    resetFilter();
+    //filternewornot.push("Ny", "Begagnad");
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
  }
 
   $('#allInstrButton').click(function (e) {
@@ -242,6 +253,7 @@ $('#homeButton').click(function (e) {
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
   showSlides();
+  createProducts2();
     e.preventDefault();
 });
 
@@ -292,8 +304,8 @@ function regOrAnnons() {
     $("#loginModal").modal('toggle');
   } else {
     $("#mainViewContainer").html($("#view-createAdd").html())
-  }
-
- 
+  } 
 }
+
+
 
