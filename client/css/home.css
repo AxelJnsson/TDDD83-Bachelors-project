@@ -151,8 +151,8 @@ p {
 }
 
 .unit {
-  /*margin-left: 25px;
-  margin-right: 25px;*/
+  margin-left: 15px;
+  margin-right: 15px;
   width: 200px;
   display: inline-block;
   flex-direction: column;
