@@ -45,11 +45,11 @@ function addProductToCart(productToAdd){
   });
   } else if (!JSON.parse(sessionStorage.getItem('loggedIn'))){
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
-    if (productsInCart.get(productToAdd)>= 1){
-      var newQuantity = productsInCart.get(productToAdd)+1
-      productsInCart.set(productToAdd, newQuantity);
+    if (productsInCart.get(parseInt(productToAdd))>= 1){
+      var newQuantity =productsInCart.get(parseInt(productToAdd))+1;
+      productsInCart.set(parseInt(productToAdd), newQuantity);
     }else{
-      productsInCart.set(productToAdd,1)
+      productsInCart.set(parseInt(productToAdd),1)
     }
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
   }
@@ -157,6 +157,7 @@ function deleteProductFromCart(productID){
     });
   } else{
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    productID = parseInt(productID);
     if (productsInCart.get(productID)==1){
       alert(productsInCart.get(productID));
       productsInCart.delete(productID);

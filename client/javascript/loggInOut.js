@@ -99,21 +99,20 @@ function storeCartedItems(){
     contentType: "application/json",
     success: function(data) { 
       for (let i = 0; i<data[2].length;i++){
+        alert(data[2][i].product_id);
         productsInCart.delete(data[2][i].product_id);
       }
+      if (productsInCart.size>0){
+        for (let key of productsInCart.keys()){
+          for (let i=0; i < parseInt(productsInCart.get(key)); i++){
+            addProductToCart(key);
+          }
+        }
+      }
+      productsInCart.clear();
+      sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
     }
   });
-
-  if (productsInCart.size>0){
-    for (let key of productsInCart.keys()){
-
-      for (let i=0; i < parseInt(productsInCart.get(key)); i++){
-        addProductToCart(key);
-      }
-    }
-  }
-  productsInCart.clear();
-  sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
 }
 
 function transferCartToSession(){
