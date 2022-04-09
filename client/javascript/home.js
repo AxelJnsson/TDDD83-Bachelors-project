@@ -25,7 +25,7 @@ $(document).ready(function(){
     }else{
       sessionStorage.setItem('loggedIn',true);
     }
-    if (sessionStorage.getItem('startedShopping')==null){
+    if (JSON.parse(sessionStorage.getItem('startedShopping'))==null){
       idAndQuantity = {}
       sessionStorage.setItem('productsInCart',JSON.stringify(Array.from(idAndQuantity)));
     }

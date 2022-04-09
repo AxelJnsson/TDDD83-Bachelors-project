@@ -26,8 +26,10 @@ $('#LoginFinishButton').click(function (e) {
           "email":inputEmail, "password":inputPassword}), 
         success: function(i) {
          sessionStorage.setItem('auth', JSON.stringify(i)); 
-         sessionStorage.setItem('userID',i.user.user_id);     
+         sessionStorage.setItem('userID',i.user.user_id);
+         sessionStorage.setItem('loggedIn',true);     
          $(".container").html($("#view-home").html());
+         storeCartedItems();
          window.location.reload();
         },
         error: function(){
@@ -45,10 +47,11 @@ $('#LoginFinishButton').click(function (e) {
   
 function logoutUser() {
   $(".container").html($("#view-home").html())
+  sessionStorage.setItem('loggedIn', false);
+  transferCartToSession();
   sessionStorage.removeItem('auth');
   sessionStorage.removeItem('anv');
   sessionStorage.removeItem('userID');
-
   window.location.reload();
 }
   $('#registerButton').click(function (e) {
@@ -86,3 +89,46 @@ function logoutUser() {
     });
   
   });
+
+function storeCartedItems(){
+  var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+  var ID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
+  $.ajax ({  
+    url:'/user/'+ ID,
+    type: 'GET',
+    contentType: "application/json",
+    success: function(data) { 
+      for (let i = 0; i<data[2].length;i++){
+        productsInCart.delete(data[2][i].product_id);
+      }
+    }
+  });
+
+  if (productsInCart.size>0){
+    for (let key of productsInCart.keys()){
+
+      for (let i=0; i < parseInt(productsInCart.get(key)); i++){
+        addProductToCart(key);
+      }
+    }
+  }
+  productsInCart.clear();
+  sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
+}
+
+function transferCartToSession(){
+  var ID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
+  $.ajax ({  
+    url:'/user/'+ ID,
+    type: 'GET',
+    contentType: "application/json",
+    success: function(data) { 
+      var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+      console.log(data[2])
+      for (let i = 0; i<data[2].length;i++){
+        productsInCart.set(data[2][i].product_id,data[2][i].quantity);
+        }
+      sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
+    }
+  });
+}          

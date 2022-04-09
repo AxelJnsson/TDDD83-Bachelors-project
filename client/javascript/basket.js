@@ -15,9 +15,8 @@ $('#xButtonBasket').click(function (e) {
   $("#basketModal").modal('hide');
   });
 
-  
-
 function addProductToCart(productToAdd){
+  sessionStorage.setItem('startedShopping',true);
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
     $.ajax({    
       headers: {
@@ -30,6 +29,7 @@ function addProductToCart(productToAdd){
             url:'/product/'+ productToAdd,
             type: 'GET',
             success: function(product) { 
+              alert("lägger till "+productToAdd)
               updateprice(parseInt(product.price));
               $("#productModal").modal('hide');
              
@@ -44,16 +44,15 @@ function addProductToCart(productToAdd){
       }    
   });
   } else if (!JSON.parse(sessionStorage.getItem('loggedIn'))){
-    productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     if (productsInCart.get(productToAdd)>= 1){
-      newQuantity = productsInCart.get(productToAdd)+1
+      var newQuantity = productsInCart.get(productToAdd)+1
       productsInCart.set(productToAdd, newQuantity);
     }else{
       productsInCart.set(productToAdd,1)
     }
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
   }
-
 }
 
 function getProductsToPrintInBasket(){
@@ -78,7 +77,7 @@ function getProductsToPrintInBasket(){
       }
     }); 
   } else {
-    productsToPrint = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    var productsToPrint = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     if (productsToPrint.size<1){
       printEmptyBasketModal();
       showPriceInModal(0);
@@ -157,10 +156,15 @@ function deleteProductFromCart(productID){
       } 
     });
   } else{
-    productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     if (productsInCart.get(productID)==1){
       alert(productsInCart.get(productID));
       productsInCart.delete(productID);
+      sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
+      getProductsToPrintInBasket();
+    } else if(productsInCart.get(productID)>1){
+      var newQuantity = productsInCart.get(productID)-1;
+      productsInCart.set(productID,newQuantity);
       sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
       getProductsToPrintInBasket();
     }
