@@ -209,7 +209,7 @@ p {
 
 /* sidebar styles*/
 #innerSidebar { 
-  /*background-color: rgb(196, 215, 240);*/
+  background-color: rgb(196, 215, 240);
   color: black;
   /*background: url('../images/sidebar.png');*/
   background-size: cover;
@@ -220,7 +220,7 @@ p {
   height: 660px
   }
   #annap{
-  /*background-color: rgb(196, 215, 240);*/
+  background-color: rgb(196, 215, 240);
   color: rgb(50, 52, 56);
   /*background: url('../images/sidebar.png');*/
   background-size: cover;
