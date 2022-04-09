@@ -2,8 +2,7 @@
 $('#basketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('toggle');
-    getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
-    showPriceInModal(sessionStorage.getItem('price'));
+    getProductsToPrintInBasket();
   });
 
 $('#closeBasketButton').click(function (e) {
@@ -19,7 +18,7 @@ $('#xButtonBasket').click(function (e) {
   
 
 function addProductToCart(productToAdd){
-  alert(productToAdd);
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
     $.ajax({    
       headers: {
         "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},    
@@ -44,29 +43,60 @@ function addProductToCart(productToAdd){
           alert("funkarej");
       }    
   });
+  } else if (!JSON.parse(sessionStorage.getItem('loggedIn'))){
+    productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    if (productsInCart.get(productToAdd)>= 1){
+      newQuantity = productsInCart.get(productToAdd)+1
+      productsInCart.set(productToAdd, newQuantity);
+    }else{
+      productsInCart.set(productToAdd,1)
+    }
+    sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
+  }
+
 }
 
-function getProductsToPrintInBasket(userID){
+function getProductsToPrintInBasket(){
   $('#bodyBasketModal').empty();
-  $.ajax ({
-    url:'/user/'+userID,
-    type: 'GET',
-    datatype: 'JSON',
-    contentType: "application/json",
-    success: function(data) {
-      arrayOfProducts = []
-      let hasProducts = false;
-      data[2].forEach(element =>arrayOfProducts.push(element))
-      if (arrayOfProducts.length < 1){
-        showInBasketModal(arrayOfProducts, hasProducts)
-
-      }else{
-
-        showInBasketModal(arrayOfProducts,hasProducts=true);
-
+  sessionStorage.setItem('price',0);
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    $.ajax ({
+      url:'/user/'+userID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(data) {
+        arrayOfProducts = []
+        let hasProducts = false;
+        data[2].forEach(element =>arrayOfProducts.push(element))
+        if (arrayOfProducts.length < 1){
+          showInBasketModal(arrayOfProducts, hasProducts);
+        }else{
+          showInBasketModal(arrayOfProducts,hasProducts=true);
+        }
+      }
+    }); 
+  } else {
+    productsToPrint = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    if (productsToPrint.size<1){
+      printEmptyBasketModal();
+      showPriceInModal(0);
+    }else{
+      for (let key of productsToPrint.keys()){
+        $.ajax ({
+          url:'/product/'+key,
+          type: 'GET',
+          datatype: 'JSON',
+          contentType: "application/json",
+          success: function(product) {
+            printProductInBasketModal(product,productsToPrint.get(key));
+          }
+        });
+        
       }
     }
-  }); 
+  }
 }
 
 function showInBasketModal(products, hasProducts){
@@ -92,43 +122,56 @@ function printEmptyBasketModal(){
 }
 
 function printProductInBasketModal(product, quantity){
+
+  sessionStorage.setItem('price', JSON.parse(sessionStorage.getItem('price')) + product.price*quantity);
+  showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
   $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+'</div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
 }
 
 function deleteProductFromCart(productID){
-  $.ajax ({
-    url:'/product/'+productID,
-    type: 'GET',
-    datatype: 'JSON',
-    contentType: "application/json",
-    success: function(product) {
-      updateprice((parseInt(product.price))*-1);
-      showPriceInModal(sessionStorage.getItem('price'));
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
+    $.ajax ({
+      url:'/product/'+productID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(product) {
+        updateprice((parseInt(product.price))*-1);
+        showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
+      }
+    });
+  
+    $.ajax ({
+      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+      url:'/product/'+productID+'/unadding',
+      type: 'POST',
+      datatype: 'JSON',
+      contentType: "application/json",
+  
+      success: function(product) {
+        // alert("tog bort")
+        getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
+      },
+      error: function(u){
+        alert("tog inte bort fk u");
+      } 
+    });
+  } else{
+    productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    if (productsInCart.get(productID)==1){
+      alert(productsInCart.get(productID));
+      productsInCart.delete(productID);
+      sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
+      getProductsToPrintInBasket();
     }
-  });
-
-  $.ajax ({
-    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-    url:'/product/'+productID+'/unadding',
-    type: 'POST',
-    datatype: 'JSON',
-    contentType: "application/json",
-
-    success: function(product) {
-      // alert("tog bort")
-      getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
-    },
-    error: function(u){
-      alert("tog inte bort fk u");
-    } 
-  });
+  }
 }
 
 function showPriceInModal(currentTotal){
   $('#basketModalPriceDiv').empty();
-  $('#basketModalPriceDiv').append('Din nuvarande Total är: '+ currentTotal+'kr');
-
-
+  if (JSON.parse(sessionStorage.getItem('price'))>0){
+    $('#basketModalPriceDiv').append('Din nuvarande Total är: '+ currentTotal+'kr');
+  }
 }
 
 

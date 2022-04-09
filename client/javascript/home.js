@@ -1,12 +1,16 @@
 $(document).ready(function(){
+<<<<<<< HEAD
     // Kod i detta block körs när dokumentet laddats klart.
     $("#mainViewContainer").html($("#view-home").html())
+=======
+    // Kod i detta block körs när dokumentet laddats klart.    
+    $("#mainViewContainer").html($("#view-homeSlide").html())
+>>>>>>> b175cc243754abd9408f8f45a8a4891819047af5
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
     document.getElementById('top').scrollIntoView();
+    showSlides();
     createProducts2();
-   
-
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
       signedIn = true;
@@ -15,19 +19,22 @@ $(document).ready(function(){
       signedIn = false;
       console.log("inloggad" + signedIn);
     }
-    if (sessionStorage.getItem('auth')==null){
-      sessionStorage.setItem('price',0);
-    } else{
-      if (!sessionStorage.getItem('priceUpToDate')){
-        updateUserPriceAtLogin(sessionStorage.getItem('userID'));
-      }
-    }
     
     $('#registerButton').toggleClass('d-none', !signedIn);
     $('#loginButton').toggleClass('d-none', !signedIn);
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
+    if (JSON.parse(sessionStorage.getItem('auth'))==null){
+      sessionStorage.setItem('loggedIn',false);
+    }else{
+      sessionStorage.setItem('loggedIn',true);
+    }
+    if (sessionStorage.getItem('startedShopping')==null){
+      idAndQuantity = {}
+      sessionStorage.setItem('productsInCart',JSON.stringify(Array.from(idAndQuantity)));
+    }
+
   })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
@@ -40,7 +47,8 @@ $(document).ready(function(){
  const filterprices = [];
  const filteryears = [];
  const filternewornot = [];
- let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot];
+ const filterpriceinterval = [];
+ let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot, filterpriceinterval];
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
@@ -118,6 +126,7 @@ $('#contactButton').click(function (e) {
       filternames.length = 0;
       filterprices.length = 0;
       filteryears.length = 0;
+      filterpriceinterval.length = 0;
       //filternewornot.length = 0;
   }
 
@@ -248,9 +257,10 @@ $('#contactButton').click(function (e) {
    }
 
 $('#homeButton').click(function (e) {
-  $("#mainViewContainer").html($("#view-home").html()) 
+  $("#mainViewContainer").html($("#view-homeSlide").html()) 
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
+  showSlides();
   createProducts2();
     e.preventDefault();
 });
@@ -304,6 +314,3 @@ function regOrAnnons() {
     $("#mainViewContainer").html($("#view-createAdd").html())
   } 
 }
-
-
-
