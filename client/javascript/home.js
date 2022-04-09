@@ -1,11 +1,6 @@
 $(document).ready(function(){
-<<<<<<< HEAD
-    // Kod i detta block körs när dokumentet laddats klart.
-    $("#mainViewContainer").html($("#view-home").html())
-=======
     // Kod i detta block körs när dokumentet laddats klart.    
     $("#mainViewContainer").html($("#view-homeSlide").html())
->>>>>>> b175cc243754abd9408f8f45a8a4891819047af5
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
     document.getElementById('top').scrollIntoView();

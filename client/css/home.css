@@ -11,12 +11,12 @@ div {
   border: none;
   outline: 0;
   padding: 12px;
-  color: white;
-  background-color: #000;
+  /*color: white;
+  background-color: #000;*/
   text-align: center;
   cursor: pointer;
   width: 100px;
-  font-size: 18px;
+  /*font-size: 24px;*/
   margin-bottom: 10px;
   margin-left: 10px;
 }
@@ -151,16 +151,23 @@ p {
 }
 
 .unit {
-  margin: 25px;
+  /*margin-left: 25px;
+  margin-right: 25px;*/
   width: 200px;
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   align-items: center;
-  color: white;
+  text-align: center;
+  color :rgb(36, 33, 33);
+  vertical-align: middle;
+}
+
+.p-card {
+  text-align: center; 
 }
 #homeh2 {
   margin: 25px;
-  width: 200px;
+  width: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -177,7 +184,7 @@ p {
 }
 
 .unit p {
-  text-align: left;
+  text-align: center;
   margin: 2px;
 }
 
@@ -202,7 +209,7 @@ p {
 
 /* sidebar styles*/
 #innerSidebar { 
-  background-color: rgb(196, 215, 240);
+  /*background-color: rgb(196, 215, 240);*/
   color: black;
   /*background: url('../images/sidebar.png');*/
   background-size: cover;
@@ -213,7 +220,7 @@ p {
   height: 660px
   }
   #annap{
-  background-color: rgb(196, 215, 240);
+  /*background-color: rgb(196, 215, 240);*/
   color: rgb(50, 52, 56);
   /*background: url('../images/sidebar.png');*/
   background-size: cover;
