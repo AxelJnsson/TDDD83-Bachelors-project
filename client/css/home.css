@@ -138,9 +138,9 @@ h1 {
 }
 
 
-p {
+/*p {
   text-align: justify;
-}
+}*/
 
 .team {
   display: flex;
