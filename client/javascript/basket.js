@@ -191,23 +191,45 @@ $('#shopFromBasketButton').click(function (e) {
   $("#sideBarContainer").html($("#empty").html());
   $("#productViewContainer").html($("#empty").html());
   $("#mainViewContainer").html($("#view-cashregister").html());
-  printBasketedProducts(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
-  showPriceInRegister(sessionStorage.getItem('price'));
-  });
+  printBasketedProducts();
+ });
 
-function printBasketedProducts(userID){
+function printBasketedProducts(){
   $('#scrollableItemsInBasket').empty();
-  $.ajax ({
-    url:'/user/'+userID,
-    type: 'GET',
-    datatype: 'JSON',
-    contentType: "application/json",
-    success: function(data) {
-      arrayOfProducts = []
-      data[2].forEach(element =>arrayOfProducts.push(element))
-      showInRegister(arrayOfProducts)
+  sessionStorage.setItem('price',0);
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    $.ajax ({
+      url:'/user/'+userID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(data) {
+        arrayOfProducts = []
+        let hasProducts = false;
+        data[2].forEach(element =>arrayOfProducts.push(element))
+          showInRegister(arrayOfProducts)
+      }
+    }); 
+  } else {
+    var productsToPrint = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    if (productsToPrint.size<1){
+    }else{
+      for (let key of productsToPrint.keys()){
+        $.ajax ({
+          url:'/product/'+key,
+          type: 'GET',
+          datatype: 'JSON',
+          contentType: "application/json",
+          success: function(product) {
+            printProductInBasketRegister(product);
+            updateprice(product.price);
+            showPriceInRegister(sessionStorage.getItem('price'));
+          }
+        });
+      }
     }
-  }); 
+  } 
 }
 
 function showInRegister(products){
@@ -226,6 +248,7 @@ function showInRegister(products){
 }
 
 function printProductInBasketRegister(product){
+
   $('#scrollableItemsInBasket').append('<div id="productDivInRegister">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr </div> <button class="deleteProductFromRegisterButton" onClick="deleteProductFromRegister(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
 }
 
