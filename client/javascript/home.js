@@ -216,15 +216,16 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   };
 
-  $('#alphornButton').click(function (e) {   
+  $('#alphornButton').click(function (e) {  
+    //alert(filtertypes.length);
+ 
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
     resetFilter();
-    var testcategory1 = "Alphorn";
+    var testcategory1 = "Blås";
     
     filtertypes.push(testcategory1);
-   
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
