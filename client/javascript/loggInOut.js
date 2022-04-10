@@ -99,7 +99,7 @@ function storeCartedItems(){
     contentType: "application/json",
     success: function(data) { 
       for (let i = 0; i<data[2].length;i++){
-        alert(data[2][i].product_id);
+        // alert(data[2][i].product_id);
         productsInCart.delete(data[2][i].product_id);
       }
       if (productsInCart.size>0){

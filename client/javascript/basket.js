@@ -29,7 +29,7 @@ function addProductToCart(productToAdd){
             url:'/product/'+ productToAdd,
             type: 'GET',
             success: function(product) { 
-              alert("lägger till "+productToAdd)
+              // alert("lägger till "+productToAdd)
               updateprice(parseInt(product.price));
               $("#productModal").modal('hide');
              
@@ -159,7 +159,6 @@ function deleteProductFromCart(productID){
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     productID = parseInt(productID);
     if (productsInCart.get(productID)==1){
-      alert(productsInCart.get(productID));
       productsInCart.delete(productID);
       sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
       getProductsToPrintInBasket();
@@ -205,6 +204,7 @@ function printBasketedProducts(){
       datatype: 'JSON',
       contentType: "application/json",
       success: function(data) {
+        showPriceInRegister(sessionStorage.getItem('price'))
         arrayOfProducts = []
         let hasProducts = false;
         data[2].forEach(element =>arrayOfProducts.push(element))
@@ -214,6 +214,7 @@ function printBasketedProducts(){
   } else {
     var productsToPrint = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     if (productsToPrint.size<1){
+      showPriceInRegister(sessionStorage.getItem('price'))
     }else{
       for (let key of productsToPrint.keys()){
         $.ajax ({
@@ -222,8 +223,8 @@ function printBasketedProducts(){
           datatype: 'JSON',
           contentType: "application/json",
           success: function(product) {
-            printProductInBasketRegister(product);
-            updateprice(product.price);
+            printProductInBasketRegister(product,productsToPrint.get(key));
+            updateprice(product.price*productsToPrint.get(key));
             showPriceInRegister(sessionStorage.getItem('price'));
           }
         });
@@ -241,55 +242,70 @@ function showInRegister(products){
       datatype: 'JSON',
       contentType: "application/json",
       success: function(product) {
-        printProductInBasketRegister(product);
+        updateprice(product.price*products[i].quantity);
+        showPriceInRegister(sessionStorage.getItem('price'));
+        printProductInBasketRegister(product,products[i].quantity);
       }
     });
 
 }
 
-function printProductInBasketRegister(product){
+function printProductInBasketRegister(product,quantity){
 
-  $('#scrollableItemsInBasket').append('<div id="productDivInRegister">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr </div> <button class="deleteProductFromRegisterButton" onClick="deleteProductFromRegister(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
+  $('#scrollableItemsInBasket').append('<div id="productDivInRegister">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+' </div> <button class="deleteProductFromRegisterButton" onClick="deleteProductFromRegister(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
 }
 
 function stripeTestFunction(){
-  alert("as")
   $.ajax ({
-      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
       url:'/create-checkout-session',
       type: 'POST',
       datatype: 'JSON',
       contentType: "application/json",
       data: JSON.stringify({
-      "price":(sessionStorage.getItem('price')*100)}),
+      "price":(JSON.parse(sessionStorage.getItem('price')*100))}),
       success: function(checkoutUrl) {    
       // return stripe.redirectToCheckout({sessionId: data.sessionId})
-      recordoOrder()
+      // recordoOrder()
       window.location.href = checkoutUrl
       }
   }); 
 }
 
 function deleteProductFromRegister(productID){
-  $.ajax ({
-    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-    url:'/product/'+productID+'/unadding',
-    type: 'POST',
-    datatype: 'JSON',
-    contentType: "application/json",
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
+      $.ajax ({
+      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+      url:'/product/'+productID+'/unadding',
+      type: 'POST',
+      datatype: 'JSON',
+      contentType: "application/json",
 
-    success: function(product) {
-      // alert("tog bort")
-      printBasketedProducts(JSON.parse(sessionStorage.getItem('auth')).user.user_id)
-    },
-    error: function(u){
-      alert("tog inte bort fk u");
-    } 
-  });
+      success: function(product) {
+        // alert("tog bort")
+        printBasketedProducts(JSON.parse(sessionStorage.getItem('auth')).user.user_id)
+      },
+      error: function(u){
+        alert("tog inte bort fk u");
+      } 
+    });
+  }else{
+    var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    productID = parseInt(productID);
+    if (productsInCart.get(productID)==1){
+      productsInCart.delete(productID);
+      sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
+    } else if(productsInCart.get(productID)>1){
+      var newQuantity = productsInCart.get(productID)-1;
+      productsInCart.set(productID,newQuantity);
+      sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
+    }
+    printBasketedProducts();
+
+  }
 }
 
 function updateprice(price){
-  alert("uppdaterade priset med "+price+"kr")
+  // alert("uppdaterade priset med "+price+"kr")
   let oldPrice = parseInt(sessionStorage.getItem('price'));
   let newPrice = oldPrice + price;
   sessionStorage.setItem('price', newPrice);           
