@@ -53,7 +53,7 @@ function logoutUser() {
   sessionStorage.removeItem('auth');
   sessionStorage.removeItem('anv');
   sessionStorage.removeItem('userID');
-  // window.location.reload();
+  window.location.reload();
 }
   $('#registerButton').click(function (e) {
     $(".container").html($("#view-signup").html())
