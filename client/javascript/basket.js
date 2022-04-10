@@ -192,6 +192,7 @@ $('#shopFromBasketButton').click(function (e) {
   $("#productViewContainer").html($("#empty").html());
   $("#mainViewContainer").html($("#view-cashregister").html());
   printBasketedProducts();
+ 
  });
 
 function printBasketedProducts(){
@@ -289,7 +290,7 @@ function deleteProductFromRegister(productID){
 }
 
 function updateprice(price){
-  alert("uppdaterade priset med "+price+"kr")
+ // alert("uppdaterade priset med "+price+"kr")
   let oldPrice = parseInt(sessionStorage.getItem('price'));
   let newPrice = oldPrice + price;
   sessionStorage.setItem('price', newPrice);           
@@ -298,4 +299,6 @@ function updateprice(price){
 function showPriceInRegister(currentTotal){
   $('#totalsumLine').empty();
   $('#totalsumLine').append("Total: " + currentTotal + "kr");
+  stripePay(currentTotal*100);
+
 }

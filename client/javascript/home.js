@@ -53,6 +53,17 @@ $('#aboutButton').click(function (e) {
     e.preventDefault();
   });
 
+//används bara tillfälligt
+  $('#stripeButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-stripe").html())  
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html()) 
+
+    
+    e.preventDefault();
+  });
+
+
 
   $('#annonsButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-createAdd").html())
@@ -308,4 +319,10 @@ function regOrAnnons() {
   } else {
     $("#mainViewContainer").html($("#view-createAdd").html())
   } 
+}
+
+function SucPay() {
+  $("#mainViewContainer").html($("#lyckad-betalning").html())
+  alert("din betalning gick igenom");
+  //Gör nåt som uppdaterar varukorgen och skapar en
 }
