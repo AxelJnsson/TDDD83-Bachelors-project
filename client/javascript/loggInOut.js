@@ -30,6 +30,7 @@ $('#LoginFinishButton').click(function (e) {
          sessionStorage.setItem('loggedIn',true);     
          $(".container").html($("#view-home").html());
          storeCartedItems();
+         sessionStorage.setItem('startedShopping',true);
          window.location.reload();
         },
         error: function(){
@@ -52,7 +53,7 @@ function logoutUser() {
   sessionStorage.removeItem('auth');
   sessionStorage.removeItem('anv');
   sessionStorage.removeItem('userID');
-  window.location.reload();
+  // window.location.reload();
 }
   $('#registerButton').click(function (e) {
     $(".container").html($("#view-signup").html())
@@ -126,6 +127,7 @@ function transferCartToSession(){
       console.log(data[2])
       for (let i = 0; i<data[2].length;i++){
         productsInCart.set(data[2][i].product_id,data[2][i].quantity);
+        console.log(productsInCart);
         }
       sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
     }
