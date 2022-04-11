@@ -191,6 +191,7 @@ $('#shopFromBasketButton').click(function (e) {
   $("#productViewContainer").html($("#empty").html());
   $("#mainViewContainer").html($("#view-cashregister").html());
   printBasketedProducts();
+ 
  });
 
 function printBasketedProducts(){
@@ -316,6 +317,14 @@ function showPriceInRegister(currentTotal){
   $('#totalsumLine').append("Total: " + currentTotal + "kr");
 }
 
+function showPriceInRegister(currentTotal){
+  $('#totalsumLine').empty();
+  $('#totalsumLine').append("Total: " + currentTotal + "kr");
+  stripePay(currentTotal*100);
+
+}
+
+
 function addOrdersAndItemsToHistory () {
 //INTE DEN KOD SOM SKA VARA KSA SKRIVAS OM
 console.log("Här")
@@ -335,4 +344,5 @@ userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
       alert("la inte till order fk u");
     } 
   });
+
 }
