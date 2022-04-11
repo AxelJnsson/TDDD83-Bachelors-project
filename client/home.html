@@ -947,10 +947,20 @@
     <h5 style="margin-left: 6%;" id="totalsumLine">
     </h5>
     <div>
-      <button onclick="stripeTestFunction()" class="btn btn-primary" id="toPaymentButton" type="submit">Till betalning</button>
+      <button onclick="onBetalningClick()" class="btn btn-primary" id="toPaymentButton" type="submit">Till betalning</button>
     </div>
   </div>
 </div>
+</script>
+
+<!-- Lägger till order i betalning och kallar på stripe. Bör flytta till när en betalning går igenom.-->
+<script>
+  function onBetalningClick() {
+    addOrdersAndItemsToHistory();
+    stripeTestFunction();
+    
+    
+  }
 </script>
 
 <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

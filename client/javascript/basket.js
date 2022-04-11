@@ -318,19 +318,21 @@ function showPriceInRegister(currentTotal){
 
 function addOrdersAndItemsToHistory () {
 //INTE DEN KOD SOM SKA VARA KSA SKRIVAS OM
+console.log("Här")
+userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+
   $.ajax ({
     headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-    url:'/product/'+productID+'/unadding',
+    url:'/order/' +userID,
     type: 'POST',
     datatype: 'JSON',
     contentType: "application/json",
 
-    success: function(product) {
-      // alert("tog bort")
-      getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
+    success: function() {
+      alert("la till order")
     },
-    error: function(u){
-      alert("tog inte bort fk u");
+    error: function(){
+      alert("la inte till order fk u");
     } 
   });
 }
