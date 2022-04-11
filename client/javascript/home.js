@@ -1,17 +1,11 @@
 $(document).ready(function(){
-    // Kod i detta block körs när dokumentet laddats klart.
-
-    $("#mainViewContainer").html($("#view-home").html())
+    // Kod i detta block körs när dokumentet laddats klart.    
+    $("#mainViewContainer").html($("#view-homeSlide").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
     document.getElementById('top').scrollIntoView();
+    showSlides();
     createProducts2();
-   
-
-
-    
-    
-
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
       signedIn = true;
@@ -33,6 +27,7 @@ $(document).ready(function(){
       }
     }
 
+    
     $('#registerButton').toggleClass('d-none', !signedIn);
     $('#loginButton').toggleClass('d-none', !signedIn);
     $('#logoutButton').toggleClass('d-none', signedIn);
@@ -41,6 +36,16 @@ $(document).ready(function(){
     $('#adminButton').toggleClass('d-none', !admin);
     sessionStorage.setItem('price', parseInt(0));  
   }         
+    if (JSON.parse(sessionStorage.getItem('auth'))==null){
+      sessionStorage.setItem('loggedIn',false);
+    }else{
+      sessionStorage.setItem('loggedIn',true);
+    }
+    if (JSON.parse(sessionStorage.getItem('startedShopping'))==null){
+      idAndQuantity = {}
+      sessionStorage.setItem('productsInCart',JSON.stringify(Array.from(idAndQuantity)));
+    }
+
   })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
@@ -53,7 +58,8 @@ $(document).ready(function(){
  const filterprices = [];
  const filteryears = [];
  const filternewornot = [];
- let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot];
+ const filterpriceinterval = [];
+ let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot, filterpriceinterval];
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
@@ -139,6 +145,7 @@ $('#contactButton').click(function (e) {
       filternames.length = 0;
       filterprices.length = 0;
       filteryears.length = 0;
+      filterpriceinterval.length = 0;
       //filternewornot.length = 0;
   }
 
@@ -233,15 +240,16 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   };
 
-  $('#alphornButton').click(function (e) {   
+  $('#alphornButton').click(function (e) {  
+    //alert(filtertypes.length);
+ 
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
     resetFilter();
-    var testcategory1 = "Alphorn";
+    var testcategory1 = "Blås";
     
     filtertypes.push(testcategory1);
-   
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -269,9 +277,11 @@ $('#contactButton').click(function (e) {
    }
 
 $('#homeButton').click(function (e) {
-  $("#mainViewContainer").html($("#view-home").html()) 
+  $("#mainViewContainer").html($("#view-homeSlide").html()) 
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
+  showSlides();
+  createProducts2();
     e.preventDefault();
 });
 
@@ -324,6 +334,3 @@ function regOrAnnons() {
     $("#mainViewContainer").html($("#view-createAdd").html())
   } 
 }
-
-
-

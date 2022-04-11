@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/home.css">
   <link rel="stylesheet" href="/css/form.css">
+  <link rel="stylesheet" href="/css/slide.css">
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -40,59 +41,68 @@
 
   <!--Övre navbar-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
-    <a class="nav-link-image" href="#">
-      <img src="/images/tonehub_logga.png" width="100" height="100" id="homeButton">
-    </a>
- 
+    
+    <!-- <div>
+        <div class="input-group">s
+          <div class="form-outline">
+            <input  type="search" id="form1" class="form-control" placeholder="Search.." id="datatable-search-input" onkeyup="getSearchProducts()" />
+          </div>
+          <button type="button" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div> -->
+  
     <div>
       <div class="input-group" style="margin-left: 20px; margin-right: 10px;">
         <div class="form-outline">
-          <input type="search" class="form-control" placeholder="Search.." id="datatable-search-input" onkeyup="getSearchProducts()">
+          <input type="search" class="form-control" placeholder="Search.." id="datatable-search-input"
+            onkeyup="getSearchProducts()">
         </div>
         <button type="button" class="btn btn-secondary" onclick="getSearchProducts()">
           <i class="fas fa-search"></i>
         </button>
       </div>
-    </div>    
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="contactButton"
-            onClick="document.getElementById('down').scrollIntoView();">Kontakt</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="aboutButton">Om oss</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="registerButton">Registrera dig</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="loginButton">Logga in</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="annonsButton">Skapa annons</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="userButton">Din sida</a>
-
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="adminButton">Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
-        </li>
-      </ul>
     </div>
-
-
-
-    <img src="/images/basket.png" width="60" height="60" id="basketButton" frame="10">
-
-
+  
+      <!-- <i class="fa-solid fa-magnifying-glass" id="magnifyingGlass" ></i> -->
+  
+  
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="contactButton"
+              onClick="document.getElementById('down').scrollIntoView();">Kontakt</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="aboutButton">Om oss</a>
+          </li>
+        </ul>
+        <div class="align-items-center" style="padding-left: 80px;">
+        <a class="nav-link-image" href="#">
+          <img src="/images/new_logo.png" width= "300px" height= "80px" id="homeButton">
+        </a>
+      </div>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="registerButton">Registrera dig</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="loginButton">Logga in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="annonsButton">Skapa annons</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="userButton">Din sida</a>
+  
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
+          </li>
+        </ul>
+      </div>
+      <img src="/images/basket.png" width="40" height="40" id="basketButton" frame="10">
 
   </nav>
 
@@ -122,7 +132,7 @@
           <a class="nav-link" href="#" onclick="studioView()" id="pianoButton">Studioutrustning</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="alphornButton">Alphorn</a>
+          <a class="nav-link" href="#" id="alphornButton">Blåsinstrument</a>
         </li>
       </ul>
     </div>
@@ -316,16 +326,7 @@
             </a>
             <ul class="collapse nav flex-column" id="submenu4" data-bs-parent="#sideMenu">
               <li class="w-100" id="priceArea">
-                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem7">
-                <label class="form-check-label" for="defaultCheck1">
-                  <span class="text-justright">Item 7</span>
-                </label>
-              </li>
-              <li>
-                <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem8">
-                <label class="form-check-label" for="defaultCheck1">
-                  <span class="text-justright">Item 8</span>
-                </label>
+                
               </li>
             </ul>
           </li>
@@ -498,148 +499,200 @@
     </div>
 </script>
 
+<!--Slideshow homepage-->
+    <!-- Slideshow container -->
+    <script class="bg-light" id="view-homeSlide" type="text/html">
+      <div class="slideshow-container">
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+          <div class="row">
+          <div class="col-2"></div>
+          <div class="col">
+          <img src="images/slide/one.jpg" height="450px" width="auto">
+          </div>
+          </div>
+        </div>
 
-<!--Homepage-->
-<script class="bg-light" id="view-home" type="text/html">  
-  <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4" src="/images/tonehub_logga.png" alt="" width="200" height="200">
-    <!--<h1 class="display-5 fw-bold">Tonehub</h1>-->
-    <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4">Välkommen till oss, här kan du både köpa nya och begagnade instrument samt dessutom sälja dina instrument. Allt på ett ställe, vilken grej!</p>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" onclick="buyInstruments()">Köp instrument</button>
-        <button type="button" onclick="regOrAnnons()" class="btn btn-secondary btn-lg px-4">Lägg upp annons</button>
+        <div class="mySlides fade">
+          <div class="row">
+          <div class="col-2"></div>
+          <div class="col">
+          <img src="images/slide/two.jpg" height="450px" width="auto">
+          </div>
+          </div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="row">
+          <div class="col-2"></div>
+          <div class="col">
+          <img src="images/slide/three.jpg" height="450px" width="auto">
+          </div>
+          </div>
+        </div>
+        <div class="mySlides fade">
+          <div class="row">
+          <div class="col-2"></div>
+          <div class="col">
+          <img src="images/slide/four.jpg" height="450px" width="auto">
+          </div>
+          </div>
+        </div>
+        <div class="mySlides fade">
+          <div class="row">
+          <div class="col-2"></div>
+          <div class="col">
+          <img src="images/slide/five.jpg" height="450px" width="auto">
+          </div>
+          </div>
+        </div>
+        <div class="mySlides fade">
+          <div class="row">
+          <div class="col-2"></div>
+          <div class="col">
+          <img src="images/slide/sixjpg.jpg" height="450px" width="auto">
+          </div>
+          </div>
+        </div>
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+      <br>
+
+      <!-- The dots/circles -->
+      <div style="padding-top: 40px; text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span> 
+        <span class="dot" onclick="currentSlide(5)"></span> 
+        <span class="dot" onclick="currentSlide(6)"></span> 
+      </div>
+      <div class="col-lg-6 mx-auto" style="margin-top: 30px;">
+        <p class="lead mb-4">Välkommen till oss, här kan du både köpa nya och begagnade instrument samt dessutom sälja dina instrument. Allt på ett ställe, vilken grej!</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center" style="margin-bottom: 50px;">
+          <button type="button" class="btn btn-primary btn-lg px-4 gap-3" onclick="buyInstruments()">Köp instrument</button>
+          <button type="button" onclick="regOrAnnons()" class="btn btn-secondary btn-lg px-4">Lägg upp annons</button>
+        </div>
+      </div>
+    </div>
+   
+    <div class="container">
+      <h1 style="font-weight: bold; text-align: center;">ToneHub rekommenderar</h1>
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Unna dig ett piano</h4>
+          </div>
+          <div class="card-body" id="startCard1"> 
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Liva upp vardagen</h4>
+          </div>
+          <div class="card-body" id="startCard2">
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Vill du reta upp grannarna?</h4>
+          </div>
+          <div class="card-body" id="startCard3">
+            
+          </div>
+        </div>
+      </div>
+  </div>  
+  
+  
+  <pre class="tab"></pre>
+  <pre class="tab"></pre>
+  
+  <!-- <div class="row">
+  <div class="column">
+  <div class="card">
+    <img src="/images/carlbildt.png" id = image style="width:100%">
+    <div class="container">
+      <h2>Fredrik</h2>
+      <p class="title">CEO & Founder</p>
+    </div>
+  </div>
+  </div>
+  <div class="column">
+  <div class="card">
+    <img src="/images/carlbildt.png" id = image style="width:100%">
+    <div class="container">
+      <h2>Fredrik</h2>
+      <p class="title">CEO & Founder</p>
+    </div>
+  </div>
+  </div> <div class="column">
+  
+  </div> -->
+  
+ 
+  <div class="card" style="width: 95%; margin-left: auto; margin-right: auto; height: 100%;">
+    <div class="card-body" style="width: 100%; margin-left: auto; margin-right: auto;">
+      <h1 style="text-align: center; color: black; font-weight: bold; margin-bottom: 15px;">Vårt team</h1>
+      <div style="width: auto; padding-left: 50px; padding-right: 50px; padding-bottom: 30px; margin: auto; text-align: center;">
+        <div class="unit">
+          <img src="/images/carlbildt.png" alt="">
+          <p>Anna Petersson</p>
+          <p>Arkitektur</p>
+        </div>
+        <div class="unit">
+          <img src="/images/carlbildt.png" alt="">
+          <p>Axel Jönsson</p>
+          <p>Lokalbokning</p>
+        </div>          
+        <div class="unit">
+          <img src="/images/carlbildt.png" alt="">
+          <p>David Carlsson</p>
+          <p>Back-end</p>          
+        </div>          
+        <div class="unit">
+          <img src="/images/carlbildt.png" alt="">
+          <p>Fredrik Lindberg</p>
+          <p>Scrum master</p>          
+        </div>          
+        <div class="unit">
+          <img src="/images/carlbildt.png" alt="">
+          <p>Joel Nilsson</p>
+          <p>Mötesordförande</p>          
+        </div>          
+        <div class="unit">
+          <img src="/images/carlbildt.png" alt="">
+          <p>Jonathan Johansson</p>
+          <p>Gitansvarig</p>          
+        </div>          
+        <div class="unit">
+          <img src="/images/carlbildt.png" alt="">
+          <p>Oscar Söderlund</p>
+          <p>Front-end</p>          
+        </div>          
+        <div class="unit">
+          <img src="/images/carlbildt.png" alt="">
+          <p>Unn Zachrison</p>
+          <p>Dokumentansvarig</p>          
+        </div>          
+        <div class="unit" >
+          <img src="/images/carlbildt.png" alt="">
+          <p>Wiktor Hübsch</p>
+          <p>Testansvarig</p>
+        </div>
       </div>
     </div>
   </div>
  
-  <div class="container">
-    <h1 style="font-weight: bold; text-align: center;">ToneHub rekommenderar</h1>
-    <div class="card-deck mb-3 text-center">
-      <div class="card mb-4 box-shadow">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Unna dig ett piano</h4>
-        </div>
-        <div class="card-body" id="startCard1"> 
-        </div>
-      </div>
-      <div class="card mb-4 box-shadow">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Liva upp vardagen</h4>
-        </div>
-        <div class="card-body" id="startCard2">
-        </div>
-      </div>
-      <div class="card mb-4 box-shadow">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Vill du reta upp grannarna?</h4>
-        </div>
-        <div class="card-body" id="startCard3">
-          
-        </div>
-      </div>
-    </div>
-</div>  
-
-
-<pre class="tab"></pre>
-<pre class="tab"></pre>
-
-<!-- <div class="row">
-<div class="column">
-<div class="card">
-  <img src="/images/carlbildt.png" id = image style="width:100%">
-  <div class="container">
-    <h2>Fredrik</h2>
-    <p class="title">CEO & Founder</p>
-  </div>
-</div>
-</div>
-<div class="column">
-<div class="card">
-  <img src="/images/carlbildt.png" id = image style="width:100%">
-  <div class="container">
-    <h2>Fredrik</h2>
-    <p class="title">CEO & Founder</p>
-  </div>
-</div>
-</div> <div class="column">
-
-</div> -->
-
-<div class="wrapper" id="home-about">
-<h2 style="text-align: center;">Vårt Team</h2>
-<div class="team">
-
-<div class="unit" id="homeh2">
-  <img src="/images/carlbildt.png" alt="">
-  <p>Anna Petersson</p>
-  <p>Arkitektur</p>
-
-</div>
-<div class="unit" id="homeh2">
-  <img src="/images/carlbildt.png" alt="">
-  <p>Axel Jönsson</p>
-  <p>Lokalbokning</p>
-
-</div>
-
-<div class="unit" id="homeh2">
-  <img src="/images/carlbildt.png" alt="">
-  <p>David Carlsson</p>
-  <p>Back-end</p>
-
-</div>
-
-<div class="unit" id="homeh2">
-  <img src="/images/carlbildt.png" alt="">
-  <p>Fredrik Lindberg</p>
-  <p>Scrum master</p>
-
-</div>
-
-<div class="unit" id="homeh2">
-  <img src="/images/carlbildt.png" alt="">
-  <p>Joel Nilsson</p>
-  <p>Mötesordförande</p>
-
-</div>
-
-<div class="unit" id="homeh2">
-  <img src="/images/carlbildt.png" alt="">
-  <p>Jonathan Johansson</p>
-  <p>Gitansvarig</p>
-
-</div>
-
-<div class="unit" id="homeh2">
-  <img src="/images/carlbildt.png" alt="">
-  <p>Oscar Söderlund</p>
-  <p>Front-end</p>
-
-</div>
-
-<div class="unit" id="homeh2">
-  <img src="/images/carlbildt.png" alt="">
-  <p>Unn Zachrison</p>
-  <p>Dokumentansvarig</p>
-
-</div>
-
-<div class="unit" >
-  <img src="/images/carlbildt.png" alt="">
-  <p>Wiktor Hübsch</p>
-  <p>Testansvarig</p>
-</div>
-</div>
-</div>
-   <!-- <div class="w3-container w3-black w3-padding-32">
-      <h1>Subscribe</h1>
-      <p>To get special offers and VIP treatment:</p>
-      <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
-      <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
-     </div>-->
-</script>
+     <!-- <div class="w3-container w3-black w3-padding-32">
+        <h1>Subscribe</h1>
+        <p>To get special offers and VIP treatment:</p>
+        <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
+        <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
+       </div>-->
+  </script>
 
 <!--skapa annonssida-->
   <script id="view-createAdd" type="text/html">
@@ -1153,6 +1206,7 @@
   <script src="/javascript/register.js"></script>
   <script src="/javascript/cashregister.js"></script>
   <script src="/javascript/adminview.js"></script>
+  <script src="/javascript/slide.js"></script>
   <script src="/javascript/sessionstoragehandler.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

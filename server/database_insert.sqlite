@@ -46,13 +46,13 @@ VALUES ('Behringer', 'BX100', 'Behringer BX100', 20000, 'Grå', '/images/mixer.p
 
 --Insert alphorns
 INSERT INTO product(brand, model, name, price, color, image, year, type, new_or_not, quantity, seller)
-VALUES ('Thomann', 'Alphorn', 'Thomann Alphorn', 31890, 'Vit', '/images/thomann_alphorn.jpg', 2022, 'Alphorn', 0, 5, 2),
- ('Didgeridoo', 'Mellan', 'Aussie Classic 130cm', 15000, 'Trä', '/images/Didgeridoo.jpg', 1850, 'Alphorn', 0, 2, 1),
- ('Vuvuzela', 'Vuvuzela2000', 'Vuvuzela', 150, 'Grön', '/images/vuv.jpg', 2012, 'Alphorn', 0, 12, 1),
- ('Kazoo', 'KazooKid', 'Kazoo Floejter', 15000, 'Alla', '/images/kazoo-floejter.jpg', 1997, 'Alphorn', 1, 12, 1),
- ('Näsflöjt', 'Snook', 'Mäktig Näsflöjt', 25, 'Alla', '/images/nose-flojter.jpg', 2023, 'Alphorn', 1, 25, 1),
- ('Otamatone', 'techno white', 'Otamatone techno White X', 1205, 'Vit', '/images/otamatone.jpg', 2018, 'Alphorn', 0, 3, 1),
- ('Otamatone', 'techno white', 'Otamatone techno White X', 1205, 'Vit', '/images/otamatone.jpg', 2018, 'Alphorn', 1, 3, 1);
+VALUES ('Thomann', 'Alphorn', 'Thomann Alphorn', 31890, 'Vit', '/images/thomann_alphorn.jpg', 2022, 'Blås', 0, 5, 2),
+ ('Didgeridoo', 'Mellan', 'Aussie Classic 130cm', 15000, 'Trä', '/images/Didgeridoo.jpg', 1850, 'Blås', 0, 2, 1),
+ ('Vuvuzela', 'Vuvuzela2000', 'Vuvuzela', 150, 'Grön', '/images/vuv.jpg', 2012, 'Blås', 0, 12, 1),
+ ('Kazoo', 'KazooKid', 'Kazoo Floejter', 15000, 'Alla', '/images/kazoo-floejter.jpg', 1997, 'Blås', 1, 12, 1),
+ ('Näsflöjt', 'Snook', 'Mäktig Näsflöjt', 25, 'Alla', '/images/nose-flojter.jpg', 2023, 'Blås', 1, 25, 1),
+ ('Otamatone', 'techno white', 'Otamatone techno White X', 1205, 'Vit', '/images/otamatone.jpg', 2018, 'Blås', 0, 3, 1),
+ ('Otamatone', 'techno white', 'Otamatone techno White X', 1205, 'Vit', '/images/otamatone.jpg', 2018, 'Blås', 1, 3, 1);
 
 
 
