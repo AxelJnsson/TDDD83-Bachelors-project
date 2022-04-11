@@ -22,7 +22,9 @@
   <link rel="stylesheet" href="/css/home.css">
   <link rel="stylesheet" href="/css/form.css">
   <link rel="stylesheet" href="/css/slide.css">
-
+  
+  <link rel="stylesheet" href="/css/checkout.css"/>
+  
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -97,6 +99,7 @@
             <a class="nav-link" href="#" id="userButton">Din sida</a>
   
           </li>
+         
           <li class="nav-item">
             <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
           </li>
@@ -693,6 +696,32 @@
         <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
        </div>-->
   </script>
+<!--Stripe-->
+<!--<script id="view-stripe" type="text/html">
+  <div class="container rounded bg-white mt-5 mb-5">
+  
+   <form id="payment-form">
+    <div id="payment-element" >
+    </div>
+    <button id="submit">
+      <div class="spinner hidden" id="spinner"></div>
+      <span id="button-text">Pay now</span>
+    </button>
+    <div id="payment-message" class="hidden"></div>
+  </form>
+
+  </div>
+
+
+</script>-->
+
+<script id="lyckad-betalning" type="text/html">
+  <div class="d-flex justify-content-between align-items-center mb-3" >
+    <h4 class="text-right">Lyckad betalning</h4>
+  </div>
+
+
+</script>
 
 <!--skapa annonssida-->
   <script id="view-createAdd" type="text/html">
@@ -908,12 +937,14 @@
 </div>
 
 <script id="view-cashregister" type="text/html">
+  
   <div>
     <h1>
       Välkommen till kassan
      </h1>
   </div>
   <div id="cashRegisterArea">
+    
     <div id="scrollableItemsInBasket">
       <!-- <img src="/images/logga.png" width="100" height="100" id="homeButton">
       <br>
@@ -930,6 +961,7 @@
       <img src="/images/testbildkassa.png" width="100" height="100" id="homeButton">
       <br> -->
   </div> 
+ 
   <div id="amountArea">   
     <h1 style="text-align:center">
       Din Total
@@ -946,11 +978,34 @@
     </h6>
     <h5 style="margin-left: 6%;" id="totalsumLine">
     </h5>
-    <div>
+    <!--<div>
       <button onclick="stripeTestFunction()" class="btn btn-primary" id="toPaymentButton" type="submit">Till betalning</button>
-    </div>
+    </div>-->
+    
+
+   
   </div>
+
 </div>
+<!--<script id="pay-view">-->
+<div class="container rounded bg-white mt-5 mb-5">
+  
+  <form id="payment-form">
+    <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+    <button id="submit">
+      <div class="spinner hidden" id="spinner"></div>
+      <span id="button-text">Pay now</span>
+    </button>
+    <p id="card-error" role="alert"></p>
+    <p class="result-message hidden">
+      Payment succeeded, see the result in your
+      <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+    </p>
+  </form>
+
+</div>
+<!--</script>-->
+  
 </script>
 
 <div class="modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -1133,22 +1188,20 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-  <script src="../../assets/js/vendor/popper.min.js"></script>
-  <script src="../../dist/js/bootstrap.min.js"></script>
-  <script src="/javascript/home.js"></script>
-  <script src="/javascript/accountPage.js"></script>
-  <script src="getproducts.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+ <!-- <script src="../../assets/js/vendor/popper.min.js"></script>
+  <script src="../../dist/js/bootstrap.min.js"></script>-->
+  <script src="/javascript/home.js"></script>  
+ 
+  <script src="/javascript/accountPage.js"></script> 
   <script src="/javascript/basket.js"></script>
   <script src="/javascript/loggInOut.js"></script>
   <script src="/javascript/createadd.js"></script>
   <script src="/javascript/productview.js"></script>
-  <script src="/javascript/startpageProducts.js"></script>
-  <script src="/javascript/stripetest.js"></script>
-  <script src="/javascript/search.js"></script>
-  <script src="https://js.stripe.com/v3/"></script>
-  <script src="/javascript/register.js"></script>
-  <script src="/javascript/cashregister.js"></script>
-  <script src="/javascript/slide.js"></script>
+  <script src="/javascript/startpageProducts.js"></script>  
+  <script src="/javascript/search.js"></script> 
+  <script src="/javascript/register.js"></script> 
+  <script src="/javascript/slide.js"></script>  
   <script src="/javascript/sessionstoragehandler.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -1159,7 +1212,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&v=weekly" async></script>
+    <script src="/javascript/checkout.js" defer></script>
+  
 </body>
 
 </html>
