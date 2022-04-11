@@ -6,7 +6,13 @@ div {
   margin-left: 5px;
   margin-right: 10px;
 }
-
+#help{
+  padding: 40px;
+  text-align: center;
+  background-color: #384052;
+  color: white;
+  box-shadow: 0 0 5px ;
+}
 .card button {
   border: none;
   outline: 0;

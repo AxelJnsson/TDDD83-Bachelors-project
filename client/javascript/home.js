@@ -62,6 +62,14 @@ $('#aboutButton').click(function (e) {
      e.preventDefault();
    });
 
+  $('#helpButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-help").html())  
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html()) 
+    document.getElementById('top').scrollIntoView();
+    e.preventDefault();
+  });
+
     
 function openRegModal(){
   $("#registerModal").modal('toggle');
