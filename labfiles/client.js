@@ -250,7 +250,7 @@ function signUp() {
          $(".container").html($("#view-home").html());
     }
   });
-  alert("hej");
+ 
 }
 
 function logIn() {

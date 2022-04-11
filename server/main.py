@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 from email.policy import default
 from faulthandler import dump_traceback_later
 #from msilib import Table
@@ -21,6 +22,11 @@ from sqlalchemy import Column, Integer, table
 from sqlalchemy import engine_from_config
 import stripe
 import os
+import json
+from flask import render_template, render_template_string
+#import cv2
+#from PIL import Image
+#from pathlib import Path
 
 #stripe_keys = {
  #   "secret_key": os.environ["STRIPE_SECRET_KEY"],
@@ -105,7 +111,31 @@ class Cart_Item(db.Model):
 #Behövs inte den så att man får datan på rätt format?
   # def serialize(self):
   #   return dict(id=self.id, product_id=self.product_id, quantity=self.quantity, session_id= self.session_id)
+class Order_history(db.Model):
+  id = db.Column(db.Integer, primary_key = True)
+  user_id = db.Column (db.Integer, db.ForeignKey('user.user_id'))
+
+  def __repr__(self):
+    return '<Order_history {}: {} {}>'.format(self.id, self.user_id)
+
+class Orders(db.Model):
+  order_nr = db.Column(db.Integer, primary_key = True)
+  amount = db.Column(db.Integer)
+  order_history_id = db.Column(db.Integer, db.ForeignKey('order_history.id'))
   
+
+  def __repr__(self):
+    return '<Orders {}: {} {} {} >'.format(self.order_nr, self.amount, self.order_history_id)
+
+class Order_item (db.Model):
+  id = db.Column(db.Integer, db.ForeignKey('product.product_id'), primary_key = True )
+  quantity = db.Column(db.Integer)
+  order_nr = db.Column(db.Integer, db.ForeignKey('orders.order_nr'))
+  
+
+  def __repr__(self):
+    return '<Order_item {}: {} {} {} >'.format(self.id, self.quantity, self.order_nr)
+
 
 #Sets up database from database_schema
 def executeTestSQL(filename):
@@ -169,13 +199,15 @@ setUpDatabase()
 
 
 
-stripe.api_key = 'sk_test_51KiDHOFa9gwuZdKJw6ouVqm5m6mUYok8kEYg3BYtOH1kqnAFvH9YiOe7IGd7sMGm0zTvR4XYwTxI66u0TVYdiOjN00AeMRr3Nz'
+#stripe.api_key = 'sk_test_51KiDHOFa9gwuZdKJw6ouVqm5m6mUYok8kEYg3BYtOH1kqnAFvH9YiOe7IGd7sMGm0zTvR4XYwTxI66u0TVYdiOjN00AeMRr3Nz'
+stripe.api_key = 'sk_test_51KmeJFGTjasXI1q99HgReiS1UmSZmF3a2dZSnyq7dtYnoHUw8HPyoLwqCIM6Sckrhgw1bwtixC8BXpZQgyExtnzQ00q350DBtl'
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
   if request.method == 'POST':
     info = request.get_json()
-    price = info['price']
+    print("haksjdnaksjdnjkasndkjnaskjdnkasndnaksjndjknaskjndkjasndkjnaskjndkanskdnajksndknjas")
+    total = info["price"]
     session = stripe.checkout.Session.create(
       line_items=[{
         'price_data': {
@@ -184,7 +216,7 @@ def create_checkout_session():
             'name': 'GItarr',
           
           },
-          'unit_amount': price,
+          'unit_amount': total,
         },
         'quantity': 1,
       }],
@@ -194,7 +226,46 @@ def create_checkout_session():
 
   )
 
-  return redirect(session.url, code=303)
+  return session.url
+
+
+  
+def calculate_order_amount(items):
+    # Replace this constant with a calculation of the order's amount
+    # Calculate the order total on the server to prevent
+    # people from directly manipulating the amount on the client
+    return 1400
+
+#kanske behöver göras om för att göra beräkning på server
+@app.route('/create-payment-intent', methods=['POST'])
+def create_payment():
+    try:
+        data = json.loads(request.data)
+        
+        # Create a PaymentIntent with the order amount and currency
+        intent = stripe.PaymentIntent.create(
+            #amount=calculate_order_amount(data['items']),            
+            amount=data,
+            currency='sek',
+            automatic_payment_methods={
+                'enabled': True,
+            },
+        )
+        return jsonify({
+            'clientSecret': intent['client_secret']
+        })
+    except Exception as e:
+        return jsonify(error=str(e)), 403
+
+@app.route('/order/success', methods=['GET'])
+def order_success():
+  session = stripe.checkout.Session.retrieve(request.args.get('session_id'))
+  customer = stripe.Customer.retrieve(session.customer)
+
+  return render_template_string('<html><body><h1>Thanks for your order, {{customer.name}}!</h1></body></html>')
+
+
+
   
 #Route for login-method
 # Vet inte om for loopen i denna metod är optimal, känns långsamt att loopa igenom alla användare
@@ -284,6 +355,28 @@ def products():
 
   return "401"
 
+  #Route för att lägga till bilder i filsystem
+@app.route('/saveImg', methods = ['POST'])
+def saveImg():
+  if request.method == 'POST':
+    img = request.files.get('file')   
+    url = request.values.get('url')
+   
+    cwd = Path.cwd()
+    mod_path = str(Path(__file__).parent.parent)
+    path =  mod_path + '/client/images'
+    print(path)
+   
+    #filename = os.path.join(dirname, 'relative/path/to/file/you/want')
+
+   
+    #img = img.save('savedimage.jpg')
+    
+    img = img.save(f"{path}/"+url+".jpg")
+    #cv2.imwrite('savedimage.jpg', img)    
+   
+  return "200"
+
 #Route for getting only new products
 @app.route('/newproduct', methods = ['GET'] )
 def newproducts():
@@ -298,6 +391,49 @@ def newproducts():
       
     return jsonify(product_list)
   return "401"
+
+#Route for adding order history
+@app.route('/createorderhistory/<int:user_id>', methods =['POST'])
+def createorderhistory(user_id):
+  if request.method == 'POST':
+    print("tries to create")
+    x = Order_history( user_id= user_id)
+    db.session.add(x)
+    db.session.commit()
+    return 20
+
+#INTEKLAR
+@app.route('/order/<int:user_id>', methods = ['POST', 'GET'])
+def createorders(user_id):
+  if request.method == 'POST':
+    
+    orderhist = Order_history.query.filter_by(user_id)
+    x = Orders(order_history_id = orderhist.id)
+    db.session.add(x)
+    db.session.commit()
+    return 200
+  elif request.method == 'GET':
+    order = Product.query.filter_by(order_nr = Order_history.query.filter_by(user_id).user_id)
+    order_list =[]
+
+    for x in order:
+      order_list.append(x.serialize())
+    return jsonify(order_list)
+  return "401"
+
+#Route for adding orderitems
+@app.route('/orderitem/<int:user_id>', methods =['POST'])
+def createorderitem(user_id):
+  if request.method == 'POST':
+    orderhist = Order_history.query.filter_by(user_id)
+    x = Orders(order_history_id = orderhist.id)
+    db.session.add(x)
+    db.session.commit()
+    return 200
+
+#Route for getting orderitems
+
+
 
 #Route for getting only old products
 @app.route('/oldproduct', methods = ['GET'] )

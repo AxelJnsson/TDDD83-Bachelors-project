@@ -24,12 +24,14 @@ $('#LoginFinishButton').click(function (e) {
         contentType: "application/json",
         data: JSON.stringify({
           "email":inputEmail, "password":inputPassword}), 
-        success: function(i) { 
-            
-         sessionStorage.setItem('auth', JSON.stringify(i));           
+        success: function(i) {
+         sessionStorage.setItem('auth', JSON.stringify(i)); 
+         sessionStorage.setItem('userID',i.user.user_id);
+         sessionStorage.setItem('loggedIn',true);     
          $(".container").html($("#view-home").html());
-         window.location.reload(); 
-           
+         storeCartedItems();
+         sessionStorage.setItem('startedShopping',true);
+         window.location.reload();
         },
         error: function(){
           alert("Wrong username or password!");
@@ -46,9 +48,11 @@ $('#LoginFinishButton').click(function (e) {
   
 function logoutUser() {
   $(".container").html($("#view-home").html())
+  sessionStorage.setItem('loggedIn', false);
+  transferCartToSession();
   sessionStorage.removeItem('auth');
   sessionStorage.removeItem('anv');
-
+  sessionStorage.removeItem('userID');
   window.location.reload();
 }
   $('#registerButton').click(function (e) {
@@ -71,12 +75,61 @@ function logoutUser() {
          "firstname":first_name, "last_name": lastName, "email":email, "password":password}), 
       success: function(i) { 
            alert("Din användare är skapad!");
-           $(".container").html($("#view-home").html());
+           $("#sideBarContainer").html($("#empty").html())
+           $("#productViewContainer").html($("#empty").html())
+           $("#mainViewContainer").html($("#view-home").html())
            $("#registerModal").modal('hide');
+           $.ajax ({  
+            url:'/createorderhistory/'+ i.user_id,
+            type: 'POST',
+            contentType: "application/json",
+          
+            success: function() { 
       }
+    })}
     });
   
   });
 
-  
-  
+function storeCartedItems(){
+  var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+  var ID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
+  $.ajax ({  
+    url:'/user/'+ ID,
+    type: 'GET',
+    contentType: "application/json",
+    success: function(data) { 
+      for (let i = 0; i<data[2].length;i++){
+        // alert(data[2][i].product_id);
+        productsInCart.delete(data[2][i].product_id);
+      }
+      if (productsInCart.size>0){
+        for (let key of productsInCart.keys()){
+          for (let i=0; i < parseInt(productsInCart.get(key)); i++){
+            addProductToCart(key);
+          }
+        }
+      }
+      productsInCart.clear();
+      sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
+    }
+  });
+}
+
+function transferCartToSession(){
+  var ID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
+  $.ajax ({  
+    url:'/user/'+ ID,
+    type: 'GET',
+    contentType: "application/json",
+    success: function(data) { 
+      var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+      console.log(data[2])
+      for (let i = 0; i<data[2].length;i++){
+        productsInCart.set(data[2][i].product_id,data[2][i].quantity);
+        console.log(productsInCart);
+        }
+      sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
+    }
+  });
+}          

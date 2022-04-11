@@ -88,3 +88,8 @@
 #productDivInRegister{
   border-style: solid;
 }
+
+#bodyBasketModal{
+  max-height: 460px;
+  overflow:scroll;
+}

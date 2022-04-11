@@ -1,16 +1,18 @@
 $(document).ready(function(){
     // Kod i detta block körs när dokumentet laddats klart.    
-    $("#mainViewContainer").html($("#view-home").html())
+    $("#mainViewContainer").html($("#view-homeSlide").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
-   
-    filternewornot.push(0, 1); 
-
+    document.getElementById('top').scrollIntoView();
+    showSlides();
+    createProducts2();
     var signedIn;
     if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').token <= 0) {
       signedIn = true;
+      console.log("inloggad " + signedIn);
     } else {
       signedIn = false;
+      console.log("inloggad" + signedIn);
     }
     
     $('#registerButton').toggleClass('d-none', !signedIn);
@@ -18,7 +20,16 @@ $(document).ready(function(){
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
-    sessionStorage.setItem('price', parseInt(0));           
+    if (JSON.parse(sessionStorage.getItem('auth'))==null){
+      sessionStorage.setItem('loggedIn',false);
+    }else{
+      sessionStorage.setItem('loggedIn',true);
+    }
+    if (JSON.parse(sessionStorage.getItem('startedShopping'))==null){
+      idAndQuantity = {}
+      sessionStorage.setItem('productsInCart',JSON.stringify(Array.from(idAndQuantity)));
+    }
+
   })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
@@ -31,7 +42,8 @@ $(document).ready(function(){
  const filterprices = [];
  const filteryears = [];
  const filternewornot = [];
- let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot];
+ const filterpriceinterval = [];
+ let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot, filterpriceinterval];
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
@@ -41,9 +53,21 @@ $('#aboutButton').click(function (e) {
     e.preventDefault();
   });
 
+//används bara tillfälligt
+  $('#stripeButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-stripe").html())  
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html()) 
+
+    
+    e.preventDefault();
+  });
+
+
 
   $('#annonsButton').click(function (e) {      
     $("#mainViewContainer").html($("#view-createAdd").html())
+    fillOptions1();
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
      e.preventDefault();
@@ -54,17 +78,31 @@ function openRegModal(){
   $("#registerModal").modal('toggle');
   e.preventDefault();
 }
+function snapchatImage(){
+  $("#snapchatModal").modal('toggle');
+  e.preventDefault();
+}
+
+$('#xButtonSnap').click(function (e) {
+  e.preventDefault();
+  $("#snapchatModal").modal('hide');
+});
+$('#xeditUserModal').click(function (e) {
+  e.preventDefault();
+  $("#editUserModal").modal('hide');
+});
 
 function faqView() {
   $("#mainViewContainer").html($("#view-FAQ").html())
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
+  document.getElementById('top').scrollIntoView();
   e.preventDefault();
 }  
 $('#contactButton').click(function (e) {          
     e.preventDefault();
   });
-
+//används ej tror jag
   function startshopp() {
     $("#mainViewContainer").html($("#view-product").html())
     $("#sideBarContainer").html($("#empty").html())
@@ -76,7 +114,7 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
 
   }
-
+ 
   $('#userButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-user").html())
     $("#sideBarContainer").html($("#empty").html())
@@ -94,9 +132,24 @@ $('#contactButton').click(function (e) {
       filternames.length = 0;
       filterprices.length = 0;
       filteryears.length = 0;
+      filterpriceinterval.length = 0;
       //filternewornot.length = 0;
   }
 
+ function buyInstruments(){
+  $("#sideBarContainer").html($("#view-sidebar").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+
+
+    //showProdInfo("allt", null);
+    resetFilter();
+    //filternewornot.push("Ny", "Begagnad");
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+ }
 
   $('#allInstrButton').click(function (e) {
     $("#sideBarContainer").html($("#view-sidebar").html())
@@ -107,70 +160,86 @@ $('#contactButton').click(function (e) {
     //showProdInfo("allt", null);
     resetFilter();
     //filternewornot.push("Ny", "Begagnad");
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
     e.preventDefault();
   });
 
-  $('#guitarButton').click(function (e) {   
+  /*function gitarrView(){
+      $("#sideBarContainer").html($("#view-sidebar").html())  
+      $("#productViewContainer").html($("#view-product").html())
+      $("#mainViewContainer").html($("#empty").html())
+   };*/
+
+   function gitarrView(){  
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
     
     resetFilter();
     var defCategory = "Gitarr";
     filtertypes.push(defCategory);
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
     e.preventDefault();
-  });
+  };
 
-  $('#pianoButton').click(function (e) { 
+  function pianoView(){  
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html()) 
+    document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Piano");
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
     e.preventDefault();
-  });
+  };
 
-  $('#drumButton').click(function (e) {   
+  function drumView(){
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Trummor");
-
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
-
+    createCategoriesForSidebar();
     e.preventDefault();
-  });
+  };
 
-  $('#studioButton').click(function (e) {  
+  function studioView(){
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Studio");
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
 
     e.preventDefault();
-  });
+  };
 
-
-  $('#alphornButton').click(function (e) {   
+  $('#alphornButton').click(function (e) {  
+    //alert(filtertypes.length);
+ 
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
     resetFilter();
+    var testcategory1 = "Blås";
     
-    //var testmodell = "idk";
-    filtertypes.push("Alphorn");
-    //filterbrands.push(testbrand1);
-    //filtermodels.push(testmodell);
-    // alert(filtertypes[0] + filtertypes[1]);
-    // alert(filterQ[0][1]);
-    //alert("Gitarrer och pianon av märke yamaha");
+    filtertypes.push(testcategory1);
+    filternewornot.push(0, 1); 
     showProdInfo(filterQ);
+    createCategoriesForSidebar();
 
     e.preventDefault();
   });
@@ -195,9 +264,11 @@ $('#contactButton').click(function (e) {
    }
 
 $('#homeButton').click(function (e) {
-  $("#mainViewContainer").html($("#view-home").html()) 
+  $("#mainViewContainer").html($("#view-homeSlide").html()) 
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
+  showSlides();
+  createProducts2();
     e.preventDefault();
 });
 
@@ -206,6 +277,7 @@ function showView(view){
   $("#sideBarContainer").html($("#empty").html())
   $("#productViewContainer").html($("#empty").html())
 }
+
 //testfunktion för filtrering
 function checkNeworOldStuff(checkid, query){
   var checkBox = document.getElementById(checkid);
@@ -247,10 +319,11 @@ function regOrAnnons() {
     $("#loginModal").modal('toggle');
   } else {
     $("#mainViewContainer").html($("#view-createAdd").html())
-  }
-
- 
+  } 
 }
 
-
-
+function SucPay() {
+  $("#mainViewContainer").html($("#lyckad-betalning").html())
+  alert("din betalning gick igenom");
+  //Gör nåt som uppdaterar varukorgen och skapar en
+}
