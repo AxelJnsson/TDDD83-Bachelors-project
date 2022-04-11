@@ -3,17 +3,64 @@ $('#basketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('toggle');
     getProductsToPrintInBasket();
-  });
+});
 
 $('#closeBasketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('hide');
-  });
+});
 
 $('#xButtonBasket').click(function (e) {
   e.preventDefault();
   $("#basketModal").modal('hide');
-  });
+});
+
+
+function clearCart2(data) {
+  for (a = 0; a < data[2].length; a++) {
+    for (b = 0; b < data[2][a].quantity; b++) {
+      deleteProductFromCart(data[2][a].product_id);
+    }
+  }
+}
+
+function clearCart() {
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    $.ajax ({
+      url:'/user/'+userID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(data) {
+        clearCart2(data);
+      }
+    }); 
+  } else {
+    var productsToPrint = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    if (productsToPrint.size < 1) {
+      printEmptyBasketModal();
+      showPriceInModal(0);
+    } else {
+      var key = [];
+      key = productsToPrint.keys();
+      
+      for (let key of productsToPrint.keys()){
+        for (a = 0; a < productsToPrint.get(key); a++) {
+          $.ajax ({
+            url:'/product/'+key,
+            type: 'GET',
+            datatype: 'JSON',
+            contentType: "application/json",
+            success: function(product) {
+              deleteProductFromCart(key);
+            }
+          }); 
+        } 
+      }
+    }
+  }
+}
 
 function addProductToCart(productToAdd){
   sessionStorage.setItem('startedShopping',true);
@@ -92,7 +139,6 @@ function getProductsToPrintInBasket(){
             printProductInBasketModal(product,productsToPrint.get(key));
           }
         });
-        
       }
     }
   }
@@ -130,12 +176,12 @@ function printProductInBasketModal(product, quantity){
 function deleteProductFromCart(productID){
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
     $.ajax ({
-      url:'/product/'+productID,
+      url:'/product/'+ productID,
       type: 'GET',
       datatype: 'JSON',
       contentType: "application/json",
       success: function(product) {
-        updateprice((parseInt(product.price))*-1);
+        updateprice((parseInt(product.price))*(-1));
         showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
       }
     });
@@ -148,8 +194,8 @@ function deleteProductFromCart(productID){
       contentType: "application/json",
   
       success: function(product) {
-        // alert("tog bort")
-        getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
+        //getProductsToPrintInBasket(JSON.parse(sessionStorage.getItem('auth')).user.user_id);
+        getProductsToPrintInBasket();
       },
       error: function(u){
         alert("tog inte bort fk u");
