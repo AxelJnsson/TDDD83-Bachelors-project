@@ -25,20 +25,11 @@ $('#LoginFinishButton').click(function (e) {
         data: JSON.stringify({
           "email":inputEmail, "password":inputPassword}), 
         success: function(i) { 
-<<<<<<< HEAD
-         
-         sessionStorage.setItem('auth', JSON.stringify(i));
-        
-          $(".container").html($("#view-home").html());
-          window.location.reload(); 
-  
-=======
         
          sessionStorage.setItem('userID',i.user.user_id)
          sessionStorage.setItem('auth', JSON.stringify(i));           
          $(".container").html($("#view-home").html());
          window.location.reload();
->>>>>>> 641d1579018679f22bcb2c26051936852e746e49
         },
         error: function(){
           alert("Wrong username or password!");

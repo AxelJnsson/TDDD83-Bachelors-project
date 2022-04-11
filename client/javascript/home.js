@@ -18,13 +18,11 @@ $(document).ready(function(){
       console.log("inloggad " + signedIn);
     } else {
       signedIn = false;
-<<<<<<< HEAD
       var admin;
       if (JSON.parse(sessionStorage.getItem('auth')).user.is_admin === 1) {
         admin = true;
       } else {
         admin = false;
-=======
       console.log("inloggad" + signedIn);
     }
     if (sessionStorage.getItem('auth')==null){
@@ -32,7 +30,6 @@ $(document).ready(function(){
     } else{
       if (!sessionStorage.getItem('priceUpToDate')){
         updateUserPriceAtLogin(sessionStorage.getItem('userID'));
->>>>>>> 641d1579018679f22bcb2c26051936852e746e49
       }
     }
 
@@ -41,11 +38,9 @@ $(document).ready(function(){
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
-<<<<<<< HEAD
     $('#adminButton').toggleClass('d-none', !admin);
-    sessionStorage.setItem('price', parseInt(0));           
-=======
->>>>>>> 641d1579018679f22bcb2c26051936852e746e49
+    sessionStorage.setItem('price', parseInt(0));  
+  }         
   })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
