@@ -12,37 +12,71 @@ function createProducts(filteringByArray){
         }    
     });
 }
+    const lowerBoundPrice = []; 
+    const higherBoundPrice = [];
+    const numbersArray = [];
 
+
+function filterPriceInterval(stuffToFilter, interval){
+    
+    var prInterval = interval;
+
+    lowerBoundPrice.length = 0;
+    higherBoundPrice.length = 0;
+
+
+    for(var i = 0; i < prInterval.length ; i++) { 
+            //alert(prInterval[0][0]);
+            lowerBoundPrice.push(prInterval[i][0]);
+            higherBoundPrice.push(prInterval[i][1]);
+    }
+
+    // alert(lowerBoundPrice[0]);
+    // alert(higherBoundPrice[0]);
+
+    numbersArray.length = 0;
+    
+    for(item in stuffToFilter){
+            numbersArray.push(stuffToFilter[item].price);
+    }
+
+    //let matches = [];
+    let nonMatches = [];
+    
+    numbersArray.forEach(num => {
+    const matched = lowerBoundPrice.some((bound, i) => {
+        return num > bound && num < higherBoundPrice[i];
+    });
+
+    matched ? filterprices.push(num) : nonMatches.push(num);
+    });
+
+    //  alert("Matchar: " + matches.length);
+    //  alert("Ingen match: " + nonMatches.length);
+
+
+}
 
 
 //riktig filtrering
 function filtering(arr, filterQueries){
+    var filteredstuff = arr;
+    const priceInterval = filterQueries[8];
+
+    //alert(priceInterval.length);
+     if (priceInterval !== 0){
+         filterPriceInterval(filteredstuff, priceInterval); 
+     }
+
     const types = filterQueries[0];
     const brands = filterQueries[1];
     const models = filterQueries[2];
     const colors = filterQueries[3];
-    const names = filterQueries[4];
     const prices = filterQueries[5];
     const years = filterQueries[6];
     const newornots = filterQueries[7];
-   
-    var filteredstuff = arr;
 
-    const priceinterval1 = [];
-    const priceinterval2 = [];
-    const priceinterval3 = [];
 
-    // if(prod[j].price >= 10000){
-    //     priceinterval1.push(prod[j]);
-    //  } else if (prod[j].price < 10000 && prod[j].price >= 5000) {
-    //     priceinterval2.push(prod[j]);
-    //  } else if (prod[j].price < 5000) {
-    //      priceinterval3.push(prod[j]);
-    //  }
-
-    //  const or = (...fns) => n => fns.some(fn => fn(n));
-
-    //  const priceintervals = [priceinterval1, priceinterval2, priceinterval3];
 
 
     if (types.length !== 0) {
@@ -60,10 +94,6 @@ function filtering(arr, filterQueries){
             models.indexOf(el.model) >= 0);
     }
     
-    if (names.length !== 0) {
-        filteredstuff = filteredstuff.filter( el => 
-            names.indexOf(el.name) >= 0);
-    }
 
     if (prices.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
@@ -105,14 +135,24 @@ function appendProducts(filteredproducts){
             //j++;
             
         //} Tog bort, snyggare att dom lägger sig rätt beroende på skärmstorlek! <333 /Unn
+        var beg;
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
-
         if (products[i].new_or_not == 0) {
-            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Begagnad</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
-        } else if (products[i].new_or_not == 1) {
-            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Ny</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
-        } 
-
+            beg = "Begagnad";
+        } else {
+            beg = "Ny";
+        }
+       
+       // if (products[i].new_or_not == 0) {
+           // $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Begagnad</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<button class='btn btn-primary btn-sm btnInfo' style='font-size:10px' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px; float:left;' data-dismiss='modal' onClick='addProductToCart(this.value)' value='"+products[i].product_id+"' id='addProductToCartButton'>Lägg i varukorgen</button></div></div>");
+            //<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="addProductToCart(this.value)" value="'+products[i].product_id+'" id="addProductToCartButton">Lägg i varukorgen</button>
+           // $("#"+j).append(html);
+       // } else if (products[i].new_or_not == 1) {
+         //   $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Ny</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></div>" + "<button class='btn btn-primary btn-sm btnInfo' style='font-size:10px' data-id='"+ i + "'>Visa info</button></div></div>");
+       // }
+       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row'> <button class='btn col-6 btn-primary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px;' data-dismiss='modal' onClick='addProductToCart(this.value)' value='"+products[i].product_id+"' id='addProductToCartButton'>Köp</button></div></div></div>");
+ 
+//....
         //var condition;
 
         //if(products[i].new_or_not == 0) {
@@ -138,6 +178,26 @@ function appendProducts(filteredproducts){
     }
     //sideBar(products);
 }
+
+// function appendProducts(filteredproducts){
+
+//     var products = filteredproducts;
+//     let j = 0;
+//     for (let i=0; i < products.length; i++) {
+//     //funktion för att skriva ut produkterna 4 och 4
+//         if (i%4 == 0) {
+//             j++;
+            
+//         }
+//         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
+
+//         if (products[i].new_or_not == 0) {
+//             $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Begagnad</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
+//         } else if (products[i].new_or_not == 1) {
+//             $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>Ny</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></div>" + "<button class='btn btn-primary btnInfo' data-id='"+ i + "'>Visa info</button></div></div>");
+//         }
+// }
+
    
 // return arr1;
 
@@ -166,6 +226,7 @@ var brandClicked = false;
 var modelClicked = false;
 var colorClicked = false;
 var yearClicked = false;
+var priceClicked = false;
 
 function sideBar(products){
 
@@ -175,6 +236,8 @@ function sideBar(products){
     const models = [];
     const colors = [];
     const years = [];
+
+    const priceIntervals = [[0, 1000], [1000, 5000], [5000, 10000], [10000, 100000], [100000, 1000000000000000]]; //hårdkodade så länge
    
     const all = [];
 
@@ -182,10 +245,7 @@ function sideBar(products){
         brands.push(prod[j].brand);
         models.push(prod[j].model);
         colors.push(prod[j].color);
-        years.push(prod[j].year);
-
-         
-
+        years.push(prod[j].year);   
     }
 
 
@@ -221,28 +281,49 @@ function sideBar(products){
     if(brandClicked == false) {
         $("#brandArea").empty();
         for(var j = 0; j < uniqueBrands.length; j++){
-            $("#brandArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueBrands[j] +  " </span></label></li>");           
+            $("#brandArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueBrands[j] +  " </span></label></li>");           
         }
     }
 
     if(modelClicked == false){
         $("#modelArea").empty();
         for(var i = 0 ; i < uniqueModels.length; i++) {
-            $("#modelArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somemodel' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueModels[i] +  " </span></label></li>");
+            $("#modelArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somemodel' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueModels[i] +  " </span></label></li>");
         }
     }
 
     if(colorClicked == false){
         $("#colorArea").empty();
         for(var i = 0 ; i < uniqueColors.length; i++) {
-            $("#colorArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somecolor' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueColors[i] +  " </span></label></li>");
+            $("#colorArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somecolor' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueColors[i] +  " </span></label></li>");
         }
     }
 
     if(yearClicked == false) {
         $("#yearArea").empty();
         for(var i = 0 ; i < uniqueYears.length; i++) {
-            $("#yearArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someyear' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  uniqueYears[i] +  " </span></label></li>");
+            $("#yearArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someyear' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueYears[i] +  " </span></label></li>");
+        }
+    }
+
+    var outputInterval;
+
+    if(priceClicked == false) {
+        $("#priceArea").empty();
+         for(var i = 0 ; i < priceIntervals.length; i++) {
+            if(i == 0) {
+                outputInterval = "0 - 1000";
+            } else if(i == 1){
+                outputInterval = "1000 - 5000";
+            } else if(i == 2) {
+                outputInterval = "5000 - 10 000";
+            } else if (i == 3) {
+                outputInterval = "10 000 - 100 000";
+            } else {
+                outputInterval = "Över 100 000";
+            }
+
+            $("#priceArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someprice' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  outputInterval +  " </span></label></li>");
         }
     }
 
@@ -356,6 +437,36 @@ function sideBar(products){
 
         }
         
+    }
+        $("#productViewContainer").html($("#empty").html())
+        $("#productViewContainer").html($("#view-product").html())  
+        showProdInfo(filterQ);
+    
+  });
+
+  $('.someprice').on("click" ,function (e) {
+    e.stopImmediatePropagation();
+    var checkBoxId = $(this).data('id');
+    if($(this).prop("checked") == true){
+        filterpriceinterval.push(priceIntervals[checkBoxId]);
+        
+        priceClicked = true;
+        //alert(filteryears[0]);
+    } else if ($(this).prop("checked") == false) {
+        if(filterpriceinterval.length == 1) {
+            filterpriceinterval.length = 0;
+            priceClicked = false;
+        } else if (filterpriceinterval.length > 1) {
+            //alert("test");
+            for(item in filterpriceinterval) {
+                if(filterpriceinterval[item] == priceIntervals[checkBoxId]){
+                  filterpriceinterval.splice(item,1);
+                }
+              }
+
+        }
+        filterprices.length = 0;
+
     }
         $("#productViewContainer").html($("#empty").html())
         $("#productViewContainer").html($("#view-product").html())  
