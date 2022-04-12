@@ -60,9 +60,16 @@ function addProductToCart(productToAdd){
             url:'/product/'+ productToAdd,
             type: 'GET',
             success: function(product) { 
-              // alert("lägger till "+productToAdd)
+              alert("lägger till "+productToAdd)
               updateprice(parseInt(product.price));
               $("#productModal").modal('hide');
+              alert("Nämen");
+              $('#basketModal').modal('show');
+                  alert("Hitt");
+                setTimeout(function () {
+                    $('#basketModal').modal('hide');
+                }, 2000);
+            
              
             },
             error: function(u){
