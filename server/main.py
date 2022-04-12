@@ -411,10 +411,10 @@ def createorders(user_id):
     orderhist = Order_history.query.filter_by(user_id=user_id).first()
     print("här")
     x = Orders(order_history_id = orderhist.id)
-    print("här 2")
+    print(orderhist.id)
     db.session.add(x)
     db.session.commit()
-    return "200"
+    return "200" #skicka tbx ordr_id
   elif request.method == 'GET': 
     #DENNA FUNGERAR INTE ÄN
     order = Orders.query.filter_by(order_nr = Order_history.query.filter_by(user_id==user_id).user_id)

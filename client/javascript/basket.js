@@ -337,12 +337,34 @@ userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
     datatype: 'JSON',
     contentType: "application/json",
 
-    success: function() {
-      alert("la till order")
+    success: function(ordernr) {
+      alert("la till order");
+      alert(ordernr);
+      addItemToOrder(ordernr); 
     },
     error: function(){
       alert("la inte till order fk u");
     } 
   });
 
+}
+
+function addItemToOrder(order){
+    //ajax
+
+  $.ajax ({
+    //headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/order/' + order,
+    type: 'POST',
+    datatype: 'JSON',
+    contentType: "application/json",
+
+    success: function(ordernr) {
+      //do something
+      alert(ordernr);
+    },
+    error: function(){
+      alert("la inte till order fk u");
+    } 
+  });
 }
