@@ -17,14 +17,10 @@ $('#xButtonBasket').click(function (e) {
 
 
 function clearCart2(data) {
-  //for (a = 0; a < data[2].length; a++) {
-    //for (b = 0; b < data[2][0].quantity; b++) {
-      if (data[2].length > 0) {
-        deleteProductFromCart(data[2][0].product_id);
-        clearCart();
-      }
-    //}
-  //}
+  if (data[2].length > 0) {
+    deleteProductFromCart(data[2][0].product_id);
+    clearCart();
+  }
 }
 
 function clearCart() {
@@ -50,15 +46,7 @@ function clearCart() {
       
       for (let key of productsToPrint.keys()){
         for (a = 0; a < productsToPrint.get(key); a++) {
-          $.ajax ({
-            url:'/product/'+key,
-            type: 'GET',
-            datatype: 'JSON',
-            contentType: "application/json",
-            success: function(product) {
-              deleteProductFromCart(key);
-            }
-          }); 
+          deleteProductFromCart(key);
         } 
       }
     }
