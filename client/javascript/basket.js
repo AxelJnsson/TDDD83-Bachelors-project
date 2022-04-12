@@ -191,6 +191,7 @@ $('#shopFromBasketButton').click(function (e) {
   $("#productViewContainer").html($("#empty").html());
   $("#mainViewContainer").html($("#view-cashregister").html());
   printBasketedProducts();
+ 
  });
 
 function printBasketedProducts(){
@@ -314,4 +315,6 @@ function updateprice(price){
 function showPriceInRegister(currentTotal){
   $('#totalsumLine').empty();
   $('#totalsumLine').append("Total: " + currentTotal + "kr");
+  stripePay(currentTotal*100);
+
 }
