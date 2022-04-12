@@ -17,11 +17,14 @@ $('#xButtonBasket').click(function (e) {
 
 
 function clearCart2(data) {
-  for (a = 0; a < data[2].length; a++) {
-    for (b = 0; b < data[2][a].quantity; b++) {
-      deleteProductFromCart(data[2][a].product_id);
-    }
-  }
+  //for (a = 0; a < data[2].length; a++) {
+    //for (b = 0; b < data[2][0].quantity; b++) {
+      if (data[2].length > 0) {
+        deleteProductFromCart(data[2][0].product_id);
+        clearCart();
+      }
+    //}
+  //}
 }
 
 function clearCart() {
@@ -198,7 +201,7 @@ function deleteProductFromCart(productID){
         getProductsToPrintInBasket();
       },
       error: function(u){
-        alert("tog inte bort fk u");
+        //alert("tog inte bort fk u");
       } 
     });
   } else{
