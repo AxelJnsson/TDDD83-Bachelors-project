@@ -129,12 +129,19 @@
             <a class="dropdown-item" href="#" onclick="gitarrView()" id="basButton">Bas</a>
            </div>
         </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="pianoView()" id="pianoButton">Piano & Keyboard</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="tanInstButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tangentinstrument</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="nav-link" href="#" onclick="pianoView()" id="pianoButton">Piano</a>
+            <a class="dropdown-item" href="#" onclick="gitarrView()" id="basButton">Keyboard</a>
+           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="drumView()" id="drumButton">Trummor</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="drumInstButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Slagverk</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="nav-link" href="#" onclick="drumView()" id="drumButton">Trummor</a>
+            <a class="nav-link" href="#" onclick="drumView()" id="drumButton">Trummor 2</a>
+           </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" onclick="studioView()" id="pianoButton">Studioutrustning</a>
