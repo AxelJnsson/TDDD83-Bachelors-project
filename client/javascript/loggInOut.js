@@ -13,6 +13,13 @@ $('#xButtonLogin').click(function (e) {
   $("#loginModal").modal('hide');
 });
 
+$('#loginModal').on('keypress', function (e) {
+  var keycode = (e.keyCode ? e.keyCode : e.which);
+  if(keycode == '13'){
+    $('#LoginFinishButton').click();   
+  }
+});
+
 $('#LoginFinishButton').click(function (e) {
     e.preventDefault();
     var inputEmail = $("#inputEmailForm").val();

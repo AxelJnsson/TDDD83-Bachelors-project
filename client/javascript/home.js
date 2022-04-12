@@ -186,6 +186,20 @@ $('#contactButton').click(function (e) {
     createCategoriesForSidebar();
     e.preventDefault();
   };
+  function basView(){  
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
+    
+    resetFilter();
+    var defCategory = "Bas";
+    filtertypes.push(defCategory);
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  };
 
   function pianoView(){  
     $("#sideBarContainer").html($("#view-sidebar").html())  
@@ -199,6 +213,19 @@ $('#contactButton').click(function (e) {
     createCategoriesForSidebar();
     e.preventDefault();
   };
+  function keyboardView(){  
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html()) 
+    document.getElementById('navbarNav2').scrollIntoView();
+    resetFilter();
+    filtertypes.push("Keyboard");
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  };
+
 
   function drumView(){
     $("#sideBarContainer").html($("#view-sidebar").html())  
@@ -212,6 +239,19 @@ $('#contactButton').click(function (e) {
     createCategoriesForSidebar();
     e.preventDefault();
   };
+  function otherDrumView(){
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
+    resetFilter();
+    filtertypes.push("Other");
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  };
+
 
   function studioView(){
     $("#sideBarContainer").html($("#view-sidebar").html())  
