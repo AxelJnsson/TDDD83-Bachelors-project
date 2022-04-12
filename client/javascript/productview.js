@@ -156,8 +156,8 @@ function appendProducts(filteredproducts){
        + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "
        + products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" 
        + "<div class ='row'> <button class='btn col-6 btn-primary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i 
-       + "'>Visa info</button><button type='button' class='btn btn-secondary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value)' value='"
-       +products[i].product_id+"' id='addProductToCartButton'><span class='add-to-cart'>Add to cart</span><span class='added'>Added</span><i class='fas fa-shopping-cart'></i><i class='fas fa-box'></i></button></div></div></div>");
+       + "'>Visa info</button><button type='button' class='btn btn-secondary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"
+       +products[i].product_id+"' id='addProductToCartButton'>Köp</button></div></div></div>");
  
 //....
         //var condition;
@@ -483,8 +483,6 @@ function sideBar(products){
         showProdInfo(filterQ);
     
   });
-    
-    
 }
 
 $('#closeProductModal').on("click" ,function (e) {
@@ -502,8 +500,14 @@ $('#xProduct').on("click" ,function (e) {
 });
 
 
-  function doThings(value){
+  function doThings(value, btn){
   addProductToCart(value);
-  alert('hej');
-
+  btn.textContent ='Tillagd';
+  setTimeout(function() { setBack(btn); }, 3000);
+  //updateItemNumber();
 }
+
+function setBack(btnn) {
+    btnn.textContent ='Köp';
+    
+    }

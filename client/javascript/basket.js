@@ -5,7 +5,21 @@ $('#basketButton').click(function (e) {
     getProductsToPrintInBasket();
 });
 
-
+function updateItemNumber(){
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    $.ajax ({
+      url:'/user/'+userID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(data) {
+      }
+    }); 
+  } else {
+    var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    // alert(parseInt(productsInCart.length));
+    }}
 
 $('#closeBasketButton').click(function (e) {
     e.preventDefault();
