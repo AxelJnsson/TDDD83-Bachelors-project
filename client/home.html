@@ -122,9 +122,14 @@
         <li class="nav-item">
           <a class="nav-link" href="#"  id="allInstrButton">Alla instrument</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="gitarrView()" id="guitarButton">Gitarr</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="stringInstButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stränginstrument</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#" onclick="gitarrView()" id="guitarButton">Gitarr</a>
+            <a class="dropdown-item" href="#" onclick="gitarrView()" id="basButton">Bas</a>
+           </div>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="#" onclick="pianoView()" id="pianoButton">Piano & Keyboard</a>
         </li>
@@ -175,7 +180,7 @@
     </div>
   </div> <div class="column">
  
-</div> -->
+</div>-->
 
 <div class="wrapper">
   <h2>Vårt Team</h2>
@@ -283,7 +288,7 @@
                 <!-- <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem1">
                 <label class="form-check-label" for="defaultCheck1">
                   <span class="text-info">Item 1</span>
-                </label> -->
+                </label>-->
               </li>
             </ul>
           </li>
@@ -318,7 +323,7 @@
                 <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem6">
                 <label class="form-check-label" for="defaultCheck1">
                   <span class="text-info">Item 6</span>
-                </label> -->
+                </label>-->
               </li>
             </ul>
           </li>
@@ -361,7 +366,7 @@
                 <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem12">
                 <label class="form-check-label" for="defaultCheck1">
                   <span class="text-info">Item 12</span>
-                </label> -->
+                </label>-->
               </li>
             </ul>
             <div>
@@ -503,10 +508,10 @@
 </script>
 
 <!--Slideshow homepage-->
-    <!-- Slideshow container -->
+    <!-- Slideshow container-->
     <script class="bg-light" id="view-homeSlide" type="text/html">
       <div class="slideshow-container">
-        <!-- Full-width images with number and caption text -->
+        <!-- Full-width images with number and caption text-->
         <div class="mySlides fade">
           <div class="row">
           <div class="col-2"></div>
@@ -557,13 +562,13 @@
           </div>
           </div>
         </div>
-        <!-- Next and previous buttons -->
+        <!-- Next and previous buttons-->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
       </div>
       <br>
 
-      <!-- The dots/circles -->
+      <!-- The dots/circles-->
       <div style="padding-top: 40px; text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span> 
         <span class="dot" onclick="currentSlide(2)"></span> 
@@ -633,7 +638,7 @@
   </div>
   </div> <div class="column">
   
-  </div> -->
+  </div>-->
   
  
   <div class="card" style="width: 95%; margin-left: auto; margin-right: auto; height: 100%;">
@@ -784,7 +789,7 @@
     </div>  
     <div class="col-md-6"><label class="labels">Pris</label><input type="number" id="createPris" class="form-control" placeholder="Pris" value=""></div>
    <!-- <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
-    <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div> -->
+    <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div>-->
     <div class="col-md-6"><label class="labels">Årtal</label><input type="number" id="createYear" min="1950" max="2022" class="form-control" placeholder="" value=""></div>   
     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="createAddButton" onclick="createAdd()" type="button">Skapa annons</button></div>
 </div>
@@ -878,7 +883,7 @@
           <!-- <div class="form-group">
             <label for="inputPassword">Password igen</label>
             <input class="form-control" id="inputPasswordAgainRegisterForm">
-          </div> -->
+          </div>-->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeRegisterButton">Stäng</button>
@@ -959,7 +964,7 @@
       <img src="/images/search-icon.png" width="100" height="100" id="homeButton">
       <br>
       <img src="/images/testbildkassa.png" width="100" height="100" id="homeButton">
-      <br> -->
+      <br>-->
   </div> 
  
   <div id="amountArea">   
@@ -1004,7 +1009,6 @@
   </form>
 
 </div>
-<!--</script>-->
   
 </script>
 
@@ -1042,7 +1046,7 @@
       </div>
     </div>
     <div class="col" type="text/html">
-      <div class="container" id="productViewContainer" type="text/html">
+      <div class="container" id="productViewContainer" type="text/html">a
       </div>
     </div>
   </div>
