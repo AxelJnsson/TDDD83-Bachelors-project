@@ -258,7 +258,7 @@ $('#contactButton').click(function (e) {
     $("#mainViewContainer").html($("#empty").html())
     document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
-    filtertypes.push("Other");
+    filtertypes.push("Speciella Trummor");
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
