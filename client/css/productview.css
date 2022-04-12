@@ -1,4 +1,4 @@
-.addProductToCartButton {
+#btn-secondary {
     position: relative;
     padding: 10px;
     width: 200px;
@@ -12,30 +12,13 @@
     transition: .3s ease-in-out;
     overflow: hidden;
   }
-  .addProductToCartButton:hover {
+  #btn-secondary:hover {
     background-color: #35269b;
   }
-  .addProductToCartButton:active {
+  #btn-secondary:active {
     transform: scale(.9);
   }
-  
-  .addProductToCartButton .fa-shopping-cart {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: -10%;
-    font-size: 2em;
-    transform: translate(-50%,-50%);
-  }
-  .addProductToCartButton .fa-box {
-    position: absolute;
-    z-index: 3;
-    top: -20%;
-    left: 52%;
-    font-size: 1.2em;
-    transform: translate(-50%,-50%);
-  }
-  .addProductToCartButton span {
+  #btn-secondary span {
     position: absolute;
     z-index: 3;
     left: 50%;
@@ -44,48 +27,18 @@
     color: #fff;
     transform: translate(-50%,-50%);
   }
-  .addProductToCartButton span.add-to-cart {
+  #btn-secondary span.add-to-cart {
     opacity: 1;
   }
-  .addProductToCartButton span.added {
+  #btn-secondary span.added {
     opacity: 0;
   }
   
-  .addProductToCartButton.clicked .fa-shopping-cart {
-    animation: cart 1.5s ease-in-out forwards;
-  }
-  .addProductToCartButton.clicked .fa-box {
-    animation: box 1.5s ease-in-out forwards;
-  }
-  .addProductToCartButton.clicked span.add-to-cart {
+  #btn-secondary.clicked span.add-to-cart {
     animation: txt1 1.5s ease-in-out forwards;
   }
-  .addProductToCartButton.clicked span.added {
+  #btn-secondary.clicked span.added {
     animation: txt2 1.5s ease-in-out forwards;
-  }
-  @keyframes cart {
-    0% {
-      left: -10%;
-    }
-    40%, 60% {
-      left: 50%;
-    }
-    100% {
-      left: 110%;
-    }
-  }
-  @keyframes box {
-    0%, 40% {
-      top: -20%;
-    }
-    60% {
-      top: 40%;
-      left: 52%;
-    }
-    100% {
-      top: 40%;
-      left: 112%;
-    }
   }
   @keyframes txt1 {
     0% {

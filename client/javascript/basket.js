@@ -5,6 +5,8 @@ $('#basketButton').click(function (e) {
     getProductsToPrintInBasket();
 });
 
+
+
 $('#closeBasketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('hide');
