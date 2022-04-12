@@ -44,34 +44,16 @@
   <!--Övre navbar-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
     
-    <!-- <div>
-        <div class="input-group">s
-          <div class="form-outline">
-            <input  type="search" id="form1" class="form-control" placeholder="Search.." id="datatable-search-input" onkeyup="getSearchProducts()" />
-          </div>
-          <button type="button" class="btn btn-primary">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div> -->
-  
-    <div>
-      <div class="input-group" style="margin-left: 20px; margin-right: 10px;">
-        <div class="form-outline">
+    <div id="div1" style="width: 40%">
+      <div class="input-group" style="margin-left: 20px; margin-right: 10px; width: 45%; float: left;">
           <input type="search" class="form-control" placeholder="Search.." id="datatable-search-input"
             onkeyup="getSearchProducts()">
-        </div>
         <button type="button" class="btn btn-secondary" onclick="getSearchProducts()">
           <i class="fas fa-search"></i>
         </button>
       </div>
-    </div>
-  
-      <!-- <i class="fa-solid fa-magnifying-glass" id="magnifyingGlass" ></i> -->
-  
-  
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+      <div style="width: 50%; margin-left: 0; margin-right: auto; float: right;">
+        <ul class="navbar-nav" style="width: 100%">
           <li class="nav-item">
             <a class="nav-link" href="#" id="contactButton"
               onClick="document.getElementById('down').scrollIntoView();">Kontakt</a>
@@ -80,32 +62,38 @@
             <a class="nav-link" href="#" id="aboutButton">Om oss</a>
           </li>
         </ul>
-        <div class="align-items-center" style="padding-left: 80px;">
-        <a class="nav-link-image" href="#">
-          <img src="/images/new_logo.png" width= "300px" height= "80px" id="homeButton">
-        </a>
       </div>
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="registerButton">Registrera dig</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="loginButton">Logga in</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="annonsButton">Skapa annons</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="userButton">Din sida</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="adminButton">Admin</a>
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
-          </li>
-        </ul>
-      </div>
-      <img src="/images/basket.png" width="40" height="40" id="basketButton" frame="10">
+    </div>
+
+    <div class="collapse navbar-collapse" style="width: 20%;" id="navbarNav">
+      <div class="align-items-center">
+      <a class="nav-link-image" href="#">
+        <img src="/images/new_logo.png" width= "300px" height= "80px" id="homeButton">
+      </a>
+    </div>
+
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="registerButton">Registrera dig</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="loginButton">Logga in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="annonsButton">Skapa annons</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="userButton">Din sida</a>
+      </li> 
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="adminButton">Admin</a>
+      <li class="nav-item">
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
+      </li>
+    </ul>
+
+    <img src="/images/basket.png" width="40" height="40" id="basketButton" frame="10" style="margin-left: 10px; margin-right: 10px;">
 
   </nav>
 
@@ -134,13 +122,15 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#" onclick="pianoView()" id="pianoButton">Piano</a>
             <a class="dropdown-item" href="#" onclick="keyboardView()" id="keyboardButton">Keyboard</a>
+            <a class="dropdown-item" href="#" onclick="kAndPView()" id="kAndPButton">Alla tangentinstrument</a>
            </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="drumInstButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Slagverk</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#" onclick="drumView()" id="drumCButton">Klassiska</a>
-            <a class="dropdown-item" href="#" onclick="otherDrumView()" id="drumOButton">Övrigt</a>
+            <a class="dropdown-item" href="#" onclick="otherDrumView()" id="drumOButton">Spaciella Trummor</a>
+            <a class="dropdown-item" href="#" onclick="allDrumsView()" id="allDrumsButton">Alla slagverk</a>
            </div>
         </li>
         <li class="nav-item">
@@ -194,62 +184,62 @@
   <div class="team">
 
     <div class="unit">
-      <img src="/images/carlbildt.png" alt="">
+      <img src="/images/members/anna.jpg" alt="">
       <p>Anna Petersson</p>
       <p>Arkitektur</p>
 
     </div>
     <div class="unit">
-      <img src="/images/carlbildt.png" alt="">
+      <img src="/images/members/axel.jpg" alt="">
       <p>Axel Jönsson</p>
       <p>Lokalbokning</p>
 
     </div>
 
     <div class="unit">
-      <img src="/images/carlbildt.png" alt="">
+      <img src="/images/members/david.jpg" alt="">
       <p>David Carlsson</p>
       <p>Back-end</p>
 
     </div>
 
     <div class="unit">
-      <img src="/images/carlbildt.png" alt="">
+      <img src="/images/members/fredrik.jpg" alt="">
       <p>Fredrik Lindberg</p>
       <p>Scrum master</p>
 
     </div>
 
     <div class="unit">
-      <img src="/images/carlbildt.png" alt="">
+      <img src="/images/members/joel.jpg" alt="">
       <p>Joel Nilsson</p>
       <p>Mötesordförande</p>
 
     </div>
 
     <div class="unit">
-      <img src="/images/carlbildt.png" alt="">
-      <p>Jonathan Johansson</p>
+      <img src="/images/members/jonatan.jpg" alt="">
+      <p>Jonatan Johansson</p>
       <p>Gitansvarig</p>
 
     </div>
 
     <div class="unit">
-      <img src="/images/carlbildt.png" alt="">
+      <img src="/images/members/oscar.jpg" alt="">
       <p>Oscar Söderlund</p>
       <p>Front-end</p>
 
     </div>
 
     <div class="unit">
-      <img src="/images/carlbildt.png" alt="">
+      <img src="/images/members/unn.jpg" alt="">
       <p>Unn Zachrison</p>
-      <p>Dokumentansvarig</p>
+      <p>Bootstrap Konsult</p>
 
     </div>
 
     <div class="unit">
-      <img src="/images/carlbildt.png" alt="">
+      <img src="/images/members/wiktor.jpg" alt="">
       <p>Wiktor Hübsch</p>
       <p>Testansvarig</p>
     </div>
@@ -268,7 +258,7 @@
   <script id="view-sidebar" type="text/html">
     <!--Sidebar-->
   
-  <div class="row" id="innerSidebar">
+  <div class="row" id="innerSidebar" style="margin-top: 5px;">
     <div class="col">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
@@ -653,47 +643,47 @@
       <h1 style="text-align: center; color: black; font-weight: bold; margin-bottom: 15px;">Vårt team</h1>
       <div style="width: auto; padding-left: 50px; padding-right: 50px; padding-bottom: 30px; margin: auto; text-align: center;">
         <div class="unit">
-          <img src="/images/carlbildt.png" alt="">
+          <img src="/images/members/anna.jpg" alt="">
           <p>Anna Petersson</p>
           <p>Arkitektur</p>
         </div>
         <div class="unit">
-          <img src="/images/carlbildt.png" alt="">
+          <img src="/images/members/axel.jpg" alt="">
           <p>Axel Jönsson</p>
           <p>Lokalbokning</p>
-        </div>          
+        </div>
         <div class="unit">
-          <img src="/images/carlbildt.png" alt="">
+          <img src="/images/members/david.jpg" alt="">
           <p>David Carlsson</p>
-          <p>Back-end</p>          
-        </div>          
+          <p>Back-end</p>
+        </div>
         <div class="unit">
-          <img src="/images/carlbildt.png" alt="">
+          <img src="/images/members/fredrik.jpg" alt="">
           <p>Fredrik Lindberg</p>
-          <p>Scrum master</p>          
-        </div>          
+          <p>Scrum master</p>
+        </div>
         <div class="unit">
-          <img src="/images/carlbildt.png" alt="">
+          <img src="/images/members/joel.jpg" alt="">
           <p>Joel Nilsson</p>
-          <p>Mötesordförande</p>          
-        </div>          
+          <p>Mötesordförande</p>
+        </div>
         <div class="unit">
-          <img src="/images/carlbildt.png" alt="">
-          <p>Jonathan Johansson</p>
-          <p>Gitansvarig</p>          
-        </div>          
+          <img src="/images/members/jonatan.jpg" alt="">
+          <p>Jonatan Johansson</p>
+          <p>Gitansvarig</p>
+        </div>
         <div class="unit">
-          <img src="/images/carlbildt.png" alt="">
+          <img src="/images/members/oscar.jpg" alt="">
           <p>Oscar Söderlund</p>
-          <p>Front-end</p>          
-        </div>          
+          <p>Front-end</p>
+        </div>
         <div class="unit">
-          <img src="/images/carlbildt.png" alt="">
+          <img src="/images/members/unn.jpg" alt="">
           <p>Unn Zachrison</p>
-          <p>Dokumentansvarig</p>          
-        </div>          
-        <div class="unit" >
-          <img src="/images/carlbildt.png" alt="">
+          <p>Bootstrap Konsult</p>
+        </div>
+        <div class="unit">
+          <img src="/images/members/wiktor.jpg" alt="">
           <p>Wiktor Hübsch</p>
           <p>Testansvarig</p>
         </div>
@@ -824,8 +814,8 @@
           </div>
           <div style="margin: auto;">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton">Stäng</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="clearBasketButton" onclick="clearCart()">Rensa</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="shopFromBasketButton">Till Kassan</button>
+            <button type="button" style="color: white;"class="btn btn-warning" data-dismiss="modal" id="clearBasketButton" onclick="clearCart()">Rensa</button>
+            <button type="button" style="background-color: #0d6efd !important;" class="btn btn-primary" data-dismiss="modal" id="shopFromBasketButton">Till Kassan</button>
           </div>  
         </div>
       </div>
