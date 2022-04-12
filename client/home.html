@@ -819,12 +819,14 @@
         <div class="modal-body" id="bodyBasketModal">
         </div>
         <div class="modal-footer">
-          <div id="basketModalPriceDiv" style="margin-right: 30%;">
+          <div id="basketModalPriceDiv" style="margin: auto;">
 
           </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton">Stäng</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="shopFromBasketButton">Till
-            Kassan</button>
+          <div style="margin: auto;">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton">Stäng</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="clearBasketButton" onclick="clearCart()">Rensa</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="shopFromBasketButton">Till Kassan</button>
+          </div>  
         </div>
       </div>
     </div>
