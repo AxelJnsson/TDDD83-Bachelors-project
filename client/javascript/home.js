@@ -12,20 +12,14 @@ $(document).ready(function(){
       console.log("inloggad " + signedIn);
     } else {
       signedIn = false;
-      //var admin;
-      //if (JSON.parse(sessionStorage.getItem('auth')).user.is_admin === 1) {
-        //admin = true;
-      //} else {
-        //admin = false;
+      var admin;
+      if (JSON.parse(sessionStorage.getItem('auth')).user.is_admin === 1) {
+        admin = true;
+      } else {
+        admin = false;
       console.log("inloggad" + signedIn);
     }
-    if (sessionStorage.getItem('auth')==null){
-      sessionStorage.setItem('price',0);
-    } else{
-      if (!sessionStorage.getItem('priceUpToDate')){
-        updateUserPriceAtLogin(sessionStorage.getItem('userID'));
-      }
-    }
+  }
 
     
     $('#registerButton').toggleClass('d-none', !signedIn);
@@ -93,7 +87,7 @@ $('#aboutButton').click(function (e) {
     $("#mainViewContainer").html($("#view-adminPage").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
-    User_admin();
+    Display_admin();
      e.preventDefault();
    });
 

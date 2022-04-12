@@ -97,9 +97,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" id="userButton">Din sida</a>
-  
           </li>
-         
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="adminButton">Admin</a>
           <li class="nav-item">
             <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
           </li>
@@ -955,7 +955,7 @@
     <div class="d-flex justify-content-between align-items-center mb-3" >
       <h4 class="text-right">Adminsida</h4>
     </div>
-    <div class="card-container">
+    <div class="card-container row">
     </div>
   </div>
   </div>
@@ -977,23 +977,23 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="inputId">Id</label>
-            <input type="text" class="form-control" id="editIdField" placeholder="" aria-describedby="makeHelp" value="" >
+            <input type="text" class="form-control" id="adminEditIdField" placeholder="" aria-describedby="makeHelp" value="" readonly >
         </div>
           <div class="form-group">
             <label for="inputFirstname">Förnamn:</label>
-            <input class="form-control" id="editFirstnameField">
+            <input class="form-control" id="adminEditFirstnameField">
           </div>
           <div class="form-group">
             <label for="inputLastname">Efternamn:</label>
-            <input class="form-control" id="editLastnameField">
+            <input class="form-control" id="adminEditLastnameField">
           </div>
           <div class="form-group">
             <label for="inputEmail">Email:</label>
-            <input class="form-control" id="editEmailField">
+            <input class="form-control" id="adminEditEmailField">
           </div>
           <div class="form-group">
             <label for="inputPassword">Lösenord:</label>
-            <input class="form-control" id="editPasswordField">
+            <input class="form-control" id="adminEditPasswordField">
           </div>
         </div>
         <div class="modal-footer">
@@ -1275,11 +1275,7 @@
   <script src="/javascript/register.js"></script>
   <script src="/javascript/cashregister.js"></script>
   <script src="/javascript/adminview.js"></script>
-  <script src="/javascript/slide.js"></script>
-  <script src="/javascript/startpageProducts.js"></script>  
-  <script src="/javascript/search.js"></script> 
-  <script src="/javascript/register.js"></script> 
-  <script src="/javascript/slide.js"></script>  
+  <script src="/javascript/slide.js"></script>   
   <script src="/javascript/sessionstoragehandler.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

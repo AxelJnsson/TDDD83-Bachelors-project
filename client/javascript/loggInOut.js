@@ -72,7 +72,7 @@ function logoutUser() {
     datatype: 'JSON',
       contentType: "application/json",
       data: JSON.stringify({
-         "firstname":first_name, "last_name": lastName, "email":email, "password":password}), 
+         "first_name":first_name, "last_name": lastName, "email":email, "password":password}), 
       success: function(i) { 
            alert("Din användare är skapad!");
            $("#sideBarContainer").html($("#empty").html())
