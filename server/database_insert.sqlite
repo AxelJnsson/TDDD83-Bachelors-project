@@ -26,19 +26,19 @@ VALUES ('SDP-1', 'Bärbart', 'SDP-1 Bärbart', 1858, 'Svart', '/images/sdp1barba
 
 --Insert drums
 INSERT INTO product(brand, model, name, price, color, image, year, type, new_or_not, quantity, seller)
-VALUES ('Alesis', 'Turbo Mesh', 'Alesis Turbo Mesh', 3599, 'Svart', '/images/alesisturbo.jpg', 2022, 'Other', 1, 1, 1),
+VALUES ('Alesis', 'Turbo Mesh', 'Alesis Turbo Mesh', 3599, 'Svart', '/images/alesisturbo.jpg', 2022, 'Speciella Trummor', 1, 1, 1),
        ('Premier', 'Genista 18"', 'Premier Genista 18"', 14166, 'Guld', '/images/premiergenista.jpg', 1847, 'Trummor', 0, 1, 1),
-       ('Roland', 'Octapad', 'Roland Octapad', 9626, 'Svart', '/images/rolandoctapad.jpg', 2022, 'Other', 1, 7, 1),
+       ('Roland', 'Octapad', 'Roland Octapad', 9626, 'Svart', '/images/rolandoctapad.jpg', 2022, 'Speciella Trummor', 1, 7, 1),
        ('Roland', 'VAD-506', 'Roland VAD-506', 52130, 'Svart', '/images/rolandvad506.jpg', 2022, 'Trummor', 1, 3, 1),
-       ('Pearl', 'Primero Box', 'Pearl Primero Box', 1186, 'Brun', '/images/pearlprimero.jpg', 2022, 'Other', 1, 4, 1),
+       ('Pearl', 'Primero Box', 'Pearl Primero Box', 1186, 'Brun', '/images/pearlprimero.jpg', 2022, 'Speciella Trummor', 1, 4, 1),
        ('Yamaha', 'Stage Custom', 'Yamaha Stage Custom', 14797, 'Svart', '/images/yamahastage.jpg', 2020, 'Trummor', 0, 2, 1),
        ('Yamaha', 'virveltrumma', 'Yamaha virveltrumma', 5476, 'Silver', '/images/yamahavirveltrumma.jpg', 2022, 'Trummor', 1, 7, 1),
        ('Yamaha', 'DTX10K-X', 'Yamaha DTX10K-X', 45490, 'Orange', '/images/yamahadtx10k.jpg', 2021, 'Trummor', 0, 1, 1),
        ('Pearl', 'Crystal', 'Pearl Crystal', 14590, 'Transparent', '/images/pearlcrystal.jpg', 2022, 'Trummor', 1, 1, 1),
-       ('Bongo', 'Club-Jam', 'Bongo Club-Jam', 2323, 'Orange', '/images/bongo.jpg', 1969, 'Other', 0, 1, 1),
+       ('Bongo', 'Club-Jam', 'Bongo Club-Jam', 2323, 'Orange', '/images/bongo.jpg', 1969, 'Speciella Trummor', 0, 1, 1),
        ('Tama', 'Club-Jam', 'Tama Club-Jam', 4399, 'Red', '/images/tamaclubjam.jpg', 2017, 'Trummor', 0, 1, 1),
-       ('Thomann', 'Wuhan Tam-Tam', 'Gong-Gong', 73000, 'Guld', '/images/gong-gong.jpg', 1910, 'Other', 0, 1, 1),
-       ('Gurka', 'Boston', 'Boston Gurkan', 300, 'Alla', '/images/gurkan.jpg', 2005, 'Other', 0, 4, 1);
+       ('Thomann', 'Wuhan Tam-Tam', 'Gong-Gong', 73000, 'Guld', '/images/gong-gong.jpg', 1910, 'Speciella Trummor', 0, 1, 1),
+       ('Gurka', 'Boston', 'Boston Gurkan', 300, 'Alla', '/images/gurkan.jpg', 2005, 'Speciella Trummor', 0, 4, 1);
 
 --Insert mixers and other products
 INSERT INTO product(brand, model, name, price, color, image, year, type, new_or_not, quantity, seller)
