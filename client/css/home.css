@@ -144,9 +144,9 @@ h1 {
 }
 
 
-/*p {
-  text-align: justify;
-}*/
+p {
+  /*text-align: justify;*/
+}
 
 .team {
   display: flex;
@@ -165,7 +165,6 @@ h1 {
   align-items: center;
   text-align: center;
   color :rgb(36, 33, 33);
-  vertical-align: middle;
 }
 
 .p-card {
@@ -190,7 +189,7 @@ h1 {
 }
 
 .unit p {
-  text-align: center;
+  /*text-align: left;*/
   margin: 2px;
 }
 
@@ -215,7 +214,7 @@ h1 {
 
 /* sidebar styles*/
 #innerSidebar { 
-  background-color: rgb(196, 215, 240);
+  background-color: /*#e4e5e7*/rgb(196, 215, 240);
   color: black;
   /*background: url('../images/sidebar.png');*/
   background-size: cover;
@@ -223,10 +222,11 @@ h1 {
   background-repeat: no-repeat;
   /*font-family: 'Oriya MN';*/
   overflow-y: scroll;
-  height: 660px
+  height: 570px
   }
+
   #annap{
-  background-color: rgb(196, 215, 240);
+  background-color: /*#e4e5e7*/rgb(196, 215, 240);
   color: rgb(50, 52, 56);
   /*background: url('../images/sidebar.png');*/
   background-size: cover;
