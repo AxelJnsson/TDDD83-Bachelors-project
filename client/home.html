@@ -44,19 +44,8 @@
   <!--Övre navbar-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
     
-    <!-- <div>
-        <div class="input-group">s
-          <div class="form-outline">
-            <input  type="search" id="form1" class="form-control" placeholder="Search.." id="datatable-search-input" onkeyup="getSearchProducts()" />
-          </div>
-          <button type="button" class="btn btn-primary">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div> -->
-  
-    <div>
-      <div class="input-group" style="margin-left: 20px; margin-right: 10px;">
+    <div id="div1" style="width: 40%">
+      <div class="input-group" style="margin-left: 20px; margin-right: 10px; width: 45%; float: left;">
         <div class="form-outline">
           <input type="search" class="form-control" placeholder="Search.." id="datatable-search-input"
             onkeyup="getSearchProducts()">
@@ -65,13 +54,8 @@
           <i class="fas fa-search"></i>
         </button>
       </div>
-    </div>
-  
-      <!-- <i class="fa-solid fa-magnifying-glass" id="magnifyingGlass" ></i> -->
-  
-  
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+      <div style="width: 50%; margin-left: 0; margin-right: auto; float: right;">
+        <ul class="navbar-nav" style="width: 100%">
           <li class="nav-item">
             <a class="nav-link" href="#" id="contactButton"
               onClick="document.getElementById('down').scrollIntoView();">Kontakt</a>
@@ -80,32 +64,35 @@
             <a class="nav-link" href="#" id="aboutButton">Om oss</a>
           </li>
         </ul>
-        <div class="align-items-center" style="padding-left: 80px;">
-        <a class="nav-link-image" href="#">
-          <img src="/images/new_logo.png" width= "300px" height= "80px" id="homeButton">
-        </a>
       </div>
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="registerButton">Registrera dig</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="loginButton">Logga in</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="annonsButton">Skapa annons</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="userButton">Din sida</a>
-  
-          </li>
-         
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
-          </li>
-        </ul>
-      </div>
-      <img src="/images/basket.png" width="40" height="40" id="basketButton" frame="10">
+    </div>
+   
+    <div class="collapse navbar-collapse" style="width: 20%;" id="navbarNav">
+      <div class="align-items-center">
+      <a class="nav-link-image" href="#">
+        <img src="/images/new_logo.png" width= "300px" height= "80px" id="homeButton">
+      </a>
+    </div>
+
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="registerButton">Registrera dig</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="loginButton">Logga in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="annonsButton">Skapa annons</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="userButton">Din sida</a>
+      </li> 
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
+      </li>
+    </ul>
+
+    <img src="/images/basket.png" width="40" height="40" id="basketButton" frame="10" style="margin-left: 10px; margin-right: 10px;">
 
   </nav>
 
@@ -268,7 +255,7 @@
   <script id="view-sidebar" type="text/html">
     <!--Sidebar-->
   
-  <div class="row" id="innerSidebar">
+  <div class="row" id="innerSidebar" style="margin-top: 5px;">
     <div class="col">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
