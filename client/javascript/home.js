@@ -12,11 +12,11 @@ $(document).ready(function(){
       console.log("inloggad " + signedIn);
     } else {
       signedIn = false;
-      var admin;
-      if (JSON.parse(sessionStorage.getItem('auth')).user.is_admin === 1) {
-        admin = true;
-      } else {
-        admin = false;
+      //var admin;
+      //if (JSON.parse(sessionStorage.getItem('auth')).user.is_admin === 1) {
+        //admin = true;
+      //} else {
+        //admin = false;
       console.log("inloggad" + signedIn);
     }
     if (sessionStorage.getItem('auth')==null){
@@ -35,7 +35,7 @@ $(document).ready(function(){
     $('#userButton').toggleClass('d-none', signedIn);
     $('#adminButton').toggleClass('d-none', !admin);
     sessionStorage.setItem('price', parseInt(0));  
-  }         
+           
     if (JSON.parse(sessionStorage.getItem('auth'))==null){
       sessionStorage.setItem('loggedIn',false);
     }else{
