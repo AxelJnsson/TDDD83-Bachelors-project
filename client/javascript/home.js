@@ -82,6 +82,10 @@ function snapchatImage(){
   $("#snapchatModal").modal('toggle');
   e.preventDefault();
 }
+function instaImage(){
+  $("#instaModal").modal('toggle');
+  e.preventDefault();
+}
 
 $('#xButtonSnap').click(function (e) {
   e.preventDefault();
@@ -186,6 +190,20 @@ $('#contactButton').click(function (e) {
     createCategoriesForSidebar();
     e.preventDefault();
   };
+  function basView(){  
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
+    
+    resetFilter();
+    var defCategory = "Bas";
+    filtertypes.push(defCategory);
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  };
 
   function pianoView(){  
     $("#sideBarContainer").html($("#view-sidebar").html())  
@@ -194,6 +212,32 @@ $('#contactButton').click(function (e) {
     document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Piano");
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  };
+  function keyboardView(){  
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html()) 
+    document.getElementById('navbarNav2').scrollIntoView();
+    resetFilter();
+    filtertypes.push("Keyboard");
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  };
+  
+  function kAndPView(){
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
+    resetFilter();
+    filtertypes.push("Piano");
+    filtertypes.push("Keyboard");
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -212,6 +256,32 @@ $('#contactButton').click(function (e) {
     createCategoriesForSidebar();
     e.preventDefault();
   };
+  function otherDrumView(){
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
+    resetFilter();
+    filtertypes.push("Speciella Trummor");
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  };
+  function allDrumsView(){
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
+    resetFilter();
+    filtertypes.push("Trummor");
+    filtertypes.push("Other");
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  };
+
 
   function studioView(){
     $("#sideBarContainer").html($("#view-sidebar").html())  
