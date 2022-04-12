@@ -40,28 +40,24 @@ function clearCart() {
       }
     }); 
   } else {
-    var productsToPrint = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
-    if (productsToPrint.size < 1) {
-      printEmptyBasketModal();
-      showPriceInModal(0);
-    } else {
-      var key = [];
-      key = productsToPrint.keys();
+    var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    productsInCart.clear();
+    sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
+    getProductsToPrintInBasket()
+
+    // if (productsToPrint.size < 1) {
+    //   printEmptyBasketModal();
+    //   showPriceInModal(0);
+    // } else {
+    //   var key = [];
+    //   key = productsToPrint.keys();
       
-      for (let key of productsToPrint.keys()){
-        for (a = 0; a < productsToPrint.get(key); a++) {
-          $.ajax ({
-            url:'/product/'+key,
-            type: 'GET',
-            datatype: 'JSON',
-            contentType: "application/json",
-            success: function(product) {
-              deleteProductFromCart(key);
-            }
-          }); 
-        } 
-      }
-    }
+    //   for (let key of productsToPrint.keys()){
+    //     for (a = 0; a < productsToPrint.get(key); a++) {
+    //       deleteProductFromCart(key);
+    //     } 
+    //   }
+    // }
   }
 }
 
