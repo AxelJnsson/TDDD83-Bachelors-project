@@ -22,7 +22,9 @@
   <link rel="stylesheet" href="/css/home.css">
   <link rel="stylesheet" href="/css/form.css">
   <link rel="stylesheet" href="/css/slide.css">
-
+  
+  <link rel="stylesheet" href="/css/checkout.css"/>
+  
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -97,6 +99,7 @@
             <a class="nav-link" href="#" id="userButton">Din sida</a>
   
           </li>
+         
           <li class="nav-item">
             <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
           </li>
@@ -119,14 +122,26 @@
         <li class="nav-item">
           <a class="nav-link" href="#"  id="allInstrButton">Alla instrument</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="gitarrView()" id="guitarButton">Gitarr</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="stringInstButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stränginstrument</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#" onclick="gitarrView()" id="guitarButton">Gitarr</a>
+            <a class="dropdown-item" href="#" onclick="basView()" id="basButton">Bas</a>
+           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="pianoView()" id="pianoButton">Piano & Keyboard</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="tanInstButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tangentinstrument</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#" onclick="pianoView()" id="pianoButton">Piano</a>
+            <a class="dropdown-item" href="#" onclick="keyboardView()" id="keyboardButton">Keyboard</a>
+           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" onclick="drumView()" id="drumButton">Trummor</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="drumInstButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Slagverk</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#" onclick="drumView()" id="drumCButton">Klassiska</a>
+            <a class="dropdown-item" href="#" onclick="otherDrumView()" id="drumOButton">Övrigt</a>
+           </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" onclick="studioView()" id="pianoButton">Studioutrustning</a>
@@ -172,7 +187,7 @@
     </div>
   </div> <div class="column">
  
-</div> -->
+</div>-->
 
 <div class="wrapper">
   <h2>Vårt Team</h2>
@@ -280,7 +295,7 @@
                 <!-- <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem1">
                 <label class="form-check-label" for="defaultCheck1">
                   <span class="text-info">Item 1</span>
-                </label> -->
+                </label>-->
               </li>
             </ul>
           </li>
@@ -315,7 +330,7 @@
                 <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem6">
                 <label class="form-check-label" for="defaultCheck1">
                   <span class="text-info">Item 6</span>
-                </label> -->
+                </label>-->
               </li>
             </ul>
           </li>
@@ -358,7 +373,7 @@
                 <input class="form-check-inpu from-check-inline" type="checkbox" value="" id="checkItem12">
                 <label class="form-check-label" for="defaultCheck1">
                   <span class="text-info">Item 12</span>
-                </label> -->
+                </label>-->
               </li>
             </ul>
             <div>
@@ -500,10 +515,10 @@
 </script>
 
 <!--Slideshow homepage-->
-    <!-- Slideshow container -->
+    <!-- Slideshow container-->
     <script class="bg-light" id="view-homeSlide" type="text/html">
       <div class="slideshow-container">
-        <!-- Full-width images with number and caption text -->
+        <!-- Full-width images with number and caption text-->
         <div class="mySlides fade">
           <div class="row">
           <div class="col-2"></div>
@@ -554,13 +569,13 @@
           </div>
           </div>
         </div>
-        <!-- Next and previous buttons -->
+        <!-- Next and previous buttons-->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
       </div>
       <br>
 
-      <!-- The dots/circles -->
+      <!-- The dots/circles-->
       <div style="padding-top: 40px; text-align:center">
         <span class="dot" onclick="currentSlide(1)"></span> 
         <span class="dot" onclick="currentSlide(2)"></span> 
@@ -630,7 +645,7 @@
   </div>
   </div> <div class="column">
   
-  </div> -->
+  </div>-->
   
  
   <div class="card" style="width: 95%; margin-left: auto; margin-right: auto; height: 100%;">
@@ -693,6 +708,32 @@
         <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
        </div>-->
   </script>
+<!--Stripe-->
+<!--<script id="view-stripe" type="text/html">
+  <div class="container rounded bg-white mt-5 mb-5">
+  
+   <form id="payment-form">
+    <div id="payment-element" >
+    </div>
+    <button id="submit">
+      <div class="spinner hidden" id="spinner"></div>
+      <span id="button-text">Pay now</span>
+    </button>
+    <div id="payment-message" class="hidden"></div>
+  </form>
+
+  </div>
+
+
+</script>-->
+
+<script id="lyckad-betalning" type="text/html">
+  <div class="d-flex justify-content-between align-items-center mb-3" >
+    <h4 class="text-right">Lyckad betalning</h4>
+  </div>
+
+
+</script>
 
 <!--skapa annonssida-->
   <script id="view-createAdd" type="text/html">
@@ -755,7 +796,7 @@
     </div>  
     <div class="col-md-6"><label class="labels">Pris</label><input type="number" id="createPris" class="form-control" placeholder="Pris" value=""></div>
    <!-- <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
-    <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div> -->
+    <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div>-->
     <div class="col-md-6"><label class="labels">Årtal</label><input type="number" id="createYear" min="1950" max="2022" class="form-control" placeholder="" value=""></div>   
     <div class="mt-5 text-center"><button class="btn btn-primary profile-button" id="createAddButton" onclick="createAdd()" type="button">Skapa annons</button></div>
 </div>
@@ -765,7 +806,7 @@
 
 </script>
 
-  <div class="modal fade" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -778,18 +819,20 @@
         <div class="modal-body" id="bodyBasketModal">
         </div>
         <div class="modal-footer">
-          <div id="basketModalPriceDiv" style="margin-right: 30%;">
+          <div id="basketModalPriceDiv" style="margin: auto;">
 
           </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton">Stäng</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="shopFromBasketButton">Till
-            Kassan</button>
+          <div style="margin: auto;">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton">Stäng</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="clearBasketButton" onclick="clearCart()">Rensa</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="shopFromBasketButton">Till Kassan</button>
+          </div>  
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -818,7 +861,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -849,7 +892,7 @@
           <!-- <div class="form-group">
             <label for="inputPassword">Password igen</label>
             <input class="form-control" id="inputPasswordAgainRegisterForm">
-          </div> -->
+          </div>-->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeRegisterButton">Stäng</button>
@@ -860,7 +903,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -898,7 +941,7 @@
     </div>
   </div>
       <!--Snapchat modal-->
-<div class="modal fade" id="snapchatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal" id="snapchatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
       <div class="modal-body width: 60px">
@@ -965,12 +1008,14 @@
 
   <script id="view-cashregister" type="text/html">
 <script id="view-cashregister" type="text/html">
+  
   <div>
     <h1>
       Välkommen till kassan
      </h1>
   </div>
   <div id="cashRegisterArea">
+    
     <div id="scrollableItemsInBasket">
       <!-- <img src="/images/logga.png" width="100" height="100" id="homeButton">
       <br>
@@ -985,8 +1030,9 @@
       <img src="/images/search-icon.png" width="100" height="100" id="homeButton">
       <br>
       <img src="/images/testbildkassa.png" width="100" height="100" id="homeButton">
-      <br> -->
+      <br>-->
   </div> 
+ 
   <div id="amountArea">   
     <h1 style="text-align:center">
       Din Total
@@ -1003,19 +1049,41 @@
     </h6>
     <h5 style="margin-left: 6%;" id="totalsumLine">
     </h5>
-    <div>
+    <!--<div>
       <button onclick="stripeTestFunction()" class="btn btn-primary" id="toPaymentButton" type="submit">Till betalning</button>
-    </div>
+    </div>-->
+    
+
+   
   </div>
+
 </div>
+<!--<script id="pay-view">-->
+<div class="container rounded bg-white mt-5 mb-5">
+  
+  <form id="payment-form">
+    <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+    <button id="submit">
+      <div class="spinner hidden" id="spinner"></div>
+      <span id="button-text">Pay now</span>
+    </button>
+    <p id="card-error" role="alert"></p>
+    <p class="result-message hidden">
+      Payment succeeded, see the result in your
+      <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+    </p>
+  </form>
+
+</div>
+  
 </script>
 
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true" data-keyboard=false data-backdrop='static'>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Produktinformation</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; text-align: center;">Produktinformation</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xProduct">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1028,7 +1096,7 @@
       </div>
 
       <div class="modal-footer">
-      <div id="productModalFooter" style="float: left;">
+      <div id="productModalFooter">
 
       </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeProductModal">Stäng</button>
@@ -1044,7 +1112,7 @@
       </div>
     </div>
     <div class="col" type="text/html">
-      <div class="container" id="productViewContainer" type="text/html">
+      <div class="container" id="productViewContainer" type="text/html">a
       </div>
     </div>
   </div>
@@ -1190,11 +1258,12 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-  <script src="../../assets/js/vendor/popper.min.js"></script>
-  <script src="../../dist/js/bootstrap.min.js"></script>
-  <script src="/javascript/home.js"></script>
-  <script src="/javascript/accountPage.js"></script>
-  <script src="getproducts.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+ <!-- <script src="../../assets/js/vendor/popper.min.js"></script>
+  <script src="../../dist/js/bootstrap.min.js"></script>-->
+  <script src="/javascript/home.js"></script>  
+ 
+  <script src="/javascript/accountPage.js"></script> 
   <script src="/javascript/basket.js"></script>
   <script src="/javascript/loggInOut.js"></script>
   <script src="/javascript/createadd.js"></script>
@@ -1207,6 +1276,10 @@
   <script src="/javascript/cashregister.js"></script>
   <script src="/javascript/adminview.js"></script>
   <script src="/javascript/slide.js"></script>
+  <script src="/javascript/startpageProducts.js"></script>  
+  <script src="/javascript/search.js"></script> 
+  <script src="/javascript/register.js"></script> 
+  <script src="/javascript/slide.js"></script>  
   <script src="/javascript/sessionstoragehandler.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -1217,7 +1290,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&v=weekly" async></script>
+    <script src="/javascript/checkout.js" defer></script>
+  
 </body>
 
 </html>

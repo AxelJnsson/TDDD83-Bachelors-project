@@ -22,6 +22,8 @@ from sqlalchemy import Column, Integer, table
 from sqlalchemy import engine_from_config
 import stripe
 import os
+import json
+from flask import render_template, render_template_string
 #import cv2
 #from PIL import Image
 #from pathlib import Path
@@ -197,7 +199,8 @@ setUpDatabase()
 
 
 
-stripe.api_key = 'sk_test_51KiDHOFa9gwuZdKJw6ouVqm5m6mUYok8kEYg3BYtOH1kqnAFvH9YiOe7IGd7sMGm0zTvR4XYwTxI66u0TVYdiOjN00AeMRr3Nz'
+#stripe.api_key = 'sk_test_51KiDHOFa9gwuZdKJw6ouVqm5m6mUYok8kEYg3BYtOH1kqnAFvH9YiOe7IGd7sMGm0zTvR4XYwTxI66u0TVYdiOjN00AeMRr3Nz'
+stripe.api_key = 'sk_test_51KmeJFGTjasXI1q99HgReiS1UmSZmF3a2dZSnyq7dtYnoHUw8HPyoLwqCIM6Sckrhgw1bwtixC8BXpZQgyExtnzQ00q350DBtl'
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
@@ -224,6 +227,45 @@ def create_checkout_session():
   )
 
   return session.url
+
+
+  
+def calculate_order_amount(items):
+    # Replace this constant with a calculation of the order's amount
+    # Calculate the order total on the server to prevent
+    # people from directly manipulating the amount on the client
+    return 1400
+
+#kanske behöver göras om för att göra beräkning på server
+@app.route('/create-payment-intent', methods=['POST'])
+def create_payment():
+    try:
+        data = json.loads(request.data)
+        
+        # Create a PaymentIntent with the order amount and currency
+        intent = stripe.PaymentIntent.create(
+            #amount=calculate_order_amount(data['items']),            
+            amount=data,
+            currency='sek',
+            automatic_payment_methods={
+                'enabled': True,
+            },
+        )
+        return jsonify({
+            'clientSecret': intent['client_secret']
+        })
+    except Exception as e:
+        return jsonify(error=str(e)), 403
+
+@app.route('/order/success', methods=['GET'])
+def order_success():
+  session = stripe.checkout.Session.retrieve(request.args.get('session_id'))
+  customer = stripe.Customer.retrieve(session.customer)
+
+  return render_template_string('<html><body><h1>Thanks for your order, {{customer.name}}!</h1></body></html>')
+
+
+
   
 #Route for login-method
 # Vet inte om for loopen i denna metod är optimal, känns långsamt att loopa igenom alla användare
