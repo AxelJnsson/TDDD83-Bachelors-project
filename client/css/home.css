@@ -23,6 +23,7 @@ div {
 .card button:hover {
   opacity: 0.7;
 }
+
 main {
   margin: 10;
   padding-top: 15%;
@@ -83,10 +84,15 @@ div.sticky {
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(114, 40, 40, 0.2);
+  box-shadow: 0 4px 8px 0 #a6a6a6;
   margin: 8px;
   width: 270px;
   height: 520px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 #666666;
+  transition: all 0.3s ease;
 }
 
  #about {
