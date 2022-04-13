@@ -25,8 +25,7 @@ function updateItemNumber(){
     for (let key of productsInCart.keys()){
       a = a + productsInCart.get(key);
     }
-    numberOfProducts = updateItemNumber3(a);
-    return numberOfProducts;
+    return a;
   }
 }
 
