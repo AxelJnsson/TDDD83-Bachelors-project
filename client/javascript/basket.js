@@ -14,12 +14,14 @@ function updateItemNumber(){
       datatype: 'JSON',
       contentType: "application/json",
       success: function(data) {
+        
       }
     }); 
   } else {
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     // alert(parseInt(productsInCart.length));
-    }}
+  }
+}
 
 $('#closeBasketButton').click(function (e) {
     e.preventDefault();

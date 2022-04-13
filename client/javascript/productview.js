@@ -130,12 +130,7 @@ function appendProducts(filteredproducts){
     var products = filteredproducts;
     let j = 0;
     for (let i=0; i < products.length; i++) {
-    //funktion för att skriva ut produkterna 4 och 4
-        //if (i%4 == 0) {
-            //j++;
-            
-        //} Tog bort, snyggare att dom lägger sig rätt beroende på skärmstorlek! <333 /Unn
-        var beg;
+         var beg;
         $("#testdiv").append("<div class='row' id='"+j+"'></div>");
         if (products[i].new_or_not == 0) {
             beg = "Begagnad";
