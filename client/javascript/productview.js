@@ -1,11 +1,26 @@
-function createProducts(filteringByArray){ 
+let sortingKey = "null";
+let newlyfilteredproducts = null;
+let keyBoos = 
+  {price: 0,
+  name: 0,
+  brand: 0,
+  type: 0,
+  color: 0
+};
+
+// Listening to sortingbuttons
+
+
+function createProducts(filteringByArray,sortingKey){ 
+  
     $.ajax({        
         url:'/product',
         type: 'GET',
         success: function(u) {          
             var allinstruments = u;
             //getInstruments(allinstruments);
-         filtering(allinstruments,filteringByArray);
+      
+         filtering(allinstruments,filteringByArray, sortingKey);
         },
         error: function(){
             alert("fel");
@@ -59,7 +74,7 @@ function filterPriceInterval(stuffToFilter, interval){
 
 
 //riktig filtrering
-function filtering(arr, filterQueries){
+function filtering(arr, filterQueries, sortingKey){
     var filteredstuff = arr;
     const priceInterval = filterQueries[8];
 
@@ -118,10 +133,91 @@ function filtering(arr, filterQueries){
     //}
     
     //alert("Antal produkter: " + filteredstuff.length);
+    //getClickID(filteredstuff)
     
+    
+      
+  
+    
+    
+    newlyfilteredproducts = filteredstuff;
+    //clickedSort();
     appendProducts(filteredstuff);
     sideBar(filteredstuff); 
     //return filteredstuff;
+}
+
+function getClickID() {
+sortingProduct(newlyfilteredproducts,event.target.id)
+
+
+console.log(event.target.id)
+}
+/*function getClickID(products){
+  console.log("testar")
+  var sortbuttons = document.getElementsByClassName('sort-by')
+      for (i = 0; i < sortbuttons.length; i++) {
+        if (document.addEventListener) {
+        console.log("hej")
+        console.log(sortbuttons[i])
+        sortbuttons[i].addEventListener("click", myfunction(products));
+        }
+        else { 
+          if (document.attachEvent) {
+              sortbuttons[i].attachEvent("onclick", myfunction(products));
+          }
+    }
+  }
+}*/
+
+/*function myfunction(products){
+  console.log("Lyssnar");
+  console.log(target.id)
+  sortingProduct(products, target.id)
+  
+};
+function clickedSort() {
+  
+}*/
+
+function sortingProduct(filteredproducts, key){
+if (key !== "null") {
+
+//if (Object.keys(keyBoos).contains(key)) {
+if (keyBoos.hasOwnProperty(key)){ 
+  if (keyBoos["key"] == 0 ){
+    keyBoos["key"] = 1
+    console.log(keyBoos["key"])
+  } else {
+    keyBoos["key"] = 0
+    console.log(keyBoos["key"])
+  };
+
+};
+
+
+const objectkeysarray = Object.keys(filteredproducts[0])
+console.log(objectkeysarray);
+const sortedproducts = filteredproducts.sort(function(x,y) {
+  if (keyBoos["key"] == 1) {
+    let z;
+    z = x;
+    x = y
+    y = z
+  }
+  if (key == "price") {
+    
+  return x[key] - y[key];
+  }
+  else {
+    return x[key] == y[key] ? 0 : x[key] > y[key] ? 1 : -1;
+  }
+
+});
+//console.log(sortedproducts)
+appendProducts(sortedproducts);
+}
+appendProducts(filteredproducts);
 }
 
 function appendProducts(filteredproducts){
@@ -196,6 +292,7 @@ function showProdInfo(filterQueries) {
     $("#testrow").empty();
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
     var filterQ = filterQueries;
+
    createProducts(filterQ);
    //alert(products[0].name);
 

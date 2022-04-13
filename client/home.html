@@ -384,7 +384,37 @@
 
   </script>
   <script id="view-product" type="text/html">    
-    <div class="col" id="testdiv"></div>
+    <div class="col" id="testdiv">
+      <nav class="navbar navbar-expand-lg" id="sortingNav">
+        <button class="navbar-toggler" type="button" 
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sorting-toggler-icon"></span>
+        </button>
+        <div width=200>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNav2"> Sortera på:
+          <ul class="sort-nav">
+            <li class="nav-item">
+              <a class="sort-by" href="#" onclick=getClickID() id="price">Pris</a>
+            </li>
+            <li class="nav-item">
+              <a class="sort-by" href="#" onclick=getClickID() id="brand">Märke</a>
+            </li>
+            <li class="nav-item">
+              <a class="sort-by" href="#" onclick=getClickID() id="color">Färg</a>
+            </li>
+            <li class="nav-item">
+              <a class="sort-by" href="#" onclick=getClickID() id="type">Kategori</a>
+            </li>
+            <li class="nav-item">
+              <a class="sort-by" href="#" onclick=getClickID() id="name">Namn</a>
+            </li>
+
+          </ul>
+        </div>
+    
+      </nav>
+    </div>
   </script>
 
   <script id="noProductView" type="text/html">
