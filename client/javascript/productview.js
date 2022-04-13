@@ -1,11 +1,14 @@
-function createProducts(filteringByArray){ 
+let sortingKey = "null";
+
+function createProducts(filteringByArray,sortingKey){ 
+  
     $.ajax({        
         url:'/product',
         type: 'GET',
         success: function(u) {          
             var allinstruments = u;
             //getInstruments(allinstruments);
-         filtering(allinstruments,filteringByArray);
+         filtering(allinstruments,filteringByArray, sortingKey);
         },
         error: function(){
             alert("fel");
@@ -59,7 +62,7 @@ function filterPriceInterval(stuffToFilter, interval){
 
 
 //riktig filtrering
-function filtering(arr, filterQueries){
+function filtering(arr, filterQueries, sortingKey){
     var filteredstuff = arr;
     const priceInterval = filterQueries[8];
 
@@ -119,9 +122,36 @@ function filtering(arr, filterQueries){
     
     //alert("Antal produkter: " + filteredstuff.length);
     
-    appendProducts(filteredstuff);
+    sortingProduct(filteredstuff, sortingKey);
+    //clickedSort();
+    //appendProducts(filteredstuff);
     sideBar(filteredstuff); 
     //return filteredstuff;
+}
+
+function clickedSort() {
+  console.log(filteredstuff);
+}
+
+function sortingProduct(filteredproducts, key){
+if (key !== "null") {
+const objectkeysarray = Object.keys(filteredproducts[0])
+//console.log(objectkeysarray);
+key = "price"
+const sortedproducts = filteredproducts.sort(function(x,y) {
+ 
+  if (key == "price") {
+  return x[key] - y[key];
+  }
+  else {
+    return x[key] == y[key] ? 0 : x[key] > y[key] ? 1 : -1;
+  }
+
+});
+//console.log(sortedproducts)
+appendProducts(sortedproducts);
+}
+appendProducts(filteredproducts);
 }
 
 function appendProducts(filteredproducts){
@@ -196,6 +226,7 @@ function showProdInfo(filterQueries) {
     $("#testrow").empty();
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
     var filterQ = filterQueries;
+
    createProducts(filterQ);
    //alert(products[0].name);
 
