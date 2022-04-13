@@ -80,11 +80,32 @@ function logoutUser() {
            $("#mainViewContainer").html($("#view-home").html())
            $("#registerModal").modal('hide');
            $.ajax ({  
+            url:'/login',
+            type: 'POST',
+          datatype: 'JSON',
+            contentType: "application/json",
+            data: JSON.stringify({
+              "email":email, "password":password}), 
+            success: function(i) {
+             sessionStorage.setItem('auth', JSON.stringify(i)); 
+             sessionStorage.setItem('userID',i.user.user_id);
+             sessionStorage.setItem('loggedIn',true);     
+             $(".container").html($("#view-home").html());
+             storeCartedItems();
+             sessionStorage.setItem('startedShopping',true);
+             window.location.reload();
+            },
+            error: function(){
+              alert("Wrong username or password!");
+            }
+          });    
+           $.ajax ({  
             url:'/createorderhistory/'+ i.user_id,
             type: 'POST',
             contentType: "application/json",
           
-            success: function() { 
+            success: function() {
+              alert("hej") 
       }
     })}
     });
