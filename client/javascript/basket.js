@@ -7,6 +7,7 @@ $('#basketButton').click(function (e) {
 
 function updateItemNumber(){
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
+    var numberOfProducts;
     userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
     $.ajax ({
       url:'/user/'+userID,
@@ -14,28 +15,31 @@ function updateItemNumber(){
       datatype: 'JSON',
       contentType: "application/json",
       success: function(data) {
-<<<<<<< HEAD
-        
-=======
-        updateItemNumber2(data)
->>>>>>> e185a7b813690300179f93f89c55b087adfb54b8
+        numberOfProducts = updateItemNumber2(data);
       }
     }); 
+    return numberOfProducts;
   } else {
+    var a = 0;
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
-    // alert(parseInt(productsInCart.length));
+    for (let key of productsInCart.keys()){
+      a = a + productsInCart.get(key);
+    }
+    numberOfProducts = updateItemNumber3(a);
+    return numberOfProducts;
   }
 }
 
-    function updateItemNumber2(datan){
-      var lenght = 0
-
-      for ( i = 0; i <datan[2].length; i++){
-      for( j = 0; j < datan[2][i].length; j++){
-        length ++;
-    }}
-    alert(lenght);
+function updateItemNumber2(datan){
+  var a = 0
+  for ( i = 0; i <datan[2].length; i++){
+    for( j = 0; j < datan[2][i].quantity; j++){
+      a++;
+    }
   }
+  return a;
+}
+
 $('#closeBasketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('hide');
