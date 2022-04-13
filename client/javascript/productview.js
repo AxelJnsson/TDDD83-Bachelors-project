@@ -1,4 +1,15 @@
 let sortingKey = "null";
+let newlyfilteredproducts = null;
+let keyBoos = 
+  {price: 0,
+  name: 0,
+  brand: 0,
+  type: 0,
+  color: 0
+};
+
+// Listening to sortingbuttons
+
 
 function createProducts(filteringByArray,sortingKey){ 
   
@@ -8,6 +19,7 @@ function createProducts(filteringByArray,sortingKey){
         success: function(u) {          
             var allinstruments = u;
             //getInstruments(allinstruments);
+      
          filtering(allinstruments,filteringByArray, sortingKey);
         },
         error: function(){
@@ -121,26 +133,80 @@ function filtering(arr, filterQueries, sortingKey){
     //}
     
     //alert("Antal produkter: " + filteredstuff.length);
+    //getClickID(filteredstuff)
     
-    sortingProduct(filteredstuff, sortingKey);
+    
+      
+  
+    
+    
+    newlyfilteredproducts = filteredstuff;
     //clickedSort();
-    //appendProducts(filteredstuff);
+    appendProducts(filteredstuff);
     sideBar(filteredstuff); 
     //return filteredstuff;
 }
 
-function clickedSort() {
-  console.log(filteredstuff);
+function getClickID() {
+sortingProduct(newlyfilteredproducts,event.target.id)
+
+
+console.log(event.target.id)
 }
+/*function getClickID(products){
+  console.log("testar")
+  var sortbuttons = document.getElementsByClassName('sort-by')
+      for (i = 0; i < sortbuttons.length; i++) {
+        if (document.addEventListener) {
+        console.log("hej")
+        console.log(sortbuttons[i])
+        sortbuttons[i].addEventListener("click", myfunction(products));
+        }
+        else { 
+          if (document.attachEvent) {
+              sortbuttons[i].attachEvent("onclick", myfunction(products));
+          }
+    }
+  }
+}*/
+
+/*function myfunction(products){
+  console.log("Lyssnar");
+  console.log(target.id)
+  sortingProduct(products, target.id)
+  
+};
+function clickedSort() {
+  
+}*/
 
 function sortingProduct(filteredproducts, key){
 if (key !== "null") {
+
+//if (Object.keys(keyBoos).contains(key)) {
+if (keyBoos.hasOwnProperty(key)){ 
+  if (keyBoos["key"] == 0 ){
+    keyBoos["key"] = 1
+    console.log(keyBoos["key"])
+  } else {
+    keyBoos["key"] = 0
+    console.log(keyBoos["key"])
+  };
+
+};
+
+
 const objectkeysarray = Object.keys(filteredproducts[0])
-//console.log(objectkeysarray);
-key = "price"
+console.log(objectkeysarray);
 const sortedproducts = filteredproducts.sort(function(x,y) {
- 
+  if (keyBoos["key"] == 1) {
+    let z;
+    z = x;
+    x = y
+    y = z
+  }
   if (key == "price") {
+    
   return x[key] - y[key];
   }
   else {

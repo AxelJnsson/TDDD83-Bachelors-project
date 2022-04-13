@@ -40,6 +40,9 @@
   #btn-secondary.clicked span.added {
     animation: txt2 1.5s ease-in-out forwards;
   }
+
+  
+
   @keyframes txt1 {
     0% {
       opacity: 1;
