@@ -197,7 +197,7 @@
     </div>
 
     <div class="unit">
-      <img src="/images/members/david.jpg" alt="">
+      <img src="/images/members/david.jpg" alt="" onclick="snapchatImage()">
       <p>David Carlsson</p>
       <p>Back-end</p>
 
@@ -232,7 +232,7 @@
     </div>
 
     <div class="unit">
-      <img src="/images/members/unn.jpg" alt="">
+      <img src="/images/members/unn.jpg" onclick="instaImage()"alt="">
       <p>Unn Zachrison</p>
       <p>Bootstrap Konsult</p>
 
@@ -262,7 +262,7 @@
     <div class="col">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
-          <span class="fs-5 d-none d-sm-inline">Kategori</span>
+          <span class="fs-5 d-none d-sm-inline"><i class="fa-solid fa-house" style="text-align: center; padding: 20px;"></i>Kategori</span>
         </a>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="newProd" checked
@@ -278,7 +278,7 @@
           <li>
             <a class="nav-link px-0" href="#submenu1" data-toggle="collapse" aria-expanded="false"
               aria-controls="submenu1">
-              <span class="text-justright">Märken</span>
+              <span class="text-justright"><i class="fa-brands fa-itunes-note" style="text-align: center; padding-right: 20px;"></i></i>Märken</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu1">
               <li class="w-100" id="brandArea">
@@ -293,7 +293,7 @@
             <a href="#submenu2" data-toggle="collapse" class="nav-link px-0">
 
 
-              <span class="text-justright">Modeller</span>
+              <span class="text-justright"><i class="fa-brands fa-itunes-note" style="text-align: center; padding-right: 20px;"></i>Modeller</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#sideMenu">
               <li class="w-100" id="modelArea">
@@ -307,7 +307,7 @@
           <li>
             <a href="#submenu3" data-toggle="collapse" class="nav-link px-0">
 
-              <span class="text-justright">Färger</span>
+              <span class="text-justright"><i class="fa-brands fa-itunes-note" style="text-align: center; padding-right: 20px;"></i>Färger</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu3" data-bs-parent="#sideMenu">
               <li class="w-100" id="colorArea">
@@ -327,7 +327,7 @@
           <li>
             <a href="#submenu4" data-toggle="collapse" class="nav-link px-0">
 
-              <span class="text-justright">Pris</span>
+              <span class="text-justright"><i class="fa-brands fa-itunes-note" style="text-align: center; padding-right: 20px;"></i>Pris</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu4" data-bs-parent="#sideMenu">
               <li class="w-100" id="priceArea">
@@ -338,7 +338,7 @@
           <li>
             <a href="#submenu5" data-toggle="collapse" class="nav-link px-0">
 
-              <span class="text-justright">År</span>
+              <span class="text-justright"><i class="fa-brands fa-itunes-note" style="text-align: center; padding-right: 20px;"></i>År</span>
             </a>
             <ul class="collapse nav flex-column" id="submenu5" data-bs-parent="#sideMenu">
               <li class="w-100" id="yearArea">
@@ -381,7 +381,37 @@
 
   </script>
   <script id="view-product" type="text/html">    
-    <div class="col" id="testdiv"></div>
+    <div class="col" id="testdiv">
+      <nav class="navbar navbar-expand-lg" id="sortingNav">
+        <button class="navbar-toggler" type="button" 
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sorting-toggler-icon"></span>
+        </button>
+        <div width=200>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNav2"> Sortera på:
+          <ul class="sort-nav">
+            <li class="nav-item">
+              <a class="sort-by" href="#" onclick=getClickID() id="price">Pris</a>
+            </li>
+            <li class="nav-item">
+              <a class="sort-by" href="#" onclick=getClickID() id="brand">Märke</a>
+            </li>
+            <li class="nav-item">
+              <a class="sort-by" href="#" onclick=getClickID() id="color">Färg</a>
+            </li>
+            <li class="nav-item">
+              <a class="sort-by" href="#" onclick=getClickID() id="type">Kategori</a>
+            </li>
+            <li class="nav-item">
+              <a class="sort-by" href="#" onclick=getClickID() id="name">Namn</a>
+            </li>
+
+          </ul>
+        </div>
+    
+      </nav>
+    </div>
   </script>
 
   <script id="noProductView" type="text/html">
@@ -655,7 +685,7 @@
           <p>Lokalbokning</p>
         </div>
         <div class="unit">
-          <img src="/images/members/david.jpg" alt="">
+          <img src="/images/members/david.jpg" onclick="snapchatImage()"alt="">
           <p>David Carlsson</p>
           <p>Back-end</p>
         </div>
@@ -680,7 +710,7 @@
           <p>Front-end</p>
         </div>
         <div class="unit">
-          <img src="/images/members/unn.jpg" alt="">
+          <img src="/images/members/unn.jpg" onclick="instaImage()" alt="">
           <p>Unn Zachrison</p>
           <p>Bootstrap Konsult</p>
         </div>
@@ -924,6 +954,14 @@
       </div>
   </div>
 </div>
+<div class="modal" id="instaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-body width: 60px">
+        <img src="images/unnzachrison_qr.png" />
+      </div>
+  </div>
+</div>
 
 <script id="view-cashregister" type="text/html">
   
@@ -1102,19 +1140,19 @@
             </h6>
             <p>
               <i class="fa-solid fa-guitar"></i>
-              <a class="text-dark" href="#" onclick="gitarrView()">Gitarr</a>
+              <a class="text-dark" onclick="gitarrView()">Gitarr</a>
             </p>
             <p>
               <i class="fa-brands fa-spotify"></i>
-              <a class="text-dark" href="#" onclick="pianoView()">Piano</a>
+              <a class="text-dark" onclick="pianoView()">Piano</a>
             </p>
             <p>
               <i class="fa-solid fa-drum"></i>
-              <a class="text-dark" href="#" onclick="drumView()">Trummor</a>
+              <a class="text-dark" onclick="drumView()">Trummor</a>
             </p>
             <p>
               <i class="fa-solid fa-headphones"></i>
-              <a class="text-dark" href="#" onclick="studioView()">Studioutrustning</a>
+              <a class="text-dark" onclick="studioView()">Studioutrustning</a>
             </p>
           </div>
           <!-- Grid column -->
@@ -1123,11 +1161,11 @@
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
-              <i class="fa-solid fa-link" href="#"></i> Länkar
+              <i class="fa-solid fa-link"></i> Länkar
             </h6>
             <p>
               <i class="fa-solid fa-heart"></i>
-              <a href="#!" class="text-reset" >Min sida</a>
+              <a href="#!" class="text-reset">Min sida</a>
             </p>
             <p>
               <i class="fa-solid fa-gear"></i>
@@ -1135,7 +1173,7 @@
             </p>
             <p>
               <i class="fa-solid fa-question"></i>
-              <a class="text-dark" onclick="faqView()" id="faqButton" href="#">FAQ</a>
+              <a class="text-dark" onclick="faqView()" id="faqButton">FAQ</a>
             </p>
             <p>
               <i class="fa-solid fa-exclamation"></i>
@@ -1151,7 +1189,7 @@
               <i class="fa-solid fa-comment"></i>
               Kontakt</h6><p><i class="fas fa-home me-3"></i>LiU, Kandidatarbete</p>
             
-            <p> <i class="fas fa-envelope me-3"></i>tonehub@gmail.com</p>
+            <p> <i class="fas fa-envelope me-3"></i><a href = "mailto: tonehub@example.com">Mail</a></p>
             <p><i class="fas fa-phone me-3"></i> 070 34 45 6410</p>
           </div>
           <!-- Grid column -->
