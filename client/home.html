@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="/css/slide.css">
   
   <link rel="stylesheet" href="/css/checkout.css"/>
+  <link rel="stylesheet" href="/css/productview.css"/>
+  
   
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -89,6 +91,10 @@
         <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
       </li>
     </ul>
+
+    <!-- <div id="cart" class="cart" data-totalitems="0" >
+      <i class="fas fa-shopping-cart" id="basketButton"></i>
+    </div> -->
 
     <img src="/images/basket.png" width="40" height="40" id="basketButton" frame="10" style="margin-left: 10px; margin-right: 10px;">
 
@@ -250,6 +256,44 @@
        
     </div>
  </script>
+
+ <script id="view-help" type="text/html">
+  <pre class="tab"></pre>
+    <pre class="tab"></pre>
+    <div class="center"  id="help">  
+      <h1>Har du några frågor?</h1>
+      <p> Kika gärna på vår FAQ nedan eller hör av dig till oss via mail eller telefon!</p>
+      
+    </div>
+</script>
+
+<script id="view-purchaseTerms" type="text/html">
+  <pre class="tab"></pre>
+    <pre class="tab"></pre>
+    <div class="center"  id="help">  
+      <h1>Köpvillkor</h1>
+      <h3>§1 Företagsinformation </h3>
+      <p> För köp som sker på denna webbplats ansvarar ToneHub AB, med organisationsnummer 13371337 och adress PC1 i E-huset, Linköpings universitet. För information om hur vi hanterar personuppgifter enligt GDPR, se paragraf nr 7.</p>
+      <p> <br> </p>
+      <h3> §2 Priser</h3>
+      <p> Alla priser anges i svenska kronor och innehåller mervärdesskatt och övriga avgifter. Totalkostnaden för köpet kommer att framkomma tydligt innan slutlig beställning och kommer att inkludera samtliga kostnader förenade med köpet, inklusive eventuella porto- och fraktkostnader.</p>
+      <p> <br> </p>
+      <h3> §3 Leverans och frakt</h3>
+      <p> Vanligtvis kommer varan skickas från oss senast 3 arbetsdagar efter att ordern mottagits. Vi skickar din vara med dessa logistikbolag. Kostnader förenade med frakten anges i samband med köpet. </p>
+      <p> <br> </p>
+      <h3> §4 Reklamation</h3>
+      <p> Om det föreligger ett fel på varan, bör du inom skälig tid efter att du upptäckt det, meddela oss via mail eller telefon om felet. Vi kommer då att informera dig om hur du går vidare (reglerna kring reklamation finns i Konsumentköplagen).</p>
+      <p> <br> </p>
+      <h3> §5 Ångerrätt och returer</h3>
+      <p>Ångerrätten gäller i 14 dagar från det att du som köpare har mottagit varan, enligt lag om distansavtal och avtal utanför affärslokaler (SFS 2005:59). Om du vill ångra köpet och returnerar varan i väsentligt oförändrat skick får du tillbaka köpesumman för varan, inklusive fraktkostnader. </p>
+      <p> <br> </p>
+      <h3> §6 Betalning</h3>
+      <p>Vi kräver betalning för varan från den tidpunkt beställningen är lagd. </p>
+      <p> <br> </p>
+      <h3> §7 Personuppgifter och GDPR</h3>
+      <p>Vi behandlar persondata i enlighet med GDPR. I samband med ditt köp godkänner du att vi lagrar och hanterar dina personuppgifter. Vi lagrar de uppgifter som är nödvändiga för att fullfölja avtalet gentemot dig och för att kunna bedriva vår verksamhet. Du har enligt GDPR rätt att få tillgång till den information som vi har registrerat om dig. Om de uppgifter som vi lagrar om dig är irrelevanta, felaktiga eller ofullständiga kan du begära att informationen ska rättas, begränsas eller tas bort, vilket vi gör i den mån det är möjligt enligt gällande lag (som t.ex. bokföringslagen). </p>
+    </div>
+</script>
 
 
   <script id="view-sidebar" type="text/html">
@@ -1037,16 +1081,6 @@
   <div></div>
 </script>
 
-<script id="view-help" type="text/html">
-  <pre class="tab"></pre>
-    <pre class="tab"></pre>
-    <div class="center"  id="help">  
-      <h1>Do you have any questions?</h1>
-      <p> Please visit our FAQ page down below or contact us via email or phone!</p>
-      
-    </div>
-</script>
-
 <div class="container-fluid bg-light"  id="mainViewContainer" type="text/html">
 </div>
 
@@ -1134,21 +1168,22 @@
             </h6>
             <p>
               <i class="fa-solid fa-heart"></i>
-              <a href="#!" class="text-reset">Min sida</a>
+              <a href="#!" class="text-dark" id="userButton">Min sida</a>
             </p>
             <p>
-              <i class="fa-solid fa-gear"></i>
-              <a href="#!" class="text-reset">Inställningar</a>
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+              <a href="#!" class="text-dark"id="purchaseTermsButton">Köpvillkor</a>
             </p>
             <p>
               <i class="fa-solid fa-question"></i>
-              <a class="text-dark" onclick="faqView()" id="faqButton">FAQ</a>
+              <a href="#!" class="text-dark" onclick="faqView()" id="faqButton">FAQ</a>
             </p>
             <p>
               <i class="fa-solid fa-exclamation"></i>
-              <a href="#!" class="text-reset" id="helpButton" >Hjälp</a>
+              <a href="#!" class="text-dark" id="helpButton" >Hjälp</a>
             </p>
           </div>
+
           <!-- Grid column -->
 
           <!-- Grid column -->
