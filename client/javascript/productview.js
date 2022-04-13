@@ -239,7 +239,11 @@ function appendProducts(filteredproducts){
             beg = "Ny";
         }
        
-       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton'>Köp<span class='cart-item'></span></button><button class='cart-button'> <span class='add-to-cart'>Add to cart</span> <span class='added'>Item added</span> <i class='fa fa-plus'></i> <i class='fa fa-circle-thin'></i> <i class='fa fa-check'></i> </button> </div></div></div></div>");
+<<<<<<< HEAD
+       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton'>Köp<span class='cart-item'></span></button></div></div></div>");
+=======
+       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton'>Köp<span class='cart-item'></span></button></div></div></div></div>");
+>>>>>>> 7f097c97c4bc2ad6740b60a4d05e425af6a10531
 
  }
 
@@ -252,6 +256,7 @@ function appendProducts(filteredproducts){
         $(".product-modal-body").append("<div class='card-body' style='margin-right: auto; margin-left: auto; text-align: center;'><h5 class='card-title' style='font-weight: bold;'> " + products[prod_id].name +  "</h5><br><img class='card-img-top' src='"+ products[prod_id].image +"'><br><p class='card-text'> <b>Märke:</b> " + products[prod_id].brand + "<br> <b>Modell:</b> " + products[prod_id].model + "<br> <b>Färg: </b>" + products[prod_id].color + "<br> <b>År: </b>" + products[prod_id].year + "<br> <b>Pris:</b> " + products[prod_id].price + "</p></div>");
         $("#productModalFooter").append('<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="doThings(this.value, this)" value="'+products[prod_id].product_id+'" id="addProductToCartButton">Lägg i varukorgen<span class="cart-item"></span></button>');
     });
+
     if (products.length <= 0){
         $("#productViewContainer").html($("#noProductView").html())    
     }
@@ -571,13 +576,24 @@ $('#xProduct').on("click" ,function (e) {
     e.preventDefault();
 });
 
-  function doThings(value, btn){
-  addProductToCart(value);
-  btn.textContent ='Tillagd';
-  setTimeout(function() { setBack(btn); }, 3000);
-  //updateItemNumber();
+function doThings(value, btn){
+    addProductToCart(value);
+    btn.textContent ='Tillagd';
+    setTimeout(function() { setBack(btn); }, 3000);
+    updateItemNumber();
 }
+  
+function doThings3(a) {
+    var newCartTotal = parseInt(a);
+    $('#basketArea').empty();
 
+    if (newCartTotal < 10) {
+        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 20px; margin-right: 10px; margin-left: 5px; text-align: center;'>" + newCartTotal + "</span>");
+    } else {
+        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 30px; margin-right: 10px; margin-left: 5px; text-align: center;'>" + newCartTotal + "</span>"); 
+    }
+}
+  
 function setBack(btnn) {
     btnn.textContent ='Köp';
-    }
+}
