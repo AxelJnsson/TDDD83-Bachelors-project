@@ -233,7 +233,20 @@ $('#contactButton').click(function (e) {
     createCategoriesForSidebar();
     e.preventDefault();
   };
-
+  
+  function kAndPView(){
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
+    resetFilter();
+    filtertypes.push("Piano");
+    filtertypes.push("Keyboard");
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  };
 
   function drumView(){
     $("#sideBarContainer").html($("#view-sidebar").html())  
@@ -253,6 +266,19 @@ $('#contactButton').click(function (e) {
     $("#mainViewContainer").html($("#empty").html())
     document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
+    filtertypes.push("Speciella Trummor");
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  };
+  function allDrumsView(){
+    $("#sideBarContainer").html($("#view-sidebar").html())  
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    document.getElementById('navbarNav2').scrollIntoView();
+    resetFilter();
+    filtertypes.push("Trummor");
     filtertypes.push("Other");
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
