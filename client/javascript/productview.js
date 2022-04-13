@@ -264,7 +264,7 @@ function sideBar(products){
     if(brandClicked == false) {
         $("#brandArea").empty();
         for(var j = 0; j < uniqueBrands.length; j++){
-            $("#brandArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueBrands[j] +  " </span></label></li>");           
+            $("#brandArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright' style='padding-left: 20px;'> " +  uniqueBrands[j] +  " </span></label></li>");           
         }
     }
 
