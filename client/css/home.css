@@ -280,8 +280,8 @@ p {
   *,*:before,*:after {
     box-sizing:border-box;
   }
-  
-     .button .cart-item {
+
+     .cart-item {
         position:absolute;
         height:24px;
         width:24px;
