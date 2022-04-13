@@ -6,28 +6,40 @@ $('#basketButton').click(function (e) {
 });
 
 function updateItemNumber(){
-if (JSON.parse(sessionStorage.getItem('loggedIn'))){
-  var numberOfProducts;
-  userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
-  $.ajax ({
-    url:'/user/'+userID,
-    type: 'GET',
-    datatype: 'JSON',
-    contentType: "application/json",
-    success: function(data) {
-      numberOfProducts = updateItemNumber2(data);
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
+    var numberOfProducts;
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    $.ajax ({
+      url:'/user/'+userID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(data) {
+        numberOfProducts = updateItemNumber2(data);
+      }
+    }); 
+    return numberOfProducts;
+  } else {
+    var a = 0;
+    var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    for (let key of productsInCart.keys()){
+      a = a + productsInCart.get(key);
     }
-  }); 
-  return numberOfProducts;
-} else {
-  var a = 0;
-  var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
-  for (let key of productsInCart.keys()){
-    a = a + productsInCart.get(key);
+    return a;
   }
+}
+
+function updateItemNumber2(datan){
+  var a = 0
+  for ( i = 0; i <datan[2].length; i++){
+    for( j = 0; j < datan[2][i].quantity; j++){
+      a++;
+    }
+  }
+
   return a;
 }
-}
+
 
 function updateItemNumber2(datan){
 var a = 0
