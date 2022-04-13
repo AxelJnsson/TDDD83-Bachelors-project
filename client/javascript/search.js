@@ -23,7 +23,7 @@ function getSearchProducts() {
     var input = document.getElementById('datatable-search-input');
     inputWord = input.value.toUpperCase();
   
-  // Loop through all list items, and hide those who don't match the search query
+  // Loop through all list items, and choose those who match the search query
   
     var y = 0;
   

@@ -5,6 +5,22 @@ $('#basketButton').click(function (e) {
     getProductsToPrintInBasket();
 });
 
+function updateItemNumber(){
+  if (JSON.parse(sessionStorage.getItem('loggedIn'))){
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    $.ajax ({
+      url:'/user/'+userID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(data) {
+      }
+    }); 
+  } else {
+    var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+    // alert(parseInt(productsInCart.length));
+    }}
+
 $('#closeBasketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('hide');
@@ -55,12 +71,12 @@ function addProductToCart(productToAdd){
       url:'/product/'+productToAdd+'/adding',
       type: 'POST',
       success: function(u) { 
-          // alert("funkar")
+           //alert("funkar")
           $.ajax({    
             url:'/product/'+ productToAdd,
             type: 'GET',
             success: function(product) { 
-              // alert("lägger till "+productToAdd)
+              //alert("lägger till "+productToAdd)
               updateprice(parseInt(product.price));
               $("#productModal").modal('hide');
              
@@ -72,7 +88,8 @@ function addProductToCart(productToAdd){
       },
       error: function(u){
           alert("funkarej");
-      }    
+      }  
+        
   });
   } else if (!JSON.parse(sessionStorage.getItem('loggedIn'))){
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
@@ -84,6 +101,11 @@ function addProductToCart(productToAdd){
     }
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
   }
+  getProductsToPrintInBasket();
+  $('#basketModal').modal('show');
+      setTimeout(function () {
+          $('#basketModal').modal('hide');
+      }, 1500);
 }
 
 function getProductsToPrintInBasket(){
