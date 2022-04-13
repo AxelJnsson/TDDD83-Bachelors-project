@@ -402,8 +402,8 @@ userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
 
     success: function(ordernr) {
       alert("la till order");
-      alert(ordernr);
-      addItemToOrder(ordernr); 
+      //alert(ordernr);
+      addItemToOrder(userID); 
     },
     error: function(){
       alert("la inte till order fk u");
@@ -412,22 +412,22 @@ userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
 
 }
 
-function addItemToOrder(order){
+function addItemToOrder(userID){
     //ajax
 
   $.ajax ({
     //headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-    url:'/order/' + order,
+    url:'/orderitem/' + userID,
     type: 'POST',
     datatype: 'JSON',
     contentType: "application/json",
 
-    success: function(ordernr) {
+    success: function(userID) {
       //do something
-      alert(ordernr);
+      alert(userID);
     },
     error: function(){
-      alert("la inte till order fk u");
+      alert("la inte till order fk u 2");
     } 
   });
 }

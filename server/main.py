@@ -403,12 +403,26 @@ def createorders(user_id):
     orderhist = Order_history.query.filter_by(user_id=user_id).first()
     print("kommer vi hit")
     x = Orders(order_history_id = orderhist.id)
+    print("orderhist.id=")
     print(orderhist.id)
     db.session.add(x)
     db.session.commit()
+
+    orders = Orders.query.filter_by(order_history_id = orderhist.id).all()
+    print(len(orders))
+    order = orders[len(orders)-1]
+    print("Order: ")
+    print(order.order_nr)
+    #return order.order_nr
+    # order_id = Orders.query.get_or_404(order.order_nr)
+    # print("order id:")
+    # print(order_id)
     return "200" #skicka tbx ordr_id
   elif request.method == 'GET': 
     #DENNA FUNGERAR INTE ÄN
+   
+
+
     order = Orders.query.filter_by(order_nr = Order_history.query.filter_by(user_id==user_id).user_id)
     order_list =[]
 
@@ -419,15 +433,21 @@ def createorders(user_id):
 
 #Ska lägga till orderItems som har samma order_nr som foreign key. 
 @app.route('/orderitem/<int:user_id>', methods =['POST'])
-def createorderitem(user_id):
+def createorderitem(user_id): #user_id innan
   if request.method == 'POST':
-    product_nr = request.get_json()
+    #product_nr = request.get_json()
     print("vad är detta?")
-    orderhist = Order_history.query.filter_by(user_id = user_id)
-    x = Orders(order_history_id = orderhist.id)
-    db.session.add(x)
-    db.session.commit()
-    return 200
+    user_session = Shopping_Session.query.filter_by(user_id = user_id)
+    print(user_session)
+    order_item = Cart_Item.query.filter_by(session_id = user_session) #lades till
+    print(order_item)
+    #orderhist = Order_history.query.filter_by(user_id = user_id)
+    #x = Orders(order_history_id = orderhist.id)
+    #db.session.add(x)
+    #db.session.commit()
+    return "200"
+  else:
+    return "401"
 
 #Route for getting orderitems
 
