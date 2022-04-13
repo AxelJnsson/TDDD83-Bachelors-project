@@ -417,7 +417,7 @@ def createorders(user_id):
     # order_id = Orders.query.get_or_404(order.order_nr)
     # print("order id:")
     # print(order_id)
-    return "200" #skicka tbx ordr_id
+    return jsonify(order.order_nr) #skicka tbx ordr_id
   elif request.method == 'GET': 
     #DENNA FUNGERAR INTE ÄN
    
@@ -437,10 +437,10 @@ def createorderitem(user_id): #user_id innan
   if request.method == 'POST':
     #product_nr = request.get_json()
     print("vad är detta?")
-    user_session = Shopping_Session.query.filter_by(user_id = user_id)
-    print(user_session)
-    order_item = Cart_Item.query.filter_by(session_id = user_session) #lades till
-    print(order_item)
+    user_session = Shopping_Session.query.filter_by(user_id = user_id).first()
+    print(user_session.id)
+    order_items = Cart_Item.query.filter_by(session_id = user_session.id).all() #lades till
+    print(len(order_items))
     #orderhist = Order_history.query.filter_by(user_id = user_id)
     #x = Orders(order_history_id = orderhist.id)
     #db.session.add(x)

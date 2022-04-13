@@ -414,7 +414,6 @@ function showPriceInRegister(currentTotal){
   stripePay(currentTotal*100);
 
 }
-<<<<<<< HEAD
 
 
 function addOrdersAndItemsToHistory () {
@@ -431,8 +430,8 @@ userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
 
     success: function(ordernr) {
       alert("la till order");
-      //alert(ordernr);
-      addItemToOrder(userID); 
+      alert(ordernr);
+      addItemToOrder(ordernr); 
     },
     error: function(){
       alert("la inte till order fk u");
@@ -441,7 +440,7 @@ userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
 
 }
 
-function addItemToOrder(userID){
+function addItemToOrder(ordernr){
     //ajax
 
   $.ajax ({
@@ -453,12 +452,10 @@ function addItemToOrder(userID){
 
     success: function(userID) {
       //do something
-      alert(userID);
+      alert(ordernr);
     },
     error: function(){
       alert("la inte till order fk u 2");
     } 
   });
 }
-=======
->>>>>>> a496a11db52aa6bd9f19143f5aff3bc3430588fc
