@@ -7,19 +7,35 @@ $('#basketButton').click(function (e) {
 
 function updateItemNumber(){
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
-    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
     $.ajax ({
       url:'/user/'+userID,
       type: 'GET',
       datatype: 'JSON',
       contentType: "application/json",
       success: function(data) {
+        updateItemNumber2(data);
       }
     }); 
   } else {
+    var a = 0;
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
-    // alert(parseInt(productsInCart.length));
-    }}
+    for (let key of productsInCart.keys()){
+      a = a + productsInCart.get(key);
+    }
+    doThings3(a);
+  }
+}
+
+function updateItemNumber2(data){
+  var a = 0
+  for (i = 0; i < data[2].length; i++){
+    for(j = 0; j < data[2][i].quantity; j++){
+      a = a + 1;
+    }
+  }
+  doThings3(a);
+}
 
 $('#closeBasketButton').click(function (e) {
     e.preventDefault();
@@ -101,7 +117,7 @@ function addProductToCart(productToAdd){
     }
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
   }
- 
+  getProductsToPrintInBasket();
 }
 
 function getProductsToPrintInBasket(){
