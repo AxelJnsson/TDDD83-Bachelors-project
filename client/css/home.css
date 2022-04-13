@@ -277,39 +277,7 @@ p {
     color: black;
   }
 
-  *,*:before,*:after {
-    box-sizing:border-box;
-  }
 
-     .cart-item {
-        position:absolute;
-        height:24px;
-        width:24px;
-        top:-10px;
-        right:-10px;
-     }
-        .cart-item:before {
-          content:'1';
-          display:block;
-          line-height:24px;
-          height:24px;
-          width:24px;
-          font-size:12px;
-          font-weight:600;
-          background:#2bd156;
-          color:white;
-          border-radius:20px;
-          text-align:center;
-        }
-      
-        .cart-item {
-          display:block;
-          animation: xAxis 1s forwards cubic-bezier(1.000,0.440,0.840,0.165);
-        }
-          .cart-item:before {
-            animation: yAxis 1s alternate forwards cubic-bezier(0.165, 0.840, 0.440, 1.000);
-          }
-  
   .cart {
     position:fixed;
     top:20px;
@@ -322,11 +290,12 @@ p {
     justify-content:center;
     border-radius:5px;
   }
-    .cart i {
+  .cart fa-shopping-cart {
       font-size:25px;
       color:white;
     }
-    .cart i:before {
+
+    .cart fa-shopping-cart:before {
       content:attr(data-totalitems);
       font-size:12px;
       font-weight:600;
@@ -342,22 +311,11 @@ p {
       text-align:center;
       border-radius:24px;
     }
-    .cart i.shake {
+    .cart fa-shopping-cart.shake {
       animation: shakeCart .4s ease-in-out forwards;
     }
   
   
-  @keyframes xAxis {
-    100% {
-      transform: translateX(calc(50vw - 105px));
-    }
-  }
-  
-  @keyframes yAxis {
-    100% {
-      transform: translateY(calc(-50vh + 75px));
-    }
-  }
   
   @keyframes shakeCart {
     25% {
