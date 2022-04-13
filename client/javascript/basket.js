@@ -14,7 +14,11 @@ function updateItemNumber(){
       datatype: 'JSON',
       contentType: "application/json",
       success: function(data) {
+<<<<<<< HEAD
         
+=======
+        updateItemNumber2(data)
+>>>>>>> e185a7b813690300179f93f89c55b087adfb54b8
       }
     }); 
   } else {
@@ -23,6 +27,15 @@ function updateItemNumber(){
   }
 }
 
+    function updateItemNumber2(datan){
+      var lenght = 0
+
+      for ( i = 0; i <datan[2].length; i++){
+      for( j = 0; j < datan[2][i].length; j++){
+        length ++;
+    }}
+    alert(lenght);
+  }
 $('#closeBasketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('hide');
