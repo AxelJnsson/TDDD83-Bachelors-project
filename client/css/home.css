@@ -23,6 +23,7 @@ div {
 .card button:hover {
   opacity: 0.7;
 }
+
 main {
   margin: 10;
   padding-top: 15%;
@@ -83,10 +84,15 @@ div.sticky {
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(114, 40, 40, 0.2);
+  box-shadow: 0 4px 8px 0 #a6a6a6;
   margin: 8px;
   width: 270px;
   height: 520px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 #666666;
+  transition: all 0.3s ease;
 }
 
  #about {
@@ -214,7 +220,7 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Oriya MN';
+  /*font-family: 'Oriya MN';*/
   overflow-y: scroll;
   height: 570px
   }
@@ -226,7 +232,7 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Oriya MN';
+  /*font-family: 'Oriya MN';*/
   }
   .nav-link{
     color:rgb(50, 52, 56);
@@ -248,7 +254,7 @@ p {
     background-color: #f8f9fa;
     background-position: center;
     background-repeat: no-repeat;
-    font-family: 'Oriya MN';
+    /*font-family: 'Oriya MN';*/
   }
 
   .text-justright{
@@ -270,3 +276,22 @@ p {
     background-color: white;
     color: black;
   }
+
+  .cart {
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+    background:#292d48;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:5px;
+  }
+
+    .cart i {
+      font-size:25px;
+      color:white;
+    }
+ 

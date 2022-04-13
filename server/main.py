@@ -25,7 +25,7 @@ import os
 import json
 from flask import render_template, render_template_string
 #import cv2
-from PIL import Image
+#from PIL import Image
 from pathlib import Path
 
 
