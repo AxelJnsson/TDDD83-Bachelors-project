@@ -474,13 +474,24 @@ $('#xProduct').on("click" ,function (e) {
     e.preventDefault();
 });
 
-  function doThings(value, btn){
-  addProductToCart(value);
-  btn.textContent ='Tillagd';
-  setTimeout(function() { setBack(btn); }, 3000);
-  //updateItemNumber();
+function doThings(value, btn){
+    addProductToCart(value);
+    btn.textContent ='Tillagd';
+    setTimeout(function() { setBack(btn); }, 3000);
+    updateItemNumber();
 }
+  
+function doThings3(a) {
+    var newCartTotal = parseInt(a);
+    $('#basketArea').empty();
 
+    if (newCartTotal < 10) {
+        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 20px; margin-right: 10px; margin-left: 5px; text-align: center;'>" + newCartTotal + "</span>");
+    } else {
+        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 30px; margin-right: 10px; margin-left: 5px; text-align: center;'>" + newCartTotal + "</span>"); 
+    }
+}
+  
 function setBack(btnn) {
     btnn.textContent ='Köp';
-    }
+}
