@@ -220,7 +220,7 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Oriya MN';
+  /*font-family: 'Oriya MN';*/
   overflow-y: scroll;
   height: 570px
   }
@@ -232,7 +232,7 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Oriya MN';
+  /*font-family: 'Oriya MN';*/
   }
   .nav-link{
     color:rgb(50, 52, 56);
@@ -254,7 +254,7 @@ p {
     background-color: #f8f9fa;
     background-position: center;
     background-repeat: no-repeat;
-    font-family: 'Oriya MN';
+    /*font-family: 'Oriya MN';*/
   }
 
   .text-justright{
