@@ -101,11 +101,7 @@ function addProductToCart(productToAdd){
     }
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
   }
-  getProductsToPrintInBasket();
-  $('#basketModal').modal('show');
-      setTimeout(function () {
-          $('#basketModal').modal('hide');
-      }, 1500);
+ 
 }
 
 function getProductsToPrintInBasket(){
@@ -402,6 +398,7 @@ function showPriceInRegister(currentTotal){
   stripePay(currentTotal*100);
 
 }
+<<<<<<< HEAD
 
 
 function addOrdersAndItemsToHistory () {
@@ -447,3 +444,5 @@ function addItemToOrder(userID){
     } 
   });
 }
+=======
+>>>>>>> a496a11db52aa6bd9f19143f5aff3bc3430588fc
