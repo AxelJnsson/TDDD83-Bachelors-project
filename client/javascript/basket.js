@@ -14,6 +14,7 @@ function updateItemNumber(){
       datatype: 'JSON',
       contentType: "application/json",
       success: function(data) {
+        updateItemNumber2(data)
       }
     }); 
   } else {
@@ -21,6 +22,15 @@ function updateItemNumber(){
     // alert(parseInt(productsInCart.length));
     }}
 
+    function updateItemNumber2(datan){
+      var lenght = 0
+
+      for ( i = 0; i <datan[2].length; i++){
+      for( j = 0; j < datan[2][i].length; j++){
+        length ++;
+    }}
+    alert(lenght);
+  }
 $('#closeBasketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('hide');

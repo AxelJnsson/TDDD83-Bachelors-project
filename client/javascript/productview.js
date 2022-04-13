@@ -478,8 +478,21 @@ $('#xProduct').on("click" ,function (e) {
   addProductToCart(value);
   btn.textContent ='Tillagd';
   setTimeout(function() { setBack(btn); }, 3000);
-  //updateItemNumber();
-}
+  updateItemNumber();  
+
+//   var cart = $('#cart');
+//   var cartTotal = cart.attr('data-totalitems');
+//   var newCartTotal = parseInt(cartTotal) + 1;
+  
+//   button.addClass('sendtocart');
+//   setTimeout(function(){
+//     btn.removeClass('sendtocart');
+//     cart.addClass('shake').attr('data-totalitems', newCartTotal);
+//     setTimeout(function(){
+//       cart.removeClass('shake');
+//     },500)
+//   },1000)
+  }
 
 function setBack(btnn) {
     btnn.textContent ='Köp';
