@@ -409,7 +409,7 @@ def createorders(user_id):
   if request.method == 'POST':
     print(user_id)
     orderhist = Order_history.query.filter_by(user_id=user_id).first()
-    print("här")
+    print("kommer vi hit")
     x = Orders(order_history_id = orderhist.id)
     print(orderhist.id)
     db.session.add(x)
@@ -430,6 +430,7 @@ def createorders(user_id):
 def createorderitem(user_id):
   if request.method == 'POST':
     product_nr = request.get_json()
+    print("vad är detta?")
     orderhist = Order_history.query.filter_by(user_id = user_id)
     x = Orders(order_history_id = orderhist.id)
     db.session.add(x)
