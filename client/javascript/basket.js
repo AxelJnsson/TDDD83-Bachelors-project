@@ -115,7 +115,11 @@ if (JSON.parse(sessionStorage.getItem('loggedIn'))){
   }else{
     productsInCart.set(parseInt(productToAdd),1)
   }
+<<<<<<< HEAD
   sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
+=======
+ 
+>>>>>>> 7f097c97c4bc2ad6740b60a4d05e425af6a10531
 }
 
 //  getProductsToPrintInBasket();
@@ -412,4 +416,8 @@ function showPriceInRegister(currentTotal){
   $('#totalsumLine').empty();
   $('#totalsumLine').append("Total: " + currentTotal + "kr");
   stripePay(currentTotal*100);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7f097c97c4bc2ad6740b60a4d05e425af6a10531
 }

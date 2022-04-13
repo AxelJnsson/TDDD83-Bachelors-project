@@ -83,6 +83,10 @@ function snapchatImage(){
   $("#snapchatModal").modal('toggle');
   e.preventDefault();
 }
+function instaImage(){
+  $("#instaModal").modal('toggle');
+  e.preventDefault();
+}
 
 $('#xButtonSnap').click(function (e) {
   e.preventDefault();
