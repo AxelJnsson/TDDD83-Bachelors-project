@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="/css/slide.css">
   
   <link rel="stylesheet" href="/css/checkout.css"/>
+  <link rel="stylesheet" href="/css/productview.css"/>
+  
   
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -90,7 +92,12 @@
       </li>
     </ul>
 
+      <!-- <div id="cart" class="cart" data-totalitems="0" >
+      <i class="fas fa-shopping-cart" id="basketButton"></i>
+    </div> -->
+
     <img src="/images/basket.png" width="40" height="40" id="basketButton" frame="10" style="margin-left: 10px; margin-right: 10px;">
+
 
   </nav>
 
@@ -1106,19 +1113,19 @@
             </h6>
             <p>
               <i class="fa-solid fa-guitar"></i>
-              <a class="text-dark" onclick="gitarrView()">Gitarr</a>
+              <a class="text-dark" href="#" onclick="gitarrView()">Gitarr</a>
             </p>
             <p>
               <i class="fa-brands fa-spotify"></i>
-              <a class="text-dark" onclick="pianoView()">Piano</a>
+              <a class="text-dark" href="#" onclick="pianoView()">Piano</a>
             </p>
             <p>
               <i class="fa-solid fa-drum"></i>
-              <a class="text-dark" onclick="drumView()">Trummor</a>
+              <a class="text-dark" href="#" onclick="drumView()">Trummor</a>
             </p>
             <p>
               <i class="fa-solid fa-headphones"></i>
-              <a class="text-dark" onclick="studioView()">Studioutrustning</a>
+              <a class="text-dark" href="#" onclick="studioView()">Studioutrustning</a>
             </p>
           </div>
           <!-- Grid column -->
@@ -1127,11 +1134,11 @@
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
-              <i class="fa-solid fa-link"></i> Länkar
+              <i class="fa-solid fa-link" href="#"></i> Länkar
             </h6>
             <p>
               <i class="fa-solid fa-heart"></i>
-              <a href="#!" class="text-reset">Min sida</a>
+              <a href="#!" class="text-reset" >Min sida</a>
             </p>
             <p>
               <i class="fa-solid fa-gear"></i>
@@ -1139,7 +1146,7 @@
             </p>
             <p>
               <i class="fa-solid fa-question"></i>
-              <a class="text-dark" onclick="faqView()" id="faqButton">FAQ</a>
+              <a class="text-dark" onclick="faqView()" id="faqButton" href="#">FAQ</a>
             </p>
             <p>
               <i class="fa-solid fa-exclamation"></i>
