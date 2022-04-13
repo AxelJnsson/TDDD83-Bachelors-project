@@ -101,11 +101,7 @@ function addProductToCart(productToAdd){
     }
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
   }
-  getProductsToPrintInBasket();
-  $('#basketModal').modal('show');
-      setTimeout(function () {
-          $('#basketModal').modal('hide');
-      }, 1500);
+ 
 }
 
 function getProductsToPrintInBasket(){
