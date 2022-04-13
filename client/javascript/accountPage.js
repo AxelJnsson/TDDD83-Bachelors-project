@@ -136,7 +136,7 @@ function displayUserAdd() {
                               <div class="col-md-12">Namn: '+u[i].name+'</a></div>\
                               <div class="col-md-12">Kategori: '+u[i].type+'</a></div>\
                               <div class="col-md-12">Märke: '+u[i].brand+'</a></div>\
-                              <button type="button" class="btn btn-danger" id="deleteaddButton" onclick="deleteUserAdd('+u[i].name+')">Radera</button>\
+                              <button type="button" class="btn btn-danger" id="deleteaddButton" onclick="deleteUserAdd(\'' + u[i].name + '\')">Radera</button>\
                             </div>\
                        </div>\
                      </div>';
@@ -150,14 +150,18 @@ function displayUserAdd() {
 
 //ej fungerande än
    function deleteUserAdd(name) {
-    x= JSON.parse(sessionStorage.getItem('auth')).user.user_id;
+     alert("hej");
+     var namn = name;
+   x= JSON.parse(sessionStorage.getItem('auth')).user.user_id;
     $.ajax({
       headers: {
         "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
       url:'/useradd/' + x,
       type: 'DELETE',
+      datatype: 'JSON',
+      contentType: "application/json",
       data: JSON.stringify({
-        "name":name}),
+        "namn":namn}),
       success: function(u) {
         alert("raderat annons");
 

@@ -330,7 +330,7 @@ def product(product_id):
       return "OK", 200
 
 
-#Route för att hämta user adds samt radera user adds -ej klar
+#Route för att hämta user adds samt radera user adds
 @app.route('/useradd/<int:user_id>', methods = ['GET', 'DELETE'] )
 def useradd(user_id):
     if request.method == 'GET':
@@ -339,7 +339,7 @@ def useradd(user_id):
       user_add =[]
     
       for x in temp:
-        print("!")
+        
         user_add.append(x.serialize())
  
       return jsonify(user_add)
@@ -347,9 +347,9 @@ def useradd(user_id):
     elif request.method == 'DELETE':
       add = request.get_json()
       products = Product.query.filter_by(seller = user_id)
-
+      #print(add.namn)
       for x in products:
-        if x.name == add.name:
+        if x.name == add["namn"]:
          db.session.delete(x)
          db.session.commit()
          InsertNewAndOldSQL('database_alternative_insert.sqlite')
