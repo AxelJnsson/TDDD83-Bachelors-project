@@ -154,7 +154,7 @@ function appendProducts(filteredproducts){
 
         $("#productModal").modal('toggle');
         $(".product-modal-body").append("<div class='card-body' style='margin-right: auto; margin-left: auto; text-align: center;'><h5 class='card-title' style='font-weight: bold;'> " + products[prod_id].name +  "</h5><br><img class='card-img-top' src='"+ products[prod_id].image +"'><br><p class='card-text'> <b>Märke:</b> " + products[prod_id].brand + "<br> <b>Modell:</b> " + products[prod_id].model + "<br> <b>Färg: </b>" + products[prod_id].color + "<br> <b>År: </b>" + products[prod_id].year + "<br> <b>Pris:</b> " + products[prod_id].price + "</p></div>");
-        $("#productModalFooter").append('<button type="button" class="btn btn-primary" data-dismiss="modal" " value="'+products[prod_id].product_id+'" onClick="doThings(this.value, this) id="addProductToCartButton">Lägg i varukorgen<span class="cart-item"></span></button>');
+        $("#productModalFooter").append('<button type="button" class="btn btn-primary" data-dismiss="modal" " value="'+products[prod_id].product_id+'" onClick="doThings(this.value, this)" id="addProductToCartButton">Lägg i varukorgen<span class="cart-item"></span></button>');
     });
 
     if (products.length <= 0){
@@ -475,20 +475,23 @@ $('#xProduct').on("click" ,function (e) {
     e.preventDefault();
 });
 
-  function doThings(value, btn){
+function doThings(value, btn){
   addProductToCart(value);
   btn.textContent ='Tillagd';
   setTimeout(function() { setBack(btn); }, 3000);
-    
-  var cart = $('#cart');
-  var newCartTotal = updateItemNumber();
-
-  setTimeout(function(){cart.addClass('shake').attr('data-totalitems', newCartTotal);
-    setTimeout(function(){
-      cart.removeClass('shake');
-    },500)
-  },1000)
+  updateItemNumber();
   }
+
+function doThings3(a) {
+    var newCartTotal = parseInt(a);
+    $('#basketArea').empty();
+
+    if (newCartTotal < 10) {
+        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 20px; margin-right: 10px; margin-left: 5px; text-align: center;'>" + newCartTotal + "</span>");
+    } else {
+        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 30px; margin-right: 10px; margin-left: 5px; text-align: center;'>" + newCartTotal + "</span>"); 
+    }
+}
 
 function setBack(btnn) {
     btnn.textContent ='Köp';

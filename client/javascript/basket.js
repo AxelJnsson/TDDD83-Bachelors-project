@@ -7,48 +7,34 @@ $('#basketButton').click(function (e) {
 
 function updateItemNumber(){
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
-    var numberOfProducts;
-    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
     $.ajax ({
       url:'/user/'+userID,
       type: 'GET',
       datatype: 'JSON',
       contentType: "application/json",
       success: function(data) {
-        numberOfProducts = updateItemNumber2(data);
+        updateItemNumber2(data);
       }
     }); 
-    return numberOfProducts;
   } else {
     var a = 0;
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     for (let key of productsInCart.keys()){
       a = a + productsInCart.get(key);
     }
-    return a;
+    doThings3(a);
   }
 }
 
-function updateItemNumber2(datan){
+function updateItemNumber2(data){
   var a = 0
-  for ( i = 0; i <datan[2].length; i++){
-    for( j = 0; j < datan[2][i].quantity; j++){
-      a++;
+  for (i = 0; i < data[2].length; i++){
+    for(j = 0; j < data[2][i].quantity; j++){
+      a = a + 1;
     }
   }
-
-  return a;
-}
-
-
-function updateItemNumber2(datan){
-var a = 0
-for ( i = 0; i <datan[2].length; i++){
-  for( j = 0; j < datan[2][i].quantity; j++){
-    a++;
-  }
-}
-return a;
+  doThings3(a);
 }
 
 $('#closeBasketButton').click(function (e) {
@@ -131,12 +117,13 @@ if (JSON.parse(sessionStorage.getItem('loggedIn'))){
   }
   sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
 }
-getProductsToPrintInBasket();
-$('#basketModal').modal('show');
-    setTimeout(function () {
-        $('#basketModal').modal('hide');
-    }, 1500);
-}
+
+//  getProductsToPrintInBasket();
+//  $('#basketModal').modal('show');
+//      setTimeout(function () {
+//          $('#basketModal').modal('hide');
+//      }, 1500);
+ }
 
 function getProductsToPrintInBasket(){
 $('#bodyBasketModal').empty();
@@ -416,14 +403,13 @@ if (JSON.parse(sessionStorage.getItem('loggedIn'))){
 
 function updateprice(price){
 // alert("uppdaterade priset med "+price+"kr")
-let oldPrice = parseInt(sessionStorage.getItem('price'));
-let newPrice = oldPrice + price;
-sessionStorage.setItem('price', newPrice);           
+  let oldPrice = parseInt(sessionStorage.getItem('price'));
+  let newPrice = oldPrice + price;
+  sessionStorage.setItem('price', newPrice);           
 }
 
 function showPriceInRegister(currentTotal){
-$('#totalsumLine').empty();
-$('#totalsumLine').append("Total: " + currentTotal + "kr");
-stripePay(currentTotal*100);
-
+  $('#totalsumLine').empty();
+  $('#totalsumLine').append("Total: " + currentTotal + "kr");
+  stripePay(currentTotal*100);
 }
