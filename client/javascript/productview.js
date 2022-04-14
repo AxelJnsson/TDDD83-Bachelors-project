@@ -1,11 +1,26 @@
-function createProducts(filteringByArray){ 
+let sortingKey = "null";
+let newlyfilteredproducts = null;
+let keyBoos = 
+  {price: 0,
+  name: 0,
+  brand: 0,
+  type: 0,
+  color: 0
+};
+
+// Listening to sortingbuttons
+
+
+function createProducts(filteringByArray,sortingKey){ 
+  
     $.ajax({        
         url:'/product',
         type: 'GET',
         success: function(u) {          
             var allinstruments = u;
             //getInstruments(allinstruments);
-         filtering(allinstruments,filteringByArray);
+      
+         filtering(allinstruments,filteringByArray, sortingKey);
         },
         error: function(){
             alert("fel");
@@ -59,7 +74,7 @@ function filterPriceInterval(stuffToFilter, interval){
 
 
 //riktig filtrering
-function filtering(arr, filterQueries){
+function filtering(arr, filterQueries, sortingKey){
     var filteredstuff = arr;
     const priceInterval = filterQueries[8];
 
@@ -118,10 +133,91 @@ function filtering(arr, filterQueries){
     //}
     
     //alert("Antal produkter: " + filteredstuff.length);
+    //getClickID(filteredstuff)
     
+    
+      
+  
+    
+    
+    newlyfilteredproducts = filteredstuff;
+    //clickedSort();
     appendProducts(filteredstuff);
     sideBar(filteredstuff); 
     //return filteredstuff;
+}
+
+function getClickID() {
+sortingProduct(newlyfilteredproducts,event.target.id)
+
+
+console.log(event.target.id)
+}
+/*function getClickID(products){
+  console.log("testar")
+  var sortbuttons = document.getElementsByClassName('sort-by')
+      for (i = 0; i < sortbuttons.length; i++) {
+        if (document.addEventListener) {
+        console.log("hej")
+        console.log(sortbuttons[i])
+        sortbuttons[i].addEventListener("click", myfunction(products));
+        }
+        else { 
+          if (document.attachEvent) {
+              sortbuttons[i].attachEvent("onclick", myfunction(products));
+          }
+    }
+  }
+}*/
+
+/*function myfunction(products){
+  console.log("Lyssnar");
+  console.log(target.id)
+  sortingProduct(products, target.id)
+  
+};
+function clickedSort() {
+  
+}*/
+
+function sortingProduct(filteredproducts, key){
+if (key !== "null") {
+
+//if (Object.keys(keyBoos).contains(key)) {
+if (keyBoos.hasOwnProperty(key)){ 
+  if (keyBoos["key"] == 0 ){
+    keyBoos["key"] = 1
+    console.log(keyBoos["key"])
+  } else {
+    keyBoos["key"] = 0
+    console.log(keyBoos["key"])
+  };
+
+};
+
+
+const objectkeysarray = Object.keys(filteredproducts[0])
+console.log(objectkeysarray);
+const sortedproducts = filteredproducts.sort(function(x,y) {
+  if (keyBoos["key"] == 1) {
+    let z;
+    z = x;
+    x = y
+    y = z
+  }
+  if (key == "price") {
+    
+  return x[key] - y[key];
+  }
+  else {
+    return x[key] == y[key] ? 0 : x[key] > y[key] ? 1 : -1;
+  }
+
+});
+//console.log(sortedproducts)
+appendProducts(sortedproducts);
+}
+appendProducts(filteredproducts);
 }
 
 function appendProducts(filteredproducts){
@@ -143,7 +239,7 @@ function appendProducts(filteredproducts){
             beg = "Ny";
         }
        
-       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton'>Köp</button></div></div></div>");
+       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton'>Köp<span class='cart-item'></span></button></div></div></div>");
 
  }
 
@@ -154,8 +250,9 @@ function appendProducts(filteredproducts){
 
         $("#productModal").modal('toggle');
         $(".product-modal-body").append("<div class='card-body' style='margin-right: auto; margin-left: auto; text-align: center;'><h5 class='card-title' style='font-weight: bold;'> " + products[prod_id].name +  "</h5><br><img class='card-img-top' src='"+ products[prod_id].image +"'><br><p class='card-text'> <b>Märke:</b> " + products[prod_id].brand + "<br> <b>Modell:</b> " + products[prod_id].model + "<br> <b>Färg: </b>" + products[prod_id].color + "<br> <b>År: </b>" + products[prod_id].year + "<br> <b>Pris:</b> " + products[prod_id].price + "</p></div>");
-        $("#productModalFooter").append('<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="doThings(this.value, this)" value="'+products[prod_id].product_id+'" id="addProductToCartButton">Lägg i varukorgen</button>');
+        $("#productModalFooter").append('<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="doThings(this.value, this)" value="'+products[prod_id].product_id+'" id="addProductToCartButton">Lägg i varukorgen<span class="cart-item"></span></button>');
     });
+
     if (products.length <= 0){
         $("#productViewContainer").html($("#noProductView").html())    
     }
@@ -196,6 +293,7 @@ function showProdInfo(filterQueries) {
     $("#testrow").empty();
     $(".product-modal-body").append("<p class='ptest'>nånting nånting yamaha</p>");
     var filterQ = filterQueries;
+
    createProducts(filterQ);
    //alert(products[0].name);
 
@@ -264,7 +362,7 @@ function sideBar(products){
     if(brandClicked == false) {
         $("#brandArea").empty();
         for(var j = 0; j < uniqueBrands.length; j++){
-            $("#brandArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueBrands[j] +  " </span></label></li>");           
+            $("#brandArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright' style='padding-left: 20px;'> " +  uniqueBrands[j] +  " </span></label></li>");           
         }
     }
 
@@ -474,13 +572,24 @@ $('#xProduct').on("click" ,function (e) {
     e.preventDefault();
 });
 
-  function doThings(value, btn){
-  addProductToCart(value);
-  btn.textContent ='Tillagd';
-  setTimeout(function() { setBack(btn); }, 3000);
-  //updateItemNumber();
+function doThings(value, btn){
+    addProductToCart(value);
+    btn.textContent ='Tillagd';
+    setTimeout(function() { setBack(btn); }, 3000);
+    updateItemNumber();
 }
+  
+function doThings3(a) {
+    var newCartTotal = parseInt(a);
+    $('#basketArea').empty();
 
+    if (newCartTotal < 10) {
+        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 20px; margin-right: 10px; margin-left: 5px; text-align: center;'>" + newCartTotal + "</span>");
+    } else {
+        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 30px; margin-right: 10px; margin-left: 5px; text-align: center;'>" + newCartTotal + "</span>"); 
+    }
+}
+  
 function setBack(btnn) {
     btnn.textContent ='Köp';
-    }
+}
