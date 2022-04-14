@@ -120,6 +120,16 @@ $('#contactButton').click(function (e) {
 
   }
  
+  function myPage() {
+    $("#mainViewContainer").html($("#view-user").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html()) 
+    document.getElementById('top').scrollIntoView();
+    displayUser();  
+    getNewProducts();  
+    e.preventDefault();
+
+  }
   $('#userButton').click(function (e) {   
     $("#mainViewContainer").html($("#view-user").html())
     $("#sideBarContainer").html($("#empty").html())
