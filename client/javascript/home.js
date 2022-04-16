@@ -40,6 +40,7 @@ $(document).ready(function(){
       sessionStorage.setItem('productsInCart',JSON.stringify(Array.from(idAndQuantity)));
     }
 
+    updateItemNumber();
   })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
@@ -98,6 +99,10 @@ function openRegModal(){
 }
 function snapchatImage(){
   $("#snapchatModal").modal('toggle');
+  e.preventDefault();
+}
+function instaImage(){
+  $("#instaModal").modal('toggle');
   e.preventDefault();
 }
 

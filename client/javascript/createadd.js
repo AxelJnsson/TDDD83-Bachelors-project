@@ -8,11 +8,10 @@ function createAdd() {
     var color = $("#colorVal").val();
     var brand = $("#brandVal").val();
     var text = $("#createText").val();
-    var type = $("#createkat").val();
+    var type = $("#typVal").val();    
     var userNr = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
     var url1 =  userNr+"_"+ model;
-    var image = "/images/" + url1+".jpg";
-   
+    var image = "/images/" + url1+".jpg";   
     downloadImg(url1);
     
     
@@ -95,21 +94,16 @@ $("#brandVal").empty();
 function fillOptions2(products) {
  
   let prod = products;
-  $("#modelVal").empty(); 
-  
+  $("#modelVal").empty();   
 
   const brands = [];
   const models = []; 
-  const type = [];
-  
-
+  const type = [];  
   
   for(var j = 0; j < prod.length; j++){
     brands.push(prod[j].brand);
     models.push(prod[j].model);
-    type.push(prod[j].type)    
-   
-}
+    type.push(prod[j].type)    }
 
     var uniqueBrands = brands.filter((v, i, a) => a.indexOf(v) === i);
     var uniqueModels = models.filter((v, i, a) => a.indexOf(v) === i);

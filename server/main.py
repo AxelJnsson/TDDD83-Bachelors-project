@@ -26,12 +26,9 @@ import json
 from flask import render_template, render_template_string
 #import cv2
 #from PIL import Image
-#from pathlib import Path
+from pathlib import Path
 
-#stripe_keys = {
- #   "secret_key": os.environ["STRIPE_SECRET_KEY"],
- #   "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
-#}
+
 
 app = Flask(__name__, static_folder='../client', static_url_path='/')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -365,14 +362,9 @@ def saveImg():
    
     cwd = Path.cwd()
     mod_path = str(Path(__file__).parent.parent)
-    path =  mod_path + '/client/images'
-    print(path)
-   
-    #filename = os.path.join(dirname, 'relative/path/to/file/you/want')
-
-   
-    #img = img.save('savedimage.jpg')
-    
+    path =  mod_path + '/client/images'   
+    #filename = os.path.join(dirname, 'relative/path/to/file/you/want')   
+    #img = img.save('savedimage.jpg')    
     img = img.save(f"{path}/"+url+".jpg")
     #cv2.imwrite('savedimage.jpg', img)    
    
@@ -557,7 +549,7 @@ def carsub(product_id):
     
 
     z = Shopping_Session.query.filter_by(user_id = user).first_or_404()
-    print("hej")
+    
     item = Cart_Item.query.filter_by(session_id = z.id, product_id = product.product_id).first_or_404()
 
     if item.quantity == 1:
