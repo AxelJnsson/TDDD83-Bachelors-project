@@ -329,6 +329,34 @@ def product(product_id):
       InsertNewAndOldSQL('database_alternative_insert.sqlite')
       return "OK", 200
 
+
+#Route för att hämta user adds samt radera user adds
+@app.route('/useradd/<int:user_id>', methods = ['GET', 'DELETE'] )
+def useradd(user_id):
+    if request.method == 'GET':
+      
+      temp = Product.query.filter_by(seller = user_id)
+      user_add =[]
+    
+      for x in temp:
+        
+        user_add.append(x.serialize())
+ 
+      return jsonify(user_add)
+   
+    elif request.method == 'DELETE':
+      add = request.get_json()
+      products = Product.query.filter_by(seller = user_id)
+      #print(add.namn)
+      for x in products:
+        if x.name == add["namn"]:
+         db.session.delete(x)
+         db.session.commit()
+         InsertNewAndOldSQL('database_alternative_insert.sqlite')
+      
+      
+      return "OK", 200
+
 #Route for getting all products och posting a product
 @app.route('/product', methods = ['GET', 'POST'] )
 def products():

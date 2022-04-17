@@ -121,11 +121,13 @@ $('#contactButton').click(function (e) {
   }
  
   $('#userButton').click(function (e) {   
+    
     $("#mainViewContainer").html($("#view-user").html())
     $("#sideBarContainer").html($("#empty").html())
-    $("#productViewContainer").html($("#empty").html()) 
+    $("#productViewContainer").html($("#empty").html())    
     displayUser();  
-    getNewProducts();  
+  
+    displayUserAdd(); 
     e.preventDefault();
   });
 
