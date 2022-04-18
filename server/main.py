@@ -296,9 +296,10 @@ def client():
 def signup():
 
   if request.method == 'POST':
-    new_user = request.get_json()    
-    x = User(last_name = new_user["last_name"], first_name = new_user["firstname"],  email = new_user["email"])
-    x.set_password(new_user["password"])
+    new_user = request.get_json()  
+    print(new_user["first_name"])  
+    x = User(first_name = new_user["first_name"], last_name = new_user["last_name"], email = new_user["email"])
+    x.set_password(new_user["password_hash"])
     db.session.add(x)
     db.session.commit()
     user_id = x.user_id
@@ -472,19 +473,22 @@ def oldproducts():
 def users(user_id):
   if request.method == 'GET':
     temp = User.query.filter_by(user_id = user_id).first_or_404()
-    temp_Session = Shopping_Session.query.filter_by(user_id = user_id).first_or_404()
-    temp_Item = Cart_Item.query.filter_by(session_id = temp_Session.id)
-    item_list = []
-    for x in temp_Item:
-      item_list.append(x.serialize())
-   
-    
-    return jsonify(temp.serialize(), temp_Session.serialize(), item_list)
+    if Shopping_Session.query.filter_by(user_id = user_id).first() is not None:
+      temp_Session = Shopping_Session.query.filter_by(user_id = user_id).first_or_404()
+      temp_Item = Cart_Item.query.filter_by(session_id = temp_Session.id)
+      item_list = []
+      for x in temp_Item:
+        item_list.append(x.serialize())
+      
+      return jsonify(temp.serialize(), temp_Session.serialize(), item_list)
+
+    return jsonify(temp.serialize())
 
   elif request.method == 'PUT':
     user = request.get_json()
     x = User.query.filter_by(user_id = user_id).first_or_404()
-    user["password_hash"] = bcrypt.generate_password_hash(user["password_hash"]).decode('utf8')
+    if "password_hash" in user != None:
+      user["password_hash"] = bcrypt.generate_password_hash(user["password_hash"]).decode('utf8')
     User.query.filter_by(user_id = user_id).update(user)     
     temp = User.query.filter_by(user_id = user_id).first_or_404()    
     db.session.commit()

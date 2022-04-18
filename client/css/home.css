@@ -139,14 +139,14 @@ h2 {
   color: white;
 }
 
-h1 {
-  /*color: white; kommenterar bort den sålänge då visa texter ej syns */
+/*h1 {
+  color: white; kommenterar bort den sålänge då visa texter ej syns 
 }
 
 
 p {
-  /*text-align: justify;*/
-}
+  text-align: justify;
+}*/
 
 .team {
   display: flex;
@@ -278,6 +278,10 @@ p {
     color: black;
   }
 
+  #userCard {
+    height : auto;
+    width : 250px;
+  }
   .cart {
     position:fixed;
     top:20px;
