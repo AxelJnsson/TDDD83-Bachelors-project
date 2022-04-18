@@ -946,71 +946,55 @@
 <script id="view-cashregister" type="text/html">
   
   <div>
-    <h1>
+    <h1 class="outline" style="text-align: center;" >
       Välkommen till kassan
      </h1>
   </div>
-  <div id="cashRegisterArea">
+  <div class="row" id="cashRegisterArea">
     
-    <div id="scrollableItemsInBasket">
-      <!-- <img src="/images/logga.png" width="100" height="100" id="homeButton">
-      <br>
-      <img src="/images/skitfulgitarr.png" width="100" height="100" id="homeButton">
-      <br>
-      <img src="/images/skitfulgitarr.png" width="100" height="100" id="homeButton">
-      <br>
-  ,    <img src="/images/skitfulgitarr.png" width="100" height="100" id="homeButton">
-      <br>
-      <img src="/images/logga.png" width="100" height="100" id="homeButton">
-      <br>
-      <img src="/images/search-icon.png" width="100" height="100" id="homeButton">
-      <br>
-      <img src="/images/testbildkassa.png" width="100" height="100" id="homeButton">
-      <br>-->
-  </div> 
- 
-  <div id="amountArea">   
-    <h1 style="text-align:center">
-      Din Total
-    </h1>
-    <h6 style="margin-left: 7%;">
-      <br>
-      <br>
-      Deltotal:
-      <br>
-      <br>
-      Frakt:
-      <br>
-      <br>
-    </h6>
-    <h5 style="margin-left: 6%;" id="totalsumLine">
-    </h5>
-    <!--<div>
-      <button onclick="stripeTestFunction()" class="btn btn-primary" id="toPaymentButton" type="submit">Till betalning</button>
-    </div>-->
-    
-
-   
-  </div>
-
-</div>
-<!--<script id="pay-view">-->
-<div class="container rounded bg-white mt-5 mb-5">
+    <div class="col-1"></div>
+      <div class="col-4" id="scrollableItemsInBasket">
+      </div> 
+      <div class="col-1"></div>
   
-  <form id="payment-form">
-    <div id="card-element"><!--Stripe.js injects the Card Element--></div>
-    <button id="submit">
-      <div class="spinner hidden" id="spinner"></div>
-      <span id="button-text">Pay now</span>
-    </button>
-    <p id="card-error" role="alert"></p>
-    <p class="result-message hidden">
-      Payment succeeded, see the result in your
-      <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
-    </p>
-  </form>
+      <div class="col-4" style="position:relative-top;" id="amountArea">   
+        <h1 style="text-align:center">
+          Din Total
+        </h1>
+        <h6 style="margin-left: 7%;">
+          <br>
+          <br>
+          Deltotal:
+          <br>
+          <br>
+          Frakt:
+          <br>
+          <br>
+        </h6>
+        <h5 style="margin-left: 6%;" id="totalsumLine"></h5>
+        <div class="container rounded bg-white mt-5 mb-5">
+  
+          <form id="payment-form">
+            <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+            <button id="submit">
+              <div class="spinner hidden" id="spinner"></div>
+              <span id="button-text">Pay now</span>
+            </button>
+            <p id="card-error" role="alert"></p>
+            <p class="result-message hidden">
+              Payment succeeded, see the result in your
+              <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+            </p>
+          </form>
+        
+          </div>
+      </div>
 
-</div>
+      <div class="col"></div>
+
+  </div>
+    <!--<script id="pay-view">-->
+  
   
 </script>
 
