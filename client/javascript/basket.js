@@ -1,8 +1,12 @@
 //BASKET
 $('#basketButton').click(function (e) {
-    e.preventDefault();
-    $("#basketModal").modal('toggle');
-    getProductsToPrintInBasket();
+  e.preventDefault();
+  $("#basketModal").modal('toggle');
+  getProductsToPrintInBasket();
+});
+
+$('#basketModal').on('hide.bs.modal', function (e) {
+  updateItemNumber();
 });
 
 function updateItemNumber(){
