@@ -40,7 +40,8 @@
   margin-bottom: 4%;
   /*margin-left: 2%;
   width: 600px;*/
-  height: 600px;
+  height: fit-content;
+  max-height: 600px;
   border-style:double;
   border-radius: 7px;
   border-color: rgb(50, 52, 56);
@@ -56,6 +57,9 @@
   margin-top: 4%;
   margin-bottom: 4%;
   position: sticky top;
+}
+#view-cashregister{
+  background-color: rgb(196, 215, 240);
 }
 
 #prodimg {
