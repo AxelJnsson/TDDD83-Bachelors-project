@@ -74,9 +74,9 @@ function editUser3() {
   });
 
 function displayUser() {
-   
    var x = JSON.parse(sessionStorage.getItem('auth')).user.user_id; 
     displayHistory();
+    //displayUserAdd();
     $.ajax({
         headers: {
           "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
@@ -120,6 +120,55 @@ function deleteUser() {
   });
 }
 
+function displayUserAdd() {
+ x= JSON.parse(sessionStorage.getItem('auth')).user.user_id;
+  $.ajax({
+    headers: {
+      "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/useradd/' + x,
+    type: 'GET',
+    success: function(u) {
+     
+      for (let i=0; i < u.length; i++) {
+        var html = '<div class="col-md-11" onclick="openAdd('+i+')"><img src="'+u[i].image+'" class="media-object img-thumbnail" /></div>\
+                      <div class="col-md-11" style="display: none" id="add'+i+'" >\
+                            <div class="row">\
+                              <div class="col-md-12">Namn: '+u[i].name+'</a></div>\
+                              <div class="col-md-12">Kategori: '+u[i].type+'</a></div>\
+                              <div class="col-md-12">Märke: '+u[i].brand+'</a></div>\
+                              <button type="button" class="btn btn-danger" id="deleteaddButton" onclick="deleteUserAdd(\'' + u[i].name + '\')">Radera</button>\
+                            </div>\
+                       </div>\
+                     </div>';
+
+          $("#userAdds").append(html);
+          $("#userAdds").append("<p> <br></p>");
+      }     
+    }
+});
+   }
+
+//ej fungerande än
+   function deleteUserAdd(name) {
+     alert("hej");
+     var namn = name;
+   x= JSON.parse(sessionStorage.getItem('auth')).user.user_id;
+    $.ajax({
+      headers: {
+        "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+      url:'/useradd/' + x,
+      type: 'DELETE',
+      datatype: 'JSON',
+      contentType: "application/json",
+      data: JSON.stringify({
+        "namn":namn}),
+      success: function(u) {
+        alert("raderat annons");
+
+   }});}
+
+
+
 function displayHistory() {
   
   let order1 = new Order(1, "Gitarr", "Piano", 3000);
@@ -160,6 +209,17 @@ function openForm(i) {
       document.getElementById(order).style.display = 'none';
   }
     } 
+
+    function openAdd(i) {
+      var add =  "add"+i;
+      if(document.getElementById(add).style.display == 'none')
+       {
+        document.getElementById(add).style.display = "block";
+       }else{
+          document.getElementById(add).style.display = 'none';
+      }
+        } 
+    
 
 
 
