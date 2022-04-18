@@ -414,6 +414,24 @@ function regOrAnnons() {
 
 function SucPay() {
   $("#mainViewContainer").html($("#lyckad-betalning").html())
+  createShipping();
   alert("din betalning gick igenom");
   //Gör nåt som uppdaterar varukorgen och skapar en
+}
+
+function createShipping() {
+  $.ajax({
+    headers: {
+      "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/createShipment',
+    type: 'POST',
+    datatype: 'JSON',
+    contentType: "application/json",    
+    success: function(u) {
+      alert(u);
+     // alert("Du har skapat en shipment");
+      
+
+ }});
+
 }

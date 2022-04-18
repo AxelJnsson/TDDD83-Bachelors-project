@@ -87,12 +87,10 @@ function addProductToCart(productToAdd){
       url:'/product/'+productToAdd+'/adding',
       type: 'POST',
       success: function(u) { 
-           //alert("funkar")
           $.ajax({    
             url:'/product/'+ productToAdd,
             type: 'GET',
             success: function(product) { 
-              //alert("lägger till "+productToAdd)
               updateprice(parseInt(product.price));
               $("#productModal").modal('hide');
              
@@ -257,7 +255,6 @@ function deleteProductFromCart2(productID){
 
     },
     error: function(u){
-      //alert("tog inte bort fk u");
     } 
   });
 }

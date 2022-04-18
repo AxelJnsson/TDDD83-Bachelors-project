@@ -27,7 +27,8 @@ from flask import render_template, render_template_string
 #import cv2
 #from PIL import Image
 from pathlib import Path
-
+import easypost
+import shippo
 
 
 app = Flask(__name__, static_folder='../client', static_url_path='/')
@@ -196,34 +197,94 @@ setUpDatabase()
 
 
 
-#stripe.api_key = 'sk_test_51KiDHOFa9gwuZdKJw6ouVqm5m6mUYok8kEYg3BYtOH1kqnAFvH9YiOe7IGd7sMGm0zTvR4XYwTxI66u0TVYdiOjN00AeMRr3Nz'
 stripe.api_key = 'sk_test_51KmeJFGTjasXI1q99HgReiS1UmSZmF3a2dZSnyq7dtYnoHUw8HPyoLwqCIM6Sckrhgw1bwtixC8BXpZQgyExtnzQ00q350DBtl'
 
-@app.route('/create-checkout-session', methods=['POST'])
-def create_checkout_session():
-  if request.method == 'POST':
-    info = request.get_json()
-    print("haksjdnaksjdnjkasndkjnaskjdnkasndnaksjndjknaskjndkjasndkjnaskjndkanskdnajksndknjas")
-    total = info["price"]
-    session = stripe.checkout.Session.create(
-      line_items=[{
-        'price_data': {
-          'currency': 'SEK',
-          'product_data': {
-            'name': 'GItarr',
-          
-          },
-          'unit_amount': total,
-        },
-        'quantity': 1,
-      }],
-      mode='payment',
-      success_url='http://localhost:5000/',
-      cancel_url='http://localhost:5000/',
 
+
+ 
+
+easypost.api_key = "<EZTK437cee1a8ca945c09c89080aef7debffIjlTAjf2l3c6oiT0CEvzFA>"
+
+shippo.api_key = "<shippo_test_4539126ef7ee2c56604e453728c9feb81c8e1494>"
+shippo.config.api_key= "shippo_test_4539126ef7ee2c56604e453728c9feb81c8e1494"
+@app.route('/createShipment', methods=['POST'])
+#@jwt_required()
+def shipment():
+  address_from = {
+        "name": "ToneHub",
+    "street1": "Skeppargatan 75",
+    "city": "Stockholm",
+    "state": "Stockholm",
+    "zip": "11530",
+    "country": "SE",
+    "phone": "+1 555 341 9393",
+    "email": "support@goshippo.com",
+  }
+
+# Example address_to object dict
+# The complete reference for the address object is available here: https://goshippo.com/docs/reference#addresses
+
+  address_to = {
+       "name": "Mrs. Hippo",
+    "street1": "200 University Ave W",
+    "street2": "",
+    "city": "Waterloo",
+    "state": "ON",
+    "zip": "N2L 3G1",
+    "country": "CA",
+    "phone": "+1 555 341 9393",
+    "email": "support@goshippo.com",
+    
+  }
+
+
+# parcel object dict
+# The complete reference for parcel object is here: https://goshippo.com/docs/reference#parcels
+  parcel = {
+    "length": "5",
+    "width": "5",
+    "height": "5",
+    "distance_unit": "cm",
+    "weight": "2",
+    "mass_unit": "kg",
+  }
+
+# Example shipment object
+# For complete reference to the shipment object: https://goshippo.com/docs/reference#shipments
+# This object has asynchronous=False, indicating that the function will wait until all rates are generated before it returns.
+# By default, Shippo handles responses asynchronously. However this will be depreciated soon. Learn more: https://goshippo.com/docs/async
+  shipment_international = shippo.Shipment.create(
+    address_from=address_from,
+    address_to=address_to,
+    parcels=[parcel],
+    asynchronous=False
   )
 
-  return session.url
+# Rates are stored in the `rates` array
+# The details on the returned object are here: https://goshippo.com/docs/reference#rates
+# Get the first rate in the rates results for demo purposes.
+  
+  rate_international = shipment_international.rates[0]
+
+# Purchase the desired rate.
+# The complete information about purchasing the label: https://goshippo.com/docs/reference#transaction-create
+  transaction_international = shippo.Transaction.create(
+    rate=rate_international.object_id, asynchronous=False)
+
+# print label_url and tracking_number
+  if transaction_international.status == "SUCCESS":
+    print("Purchased label with tracking number %s" %
+          transaction_international.tracking_number)
+    print("The label can be downloaded at %s" %
+          transaction_international.label_url)
+    return "401"
+  else:   
+    print("Failed purchasing the label due to:")
+    for message in transaction_international.messages:
+        print("- %s" % message['text'])
+    return "200"
+
+
 
 
   

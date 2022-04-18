@@ -56,7 +56,6 @@ fetch("/create-payment-intent", {
     form.addEventListener("submit", function(event) {
       event.preventDefault();
       // Complete payment when the submit button is clicked
-      alert(data.clientSecret);
       payWithCard(stripe, card, data.clientSecret);
     });
   });
