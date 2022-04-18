@@ -12,14 +12,24 @@ $(document).ready(function(){
       console.log("inloggad " + signedIn);
     } else {
       signedIn = false;
+      var admin;
+      if (JSON.parse(sessionStorage.getItem('auth')).user.is_admin === 1) {
+        admin = true;
+      } else {
+        admin = false;
       console.log("inloggad" + signedIn);
     }
+  }
+
     
     $('#registerButton').toggleClass('d-none', !signedIn);
     $('#loginButton').toggleClass('d-none', !signedIn);
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
+    $('#adminButton').toggleClass('d-none', !admin);
+    sessionStorage.setItem('price', parseInt(0));  
+           
     if (JSON.parse(sessionStorage.getItem('auth'))==null){
       sessionStorage.setItem('loggedIn',false);
     }else{
@@ -71,6 +81,14 @@ $('#aboutButton').click(function (e) {
     fillOptions1();
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
+     e.preventDefault();
+   });
+
+   $('#adminButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-adminPage").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html())
+    Display_admin();
      e.preventDefault();
    });
 

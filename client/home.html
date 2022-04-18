@@ -89,6 +89,9 @@
         <a class="nav-link" href="#" id="userButton">Din sida</a>
       </li> 
       <li class="nav-item">
+        <a class="nav-link" href="#" id="adminButton">Admin</a>
+      <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
       </li>
     <i class="fa" id='basketButton' style="font-size:30px; margin-left: 10px; margin-top: auto; margin-bottom: auto;">&#xf07a;</i>
@@ -943,7 +946,63 @@
   </div>
 </div>
 
-<script id="view-cashregister" type="text/html">
+  <script id="view-adminPage" type="text/html">
+    <div class="center">
+    <div class="d-flex justify-content-between align-items-center mb-3" >
+      <h4 class="text-right">Adminsida</h4>
+    </div>
+    <div class="card-container row">
+    </div>
+  </div>
+  </div>
+  </div>
+  
+  </script>
+
+  <div class="modal fade" id="adminEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ändra användarinfo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xRegister">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="inputId">Id</label>
+            <input type="text" class="form-control" id="adminEditIdField" placeholder="" aria-describedby="makeHelp" value="" readonly >
+        </div>
+          <div class="form-group">
+            <label for="inputFirstname">Förnamn:</label>
+            <input class="form-control" id="adminEditFirstnameField">
+          </div>
+          <div class="form-group">
+            <label for="inputLastname">Efternamn:</label>
+            <input class="form-control" id="adminEditLastnameField">
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Email:</label>
+            <input class="form-control" id="adminEditEmailField">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Lösenord:</label>
+            <input class="form-control" id="adminEditPasswordField">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeEditButton1">Stäng</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="editFinishButton1">Spara ändringar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    
+
+  <script id="view-cashregister" type="text/html">
   
   <div>
     <h1 class="outline" style="text-align: center;" >
@@ -1188,10 +1247,14 @@
   <script src="/javascript/loggInOut.js"></script>
   <script src="/javascript/createadd.js"></script>
   <script src="/javascript/productview.js"></script>
-  <script src="/javascript/startpageProducts.js"></script>  
-  <script src="/javascript/search.js"></script> 
-  <script src="/javascript/register.js"></script> 
-  <script src="/javascript/slide.js"></script>  
+  <script src="/javascript/startpageProducts.js"></script>
+  <script src="/javascript/stripetest.js"></script>
+  <script src="/javascript/search.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="/javascript/register.js"></script>
+  <script src="/javascript/cashregister.js"></script>
+  <script src="/javascript/adminview.js"></script>
+  <script src="/javascript/slide.js"></script>   
   <script src="/javascript/sessionstoragehandler.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
