@@ -51,12 +51,13 @@ class Product(db.Model):
   new_or_not = db.Column(db.Integer, nullable = False)
   quantity = db.Column(db.Integer, nullable = True)
   seller = db.Column(db.Integer, nullable = False)
+  rating = db.Column(db.Float, nullable =True)
 
   def __repr__(self):
-    return '<Product {}: {} {} {} {} {} {} {} {} {} {} {}>'.format(self.product_id, self.brand, self.model, self.name, self.price, self.color, self.image, self.year, self.type, self.new_or_not, self.quantity, self.seller)
+    return '<Product {}: {} {} {} {} {} {} {} {} {} {} {} {}>'.format(self.product_id, self.brand, self.model, self.name, self.price, self.color, self.image, self.year, self.type, self.new_or_not, self.quantity, self.seller, self.rating)
 
   def serialize(self):
-    return dict(product_id=self.product_id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, image=self.image, year=self.year, type=self.type, new_or_not = self.new_or_not, quantity = self.quantity, seller = self.seller)
+    return dict(product_id=self.product_id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, image=self.image, year=self.year, type=self.type, new_or_not = self.new_or_not, quantity = self.quantity, seller = self.seller, rating = self.rating)
 
 class User(db.Model):
   user_id = db.Column(db.Integer, primary_key = True)

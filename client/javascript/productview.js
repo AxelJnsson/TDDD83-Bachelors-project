@@ -226,7 +226,14 @@ function appendProducts(filteredproducts){
     $("#productViewContainer").html($("#view-product").html())  
     var products = filteredproducts;
     let j = 0;
+    var rating;
+
     for (let i=0; i < products.length; i++) {
+        if (products[i].rating == 0) {
+            rating = "Inget betyg än"
+        } else {
+            rating = products[i].rating
+        }
     //funktion för att skriva ut produkterna 4 och 4
         //if (i%4 == 0) {
             //j++;
@@ -240,7 +247,7 @@ function appendProducts(filteredproducts){
             beg = "Ny";
         }
        
-       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton'>Köp<span class='cart-item'></span></button></div></div></div>");
+       $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p><p class='card-text'> <b>Betyg: </b> "+ rating +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton'>Köp<span class='cart-item'></span></button></div></div></div>");
 
  }
 
@@ -580,4 +587,8 @@ function doThings3(a) {
   
 function setBack(btnn) {
     btnn.textContent ='Köp';
+}
+
+function calculateReview() {
+    
 }
