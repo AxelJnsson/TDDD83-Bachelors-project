@@ -179,7 +179,6 @@ $('#contactButton').click(function (e) {
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
 
-
     //showProdInfo("allt", null);
     resetFilter();
     //filternewornot.push("Ny", "Begagnad");
@@ -195,7 +194,17 @@ $('#contactButton').click(function (e) {
       $("#productViewContainer").html($("#view-product").html())
       $("#mainViewContainer").html($("#empty").html())
    };*/
-
+   function showAllInst(){
+    $("#sideBarContainer").html($("#view-sidebar").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    resetFilter();
+    filternewornot.length = 0;
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  }
    function gitarrView(){  
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
