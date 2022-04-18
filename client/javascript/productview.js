@@ -136,8 +136,9 @@ function filtering(arr, filterQueries, sortingKey){
     //getClickID(filteredstuff)
     
     
-      
-  
+    //buggsökning -----------
+     //alert("Modeller: " + models.length + " Brands: " + brands.length + " Colors: " + colors.length + " År: " + years.length + " Nytt/beg: " + newornots.length + " Types: " + types.length);
+     //----------------------
     
     
     newlyfilteredproducts = filteredstuff;
@@ -340,24 +341,9 @@ function sideBar(products){
     uniqueColors.sort();
     uniqueYears.sort();
 
-    // all.push(uniqueBrands);
-    // all.push(uniqueModels);
-    // all.push(uniqueColors);
-    // all.push(uniqueYears);
+    //debug
+    //alert("Valbara märken: " + uniqueBrands.length + " Valbara modeller: " + uniqueModels.length + " Valbara färger: " + uniqueColors.length + " Valbara år: " + uniqueYears.length);
 
-    
-
-    //alert(all.length);
-
-    // for (var i = 0; i < all.length ; i++) {
-    //     $("#sideMenu").append("<li><a class='nav-link px-0' href='#submenu1' data-bs-toggle='collapse' aria-expanded='false'aria-controls='submenu1'><span class='text-secondary'>'Märken eller något'</span></a><ul class='collapse nav flex-column' id='area"+i+"'>");
-
-    //     for(var j = 0; j < all[i].length; j++){
-    //         alert(all[i][j]);
-    //         $("#area"+i).append("<li class='w-100'><input class='form-check-inpu from-check-inline somebrand' type='checkbox' value='' data-id='"+j+"'><label class='form-check-label' for='defaultCheck1'><span class='text-info'> " +  all[i][j] +  " </span></label></li>");
-          
-    //     }
-    // }
 
     if(brandClicked == false) {
         $("#brandArea").empty();
@@ -369,23 +355,25 @@ function sideBar(products){
     if(modelClicked == false){
         $("#modelArea").empty();
         for(var i = 0 ; i < uniqueModels.length; i++) {
-            $("#modelArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somemodel' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueModels[i] +  " </span></label></li>");
+            $("#modelArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somemodel' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright' style='padding-left: 20px;'> " +  uniqueModels[i] +  " </span></label></li>");
         }
     }
 
     if(colorClicked == false){
         $("#colorArea").empty();
         for(var i = 0 ; i < uniqueColors.length; i++) {
-            $("#colorArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somecolor' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueColors[i] +  " </span></label></li>");
+            $("#colorArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline somecolor' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright' style='padding-left: 20px;'> " +  uniqueColors[i] +  " </span></label></li>");
         }
     }
 
     if(yearClicked == false) {
         $("#yearArea").empty();
         for(var i = 0 ; i < uniqueYears.length; i++) {
-            $("#yearArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someyear' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  uniqueYears[i] +  " </span></label></li>");
+            $("#yearArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someyear' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright' style='padding-left: 20px;'> " +  uniqueYears[i] +  " </span></label></li>");
         }
     }
+
+    //alert("Brand clicked: " + brandClicked + " Model clicked: " + modelClicked + " Color clicked: " + colorClicked + " Year clicked: " + yearClicked);
 
     var outputInterval;
 
@@ -404,7 +392,7 @@ function sideBar(products){
                 outputInterval = "Över 100 000";
             }
 
-            $("#priceArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someprice' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright'> " +  outputInterval +  " </span></label></li>");
+            $("#priceArea").append("<li class='w-100'><input class='form-check-inpu from-check-inline someprice' type='checkbox' value='' data-id='"+i+"'><label class='form-check-label' for='defaultCheck1'><span class='text-justright' style='padding-left: 20px;'> " +  outputInterval +  " </span></label></li>");
         }
     }
 
