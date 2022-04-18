@@ -299,3 +299,14 @@ p {
       color:white;
     }
  
+    .outline {
+      color: rgb(196, 215, 240);
+      font-family: Phosphate;
+      font-weight: bold;
+      font-size: xx-large;
+      text-shadow:
+        -1px -1px 0 rgb(121, 150, 187),
+        1px -1px 0 rgb(121, 150, 187),
+        -1px 1px 0 rgb(121, 150, 187),
+        1px 1px 0 rgb(121, 150, 187);
+    }
