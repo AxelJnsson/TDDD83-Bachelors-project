@@ -122,7 +122,7 @@ class Orders(db.Model):
   
 
   def __repr__(self):
-    return '<Orders {}: {} {}  >'.format(self.order_nr, self.amount, self.order_history_id)
+    return '<Orders {}: {} {}>'.format(self.order_nr, self.amount, self.order_history_id)
 
   def serialize(self):
     return dict(id=self.order_nr, amount=self.amount, order_history_id=self.order_history_id)
@@ -480,7 +480,7 @@ def createorders(user_id):
    
 
     orderhistory = Order_history.query.filter_by(user_id=user_id).first()
-    order = Orders.query.filter_by(order_history_id = orderhistory.id)
+    order = Orders.query.filter_by(order_history_id = orderhistory.id).all()
 
     # bought_products =[]
     # p = Product.query.filter_by(product_id = something)

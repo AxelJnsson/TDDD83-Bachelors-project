@@ -170,6 +170,7 @@ function displayUserAdd() {
 
 
 function displayHistory() {
+  //printOrderHistory();
   const orderhistory = printOrderHistory();
 
   for (item in orderhistory){
