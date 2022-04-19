@@ -185,6 +185,7 @@ function showInBasketModal(products, hasProducts){
 
 function printEmptyBasketModal(){
   $('#bodyBasketModal').empty();
+  $('#tableHeadModal').empty();
   $('#bodyBasketModal').append("Varukorgen är tom!")
 }
 
@@ -192,7 +193,10 @@ function printProductInBasketModal(product, quantity){
 
   sessionStorage.setItem('price', JSON.parse(sessionStorage.getItem('price')) + product.price*quantity);
   showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
-  $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+'</div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
+ // $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+'</div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
+  $('#bodyBasketModal').append(' <table class="table table-image"><tbody><tr> <td class="w-25"><img src='+ product.image +'  style="height: 150px; width: 150px;"></td> <td> '+product.name+' </td> <td> '+product.price+'kr </td><td> <div class = btn-group><button class="w3-button w3-black" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</button><button class="w3-button w3-white"> '+quantity+'</button> <button class="w3-button w3-teal" onclick= "addProductToCart(this.value);" value="'+product.product_id+'">+</button> </div></td></tr></tbody></table>');
+  // <div class="value-button" id="decrease" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</div>
+  // <div class="value-button" id="increase" onclick= "addProductToCart(this.value);" value="+product.product_id+">+</div>
 }
 
 function deleteProductFromCart(productID){
