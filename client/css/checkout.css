@@ -13,6 +13,9 @@
     border-radius: 7px;
     padding: 40px;
   }
+  #stripeStyle{
+    font-size: xx-large !important;
+  }
   
   .hidden {
     display: none;

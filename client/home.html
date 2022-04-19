@@ -728,7 +728,7 @@
   <script id="view-createAdd" type="text/html">
     <div class="center" id="createAddPage" >
     <div class="d-flex justify-content-between align-items-center mb-3" id="THcreateAdd">
-      <p style="width: max-content;">Skapa Annons!</p>
+      <p style="width:max-content;">Skapa Annons!</p>
     </div>
       <div class="row mt-2">
           <div class="col-md-6"><label class="labels">Rubrik</label><input type="text" id="createText" class="form-control" placeholder="Namn" value=""></div>  
@@ -1032,10 +1032,10 @@
           <br>
         </h6>
         <h5 style="margin-left: 6%;" id="totalsumLine"></h5>
-        <div class="container rounded bg-white mt-5 mb-5">
+        <div class="container rounded bg-white mt-5 mb-5" id="stripeStyle">
   
           <form id="payment-form">
-            <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+            <div id="card-element" class="form-control"><!--Stripe.js injects the Card Element--></div>
             <button id="submit">
               <div class="spinner hidden" id="spinner"></div>
               <span id="button-text">Pay now</span>
@@ -1046,8 +1046,9 @@
               <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
             </p>
           </form>
-        
+          <div style="text-align: center; font-size: large;"><p>Fyll i kortnummer ovan för att slutföra betalningen!</p></div>
           </div>
+          
       </div>
 
       <div class="col"></div>
