@@ -381,7 +381,7 @@ $('#contactButton').click(function (e) {
   //  });
 
   function btnResetFilter(){
-    alert("Filter rensas");
+    //alert("Filter rensas");
     resetFilter();
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
