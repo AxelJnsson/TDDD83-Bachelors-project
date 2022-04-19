@@ -37,7 +37,10 @@ $(document).ready(function(){
     }
     if (JSON.parse(sessionStorage.getItem('startedShopping'))==null){
       idAndQuantity = {}
+      productsOutOfStock = [];
       sessionStorage.setItem('productsInCart',JSON.stringify(Array.from(idAndQuantity)));
+      sessionStorage.setItem('outOfStock', JSON.stringify(productsOutOfStock));
+      sessionStorage.setItem('startedShopping',true);
     }
 
     updateItemNumber();
