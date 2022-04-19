@@ -1,3 +1,5 @@
+
+//För att söka när man klickar på enter
 $('#datatable-search-input').on('keypress', function (e) {
   var keycode = (e.keyCode ? e.keyCode : e.which);
   if(keycode == '13'){
@@ -5,6 +7,7 @@ $('#datatable-search-input').on('keypress', function (e) {
   }
 });
 
+//Hämta produkter från databasen och skicka till "search"
 function getSearchProducts() {
   $.ajax({        
     url:'/product',
@@ -18,6 +21,7 @@ function getSearchProducts() {
   });
 }
   
+//I denna funktion finns algoritmen som sorterar ut vilka objekt som matchar sökningen
 function search(productList) {
   var attributeList = [];
   var searchResults = [];
@@ -173,6 +177,7 @@ function search(productList) {
   loadSearchResults(searchResults);
 }
   
+//Skriver ut sökresultaten på skärmen
 function loadSearchResults(searchList) {
   $("#sideBarContainer").html($("#view-sidebar").html())
   $("#productViewContainer").html($("#view-product").html())
@@ -180,13 +185,17 @@ function loadSearchResults(searchList) {
   appendProducts(searchList);
 }
 
-function compare(strA,strB){
-  for(var result = 0, i = strA.length; i--;){
-      if(typeof strB[i] == 'undefined' || strA[i] == strB[i]);
-      else if(strA[i].toLowerCase() == strB[i].toLowerCase())
-          result++;
-      else
-          result += 4;
+//Här sker jämförelsen mellan det sökta ordet och ett ord i databasen, används för
+//att hantera felstavning
+function compare(s1, s2) {
+  for(var result = 0; i = s1.length; i--){
+    if (typeof s2[i] == 'undefined' || s1[i] == s2[i]) {
+
+    } else if (s1[i].toLowerCase() == s2[i].toLowerCase()) {
+      result++;
+    } else {
+      result += 4;
+    }
   }
-  return 1 - (result + 4*Math.abs(strA.length - strB.length))/(2*(strA.length+strB.length));
+  return 1 - (result + 4*Math.abs(s1.length - s2.length))/(2*(s1.length+s2.length));
 }
