@@ -139,14 +139,14 @@ h2 {
   color: white;
 }
 
-h1 {
-  /*color: white; kommenterar bort den sålänge då visa texter ej syns */
+/*h1 {
+  color: white; kommenterar bort den sålänge då visa texter ej syns 
 }
 
 
 p {
-  /*text-align: justify;*/
-}
+  text-align: justify;
+}*/
 
 .team {
   display: flex;
@@ -245,6 +245,7 @@ p {
     color: black;
   }
   #sidebarAndProduct{
+    background-color: rgb(134, 164, 202);
     color: rgb(50, 52, 56);
     padding-top: 20px
   }
@@ -277,6 +278,10 @@ p {
     color: black;
   }
 
+  #userCard {
+    height : auto;
+    width : 250px;
+  }
   .cart {
     position:fixed;
     top:20px;
@@ -295,3 +300,36 @@ p {
       color:white;
     }
  
+    .outline {
+      color: rgb(196, 215, 240);
+      font-family: Phosphate;
+      font-weight: bold;
+      font-size: xx-large;
+      text-shadow:
+        -1px -1px 0 rgb(50, 52, 56),
+        1px -1px 0 rgb(50, 52, 56),
+        -1px 1px 0 rgb(50, 52, 56),
+        1px 1px 0 rgb(50, 52, 56);
+    }
+    #emptyBasketRegister{
+      text-align: center;
+      text-decoration: dotted;
+      font-size: xx-large;
+      font-weight: bolder;
+      color: rgb(196, 215, 240);
+      margin-top: 20px;
+      text-shadow:
+        -1px -1px 0 rgb(50, 52, 56),
+        1px -1px 0 rgb(50, 52, 56),
+        -1px 1px 0 rgb(50, 52, 56),
+        1px 1px 0 rgb(50, 52, 56);
+    }
+    #contShop{
+      text-align: center;
+      text-decoration:wavy;
+      font-size: large;
+      font-weight: bolder;
+      color: rgb(50, 52, 56);
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }

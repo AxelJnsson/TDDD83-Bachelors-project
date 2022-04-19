@@ -12,14 +12,24 @@ $(document).ready(function(){
       console.log("inloggad " + signedIn);
     } else {
       signedIn = false;
+      var admin;
+      if (JSON.parse(sessionStorage.getItem('auth')).user.is_admin === 1) {
+        admin = true;
+      } else {
+        admin = false;
       console.log("inloggad" + signedIn);
     }
+  }
+
     
     $('#registerButton').toggleClass('d-none', !signedIn);
     $('#loginButton').toggleClass('d-none', !signedIn);
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
+    $('#adminButton').toggleClass('d-none', !admin);
+    sessionStorage.setItem('price', parseInt(0));  
+           
     if (JSON.parse(sessionStorage.getItem('auth'))==null){
       sessionStorage.setItem('loggedIn',false);
     }else{
@@ -74,6 +84,14 @@ $('#aboutButton').click(function (e) {
      e.preventDefault();
    });
 
+   $('#adminButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-adminPage").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html())
+    Display_admin();
+     e.preventDefault();
+   });
+
     
 function openRegModal(){
   $("#registerModal").modal('toggle');
@@ -120,12 +138,24 @@ $('#contactButton').click(function (e) {
 
   }
  
-  $('#userButton').click(function (e) {   
+  function myPage() {
     $("#mainViewContainer").html($("#view-user").html())
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html()) 
+    document.getElementById('top').scrollIntoView();
     displayUser();  
     getNewProducts();  
+    e.preventDefault();
+
+  }
+  $('#userButton').click(function (e) {   
+    
+    $("#mainViewContainer").html($("#view-user").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html())    
+    displayUser();  
+  
+    displayUserAdd(); 
     e.preventDefault();
   });
 
@@ -138,6 +168,11 @@ $('#contactButton').click(function (e) {
       filterprices.length = 0;
       filteryears.length = 0;
       filterpriceinterval.length = 0;
+      yearClicked = false;
+      modelClicked = false;
+      brandClicked = false;
+      colorClicked = false;
+      priceClicked = false;
       //filternewornot.length = 0;
   }
 
@@ -150,6 +185,7 @@ $('#contactButton').click(function (e) {
     //showProdInfo("allt", null);
     resetFilter();
     //filternewornot.push("Ny", "Begagnad");
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -161,10 +197,10 @@ $('#contactButton').click(function (e) {
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
 
-
     //showProdInfo("allt", null);
     resetFilter();
     //filternewornot.push("Ny", "Begagnad");
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -176,7 +212,17 @@ $('#contactButton').click(function (e) {
       $("#productViewContainer").html($("#view-product").html())
       $("#mainViewContainer").html($("#empty").html())
    };*/
-
+   function showAllInst(){
+    $("#sideBarContainer").html($("#view-sidebar").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    resetFilter();
+    filternewornot.length = 0;
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  }
    function gitarrView(){  
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
@@ -186,6 +232,7 @@ $('#contactButton').click(function (e) {
     resetFilter();
     var defCategory = "Gitarr";
     filtertypes.push(defCategory);
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -200,6 +247,7 @@ $('#contactButton').click(function (e) {
     resetFilter();
     var defCategory = "Bas";
     filtertypes.push(defCategory);
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -213,6 +261,7 @@ $('#contactButton').click(function (e) {
     document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Piano");
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -225,6 +274,7 @@ $('#contactButton').click(function (e) {
     document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Keyboard");
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -239,6 +289,7 @@ $('#contactButton').click(function (e) {
     resetFilter();
     filtertypes.push("Piano");
     filtertypes.push("Keyboard");
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -252,6 +303,7 @@ $('#contactButton').click(function (e) {
     document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Trummor");
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -264,6 +316,7 @@ $('#contactButton').click(function (e) {
     document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Speciella Trummor");
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -277,6 +330,7 @@ $('#contactButton').click(function (e) {
     resetFilter();
     filtertypes.push("Trummor");
     filtertypes.push("Other");
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -291,6 +345,7 @@ $('#contactButton').click(function (e) {
     document.getElementById('navbarNav2').scrollIntoView();
     resetFilter();
     filtertypes.push("Studio");
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
@@ -308,6 +363,7 @@ $('#contactButton').click(function (e) {
     var testcategory1 = "Blås";
     
     filtertypes.push(testcategory1);
+    filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
