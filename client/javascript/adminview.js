@@ -15,9 +15,9 @@ function Display_admin() {
           let cards = $('.card-text');
 
           cards.eq(i).html(("Id: " + list[i].user_id + "<br>"+ "Email: " + list[i].email + "<br>" + "First Name: " + list[i].first_name + "<br>" + "Last Name: " 
-          + list[i].last_name + "<br>" + "Admin (0 eller 1): " + list[i].is_admin + "<br>" + '<a class="btn btn-primary deletebutton" onclick="adminDeleteUser('+list[i].user_id+')" data-id = "'
-          +list[i].user_id+' " href="#">Radera</a>' + '<a class="btn btn-primary editbutton" onclick="adminEditUser('+list[i].user_id+')" data-id = "'+list[i].user_id
-          +'" data-toggle="modal" data-target="#adminEditModal" href="#">Ändra</a>' + '<a class="btn btn-primary adminbutton" onclick="makeAdmin('+list[i].user_id+ "," +list[i].is_admin +')" data-id = "'+list[i].user_id
+          + list[i].last_name + "<br>" + "Admin (0 eller 1): " + list[i].is_admin + "<br>" + '<a class="btn btn-tonehub deletebutton" onclick="adminDeleteUser('+list[i].user_id+')" data-id = "'
+          +list[i].user_id+' " href="#">Radera</a>' + '<a class="btn btn-tonehub editbutton" onclick="adminEditUser('+list[i].user_id+')" data-id = "'+list[i].user_id
+          +'" data-toggle="modal" data-target="#adminEditModal" href="#">Ändra</a>' + '<a class="btn btn-tonehub adminbutton" onclick="makeAdmin('+list[i].user_id+ "," +list[i].is_admin +')" data-id = "'+list[i].user_id
           +'" href="#">Ändra adminstatus</a>'));
      }
     }

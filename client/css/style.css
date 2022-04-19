@@ -1,4 +1,8 @@
 #navbarNav2 > ul > li{
+  font-size: large;
+  font-family: 'Oriya MN';
+  font-weight: bolder;
+  color: rgb(36, 33, 33);
     display: inline-block;
 }
 
@@ -7,6 +11,24 @@
     float: none;
     display: inline-block;
     margin: 0 auto;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: rgb(102, 143, 196);
+}
+
+a:active {
+  text-decoration: none;
+  color: rgb(102, 143, 196);
 }
 
 #registerFinishButton, #LoginFinishButton, #shopFromBasketButton{
@@ -100,4 +122,24 @@
 #bodyBasketModal{
   max-height: 460px;
   overflow:scroll;
+}
+
+#createAddPage{
+  border-color: rgb(196, 215, 240) !important;
+  border-style: double;
+  color: rgb(36, 33, 33);
+  font-weight: bold;
+}
+
+#THcreateAdd{
+  text-align: center;
+  font-size: xx-large;
+  font-weight: bolder;
+  color: rgb(196, 215, 240);
+      text-shadow:
+        -1px -1px 0 rgb(50, 52, 56),
+        1px -1px 0 rgb(50, 52, 56),
+        -1px 1px 0 rgb(50, 52, 56),
+        1px 1px 0 rgb(50, 52, 56);
+
 }
