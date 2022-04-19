@@ -128,6 +128,29 @@ function addProductToCart(productToAdd){
     }
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
   }
+  // button = document.getElementById('addProductToCartButton'+productToAdd);
+  // button.remove();
+
+
+  var checkQuantityTemp = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+
+  if (checkQuantityTemp.has(parseInt(productToAdd))){
+    var q = checkQuantityTemp.get(parseInt(productToAdd));
+  } else{
+    var q = 0;
+  }
+  $.ajax({
+    url:'/product/' + productToAdd,
+    type: 'GET',
+    success: function(product) {
+      if ((product.quantity-q)<1){
+        addToCardButton = document.getElementById('addProductToCartButton'+product.product_id);
+        addToCardButton.remove();
+        $('#buttonDivForProductView'+product.product_id).append("<button type='button' class='btn btn-red' style='font-size:10px; background-color: red;' data-dismiss='modal'onClick='outOfStockAlert()' value='"+parseInt(productToAdd)+"' id='addProductToCartButtonOut"+parseInt(productToAdd)+"'>Slut<span class='cart-item'></span></button>");
+
+      }
+    }
+   });
   getProductsToPrintInBasket();
 }
 
