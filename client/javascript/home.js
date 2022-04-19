@@ -12,14 +12,24 @@ $(document).ready(function(){
       console.log("inloggad " + signedIn);
     } else {
       signedIn = false;
+      var admin;
+      if (JSON.parse(sessionStorage.getItem('auth')).user.is_admin === 1) {
+        admin = true;
+      } else {
+        admin = false;
       console.log("inloggad" + signedIn);
     }
+  }
+
     
     $('#registerButton').toggleClass('d-none', !signedIn);
     $('#loginButton').toggleClass('d-none', !signedIn);
     $('#logoutButton').toggleClass('d-none', signedIn);
     $('#annonsButton').toggleClass('d-none', signedIn);
     $('#userButton').toggleClass('d-none', signedIn);
+    $('#adminButton').toggleClass('d-none', !admin);
+    sessionStorage.setItem('price', parseInt(0));  
+           
     if (JSON.parse(sessionStorage.getItem('auth'))==null){
       sessionStorage.setItem('loggedIn',false);
     }else{
@@ -71,6 +81,14 @@ $('#aboutButton').click(function (e) {
     fillOptions1();
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())
+     e.preventDefault();
+   });
+
+   $('#adminButton').click(function (e) {      
+    $("#mainViewContainer").html($("#view-adminPage").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html())
+    Display_admin();
      e.preventDefault();
    });
 
@@ -179,7 +197,6 @@ $('#contactButton').click(function (e) {
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
 
-
     //showProdInfo("allt", null);
     resetFilter();
     //filternewornot.push("Ny", "Begagnad");
@@ -195,7 +212,17 @@ $('#contactButton').click(function (e) {
       $("#productViewContainer").html($("#view-product").html())
       $("#mainViewContainer").html($("#empty").html())
    };*/
-
+   function showAllInst(){
+    $("#sideBarContainer").html($("#view-sidebar").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
+    resetFilter();
+    filternewornot.length = 0;
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    e.preventDefault();
+  }
    function gitarrView(){  
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())

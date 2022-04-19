@@ -1,8 +1,12 @@
 //BASKET
 $('#basketButton').click(function (e) {
-    e.preventDefault();
-    $("#basketModal").modal('toggle');
-    getProductsToPrintInBasket();
+  e.preventDefault();
+  $("#basketModal").modal('toggle');
+  getProductsToPrintInBasket();
+});
+
+$('#basketModal').on('hide.bs.modal', function (e) {
+  updateItemNumber();
 });
 
 function updateItemNumber(){
@@ -300,12 +304,17 @@ function printBasketedProducts(){
         arrayOfProducts = []
         let hasProducts = false;
         data[2].forEach(element =>arrayOfProducts.push(element))
+        if (arrayOfProducts.length == 0){
+          printEmptyRegister()
+        }else{
           showInRegister(arrayOfProducts)
+        }   
       }
     }); 
   } else {
     var productsToPrint = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     if (productsToPrint.size<1){
+      printEmptyRegister()
       showPriceInRegister(sessionStorage.getItem('price'))
     }else{
       for (let key of productsToPrint.keys()){
@@ -326,25 +335,26 @@ function printBasketedProducts(){
 }
 
 function showInRegister(products){
-
-  for (let i = 0; i <products.length; i++)
-    $.ajax ({
-      url:'/product/'+products[i].product_id,
-      type: 'GET',
-      datatype: 'JSON',
-      contentType: "application/json",
-      success: function(product) {
-        updateprice(product.price*products[i].quantity);
-        showPriceInRegister(sessionStorage.getItem('price'));
-        printProductInBasketRegister(product,products[i].quantity);
-      }
-    });
-
-}
+    for (let i = 0; i <products.length; i++)
+      $.ajax ({
+        url:'/product/'+products[i].product_id,
+        type: 'GET',
+        datatype: 'JSON',
+        contentType: "application/json",
+        success: function(product) {
+          updateprice(product.price*products[i].quantity);
+          showPriceInRegister(sessionStorage.getItem('price'));
+          printProductInBasketRegister(product,products[i].quantity);
+        }
+      });
+  }
 
 function printProductInBasketRegister(product,quantity){
-
   $('#scrollableItemsInBasket').append('<div class="row" id="productDivInRegister"><div class="col-6"><img src='+ product.image +' style="height: 150px; width: 150px;"></div> <div class="col" style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+' <br> <button class="deleteProductFromRegisterButton" onClick="deleteProductFromRegister(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button> </div> </div> <br>');
+}
+
+function printEmptyRegister(){
+  $('#scrollableItemsInBasket').append('<div id="emptyBasketRegister">Din varukorg är tom!</div> <div id="contShop" onclick="showAllInst()"><p>Tryck här för att forsätta shoppa!</p></div>');
 }
 
 function stripeTestFunction(){
