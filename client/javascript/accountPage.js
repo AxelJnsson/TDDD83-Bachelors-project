@@ -19,6 +19,8 @@ class Order {
   }
 }
 
+var orderlista = [];
+
 
 
 
@@ -167,16 +169,113 @@ function displayUserAdd() {
 
    }});}
 
+   function printOrderHistory() {
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+  
+    $.ajax ({
+      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+      url:'/order/' +userID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+  
+      success: function(orderhistory) {
+        for(var i = 0; i < orderhistory.length ; i++){
+          item =  new Order(orderhistory[i].id, getOrderHistoryItems(orderhistory[i].id), orderhistory[i].amount);
+          orderlista.push(item);
+          //console.log( getOrderHistoryItems(orderhistory[i].id));
+        }
+        return orderhistory;
+      },
+      error: function(){
+        //alert("error");
+
+      } 
+    });
+  }
+
+  function getOrderHistoryItems(orderID){
+
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    $.ajax ({
+      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+      url:'/orderitems/' +orderID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+  
+      success: function(order) {
+        var product_names = []
+       //console.log(order)
+        for (var i = 0; i < order.length; i++){
+          console.log(order[i].product_id)
+        let tempProdName = getProduct(order[i].product_id) //問題是這裡
+        console.log(tempProdName)
+       product_names.push(tempProdName);
+        }
+        return product_names;
+      },
+      error: function(){
+        //alert("error");
+      } 
+    });
+  }
+
+  // function getOrderItems(orderID){
+
+  //   userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+  //   $.ajax ({
+  //     headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+  //     url:'/orderitems/' +orderID,
+  //     type: 'GET',
+  //     datatype: 'JSON',
+  //     contentType: "application/json",
+  
+  //     success: function(order) {
+  //       const product_names = []
+  //      console.log(order)
+  //       for (var i = 0; i < order.length; i++){
+  //       temp = getProduct(order[i].product_id).name
+  //      product_names.push(temp);
+  //       }
+  //       return product_names;
+  //     },
+  //     error: function(){
+  //       //alert("error");
+  //     } 
+  //   });
+  // }
+
+  function getProduct(prod_id){
+    $.ajax ({
+      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+      url:'/product/' +prod_id,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+  
+      success: function(prod) {
+        //getOrderHistoryItems(orderhistory);
+        console.log(prod)
+        return prod;
+      },
+      error: function(){
+        //alert("error");
+      } 
+    });
+  }
 
 
 function displayHistory() {
   //printOrderHistory();
   const orderhistory = printOrderHistory();
 
-  for (item in orderhistory){
-    $("#orderHistory").append("<div class='row' id='historyCol'>"+ orderhistory.order_id + orderhistory.amount + "</div>");
+  // for (item in orderhistory){
+  //   //$("#orderHistory").append("<div class='row' id='historyCol'>"+ orderhistory.order_id + orderhistory.amount + "</div>");
+  //   $("#orderHistory").append("<div class='row' id='historyCol'>hej</div>");
 
-  }
+
+  // }
 
 
   let order1 = new Order(1, "Gitarr", "Piano", 3000);
@@ -184,7 +283,7 @@ function displayHistory() {
   let order3 = new Order(3,"Piano", "Flöjt", 10000);
   let order4 = new Order(4, "Violin", "Bas", 3700);
 
-  const orderlista= [order1, order2, order3, order4];
+  //const orderlista= [order1, order2, order3, order4];
 
  
 for (let i=0; i < orderlista.length; i++) {

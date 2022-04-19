@@ -137,6 +137,9 @@ class Order_item (db.Model):
   def __repr__(self):
     return '<Order_item {}: {} {} {}  >'.format(self.id, self.product_id, self.quantity, self.order_nr)
 
+  def serialize(self):
+    return dict(id=self.id, product_id=self.product_id, quantity=self.quantity, order_nr = self.order_nr)
+
 
 #Sets up database from database_schema
 def executeTestSQL(filename):
@@ -482,24 +485,37 @@ def createorders(user_id):
     orderhistory = Order_history.query.filter_by(user_id=user_id).first()
     order = Orders.query.filter_by(order_history_id = orderhistory.id).all()
 
-    # bought_products =[]
+    bought_products = []
+
+    for x in order:
+
+      bought_products.append(x.serialize())
+
+    
+    
     # p = Product.query.filter_by(product_id = something)
     # order_list =[]
 
-    print(order)
+    #print(bought_products)
 
     # for x in order:
     #   order_list.append(x.serialize())
-    return jsonify(order)
+    return jsonify(bought_products)
   return "401"
 
 #Ska lägga till orderItems som har samma order_nr som foreign key. 
-@app.route('/orderitem/<int:user_id>', methods =['POST'])
-def createorderitem(user_id): #user_id innan
-  if request.method == 'POST':
-    #product_nr = request.get_json()
- 
-    return "200"
+@app.route('/orderitems/<int:order_no>', methods =['GET'])
+def getorderitems(order_no): #user_id innan
+  if request.method == 'GET':
+    print(order_no)
+    orders = Order_item.query.filter_by(order_nr = order_no)
+    #print(orders)
+    product_list =[]
+
+    for x in orders:
+      product_list.append(x.serialize())
+    #print(product_list)
+    return jsonify(product_list)
   else:
     return "401"
 
