@@ -240,7 +240,7 @@
   <script id="view-sidebar" type="text/html">
     <!--Sidebar-->
   
-  <div class="row" id="innerSidebar" style="margin-top: 5px;">
+  <div class="row rounded" id="innerSidebar" style="margin-top: 5px;">
     <div class="col">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
@@ -340,8 +340,9 @@
         </button>
         <div width=200>
         </div>
-        <div class="collapse navbar-collapse" id="navbarNav2"> Sortera på:
-          <ul class="sort-nav">
+        <div class="collapse navbar-collapse row" id="navbarNav2">
+          <ul class="col-3"><li> Sortera på: </li></ul>
+          <ul class="sort-nav col" style="word-spacing: 20px;">
             <li class="nav-item">
               <a class="sort-by" href="#" onclick=getClickID() id="price">Pris</a>
             </li>
@@ -448,7 +449,7 @@
                   <div class="d-flex justify-content-between align-items-center mb-3">
                       <h1 class="text-right fat" >Min info</h1>
                       <div>
-                      <button type="button" class="btn btn-primary" id="editUserButton" onclick="editUser2()">Redigera</button>
+                      <button type="button" class="btn btn-tonehub" id="editUserButton" onclick="editUser2()">Redigera</button>
                       <button type="button" class="btn btn-danger" id="editUserButton" onclick="deleteUser()">Radera konto</button>
                       </div>
                   </div>
@@ -570,7 +571,7 @@
       <div class="col-lg-6 mx-auto" style="margin-top: 30px;">
         <p class="lead mb-4">Välkommen till oss, här kan du både köpa nya och begagnade instrument samt dessutom sälja dina instrument. Allt på ett ställe, vilken grej!</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center" style="margin-bottom: 50px;">
-          <button type="button" class="btn btn-primary btn-lg px-4 gap-3" onclick="buyInstruments()">Köp instrument</button>
+          <button type="button" class="btn btn-tonehub btn-lg px-4 gap-3" onclick="buyInstruments()">Köp instrument</button>
           <button type="button" onclick="regOrAnnons()" class="btn btn-secondary btn-lg px-4">Lägg upp annons</button>
         </div>
       </div>
@@ -674,16 +675,11 @@
 
 <!--skapa annonssida-->
   <script id="view-createAdd" type="text/html">
-  <div class="center" >
-  <div class="d-flex justify-content-between align-items-center mb-3" >
-    <h4 class="text-right">Skapa Annons!</h4>
-  </div>
-<div class="row mt-2">
-    <div class="col-md-6"><label class="labels">Rubrik</label><input type="text" id="createText" class="form-control" placeholder="Namn" value=""></div>  
-    <div class="col-md-6">
-      <label for="formFile" id="createImg" style="padding: 5px;" class="form-label">Ladda upp bild</label>
-      <input class="form-control" type="file" id="formFile">
+    <div class="center" id="createAddPage" >
+    <div class="d-flex justify-content-between align-items-center mb-3" id="THcreateAdd">
+      <p style="width: max-content;">Skapa Annons!</p>
     </div>
+<<<<<<< HEAD
 </div>
 <div class="row mt-3"> 
     <div class="selectdiv">
@@ -741,6 +737,72 @@
 </div>
 
 </script>
+=======
+      <div class="row mt-2">
+          <div class="col-md-6"><label class="labels">Rubrik</label><input type="text" id="createText" class="form-control" placeholder="Namn" value=""></div>  
+          <div class="col-md-6">
+            <label for="formFile" id="createImg" style="padding: 5px;" class="form-label">Ladda upp bild</label>
+            <input class="form-control" type="file" id="formFile">
+          </div>
+      </div>
+      <div class="row mt-3">
+        <!--Dessa behöver göras om till dropdown mmenyer på saker som färg, brand osv-->      
+          <div class="selectdiv">
+            <label>
+              <select id="typVal" onchange="updateChoice2()">
+                  <option selected>Kategori</option>        
+              </select>
+          </label>
+          <label>
+            <select id="brandVal" onchange="updateChoice()">
+                <option  selected>Märke</option>
+              
+            </select>
+        </label>
+            <label>
+              <select id="modelVal">
+                  <option selected>Modell</option>
+                
+              
+              </select>
+          </label>
+          
+            <label>
+              <select id="colorVal">
+                  <option selected>Färg</option>
+                  <option>Blå</option>
+                  <option>Röd</option>
+                  <option>Grön</option>
+                  <option>Svart</option>
+                  <option>Vit</option>
+                  <option>Grå</option>
+                  <option>Orange</option>
+                  <option>Lila</option>
+                  <option>Rosa</option>
+                  <option>Trä</option>
+                  <option>Turkos</option>
+                  <option>Beige</option>
+                  <option>Alu</option>
+                  <option>Transparant</option>
+                  <option>Gul</option>
+                  <option>Brons </option>
+                  <option>Brun</option>
+                  
+              </select>
+          </label>
+          </div>  
+          <div class="col-md-6"><label class="labels">Pris</label><input type="number" id="createPris" class="form-control" placeholder="Pris" value=""></div>
+        <!-- <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
+          <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div>-->
+          <div class="col-md-6"><label class="labels">Årtal</label><input type="number" id="createYear" min="1950" max="2022" class="form-control" placeholder="" value=""></div>   
+          <div class="mt-5 text-center"><button class="btn btn-tonehub profile-button" id="createAddButton" onclick="createAdd()" type="button">Skapa annons</button></div>
+      </div>
+      </div>
+      </div>
+  </div>
+  
+  </script>
+>>>>>>> fad075feebac818785a9cc0f27a0fa553346a099
 
   <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -791,7 +853,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeLoginButton">Stäng</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="LoginFinishButton">Logga in</button>
+          <button type="button" class="btn btn-tonehub" data-dismiss="modal" id="LoginFinishButton">Logga in</button>
         </div>
       </div>
     </div>
@@ -832,7 +894,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeRegisterButton">Stäng</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="registerFinishButton">Registrera
+          <button type="button" class="btn btn-tonehub" data-dismiss="modal" id="registerFinishButton">Registrera
             dig</button>
         </div>
       </div>
@@ -870,7 +932,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeEditButton">Stäng</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="editFinishButton"
+          <button type="button" class="btn btn-tonehub" data-dismiss="modal" id="editFinishButton"
             onclick="editUser3()">Spara ändringar</button>
         </div>
       </div>
@@ -942,7 +1004,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeEditButton1">Stäng</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="editFinishButton1">Spara ändringar</button>
+          <button type="button" class="btn btn-tonehub" data-dismiss="modal" id="editFinishButton1">Spara ändringar</button>
         </div>
       </div>
     </div>
@@ -1053,7 +1115,7 @@
 </div>
 
   <!--Footer-->
-  <footer class="mt-4 text-center bg-light">
+  <footer class="mt-4 text-center" id="footer">
 
     <!--Iconer osv om man vill-->
 
@@ -1171,8 +1233,8 @@
     <!-- Section: Links  -->
 
     <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      ToneHub
+    <div class="text-center p-4" style="background-color: rgb(102, 143, 196);">
+      <strong>ToneHub</strong>
     </div>
   </footer>
 
