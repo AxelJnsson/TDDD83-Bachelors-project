@@ -139,7 +139,7 @@ function addProductToCart(productToAdd){
       if ((product.quantity-q)<1){
         addToCardButton = document.getElementById('addProductToCartButton'+product.product_id);
         addToCardButton.remove();
-        $('#buttonDivForProductView'+product.product_id).append("<button type='button' class='btn btn-red' style='font-size:10px; background-color: red;' data-dismiss='modal'onClick='outOfStockAlert()' value='"+parseInt(productToAdd)+"' id='addProductToCartButtonOut"+parseInt(productToAdd)+"'>Slut<span class='cart-item'></span></button>");
+        $('#buttonDivForProductView'+product.product_id).append("<button type='button' class='btn' data-dismiss='modal'onClick='outOfStockAlert()' value='"+parseInt(productToAdd)+"' id='addProductToCartButtonOut"+parseInt(productToAdd)+"'>Slut<span class='cart-item'></span></button>");
 
       }
     }

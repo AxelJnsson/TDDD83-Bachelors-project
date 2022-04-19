@@ -143,6 +143,12 @@ div.sticky {
   font-weight: bold !important;
 }
 
+[id^='addProductToCartButtonOut']{
+  background-color: rgb(255, 198, 123);
+  color: rgb(36, 35, 33);
+  font-weight: bold;
+
+}
 h2 {
   text-align: center;
   font-size: 35px;
@@ -228,13 +234,15 @@ p {
 #innerSidebar { 
   background-color: /*#e4e5e7*/rgb(196, 215, 240);
   color: black;
-  /*background: url('../images/sidebar.png');*/
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /*font-family: 'Oriya MN';*/
+  font-family: 'Oriya MN';
   overflow-y: scroll;
-  height: 570px
+  height: 570px;
+  border-style: double;
+  border-color: rgb(102, 143, 196);
+  
   }
 
   #annap{

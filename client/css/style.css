@@ -31,9 +31,7 @@ a:active {
   text-decoration: none;
   color: rgb(102, 143, 196);
 }
- a:focus{
-  background-color: rgb(134, 164, 202); 
-}
+
 
 #registerFinishButton, #LoginFinishButton, #shopFromBasketButton{
   background-color:orange;
