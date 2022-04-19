@@ -19,7 +19,7 @@ $(document).ready(function() {
 $('#contactButton').click(function (e) {
    /* e.preventDefault(); */  
     $(".container").html($("#view-contact").html())
-    $("#skickaknapp").append('<button type="button" class="btn btn-primary" id="sendButton" onclick="submitmsg()">Skicka</button>');
+    $("#skickaknapp").append('<button type="button" class="btn btn-tonehub" id="sendButton" onclick="submitmsg()">Skicka</button>');
 });
 
 $('#homeButton').click(function (e) {
@@ -45,7 +45,7 @@ $('#carsButton').click(function (e) {
 $('#registerButton').click(function (e) {
   $(".container").html($("#view-signup").html())
   //alert("registrera");
-  $("#signupknapp").append(' <button type="button" class="btn btn-primary" id="signupButton" onclick="signUp()">Registrera</button>');
+  $("#signupknapp").append(' <button type="button" class="btn btn-tonehub" id="signupButton" onclick="signUp()">Registrera</button>');
  /* e.preventDefault(); */
 });
 
@@ -53,7 +53,7 @@ $('#loginButton').click(function (e) {
   $(".container").html($("#view-login").html())
   
  
-  $("#loggainknapp").append('<button type="button" class="btn btn-primary" id="loginButton" onclick="logIn()">Logga in</button>');
+  $("#loggainknapp").append('<button type="button" class="btn btn-tonehub" id="loginButton" onclick="logIn()">Logga in</button>');
  /* e.preventDefault(); */
 });
 
@@ -92,13 +92,13 @@ function showCars(){
         
        if (list[i].owner != null){ 
             if (list[i].owner.id == JSON.parse(sessionStorage.getItem('auth')).user.id) {        
-           cards.eq(i).html(("Id: " + list[i].id + "<br>"+ "Make: " + list[i].make + "<br>" + "Model: " + list[i].model + "<br>" + "Bokad av: " + list[i].owner.name + "<br>" + '<a class="btn btn-primary deletebutton" data-id = "'+list[i].id+'" href="#">Delete</a>' + '<a class="btn btn-primary editbutton" data-id = "'+list[i].id+'" data-toggle="modal" data-target="#exampleModal" href="#">Edit</a>' + '<a class="btn btn-primary unbookbutton" data-id = "'+list[i].id+'" href="#">Unbook</a>'));
+           cards.eq(i).html(("Id: " + list[i].id + "<br>"+ "Make: " + list[i].make + "<br>" + "Model: " + list[i].model + "<br>" + "Bokad av: " + list[i].owner.name + "<br>" + '<a class="btn btn-tonehub deletebutton" data-id = "'+list[i].id+'" href="#">Delete</a>' + '<a class="btnbtn-tonehub editbutton" data-id = "'+list[i].id+'" data-toggle="modal" data-target="#exampleModal" href="#">Edit</a>' + '<a class="btn btn-tonehub unbookbutton" data-id = "'+list[i].id+'" href="#">Unbook</a>'));
             } else {
-              cards.eq(i).html(("Id: " + list[i].id + "<br>"+ "Make: " + list[i].make + "<br>" + "Model: " + list[i].model + "<br>" + "Bokad av: " + list[i].owner.name + "<br>" + '<a class="btn btn-primary deletebutton" data-id = "'+list[i].id+'" href="#">Delete</a>' + '<a class="btn btn-primary editbutton" data-id = "'+list[i].id+'" data-toggle="modal" data-target="#exampleModal" href="#">Edit</a>'));
+              cards.eq(i).html(("Id: " + list[i].id + "<br>"+ "Make: " + list[i].make + "<br>" + "Model: " + list[i].model + "<br>" + "Bokad av: " + list[i].owner.name + "<br>" + '<a class="btn btn-tonehub deletebutton" data-id = "'+list[i].id+'" href="#">Delete</a>' + '<a class="btn btn-tonehub editbutton" data-id = "'+list[i].id+'" data-toggle="modal" data-target="#exampleModal" href="#">Edit</a>'));
 
             }
           } else {
-           cards.eq(i).html(("Id: " + list[i].id + "<br>"+ "Make: " + list[i].make + "<br>" + "Model: " + list[i].model + "<br>" + '<a class="btn btn-primary deletebutton" data-id = "'+list[i].id+'" href="#">Delete</a>' + '<a class="btn btn-primary editbutton" data-id = "'+list[i].id+'" data-toggle="modal" data-target="#exampleModal" href="#">Edit</a>' +'<a class="btn btn-primary bookbutton" data-id = "'+list[i].id+'" href="#">Book</a>'));           
+           cards.eq(i).html(("Id: " + list[i].id + "<br>"+ "Make: " + list[i].make + "<br>" + "Model: " + list[i].model + "<br>" + '<a class="btn btn-tonehub deletebutton" data-id = "'+list[i].id+'" href="#">Delete</a>' + '<a class="btn btn-tonehub editbutton" data-id = "'+list[i].id+'" data-toggle="modal" data-target="#exampleModal" href="#">Edit</a>' +'<a class="btn btn-tonehub bookbutton" data-id = "'+list[i].id+'" href="#">Book</a>'));           
            
           }         
   }
