@@ -81,6 +81,7 @@ var payWithCard = function(stripe, card, clientSecret) {
       } else {
         // The payment succeeded!
         orderComplete(result.paymentIntent.id);
+        //addOrdersAndItemsToHistory();
         SucPay();
       }
     });

@@ -124,14 +124,18 @@ class Orders(db.Model):
   def __repr__(self):
     return '<Orders {}: {} {}  >'.format(self.order_nr, self.amount, self.order_history_id)
 
+  def serialize(self):
+    return dict(id=self.order_nr, amount=self.amount, order_history_id=self.order_history_id)
+
 class Order_item (db.Model):
-  id = db.Column(db.Integer, db.ForeignKey('product.product_id'), primary_key = True )
+  id = db.Column(db.Integer, primary_key = True )
+  product_id = db.Column(db.Integer, db.ForeignKey('product.product_id'))
   quantity = db.Column(db.Integer)
   order_nr = db.Column(db.Integer, db.ForeignKey('orders.order_nr'))
   
 
   def __repr__(self):
-    return '<Order_item {}: {} {}  >'.format(self.id, self.quantity, self.order_nr)
+    return '<Order_item {}: {} {} {}  >'.format(self.id, self.product_id, self.quantity, self.order_nr)
 
 
 #Sets up database from database_schema
@@ -446,18 +450,47 @@ def createorders(user_id):
     # order_id = Orders.query.get_or_404(order.order_nr)
     # print("order id:")
     # print(order_id)
+
+    print("vad är detta?")
+    user_session = Shopping_Session.query.filter_by(user_id = user_id).first()
+    print(user_session.id)
+    order_items = Cart_Item.query.filter_by(session_id = user_session.id).all() #lades till
+    print(len(order_items))
+    
+    for x in order_items:
+      item = Order_item(product_id = x.product_id)
+      item.quantity = x.quantity
+      item.order_nr = order.order_nr
+      db.session.add(item)
+    #orderhist = Order_history.query.filter_by(user_id = user_id)
+    #x = Orders(order_history_id = orderhist.id)
+    db.session.commit()
+
+    prod_hist_id = Order_item.query.filter_by(order_nr = order.order_nr).all()
+    sum = 0
+    for x in prod_hist_id:
+      prod_item = Product.query.filter_by(product_id = x.product_id).first()
+      sum += prod_item.price * x.quantity
+      print(sum)
+    order.amount = sum
+    db.session.commit()
     return jsonify(order.order_nr) #skicka tbx ordr_id
   elif request.method == 'GET': 
     #DENNA FUNGERAR INTE ÄN
    
 
+    orderhistory = Order_history.query.filter_by(user_id=user_id).first()
+    order = Orders.query.filter_by(order_history_id = orderhistory.id)
 
-    order = Orders.query.filter_by(order_nr = Order_history.query.filter_by(user_id==user_id).user_id)
-    order_list =[]
+    # bought_products =[]
+    # p = Product.query.filter_by(product_id = something)
+    # order_list =[]
 
-    for x in order:
-      order_list.append(x.serialize())
-    return jsonify(order_list)
+    print(order)
+
+    # for x in order:
+    #   order_list.append(x.serialize())
+    return jsonify(order)
   return "401"
 
 #Ska lägga till orderItems som har samma order_nr som foreign key. 
@@ -465,16 +498,7 @@ def createorders(user_id):
 def createorderitem(user_id): #user_id innan
   if request.method == 'POST':
     #product_nr = request.get_json()
-    print("vad är detta?")
-    user_session = Shopping_Session.query.filter_by(user_id = user_id).first()
-    print(user_session.id)
-    order_items = Cart_Item.query.filter_by(session_id = user_session.id).all() #lades till
-    print(len(order_items))
-    
-    #orderhist = Order_history.query.filter_by(user_id = user_id)
-    #x = Orders(order_history_id = orderhist.id)
-    #db.session.add(x)
-    #db.session.commit()
+ 
     return "200"
   else:
     return "401"

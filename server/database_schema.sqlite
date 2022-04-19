@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS new_product;
 DROP TABLE IF EXISTS shopping_session;
 DROP TABLE IF EXISTS cart_item;
 DROP TABLE IF EXISTS cart__item;
+DROP TABLE IF EXISTS order_item;
 
 SELECT 'Creating tables' AS 'Message';
 
@@ -106,8 +107,9 @@ CREATE TABLE IF NOT EXISTS orders (
 
 CREATE TABLE IF NOT EXISTS order_item (
 id INTEGER PRIMARY KEY AUTOINCREMENT,
+product_id INTEGER NOT NULL,
 order_nr INTEGER NOT NULL,
 quantity INTEGER,
 FOREIGN KEY(order_nr) REFERENCES orders(order_nr),
-FOREIGN KEY(id) REFERENCES product(product_id)
+FOREIGN KEY(product_id) REFERENCES product(product_id)
 );

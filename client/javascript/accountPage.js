@@ -170,7 +170,14 @@ function displayUserAdd() {
 
 
 function displayHistory() {
-  
+  const orderhistory = printOrderHistory();
+
+  for (item in orderhistory){
+    $("#orderHistory").append("<div class='row' id='historyCol'>"+ orderhistory.order_id + orderhistory.amount + "</div>");
+
+  }
+
+
   let order1 = new Order(1, "Gitarr", "Piano", 3000);
   let order2 = new Order(2, "Trumma", "Saxofon", 1500);
   let order3 = new Order(3,"Piano", "Flöjt", 10000);

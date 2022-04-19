@@ -450,6 +450,28 @@ userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
 
 }
 
+function printOrderHistory() {
+  userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+
+  $.ajax ({
+    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/order/' +userID,
+    type: 'GET',
+    datatype: 'JSON',
+    contentType: "application/json",
+
+    success: function(orderhistory) {
+      console.log(orderhistory);
+      return orderhistory;
+    },
+    error: function(){
+      alert("error");
+    } 
+  });
+}
+
+
+
 function addItemToOrder(ordernr){
     //ajax
 

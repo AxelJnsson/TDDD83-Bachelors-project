@@ -452,5 +452,6 @@ function regOrAnnons() {
 function SucPay() {
   $("#mainViewContainer").html($("#lyckad-betalning").html())
   alert("din betalning gick igenom");
+  addOrdersAndItemsToHistory();
   //Gör nåt som uppdaterar varukorgen och skapar en
 }
