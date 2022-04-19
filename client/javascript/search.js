@@ -100,7 +100,6 @@ function search(productList) {
   //Kolla om några instrument matchar sökningen på bokstavsnivå för att hantera felstavning
 
   if (searchResults.length == 0) {
-
     //Kolla först för hela strängen
     for (a = 0; a < productList.length; a++) {
       var ratedAttributes = [];
@@ -116,7 +115,7 @@ function search(productList) {
         ratedAttributes[b] = sim;
       }
       var max = Math.max.apply(null, ratedAttributes); 
-      if (max > 0) {
+      if (max > 0.5) {
         searchResults.push(productList[a]);
         searchResults[searchResults.length - 1].price = max; 
       }
@@ -140,7 +139,7 @@ function search(productList) {
             }
             max = Math.max.apply(null, ratedAttributes); 
 
-            if (max > 0) {
+            if (max > 0.5) {
               //Höj ratingen om produkten redan finns i searchResults, lägg till produkten annars
               bloop:
               for (d = 0; d < searchResults.length; d++) {

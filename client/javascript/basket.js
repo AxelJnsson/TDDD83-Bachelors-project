@@ -354,7 +354,7 @@ function printProductInBasketRegister(product,quantity){
 }
 
 function printEmptyRegister(){
-  $('#scrollableItemsInBasket').append('<div id="emptyBasketRegister">Din varukorg är tom!</div> <div id="contShop" onclick="showAllInst()"><p>Tryck här för att forsätta shoppa!</p></div>');
+  $('#scrollableItemsInBasket').append('<div id="emptyBasketRegister">Din varukorg är tom!</div> <div id="contShop" onclick="showAllInst()"><p style="cursor: pointer;">Tryck här för att forsätta shoppa!</p></div>');
 }
 
 function stripeTestFunction(){
