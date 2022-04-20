@@ -210,32 +210,33 @@ easypost.api_key = "<EZTK437cee1a8ca945c09c89080aef7debffIjlTAjf2l3c6oiT0CEvzFA>
 shippo.api_key = "<shippo_test_4539126ef7ee2c56604e453728c9feb81c8e1494>"
 shippo.config.api_key= "shippo_test_4539126ef7ee2c56604e453728c9feb81c8e1494"
 @app.route('/createShipment', methods=['POST'])
-#@jwt_required()
+
 def shipment():
   address_from = {
-        "name": "ToneHub",
-    "street1": "Skeppargatan 75",
-    "city": "Stockholm",
-    "state": "Stockholm",
-    "zip": "11530",
-    "country": "SE",
+  "name": "ToneHub",
+    "street1": "965 Mission St",
+    "street2": "",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip": "94103",
+    "country": "US",
     "phone": "+1 555 341 9393",
-    "email": "support@goshippo.com",
   }
 
 # Example address_to object dict
 # The complete reference for the address object is available here: https://goshippo.com/docs/reference#addresses
+  data = request.get_json(); 
 
   address_to = {
-       "name": "Mrs. Hippo",
-    "street1": "200 University Ave W",
+       "name": data["name"],
+    "street1": data["address"],
     "street2": "",
-    "city": "Waterloo",
-    "state": "ON",
-    "zip": "N2L 3G1",
-    "country": "CA",
-    "phone": "+1 555 341 9393",
-    "email": "support@goshippo.com",
+    "city": data["city"],
+    "state": "",
+    "zip": data["zip"],
+    "country": "SE",
+    "phone": data["phone"],
+    "email": data["email"],
     
   }
 
@@ -251,6 +252,28 @@ def shipment():
     "mass_unit": "kg",
   }
 
+  customs_item = {
+    "description": "T-Shirt",
+    "quantity": 2,
+    "net_weight": "400",
+    "mass_unit": "g",
+    "value_amount": "20",
+    "value_currency": "USD",
+    "origin_country": "US",
+    "tariff_number": "",
+  }
+
+# Creating the CustomsDeclaration
+# The details on creating the CustomsDeclaration is here: https://goshippo.com/docs/reference#customsdeclarations
+  customs_declaration = shippo.CustomsDeclaration.create(
+    contents_type='MERCHANDISE',
+    contents_explanation='T-Shirt purchase',
+    non_delivery_option='RETURN',
+    certify=True,
+    certify_signer='Mr Hippo',
+    items=[customs_item])
+
+
 # Example shipment object
 # For complete reference to the shipment object: https://goshippo.com/docs/reference#shipments
 # This object has asynchronous=False, indicating that the function will wait until all rates are generated before it returns.
@@ -259,8 +282,10 @@ def shipment():
     address_from=address_from,
     address_to=address_to,
     parcels=[parcel],
+    customs_declaration=customs_declaration.object_id,
     asynchronous=False
   )
+
 
 # Rates are stored in the `rates` array
 # The details on the returned object are here: https://goshippo.com/docs/reference#rates
@@ -279,7 +304,7 @@ def shipment():
           transaction_international.tracking_number)
     print("The label can be downloaded at %s" %
           transaction_international.label_url)
-    return "401"
+    return  transaction_international.label_url
   else:   
     print("Failed purchasing the label due to:")
     for message in transaction_international.messages:
