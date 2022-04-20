@@ -61,9 +61,14 @@ div.sticky {
 }
 
 .footer {
+  
   position: absolute; 
     left: 0 ; right: 0; bottom: 0; 
     height:[footer-height] 
+  
+}
+#footer{
+  background-color: rgb(196, 215, 240);
 }
 .column {
   float: none;
@@ -120,7 +125,7 @@ div.sticky {
 
 .wrapper {
   text-align: center;
-  background-color: #384052;
+  background-color: white;
   padding: 50px;
   box-shadow: 0 0 5px ;
 }
@@ -129,7 +134,14 @@ div.sticky {
   color: black;
 }
 
-
+.btn-tonehub{
+  background-color: rgb(196, 215, 240);
+  color: rgb(36, 33, 33);
+  font-weight: bold;
+}
+.btn-secondary{
+  font-weight: bold !important;
+}
 
 h2 {
   text-align: center;
@@ -139,14 +151,14 @@ h2 {
   color: white;
 }
 
-h1 {
-  /*color: white; kommenterar bort den sålänge då visa texter ej syns */
+/*h1 {
+  color: white; kommenterar bort den sålänge då visa texter ej syns 
 }
 
 
 p {
-  /*text-align: justify;*/
-}
+  text-align: justify;
+}*/
 
 .team {
   display: flex;
@@ -245,6 +257,7 @@ p {
     color: black;
   }
   #sidebarAndProduct{
+    background-color: rgb(134, 164, 202);
     color: rgb(50, 52, 56);
     padding-top: 20px
   }
@@ -277,6 +290,10 @@ p {
     color: black;
   }
 
+  #userCard {
+    height : auto;
+    width : 250px;
+  }
   .cart {
     position:fixed;
     top:20px;
@@ -301,8 +318,53 @@ p {
       font-weight: bold;
       font-size: xx-large;
       text-shadow:
-        -1px -1px 0 rgb(121, 150, 187),
-        1px -1px 0 rgb(121, 150, 187),
-        -1px 1px 0 rgb(121, 150, 187),
-        1px 1px 0 rgb(121, 150, 187);
+        -1px -1px 0 rgb(50, 52, 56),
+        1px -1px 0 rgb(50, 52, 56),
+        -1px 1px 0 rgb(50, 52, 56),
+        1px 1px 0 rgb(50, 52, 56);
     }
+    #emptyBasketRegister{
+      text-align: center;
+      text-decoration: dotted;
+      font-size: xx-large;
+      font-weight: bolder;
+      color: rgb(196, 215, 240);
+      margin-top: 20px;
+      text-shadow:
+        -1px -1px 0 rgb(50, 52, 56),
+        1px -1px 0 rgb(50, 52, 56),
+        -1px 1px 0 rgb(50, 52, 56),
+        1px 1px 0 rgb(50, 52, 56);
+    }
+    #contShop{
+      text-align: center;
+      text-decoration:wavy;
+      font-size: large;
+      font-weight: bolder;
+      color: rgb(50, 52, 56);
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+        td, th {
+          border: 0;
+          color: #666;
+          font-size: 0.8rem;
+        }
+      
+      td, th {
+        vertical-align: middle;
+        text-align: center;
+        
+      }
+    
+    .price {
+      margin-left: 1rem;
+    }
+    
+    .modal-footer {
+      padding-top: 0rem;
+    }
+
+.btn-group {
+  float:right;
+}
