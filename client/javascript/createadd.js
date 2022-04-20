@@ -47,7 +47,6 @@ function fillOptions1(){
           //filtertest2(allinstruments, filteringByArrayTest);
       },
       error: function(){
-          alert("fel");
       }    
   });
 }
@@ -143,7 +142,6 @@ function createSelects(filteringByArrayTest){
           filtertestSelect(allinstruments, filteringByArrayTest);
       },
       error: function(){
-          alert("fel");
       }    
   });
 }

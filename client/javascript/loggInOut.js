@@ -112,7 +112,6 @@ function logoutUser() {
             contentType: "application/json",
           
             success: function() {
-              alert("hej") 
       }
     })}
     });

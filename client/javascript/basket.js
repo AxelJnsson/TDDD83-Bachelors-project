@@ -98,12 +98,10 @@ function addProductToCart(productToAdd){
       url:'/product/'+productToAdd+'/adding',
       type: 'POST',
       success: function(u) { 
-           //alert("funkar")
           $.ajax({    
             url:'/product/'+ productToAdd,
             type: 'GET',
             success: function(product) { 
-              //alert("lägger till "+productToAdd)
               updateprice(parseInt(product.price));
               $("#productModal").modal('hide');
              
@@ -295,7 +293,6 @@ function deleteProductFromCart2(productID){
 
     },
     error: function(u){
-      //alert("tog inte bort fk u");
     } 
   });
 }
@@ -391,21 +388,7 @@ function printEmptyRegister(){
   $('#scrollableItemsInBasket').append('<div id="emptyBasketRegister">Din varukorg är tom!</div> <div id="contShop" onclick="showAllInst()"><p style="cursor: pointer;">Tryck här för att forsätta shoppa!</p></div>');
 }
 
-function stripeTestFunction(){
-  $.ajax ({
-      url:'/create-checkout-session',
-      type: 'POST',
-      datatype: 'JSON',
-      contentType: "application/json",
-      data: JSON.stringify({
-      "price":(JSON.parse(sessionStorage.getItem('price')*100))}),
-      success: function(checkoutUrl) {    
-      // return stripe.redirectToCheckout({sessionId: data.sessionId})
-      // recordoOrder()
-      window.location.href = checkoutUrl
-      }
-  }); 
-}
+
 
 function deleteProductFromRegister(productID){
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
@@ -449,7 +432,16 @@ function updateprice(price){
 
 function showPriceInRegister(currentTotal){
   $('#totalsumLine').empty();
-  $('#totalsumLine').append("Total: " + currentTotal + "kr");
+  $('#totalsumLine').append( + currentTotal + "kr");
   stripePay(currentTotal*100);
+ getUserdetails();
 
+}
+
+function getUserdetails() { 
+  
+//var namn = JSON.parse(sessionStorage.getItem('auth')).user.first_name;
+  $('#cashName').val(JSON.parse(sessionStorage.getItem('auth')).user.first_name);
+  $('#cashEmail').val(JSON.parse(sessionStorage.getItem('auth')).user.email);
+  $('#cashName').val(JSON.parse(sessionStorage.getItem('auth')).user.first_name);
 }
