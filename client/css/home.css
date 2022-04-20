@@ -23,6 +23,7 @@ div {
 .card button:hover {
   opacity: 0.7;
 }
+
 main {
   margin: 10;
   padding-top: 15%;
@@ -60,9 +61,14 @@ div.sticky {
 }
 
 .footer {
+  
   position: absolute; 
     left: 0 ; right: 0; bottom: 0; 
     height:[footer-height] 
+  
+}
+#footer{
+  background-color: rgb(196, 215, 240);
 }
 .column {
   float: none;
@@ -83,10 +89,15 @@ div.sticky {
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(114, 40, 40, 0.2);
+  box-shadow: 0 4px 8px 0 #a6a6a6;
   margin: 8px;
   width: 270px;
   height: 520px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 #666666;
+  transition: all 0.3s ease;
 }
 
  #about {
@@ -114,7 +125,7 @@ div.sticky {
 
 .wrapper {
   text-align: center;
-  background-color: #384052;
+  background-color: white;
   padding: 50px;
   box-shadow: 0 0 5px ;
 }
@@ -123,7 +134,14 @@ div.sticky {
   color: black;
 }
 
-
+.btn-tonehub{
+  background-color: rgb(196, 215, 240);
+  color: rgb(36, 33, 33);
+  font-weight: bold;
+}
+.btn-secondary{
+  font-weight: bold !important;
+}
 
 h2 {
   text-align: center;
@@ -133,14 +151,14 @@ h2 {
   color: white;
 }
 
-h1 {
-  /*color: white; kommenterar bort den sålänge då visa texter ej syns */
+/*h1 {
+  color: white; kommenterar bort den sålänge då visa texter ej syns 
 }
 
 
 p {
-  /*text-align: justify;*/
-}
+  text-align: justify;
+}*/
 
 .team {
   display: flex;
@@ -208,7 +226,7 @@ p {
 
 /* sidebar styles*/
 #innerSidebar { 
-  background-color: rgb(196, 215, 240);
+  background-color: /*#e4e5e7*/rgb(196, 215, 240);
   color: black;
   /*background: url('../images/sidebar.png');*/
   background-size: cover;
@@ -216,16 +234,17 @@ p {
   background-repeat: no-repeat;
   /*font-family: 'Oriya MN';*/
   overflow-y: scroll;
-  height: 660px
+  height: 570px
   }
+
   #annap{
-  background-color: rgb(196, 215, 240);
+  background-color: /*#e4e5e7*/rgb(196, 215, 240);
   color: rgb(50, 52, 56);
   /*background: url('../images/sidebar.png');*/
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /*font-family: 'Oriya MN'; */
+  /*font-family: 'Oriya MN';*/
   }
   .nav-link{
     color:rgb(50, 52, 56);
@@ -238,6 +257,7 @@ p {
     color: black;
   }
   #sidebarAndProduct{
+    background-color: rgb(134, 164, 202);
     color: rgb(50, 52, 56);
     padding-top: 20px
   }
@@ -247,7 +267,7 @@ p {
     background-color: #f8f9fa;
     background-position: center;
     background-repeat: no-repeat;
-    /*font-family: 'Oriya MN'; */
+    /*font-family: 'Oriya MN';*/
   }
 
   .text-justright{
@@ -269,3 +289,82 @@ p {
     background-color: white;
     color: black;
   }
+
+  #userCard {
+    height : auto;
+    width : 250px;
+  }
+  .cart {
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+    background:#292d48;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:5px;
+  }
+
+    .cart i {
+      font-size:25px;
+      color:white;
+    }
+ 
+    .outline {
+      color: rgb(196, 215, 240);
+      font-family: Phosphate;
+      font-weight: bold;
+      font-size: xx-large;
+      text-shadow:
+        -1px -1px 0 rgb(50, 52, 56),
+        1px -1px 0 rgb(50, 52, 56),
+        -1px 1px 0 rgb(50, 52, 56),
+        1px 1px 0 rgb(50, 52, 56);
+    }
+    #emptyBasketRegister{
+      text-align: center;
+      text-decoration: dotted;
+      font-size: xx-large;
+      font-weight: bolder;
+      color: rgb(196, 215, 240);
+      margin-top: 20px;
+      text-shadow:
+        -1px -1px 0 rgb(50, 52, 56),
+        1px -1px 0 rgb(50, 52, 56),
+        -1px 1px 0 rgb(50, 52, 56),
+        1px 1px 0 rgb(50, 52, 56);
+    }
+    #contShop{
+      text-align: center;
+      text-decoration:wavy;
+      font-size: large;
+      font-weight: bolder;
+      color: rgb(50, 52, 56);
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+        td, th {
+          border: 0;
+          color: #666;
+          font-size: 0.8rem;
+        }
+      
+      td, th {
+        vertical-align: middle;
+        text-align: center;
+        
+      }
+    
+    .price {
+      margin-left: 1rem;
+    }
+    
+    .modal-footer {
+      padding-top: 0rem;
+    }
+
+.btn-group {
+  float:right;
+}
