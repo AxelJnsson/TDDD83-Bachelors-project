@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS shopping_session;
 DROP TABLE IF EXISTS cart_item;
 DROP TABLE IF EXISTS cart__item;
 --DROP TABLE IF EXISTS order_item;
+--DROP TABLE IF EXISTS orders;
 
 SELECT 'Creating tables' AS 'Message';
 

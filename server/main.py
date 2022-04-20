@@ -306,7 +306,7 @@ def signup():
     new_user = request.get_json()  
     print(new_user["first_name"])  
     x = User(first_name = new_user["first_name"], last_name = new_user["last_name"], email = new_user["email"])
-    x.set_password(new_user["password_hash"])
+    x.set_password(new_user["password"])
     db.session.add(x)
     db.session.commit()
     user_id = x.user_id
@@ -426,6 +426,7 @@ def createorderhistory(user_id):
   if request.method == 'POST':
     print("tries to create")
     x = Order_history( user_id= user_id)
+    print(x)
     db.session.add(x)
     db.session.commit()
     return 20
@@ -438,6 +439,7 @@ def createorders(user_id):
     print(user_id)
     orderhist = Order_history.query.filter_by(user_id=user_id).first()
     print("kommer vi hit")
+    #print(orderhist)
     x = Orders(order_history_id = orderhist.id)
     print("orderhist.id=")
     print(orderhist.id)
