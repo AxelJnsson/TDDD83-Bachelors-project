@@ -41,6 +41,9 @@
     animation: txt2 1.5s ease-in-out forwards;
   }
 
+  .searchButton {
+    color: white !important;
+  }
   
 
   @keyframes txt1 {

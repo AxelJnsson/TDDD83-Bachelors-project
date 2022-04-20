@@ -22,7 +22,7 @@ function updateItemNumber(){
       datatype: 'JSON',
       contentType: "application/json",
       success: function(data) {
-        updateItemNumber2(data);
+        updateItemNumberLoggedIn(data);
       }
     }); 
   } else {
@@ -31,19 +31,19 @@ function updateItemNumber(){
     for (let key of productsInCart.keys()){
       a = a + productsInCart.get(key);
     }
-    doThings3(a);
+    updateCartNumber(a);
   }
 }
 
 //Räknar ut antal produkter i varukorgen om man är inloggad
-function updateItemNumber2(data){
+function updateItemNumberLoggedIn(data){
   var a = 0
   for (i = 0; i < data[2].length; i++){
     for(j = 0; j < data[2][i].quantity; j++){
       a = a + 1;
     }
   }
-  doThings3(a);
+  updateCartNumber(a);
 }
 
 //Stäng modalen om man klickar på knappen
