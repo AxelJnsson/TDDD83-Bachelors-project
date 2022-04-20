@@ -793,8 +793,7 @@
   </div> -->
 
 
-  <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header border-bottom-0">
@@ -806,26 +805,21 @@
           </button>
         </div>
         <div class="modal-body" id="tableHeadModal">
-          <table class="table table-image">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Produkt</th>
-                <th scope="col">Pris</th>
-                <th scope="col">Kvantitet</th>
-              </tr>
-            </thead>
-          </table>
         </div>
         <div class="modal-body" id="bodyBasketModal"></div>
+        <div class="modal-footer">
+          <div id="basketModalPriceDiv" style="margin: auto;">
 
-        <div style="margin: auto;">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton"
-            onclick="updateItemNumber()">Stäng</button>
-          <button type="button" style="color: white;" class="btn btn-warning" data-dismiss="modal"
-            id="clearBasketButton" onclick="clearCart()">Rensa</button>
-          <button type="button" style="background-color: #0d6efd !important;" class="btn btn-primary"
-            data-dismiss="modal" id="shopFromBasketButton">Till Kassan</button>
+          </div>
+  
+          <div style="margin: auto;">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton"
+              onclick="updateItemNumber()">Stäng</button>
+            <button type="button" style="color: white;" class="btn btn-warning" data-dismiss="modal"
+              id="clearBasketButton" onclick="clearCart()">Rensa</button>
+            <button type="button" style="background-color: #0d6efd !important;" class="btn btn-primary"
+              data-dismiss="modal" id="shopFromBasketButton">Till Kassan</button>
+          </div>
         </div>
       </div>
     </div>
