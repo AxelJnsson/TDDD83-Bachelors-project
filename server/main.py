@@ -300,7 +300,7 @@ def signup():
     new_user = request.get_json()  
     print(new_user["first_name"])  
     x = User(first_name = new_user["first_name"], last_name = new_user["last_name"], email = new_user["email"])
-    x.set_password(new_user["password_hash"])
+    x.set_password(new_user["password"])
     db.session.add(x)
     db.session.commit()
     user_id = x.user_id

@@ -589,6 +589,25 @@ function setBack(btnn) {
     btnn.textContent ='Köp';
 }
 
-function calculateReview() {
+function calculateRating() {
+    var product_id = $(this).data('id');
     
+    
+
+    $.ajax({
+        headers: {
+          "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+        url:'/product/' + product_id,
+        type: 'PUT',
+        datatype: 'JSON',
+        contentType: "application/json",
+        data: JSON.stringify({
+         "rating" : adminStatus}),
+        success: function(u) {
+          alert("Adminstatus ändrad");
+          $("#mainViewContainer").html($("#view-adminPage").html())
+          Display_admin();
+          
+        }
+    });
 }
