@@ -1,26 +1,52 @@
 //BASKET
+
+//Öppna modalen för kassan om man klickar på ikonen
 $('#basketButton').click(function (e) {
-    e.preventDefault();
-    $("#basketModal").modal('toggle');
-    getProductsToPrintInBasket();
+  e.preventDefault();
+  $("#basketModal").modal('toggle');
+  getProductsToPrintInBasket();
 });
 
+//Uppdatera ikonen som visar antal produkter i kassan när modalen stängs
+$('#basketModal').on('hide.bs.modal', function (e) {
+  updateItemNumber();
+});
+
+//Hämtar och räknar ut antal produkter i varukorgen
 function updateItemNumber(){
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
-    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
     $.ajax ({
       url:'/user/'+userID,
       type: 'GET',
       datatype: 'JSON',
       contentType: "application/json",
       success: function(data) {
+        updateItemNumber2(data);
       }
     }); 
   } else {
+    var a = 0;
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
-    // alert(parseInt(productsInCart.length));
-    }}
+    for (let key of productsInCart.keys()){
+      a = a + productsInCart.get(key);
+    }
+    doThings3(a);
+  }
+}
 
+//Räknar ut antal produkter i varukorgen om man är inloggad
+function updateItemNumber2(data){
+  var a = 0
+  for (i = 0; i < data[2].length; i++){
+    for(j = 0; j < data[2][i].quantity; j++){
+      a = a + 1;
+    }
+  }
+  doThings3(a);
+}
+
+//Stäng modalen om man klickar på knappen
 $('#closeBasketButton').click(function (e) {
     e.preventDefault();
     $("#basketModal").modal('hide');
@@ -31,7 +57,7 @@ $('#xButtonBasket').click(function (e) {
   $("#basketModal").modal('hide');
 });
 
-
+//Används för att rensa varukorgen
 function clearCart2(data) {
   if (data[2].length > 0) {
     deleteProductFromCart2(data[2][0].product_id);
@@ -42,6 +68,7 @@ function clearCart2(data) {
   }
 }
 
+//Hämtar produkter i varukorgen för att veta vilka som ska tas bort
 function clearCart() {
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
     userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
@@ -101,11 +128,30 @@ function addProductToCart(productToAdd){
     }
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
   }
+  // button = document.getElementById('addProductToCartButton'+productToAdd);
+  // button.remove();
+
+
+  var checkQuantityTemp = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+
+  if (checkQuantityTemp.has(parseInt(productToAdd))){
+    var q = checkQuantityTemp.get(parseInt(productToAdd));
+  } else{
+    var q = 0;
+  }
+  $.ajax({
+    url:'/product/' + productToAdd,
+    type: 'GET',
+    success: function(product) {
+      if ((product.quantity-q)<1){
+        addToCardButton = document.getElementById('addProductToCartButton'+product.product_id);
+        addToCardButton.remove();
+        $('#buttonDivForProductView'+product.product_id).append("<button type='button' class='btn btn-red' style='font-size:10px; background-color: red;' data-dismiss='modal'onClick='outOfStockAlert()' value='"+parseInt(productToAdd)+"' id='addProductToCartButtonOut"+parseInt(productToAdd)+"'>Slut<span class='cart-item'></span></button>");
+
+      }
+    }
+   });
   getProductsToPrintInBasket();
-  $('#basketModal').modal('show');
-      setTimeout(function () {
-          $('#basketModal').modal('hide');
-      }, 1500);
 }
 
 function getProductsToPrintInBasket(){
@@ -169,6 +215,7 @@ function showInBasketModal(products, hasProducts){
 
 function printEmptyBasketModal(){
   $('#bodyBasketModal').empty();
+  $('#tableHeadModal').empty();
   $('#bodyBasketModal').append("Varukorgen är tom!")
 }
 
@@ -176,7 +223,10 @@ function printProductInBasketModal(product, quantity){
 
   sessionStorage.setItem('price', JSON.parse(sessionStorage.getItem('price')) + product.price*quantity);
   showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
-  $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+'</div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
+ // $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+'</div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
+  $('#bodyBasketModal').append(' <table class="table table-image"><tbody><tr> <td class="w-25"><img src='+ product.image +'  style="height: 150px; width: 150px;"></td> <td> '+product.name+' </td> <td> '+product.price+'kr </td><td> <div class = btn-group><button class="w3-button w3-black" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</button><button class="w3-button w3-white"> '+quantity+'</button> <button class="w3-button w3-teal" onclick= "addProductToCart(this.value);" value="'+product.product_id+'">+</button> </div></td></tr></tbody></table>');
+  // <div class="value-button" id="decrease" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</div>
+  // <div class="value-button" id="increase" onclick= "addProductToCart(this.value);" value="+product.product_id+">+</div>
 }
 
 function deleteProductFromCart(productID){
@@ -288,12 +338,17 @@ function printBasketedProducts(){
         arrayOfProducts = []
         let hasProducts = false;
         data[2].forEach(element =>arrayOfProducts.push(element))
+        if (arrayOfProducts.length == 0){
+          printEmptyRegister()
+        }else{
           showInRegister(arrayOfProducts)
+        }   
       }
     }); 
   } else {
     var productsToPrint = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     if (productsToPrint.size<1){
+      printEmptyRegister()
       showPriceInRegister(sessionStorage.getItem('price'))
     }else{
       for (let key of productsToPrint.keys()){
@@ -314,25 +369,26 @@ function printBasketedProducts(){
 }
 
 function showInRegister(products){
-
-  for (let i = 0; i <products.length; i++)
-    $.ajax ({
-      url:'/product/'+products[i].product_id,
-      type: 'GET',
-      datatype: 'JSON',
-      contentType: "application/json",
-      success: function(product) {
-        updateprice(product.price*products[i].quantity);
-        showPriceInRegister(sessionStorage.getItem('price'));
-        printProductInBasketRegister(product,products[i].quantity);
-      }
-    });
-
-}
+    for (let i = 0; i <products.length; i++)
+      $.ajax ({
+        url:'/product/'+products[i].product_id,
+        type: 'GET',
+        datatype: 'JSON',
+        contentType: "application/json",
+        success: function(product) {
+          updateprice(product.price*products[i].quantity);
+          showPriceInRegister(sessionStorage.getItem('price'));
+          printProductInBasketRegister(product,products[i].quantity);
+        }
+      });
+  }
 
 function printProductInBasketRegister(product,quantity){
+  $('#scrollableItemsInBasket').append('<div class="row" id="productDivInRegister"><div class="col-6"><img src='+ product.image +' style="height: 150px; width: 150px;"></div> <div class="col" style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+' <br> <button class="deleteProductFromRegisterButton" onClick="deleteProductFromRegister(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button> </div> </div> <br>');
+}
 
-  $('#scrollableItemsInBasket').append('<div id="productDivInRegister">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+' </div> <button class="deleteProductFromRegisterButton" onClick="deleteProductFromRegister(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
+function printEmptyRegister(){
+  $('#scrollableItemsInBasket').append('<div id="emptyBasketRegister">Din varukorg är tom!</div> <div id="contShop" onclick="showAllInst()"><p style="cursor: pointer;">Tryck här för att forsätta shoppa!</p></div>');
 }
 
 function stripeTestFunction(){
