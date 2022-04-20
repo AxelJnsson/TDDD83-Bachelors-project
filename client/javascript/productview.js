@@ -247,17 +247,16 @@ function appendProducts(filteredproducts){
         } else {
             beg = "Ny";
         }
-       
-
        let q = 0
        if (productsInCart.has(products[i].product_id)){
            q = productsInCart.get(products[i].product_id);
-       } 
+       }
     //    console.log(products[i].quantity-productsInCart.get(products[i].product_id));
        if ((products[i].quantity-q)<1){
+        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p><p class='card-text'> <b>Betyg: </b> "+ rating +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' id='buttonDivForProductView"+products[i].product_id+"' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-tonehub' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton"+products[i].product_id+"'>Köp<span class='cart-item'></span></button></div></div></div>");
+       }else{
         $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p><p class='card-text'> <b>Betyg: </b> "+ rating +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton'>Köp<span class='cart-item'></span></button></div></div></div>");
-    }else{
-        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' id='buttonDivForProductView"+products[i].product_id+"' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-tonehub' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton"+products[i].product_id+"'>Köp<span class='cart-item'></span></button></div></div></div>");
+
        }
  }
 
@@ -265,10 +264,22 @@ function appendProducts(filteredproducts){
         var prod_id = $(this).data('id');
         $(".product-modal-body").empty();
         $("#productModalFooter").empty();
+        $("#dropdown").empty();
 
         $("#productModal").modal('toggle');
         $(".product-modal-body").append("<div class='card-body' style='margin-right: auto; margin-left: auto; text-align: center;'><h5 class='card-title' style='font-weight: bold;'> " + products[prod_id].name +  "</h5><br><img class='card-img-top' src='"+ products[prod_id].image +"'><br><p class='card-text'> <b>Märke:</b> " + products[prod_id].brand + "<br> <b>Modell:</b> " + products[prod_id].model + "<br> <b>Färg: </b>" + products[prod_id].color + "<br> <b>År: </b>" + products[prod_id].year + "<br> <b>Pris:</b> " + products[prod_id].price + "</p></div>");
         $("#productModalFooter").append('<button type="button" class="btn btn-tonehub" data-dismiss="modal" onClick="doThings(this.value, this)" value="'+products[prod_id].product_id+'" id="addProductToCartButton">Lägg i varukorgen<span class="cart-item"></span></button>');
+        
+        
+        //Skapar betygsknapparna i modal för produkter
+        $("#dropdown").append(
+         ' <a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 1 +','+products[prod_id].rating+')>1</a> ' +
+          '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 2 +','+products[prod_id].rating+')>2</a>' +
+          '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 3 +','+products[prod_id].rating+')>3</a>' +
+          '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 4 +','+products[prod_id].rating+')>4</a>' +
+          '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 5 +','+products[prod_id].rating+')>5</a>' 
+        )
+        
     });
 
     if (products.length <= 0){
@@ -580,27 +591,22 @@ function setBack(btnn) {
     btnn.textContent ='Köp';
 }
 
-function calculateRating() {
-    var product_id = $(this).data('id');
+//Beräknar en produkts rating efter att en användare har gett produkten en rating
+function calculateRating(id, rating, current_rating) {
     
-    
+    alert(current_rating)
 
-    $.ajax({
-        headers: {
-          "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-        url:'/product/' + product_id,
-        type: 'PUT',
-        datatype: 'JSON',
-        contentType: "application/json",
-        data: JSON.stringify({
-         "rating" : adminStatus}),
-        success: function(u) {
-          alert("Adminstatus ändrad");
-          $("#mainViewContainer").html($("#view-adminPage").html())
-          Display_admin();
-          
-        }
-    });
+     $.ajax({
+         headers: {
+           "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+         url:'/product/' + id,
+         type: 'GET',
+         success: function(u) {
+           
+
+         }
+     });
+     
 }
 
 function outOfStockAlert(){

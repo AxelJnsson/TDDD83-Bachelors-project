@@ -53,7 +53,7 @@ class Product(db.Model):
   new_or_not = db.Column(db.Integer, nullable = False)
   quantity = db.Column(db.Integer, nullable = True)
   seller = db.Column(db.Integer, nullable = False)
-  rating = db.Column(db.Float, nullable =True)
+  rating = db.Column(db.Float, default = 0, nullable = False)
 
   def __repr__(self):
     return '<Product {}: {} {} {} {} {} {} {} {} {} {} {} {}>'.format(self.product_id, self.brand, self.model, self.name, self.price, self.color, self.image, self.year, self.type, self.new_or_not, self.quantity, self.seller, self.rating)
