@@ -1,3 +1,5 @@
+//Alla funktioner i denna fil hämtar och appendar info för de tre produkter som visas på startsidan
+
 function createProducts2(){ 
     $.ajax({        
         url:'/product',

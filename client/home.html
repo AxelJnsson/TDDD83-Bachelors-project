@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- <!--För att slippa rensa browsercache hela tiden :))-->
+  <!--För att slippa rensa browsercache hela tiden :))-->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
@@ -18,16 +18,19 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="/css/home.css">
   <link rel="stylesheet" href="/css/form.css">
   <link rel="stylesheet" href="/css/slide.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/checkout.css" />
+  <link rel="stylesheet" href="/css/productview.css" />
   
-  <link rel="stylesheet" href="/css/checkout.css"/>
-  <link rel="stylesheet" href="/css/productview.css"/>
-  
-  
+
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -36,8 +39,8 @@
 
   <title>Välkommen till ToneHub</title>
   <!--FavIcon, hemmagjord ändå haha :()-->
-<link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
-  
+  <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
+
 
 </head>
 <script src="https://kit.fontawesome.com/ba5ddd8013.js" crossorigin="anonymous"></script>
@@ -46,12 +49,12 @@
 
   <!--Övre navbar-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
-    
+
     <div id="div1" style="width: 40%">
       <div class="input-group" style="margin-left: 20px; margin-right: 10px; width: 45%; float: left;">
-          <input type="search" class="form-control" placeholder="Search.." id="datatable-search-input"
+          <input type="search" class="form-control" placeholder="Sök.." id="datatable-search-input"
             onkeyup="getSearchProducts()">
-        <button type="button" class="btn btn-secondary" onclick="getSearchProducts()">
+        <button type="button" class="btn btn-secondary" id="searchButton" onclick="getSearchProducts()">
           <i class="fas fa-search"></i>
         </button>
       </div>
@@ -70,36 +73,37 @@
 
     <div class="collapse navbar-collapse" style="width: 20%;" id="navbarNav">
       <div class="align-items-center">
-      <a class="nav-link-image" href="#">
-        <img src="/images/new_logo.png" width= "300px" height= "80px" id="homeButton">
-      </a>
-    </div>
+        <a class="nav-link-image" href="#">
+          <img src="/images/new_logo.png" width="300px" height="80px" id="homeButton">
+        </a>
+      </div>
 
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="registerButton">Registrera dig</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="loginButton">Logga in</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="annonsButton">Skapa annons</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="userButton">Din sida</a>
-      </li> 
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="adminButton">Admin</a>
-      <li class="nav-item">
-      <li class="nav-item">
-        <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
-      </li>
-    <i class="fa" id='basketButton' style="font-size:30px; margin-left: 10px; margin-top: auto; margin-bottom: auto; cursor: pointer;">&#xf07a;</i>
-    <div id="basketArea">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="registerButton">Registrera dig</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="loginButton">Logga in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="annonsButton">Skapa annons</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="userButton">Din sida</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="adminButton">Admin</a>
+        <li class="nav-item">
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
+        </li>
+        <i class="fa" id='basketButton'
+          style="font-size:30px; margin-left: 10px; margin-top: auto; margin-bottom: auto; cursor: pointer;">&#xf07a;</i>
+        <div id="basketArea">
 
-    </div> 
-  </ul>
-</nav>
+        </div>
+      </ul>
+  </nav>
 
   <!--Nedre navbar-->
   <nav class="navbar navbar-expand-lg" id="annap">
@@ -112,30 +116,33 @@
     <div class="collapse navbar-collapse" id="navbarNav2">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#"  id="allInstrButton">Alla instrument</a>
+          <a class="nav-link" href="#" id="allInstrButton">Alla instrument</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="stringInstButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Stränginstrument</a>
+          <a class="nav-link dropdown-toggle" href="#" id="stringInstButton" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Stränginstrument</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#" onclick="gitarrView()" id="guitarButton">Gitarr</a>
             <a class="dropdown-item" href="#" onclick="basView()" id="basButton">Bas</a>
-           </div>
+          </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="tanInstButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tangentinstrument</a>
+          <a class="nav-link dropdown-toggle" href="#" id="tanInstButton" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Tangentinstrument</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#" onclick="pianoView()" id="pianoButton">Piano</a>
             <a class="dropdown-item" href="#" onclick="keyboardView()" id="keyboardButton">Keyboard</a>
             <a class="dropdown-item" href="#" onclick="kAndPView()" id="kAndPButton">Alla tangentinstrument</a>
-           </div>
+          </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="drumInstButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Slagverk</a>
+          <a class="nav-link dropdown-toggle" href="#" id="drumInstButton" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Slagverk</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#" onclick="drumView()" id="drumCButton">Klassiska</a>
             <a class="dropdown-item" href="#" onclick="otherDrumView()" id="drumOButton">Spaciella Trummor</a>
             <a class="dropdown-item" href="#" onclick="allDrumsView()" id="allDrumsButton">Alla slagverk</a>
-           </div>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" onclick="studioView()" id="pianoButton">Studioutrustning</a>
@@ -148,7 +155,7 @@
 
   </nav>
 
-<script id="view-about" type="text/html">
+  <script id="view-about" type="text/html">
   <pre class="tab"></pre>
     <pre class="tab"></pre>
     <div class="center"  id="about">  
@@ -160,28 +167,6 @@
     </div>
     <pre class="tab"></pre>
     <pre class="tab"></pre>
-
-<!-- <div class="row">
-  <div class="column">
-    <div class="card">
-      <img src="/images/carlbildt.png" id = image style="width:100%">
-      <div class="container">
-        <h2>Fredrik</h2>
-        <p class="title">CEO & Founder</p>
-      </div>
-    </div>
-  </div>
-  <div class="column">
-    <div class="card">
-      <img src="/images/carlbildt.png" id = image style="width:100%">
-      <div class="container">
-        <h2>Fredrik</h2>
-        <p class="title">CEO & Founder</p>
-      </div>
-    </div>
-  </div> <div class="column">
- 
-</div>-->
 
 <div class="wrapper">
   <h2>Vårt Team</h2>
@@ -250,7 +235,7 @@
   </div>
 </div>
 </script>
-    
+
   <script id="view-contact" type="text/html">
     <div class="center"  id="contact">  
         <p >Kontakta oss!</p>     
@@ -261,99 +246,105 @@
 
   <script id="view-sidebar" type="text/html">
     <!--Sidebar-->
-  
+
   <div class="row rounded" id="innerSidebar" style="margin-top: 5px;">
     <div class="col">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
-          <span class="fs-5 d-none d-sm-inline"><i class="fa-solid fa-house" style="text-align: center; padding: 20px;"></i>Kategori</span>
+          <span class="fs-5 d-none d-sm-inline"><i class="fa-solid fa-house"
+              style="text-align: center; padding: 20px;"></i>Kategori</span>
         </a>
         <div>
-       <!-- <input type="checkbox" data-toggle="switchbutton" checked data-onstyle="outline-dark" data-offstyle="outline-dark" data-size="sm" data-onlabel="Nya Produkter" data-offlabel="ej nya produkter" id="newProd" onclick="checkNeworOldStuff('newProd', 1)"></div>-->
-       <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="newProd" checked
-            onclick="checkNeworOldStuff('newProd', 1)">
-          <label class="form-check-label" for="flexSwitchCheckChecked">Nya Produkter</label>
+          <!-- <input type="checkbox" data-toggle="switchbutton" checked data-onstyle="outline-dark" data-offstyle="outline-dark" data-size="sm" data-onlabel="Nya Produkter" data-offlabel="ej nya produkter" id="newProd" onclick="checkNeworOldStuff('newProd', 1)"></div>-->
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="newProd" checked
+              onclick="checkNeworOldStuff('newProd', 1)">
+            <label class="form-check-label" for="flexSwitchCheckChecked">Nya Produkter</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="secondHandProd" checked
+              onclick="checkNeworOldStuff('secondHandProd', 0)">
+            <label class="form-check-label" for="flexSwitchCheckChecked">Begagnade</label>
+          </div>
+          <ul class="nav nav-pills flex-column" id="sideMenu">
+            <li>
+              <a class="nav-link px-0" href="#submenu1" data-toggle="collapse" aria-expanded="false"
+                aria-controls="submenu1">
+                <span class="text-justright"><i class="fa-brands fa-itunes-note"
+                    style="text-align: center; padding-right: 20px;"></i></i>Märken</span>
+              </a>
+              <ul class="collapse nav flex-column" id="submenu1">
+                <li class="w-100" id="brandArea">
+
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#submenu2" data-toggle="collapse" class="nav-link px-0">
+
+
+                <span class="text-justright"><i class="fa-brands fa-itunes-note"
+                    style="text-align: center; padding-right: 20px;"></i>Modeller</span>
+              </a>
+              <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#sideMenu">
+                <li class="w-100" id="modelArea">
+
+                </li>
+                <li>
+
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#submenu3" data-toggle="collapse" class="nav-link px-0">
+
+                <span class="text-justright"><i class="fa-brands fa-itunes-note"
+                    style="text-align: center; padding-right: 20px;"></i>Färger</span>
+              </a>
+              <ul class="collapse nav flex-column" id="submenu3" data-bs-parent="#sideMenu">
+                <li class="w-100" id="colorArea">
+
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#submenu4" data-toggle="collapse" class="nav-link px-0">
+
+                <span class="text-justright"><i class="fa-brands fa-itunes-note"
+                    style="text-align: center; padding-right: 20px;"></i>Pris</span>
+              </a>
+              <ul class="collapse nav flex-column" id="submenu4" data-bs-parent="#sideMenu">
+                <li class="w-100" id="priceArea">
+
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#submenu5" data-toggle="collapse" class="nav-link px-0">
+
+                <span class="text-justright"><i class="fa-brands fa-itunes-note"
+                    style="text-align: center; padding-right: 20px;"></i>År</span>
+              </a>
+              <ul class="collapse nav flex-column" id="submenu5" data-bs-parent="#sideMenu">
+                <li class="w-100" id="yearArea">
+
+                </li>
+              </ul>
+              <div>
+                <button id="resetFilterBtn" class="btn" onclick="btnResetFilter()">Återställ filter</button>
+              </div>
+            </li>
+
+          </ul>
+          <hr>
         </div>
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="secondHandProd" checked
-            onclick="checkNeworOldStuff('secondHandProd', 0)">
-          <label class="form-check-label" for="flexSwitchCheckChecked">Begagnade</label>
-        </div>
-        <ul class="nav nav-pills flex-column" id="sideMenu">
-          <li>
-            <a class="nav-link px-0" href="#submenu1" data-toggle="collapse" aria-expanded="false"
-              aria-controls="submenu1">
-              <span class="text-justright"><i class="fa-brands fa-itunes-note" style="text-align: center; padding-right: 20px;"></i></i>Märken</span>
-            </a>
-            <ul class="collapse nav flex-column" id="submenu1">
-              <li class="w-100" id="brandArea">
-                
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#submenu2" data-toggle="collapse" class="nav-link px-0">
-
-
-              <span class="text-justright"><i class="fa-brands fa-itunes-note" style="text-align: center; padding-right: 20px;"></i>Modeller</span>
-            </a>
-            <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#sideMenu">
-              <li class="w-100" id="modelArea">
-                
-              </li>
-              <li>
-               
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#submenu3" data-toggle="collapse" class="nav-link px-0">
-
-              <span class="text-justright"><i class="fa-brands fa-itunes-note" style="text-align: center; padding-right: 20px;"></i>Färger</span>
-            </a>
-            <ul class="collapse nav flex-column" id="submenu3" data-bs-parent="#sideMenu">
-              <li class="w-100" id="colorArea">
-              
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#submenu4" data-toggle="collapse" class="nav-link px-0">
-
-              <span class="text-justright"><i class="fa-brands fa-itunes-note" style="text-align: center; padding-right: 20px;"></i>Pris</span>
-            </a>
-            <ul class="collapse nav flex-column" id="submenu4" data-bs-parent="#sideMenu">
-              <li class="w-100" id="priceArea">
-                
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#submenu5" data-toggle="collapse" class="nav-link px-0">
-
-              <span class="text-justright"><i class="fa-brands fa-itunes-note" style="text-align: center; padding-right: 20px;"></i>År</span>
-            </a>
-            <ul class="collapse nav flex-column" id="submenu5" data-bs-parent="#sideMenu">
-              <li class="w-100" id="yearArea">
-              
-              </li>
-            </ul>
-            <div>
-              <button id="resetFilterBtn" class="btn" onclick="btnResetFilter()">Återställ filter</button>
-            </div>
-          </li>
-
-        </ul>
-        <hr>
-    </div>
 
 
 
-  </div>
+      </div>
 
   </script>
-  <script id="view-product" type="text/html">    
+  <script id="view-product" type="text/html">
     <div class="col" id="testdiv">
       <nav class="navbar navbar-expand-lg" id="sortingNav">
         <button class="navbar-toggler" type="button" 
@@ -521,9 +512,9 @@
     </div>
 </script>
 
-<!--Slideshow homepage-->
-    <!-- Slideshow container-->
-    <script class="bg-light" id="view-homeSlide" type="text/html">
+  <!--Slideshow homepage-->
+  <!-- Slideshow container-->
+  <script class="bg-light" id="view-homeSlide" type="text/html">
       <div class="slideshow-container">
         <!-- Full-width images with number and caption text-->
         <div class="mySlides fade">
@@ -631,29 +622,6 @@
   
   <pre class="tab"></pre>
   <pre class="tab"></pre>
-  
-  <!-- <div class="row">
-  <div class="column">
-  <div class="card">
-    <img src="/images/carlbildt.png" id = image style="width:100%">
-    <div class="container">
-      <h2>Fredrik</h2>
-      <p class="title">CEO & Founder</p>
-    </div>
-  </div>
-  </div>
-  <div class="column">
-  <div class="card">
-    <img src="/images/carlbildt.png" id = image style="width:100%">
-    <div class="container">
-      <h2>Fredrik</h2>
-      <p class="title">CEO & Founder</p>
-    </div>
-  </div>
-  </div> <div class="column">
-  
-  </div>-->
-  
  
   <div class="card" style="width: 95%; margin-left: auto; margin-right: auto; height: 100%;">
     <div class="card-body" style="width: 100%; margin-left: auto; margin-right: auto;">
@@ -708,28 +676,31 @@
     </div>
   </div>
  
-     <!-- <div class="w3-container w3-black w3-padding-32">
-        <h1>Subscribe</h1>
-        <p>To get special offers and VIP treatment:</p>
-        <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
-        <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
-       </div>-->
   </script>
 
 
-<script id="lyckad-betalning" type="text/html">
+  <script id="lyckad-betalning" type="text/html">
   <div class="d-flex justify-content-between align-items-center mb-3" >
-    <h4 class="text-right">Lyckad betalning</h4>
+  
+    <div class="card">
+      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+        <i class="checkmark">✓</i>
+      </div>
+        <h1>Success</h1> 
+        <p>Ditt köp är genomfört!<br/> Din order är påväg till dig, </p>
+        <a id="lyckadBet" href=""target="_blank">Hämta din adresslapp</a>
+      </div>
   </div>
 
 
 </script>
 
-<!--skapa annonssida-->
+  <!--skapa annonssida-->
   <script id="view-createAdd" type="text/html">
     <div class="center" id="createAddPage" >
     <div class="d-flex justify-content-between align-items-center mb-3" id="THcreateAdd">
       <p style="width: max-content;">Skapa Annons!</p>
+    </div>
     </div>
       <div class="row mt-2">
           <div class="col-md-6"><label class="labels">Rubrik</label><input type="text" id="createText" class="form-control" placeholder="Namn" value=""></div>  
@@ -796,7 +767,7 @@
   
   </script>
 
-  <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <!-- <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -820,10 +791,44 @@
         </div>
       </div>
     </div>
+  </div> -->
+
+
+  <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Din varukorg
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xButtonBasket">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="tableHeadModal">
+        </div>
+        <div class="modal-body" id="bodyBasketModal"></div>
+        <div class="modal-footer">
+          <div id="basketModalPriceDiv" style="margin: auto;">
+
+          </div>
+  
+          <div style="margin: auto;">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton"
+              onclick="updateItemNumber()">Stäng</button>
+            <button type="button" style="color: white;" class="btn btn-warning" data-dismiss="modal"
+              id="clearBasketButton" onclick="clearCart()">Rensa</button>
+            <button type="button" style="background-color: #0d6efd !important;" class="btn btn-primary"
+              data-dismiss="modal" id="shopFromBasketButton">Till Kassan</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+
+
+  <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -840,7 +845,7 @@
           </div>
           <div class="form-group">
             <label for="inputPassword">Password</label>
-            <input type="password" class="form-control"  id="inputPasswordForm">
+            <input type="password" class="form-control" id="inputPasswordForm">
           </div>
         </div>
         <div class="modal-footer">
@@ -930,23 +935,22 @@
       </div>
     </div>
   </div>
-      <!--Snapchat modal-->
-<div class="modal" id="snapchatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <!--Snapchat modal-->
+  <div class="modal" id="snapchatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
       <div class="modal-body width: 60px">
         <img src="images/snapchat.png" />
       </div>
+    </div>
   </div>
-</div>
-<div class="modal" id="instaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal" id="instaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
       <div class="modal-body width: 60px">
         <img src="images/unnzachrison_qr.png" />
       </div>
+    </div>
   </div>
-</div>
 
   <script id="view-adminPage" type="text/html">
     <div class="center">
@@ -975,8 +979,9 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="inputId">Id</label>
-            <input type="text" class="form-control" id="adminEditIdField" placeholder="" aria-describedby="makeHelp" value="" readonly >
-        </div>
+            <input type="text" class="form-control" id="adminEditIdField" placeholder="" aria-describedby="makeHelp"
+              value="" readonly>
+          </div>
           <div class="form-group">
             <label for="inputFirstname">Förnamn:</label>
             <input class="form-control" id="adminEditFirstnameField">
@@ -996,16 +1001,17 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeEditButton1">Stäng</button>
-          <button type="button" class="btn btn-tonehub" data-dismiss="modal" id="editFinishButton1">Spara ändringar</button>
+          <button type="button" class="btn btn-tonehub" data-dismiss="modal" id="editFinishButton1">Spara
+            ändringar</button>
         </div>
       </div>
     </div>
   </div>
-  
-    
+
+
 
   <script class="background-color: rgb(196, 215, 240);" id="view-cashregister" type="text/html">
-  
+
   <div>
     <h1 class="outline" style="text-align: center;" >
       Välkommen till kassan
@@ -1016,9 +1022,9 @@
     <div class="col-1"></div>
       <div class="col-4" id="scrollableItemsInBasket">
       </div> 
-      <div class="col-1"></div>
+      
   
-      <div class="col-4" style="position:relative-top;" id="amountArea">   
+      <!-- <div class="col-4"  id="amountArea">   
         <h1 style="text-align:center">
           Din Total
         </h1>
@@ -1032,21 +1038,80 @@
           <br>
           <br>
         </h6>
-        <h5 style="margin-left: 6%;" id="totalsumLine"></h5>
-        <div class="container rounded bg-white mt-5 mb-5">
+        <h5 style="margin-left: 6%;" id="totalsumLine"></h5-->
+                    
+               
+                    <div class="box-2">
+                      <div class="box-inner-2">
+                          <div>
+                              <p class="fw-bold">Betalningsuppgifter</p>
+                              <p class="dis mb-3">Slutför ditt köp genom att mata in dina uppgifter.</p>
+                          </div>
+                          <form action="">
+                              <div class="mb-3">
+                                  <p class="dis fw-bold mb-2">Email address:</p> <input class="form-control" id="cashEmail" type="email" value="">
+                                  <p class="dis fw-bold mb-2">Telefonnummer:</p> <input class="form-control" id="cashPhone" type="email" value="">
+
+                                </div>
+                              <div>
+                                 
+                                  <!--<form id="payment-form">
+                                    
+                                    <div id="card-element"><--Stripe.js injects the Card Element-></div>
+            
+                                    <p id="card-error" role="alert"></p>
+                                    <p class="result-message hidden">
+                                      Payment succeeded, see the result in your
+                                      <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+                                    </p>
+                                  </form>-->
+                                 
+                                  <div class="my-3 cardname">
+                                      <p class="dis fw-bold mb-2">Namn:</p> <input class="form-control" id="cashName" type="text">
+                                  </div>
+                                  <div class="address">
+                                      <p class="dis fw-bold mb-3">Adress</p> 
+                                      <div class="d-flex"> <input class="form-control zip" id="cashAdress" type="text" placeholder="Gatuadress" value=""></div>
+                                      <div class="d-flex"> <input class="form-control zip" id="cashZip" type="text" placeholder="Postnummer" value=""> <input class="form-control city" id="cashCity" type="text" value="" placeholder="Stad"> </div>
+                                     
+                                      <div class="d-flex flex-column dis">
+                                          <div class="d-flex align-items-center justify-content-between mb-2">
+                                              <p>Summa:</p>
+                                              <p id="totalsumLine"><span class="fas"></span></p>
+                                          </div>
+                                         <!-- <div class="d-flex align-items-center justify-content-between mb-2">
+                                              <p>VAT<span>(20%)</span></p>
+                                              <p><span class="fas fa-dollar-sign"></span>2.80</p>
+                                          </div>
+                                          <div class="d-flex align-items-center justify-content-between mb-2">
+                                              <p class="fw-bold">Total</p>
+                                              <p class="fw-bold"><span class="fas fa-dollar-sign"></span>35.80</p>
+                                          </div>-->
+                                          
+                                        
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+                          <p class="dis fw-bold mb-2">Kortnummer</p>
+                          <form id="payment-form">
+                            <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+                            <button id="submit">
+                              <div class="spinner hidden" id="spinner"></div>
+                              <span id="button-text">Betala</span>
+                            </button>
+                            <p id="card-error" role="alert"></p>
+                            <p class="result-message hidden">
+                              Köpet har genomförts, vänligen vänta
+                              <a href="" target="_blank"></a> 
+                            </p>
+                          </form>
+                      </div>
+            
+          
   
-          <form id="payment-form">
-            <div id="card-element"><!--Stripe.js injects the Card Element--></div>
-            <button id="submit">
-              <div class="spinner hidden" id="spinner"></div>
-              <span id="button-text">Pay now</span>
-            </button>
-            <p id="card-error" role="alert"></p>
-            <p class="result-message hidden">
-              Payment succeeded, see the result in your
-              <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
-            </p>
-          </form>
+                      
+                    
         
           </div>
       </div>
@@ -1059,6 +1124,7 @@
   
 </script>
 
+<<<<<<< HEAD
 <!-- Lägger till order i betalning och kallar på stripe. Bör flytta till när en betalning går igenom.-->
 <script>
   function onBetalningClick() {
@@ -1079,42 +1145,55 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+=======
+  <div class="modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" data-keyboard=false data-backdrop='static'>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; text-align: center;">
+            Produktinformation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xProduct">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+>>>>>>> af1262e01b10662768d00a19936ee6d34b1241f9
 
-      <div class="modal-body">
-        <div class="product-modal-body">
+        <div class="modal-body">
+          <div class="product-modal-body">
 
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div id="productModalFooter">
+
+          </div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeProductModal">Stäng</button>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="modal-footer">
-      <div id="productModalFooter">
-
+  <div class="container-fluid bg-light" id=sidebarAndProduct>
+    <div class="row">
+      <div class="col-2" type="text/html">
+        <div class="container sticky-top" id="sideBarContainer" type="text/html">
+        </div>
       </div>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeProductModal">Stäng</button>
+      <div class="col" type="text/html">
+        <div class="container" id="productViewContainer" type="text/html">
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid bg-light" id=sidebarAndProduct>
-  <div class="row">
-    <div class="col-2" type="text/html">
-      <div class="container sticky-top" id="sideBarContainer" type="text/html">
-      </div>
-    </div>
-    <div class="col" type="text/html">
-      <div class="container" id="productViewContainer" type="text/html">a
-      </div>
-    </div>
-  </div>
-</div>
-
-<script id="empty" type="text/html">
+  <script id="empty" type="text/html">
   <div></div>
 </script>
 
-<div class="container-fluid"  id="mainViewContainer" type="text/html">
-</div>
+  <div class="container-fluid" id="mainViewContainer" type="text/html">
+  </div>
 
   <!--Footer-->
   <footer class="mt-4 text-center" id="footer">
@@ -1142,7 +1221,7 @@
         <a href="" class="me-4 text-reset">
           <i class="fab fa-instagram"></i>
         </a>
-          <a><i class="fa-brands fa-snapchat" href="#" onclick="snapchatImage()"></i></a>
+        <a><i class="fa-brands fa-snapchat" href="#" onclick="snapchatImage()"></i></a>
       </div>
       <!-- Right -->
     </section>
@@ -1222,9 +1301,11 @@
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
               <i class="fa-solid fa-comment"></i>
-              Kontakt</h6><p><i class="fas fa-home me-3"></i>LiU, Kandidatarbete</p>
-            
-            <p> <i class="fas fa-envelope me-3"></i><a href = "mailto: tonehub@example.com">Mail</a></p>
+              Kontakt
+            </h6>
+            <p><i class="fas fa-home me-3"></i>LiU, Kandidatarbete</p>
+
+            <p> <i class="fas fa-envelope me-3"></i><a href="mailto: tonehub@example.com">Mail</a></p>
             <p><i class="fas fa-phone me-3"></i> 070 34 45 6410</p>
           </div>
           <!-- Grid column -->
@@ -1250,11 +1331,11 @@
     crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
   <script src="https://js.stripe.com/v3/"></script>
- <!-- <script src="../../assets/js/vendor/popper.min.js"></script>
+  <!-- <script src="../../assets/js/vendor/popper.min.js"></script>
   <script src="../../dist/js/bootstrap.min.js"></script>-->
-  <script src="/javascript/home.js"></script>  
- 
-  <script src="/javascript/accountPage.js"></script> 
+  <script src="/javascript/home.js"></script>
+
+  <script src="/javascript/accountPage.js"></script>
   <script src="/javascript/basket.js"></script>
   <script src="/javascript/loggInOut.js"></script>
   <script src="/javascript/createadd.js"></script>
@@ -1266,20 +1347,21 @@
   <script src="/javascript/register.js"></script>
   <script src="/javascript/cashregister.js"></script>
   <script src="/javascript/adminview.js"></script>
-  <script src="/javascript/slide.js"></script>   
+  <script src="/javascript/slide.js"></script>
   <script src="/javascript/sessionstoragehandler.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
     crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-    <script src="/javascript/checkout.js" defer></script>
-  
+  <script src="/javascript/checkout.js" defer></script>
+
 </body>
 
 </html>

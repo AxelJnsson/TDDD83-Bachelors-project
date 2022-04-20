@@ -160,7 +160,6 @@ function displayUserAdd() {
 
 //ej fungerande än
    function deleteUserAdd(name) {
-     alert("hej");
      var namn = name;
    x= JSON.parse(sessionStorage.getItem('auth')).user.user_id;
     $.ajax({
