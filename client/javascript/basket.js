@@ -434,5 +434,14 @@ function showPriceInRegister(currentTotal){
   $('#totalsumLine').empty();
   $('#totalsumLine').append( + currentTotal + "kr");
   stripePay(currentTotal*100);
+ getUserdetails();
 
+}
+
+function getUserdetails() { 
+  
+//var namn = JSON.parse(sessionStorage.getItem('auth')).user.first_name;
+  $('#cashName').val(JSON.parse(sessionStorage.getItem('auth')).user.first_name);
+  $('#cashEmail').val(JSON.parse(sessionStorage.getItem('auth')).user.email);
+  $('#cashName').val(JSON.parse(sessionStorage.getItem('auth')).user.first_name);
 }
