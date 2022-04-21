@@ -204,7 +204,6 @@ stripe.api_key = 'sk_test_51KmeJFGTjasXI1q99HgReiS1UmSZmF3a2dZSnyq7dtYnoHUw8HPyo
 
  
 
-easypost.api_key = "<EZTK437cee1a8ca945c09c89080aef7debffIjlTAjf2l3c6oiT0CEvzFA>"
 
 shippo.api_key = "<shippo_test_4539126ef7ee2c56604e453728c9feb81c8e1494>"
 shippo.config.api_key= "shippo_test_4539126ef7ee2c56604e453728c9feb81c8e1494"
