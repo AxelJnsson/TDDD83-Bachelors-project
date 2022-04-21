@@ -86,6 +86,7 @@ function clearCart() {
     productsInCart.clear();
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
     getProductsToPrintInBasket();
+    window.location.reload();
   }
 }
 
