@@ -59,8 +59,26 @@ $('#xButtonBasket').click(function (e) {
 
 //Används för att rensa varukorgen
 function clearCart2(data) {
-  data[2].forEach(element => deleteProductFromCart2(element.product_id));
-  window.location.reload();
+  for (let i = 0; i< data[2].length; i++){
+    var iterQuant = parseInt(data[2][i].quantity);
+    while (iterQuant>0){
+      deleteProductFromCart2(data[2][i].product_id);
+      iterQuant--;
+    }
+  }
+  $("#basketModal").modal('hide');
+  showPriceInModal(0);
+  $("#sideBarContainer").html($("#view-sidebar").html())
+  $("#productViewContainer").html($("#view-product").html())
+  $("#mainViewContainer").html($("#empty").html())
+
+  //showProdInfo("allt", null);
+  resetFilter();
+  //filternewornot.push("Ny", "Begagnad");
+  filternewornot.length = 0;
+  filternewornot.push(0, 1); 
+  showProdInfo(filterQ);
+  createCategoriesForSidebar();
 }
 
 //Hämtar produkter i varukorgen för att veta vilka som ska tas bort
@@ -74,7 +92,6 @@ function clearCart() {
       contentType: "application/json",
       success: function(data) {
         clearCart2(data);
-        
       }
     }); 
   } else {
@@ -83,7 +100,20 @@ function clearCart() {
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
     getProductsToPrintInBasket();
   }
-  window.location.reload();
+  showPriceInModal(0);
+  $("#basketModal").modal('hide');
+  $("#sideBarContainer").html($("#view-sidebar").html())
+  $("#productViewContainer").html($("#view-product").html())
+  $("#mainViewContainer").html($("#empty").html())
+
+  //showProdInfo("allt", null);
+  resetFilter();
+  //filternewornot.push("Ny", "Begagnad");
+  filternewornot.length = 0;
+  filternewornot.push(0, 1); 
+  showProdInfo(filterQ);
+  createCategoriesForSidebar();
+  updateItemNumber();
 }
 
 function addProductToCart(productToAdd){
@@ -300,7 +330,9 @@ function deleteProductFromCart2(productID){
     type: 'POST',
     datatype: 'JSON',
     contentType: "application/json",
+    async: false,
     success: function(product) {
+      updateItemNumber();
 
     },
     error: function(u){
