@@ -27,7 +27,6 @@ from flask import render_template, render_template_string
 #import cv2
 #from PIL import Image
 from pathlib import Path
-import easypost
 import shippo
 
 
