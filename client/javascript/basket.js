@@ -79,6 +79,7 @@ function clearCart() {
       contentType: "application/json",
       success: function(data) {
         clearCart2(data);
+        alert("sad")
       }
     }); 
   } else {
@@ -86,7 +87,6 @@ function clearCart() {
     productsInCart.clear();
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
     getProductsToPrintInBasket();
-    window.location.reload();
   }
 }
 
