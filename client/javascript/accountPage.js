@@ -218,7 +218,7 @@ function displayUserAdd() {
       type: 'GET',
       datatype: 'JSON',
       contentType: "application/json",
-      async: false,
+      //async: false,
   
       success: function(orderhistory) {
         //item =  new Order(orderhistory[i].id, product_names, orderhistory[i].amount);
@@ -270,7 +270,7 @@ function displayUserAdd() {
       type: 'GET',
       datatype: 'JSON',
       contentType: "application/json",
-      async: false,
+      //async: false,
   
       success: function(order) {
       
@@ -278,7 +278,7 @@ function displayUserAdd() {
 
         for (var i = 0; i < order.length ; i++){
           console.log(order[i].product_id)
-          getProduct(order[i].product_id)
+          getProduct(order[i].product_id, orderID, orderamount)
         }
         
         console.log(productlist)
@@ -296,9 +296,9 @@ function displayUserAdd() {
         //alert("error");
       } 
     });
-    item = new Order(orderID, productlist, orderamount);
-    orderlista.push(item)
-    displayHistory();
+    // item = new Order(orderID, productlist, orderamount);
+    // orderlista.push(item)
+    // displayHistory();
   } 
 
   //   function setOrderList(order) {
@@ -307,23 +307,26 @@ function displayUserAdd() {
   //   orderList.push(order[i])
   //   }
   // }
-  function getProduct(prod_id){
+  function getProduct(prod_id, orderID, orderamount){
     $.ajax ({
       headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
       url:'/product/' +prod_id,
       type: 'GET',
       datatype: 'JSON',
       contentType: "application/json",
-      async: false,
+      //async: false,
   
       success: function(prod) {
         //getOrderHistoryItems(orderhistory);
        // console.log(prod.name)
-        tempProduct = new Name(prod.name)
+        //tempProduct = new Name(prod.name)
         //console.log(tempProduct)
         
-        productlist.push(tempProduct);
+        //productlist.push(tempProduct);
         //console.log(productlist)
+        console.log(prod.name)
+        console.log(orderID)
+        displayHistory(prod.name, orderID, orderamount)
       },
       error: function(){
         //alert("error");
@@ -360,7 +363,7 @@ function displayUserAdd() {
   
 
 
-function displayHistory() {
+function displayHistory(prod_name, order_id, order_amount) {
  //printOrderHistory();
   
   // console.log(orderhist);
@@ -379,34 +382,46 @@ function displayHistory() {
 
   //const orderlista= [order1, order2, order3, order4];
 
-  console.log(orderlista.length)
+  console.log(prod_name)
+  console.log(order_id)
+  console.log(order_amount)
+
+  var item = new Order(prod_name, order_id, order_amount)
+
+  orderlista.push(item)
+
+
+  $("#historyCol").append("<div>"+ prod_name +"<br> Order: "+ order_id + " <br>Totalkostnad: " + order_amount)
+
+  // console.log(orderlista.length)
+  // console.log(orderlista[0].prod_name)
  
-for (let i=0; i < orderlista.length; i++) {
- var html = '<div class="col-md-6" onclick="openForm('+i+')" style="padding-top: 25px;"><img src="/images/order.png" class="media-object img-thumbnail" /></div>\
- <div class="col-md-11" style="display: none" id="order'+i+'" >\
-     <div class="row">\
-         <div class="col-md-12" id="jonatan">\
-             <div class="pull-right"><label class="label label-danger">Delivered</label></div>\
-             <div class="col-md-12">Summa: '+orderlista[i].amount+' kr</a></div>\
-             <div class="col-md-12">Order nr: '+orderlista[i].id+'</a></div>\
-             <div class="col-md-12 productplace"></div>\
-         </div>\
-     </div>\
- </div>';
+// for (let i=0; i < 5; i++) {
+//  var html = '<div class="col-md-6" onclick="openForm('+i+')" style="padding-top: 25px;"><img src="/images/order.png" class="media-object img-thumbnail" /></div>\
+//  <div class="col-md-11" style="display: none" id="order'+i+'" >\
+//      <div class="row">\
+//          <div class="col-md-12" id="jonatan">\
+//              <div class="pull-right"><label class="label label-danger">Delivered</label></div>\
+//              <div class="col-md-12">Summa: '+order_id+' kr</a></div>\
+//              <div class="col-md-12">Order nr: '+order_amount+'</a></div>\
+//              <div class="col-md-12 productplace"></div>\
+//          </div>\
+//      </div>\
+//  </div>';
 
        
   //$("#historyCol").append("<div class='col-md-6'><img src='https://bootdey.com/img/Content/user_3.jpg' class='media-object img-thumbnail' /></div>  <div class='col-md-11'> <div class='row'><div class='col-md-12'><div class='pull-right'><label class='label label-danger'>rejected</label></div><span><strong>Order name</strong></span> <span class='label label-info'>group name</span><br />Quantity : 2, cost: $323.13 <br /><a data-placement='top' class='btn btn-success btn-xs glyphicon glyphicon-ok' href='#' title='View'></a> <a data-placement='top' class='btn btn-danger btn-xs glyphicon glyphicon-trash' href='#' title='Danger'></a> <a data-placement='top' class='btn btn-info btn-xs glyphicon glyphicon-usd' href='#' title='Danger'></a></div><div class='col-md-12'>order made on: 05/31/2014 by <a href='#'>Jane Doe </a></div> <br></div>");
-  $("#historyCol").append(html);
-  console.log(orderlista[i].products.length)
-  var listTemp = orderlista[i].products
-  console.log(listTemp)
-  console.log(listTemp[1])
-  for(var j = 0; j < 99 ; i++) {
-    $("#jonatan").append("<div>"+ listTemp[j] +"</div>")
+  // $("#historyCol").append(html);
+  // // console.log(orderlista[i].products.length)
+  // // var listTemp = orderlista[i].products
+  // // console.log(listTemp)
+  // // console.log(listTemp[1])
+  // for(var j = 0; j < orderlista.length ; i++) {
+  //   $("#jonatan").append("<div>"+ orderlista[j].prod_name +"</div>")
 
-  }
-  $("#historyCol").append("<p> <br></p>");
-}
+  // }
+  // $("#historyCol").append("<p> <br></p>");
+
 }
 
 function openForm(i) {
