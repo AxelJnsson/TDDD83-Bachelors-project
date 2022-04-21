@@ -488,6 +488,7 @@
               <div id="orderHistory">                  
                   <div class="row" id="historyCol">            
                   </div>
+                  <div id="productPlace"></div>
               </div>
                </div>                     
           </div>
@@ -1088,6 +1089,26 @@
   
 </script>
 
+<!-- Lägger till order i betalning och kallar på stripe. Bör flytta till när en betalning går igenom.-->
+<!--<script>
+  function onBetalningClick() {
+    addOrdersAndItemsToHistory();
+    stripeTestFunction();
+    
+    
+  }
+</script>
+
+<div class="modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" data-keyboard=false data-backdrop='static'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; text-align: center;">Produktinformation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xProduct">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
   <div class="modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" data-keyboard=false data-backdrop='static'>
     <div class="modal-dialog" role="document">

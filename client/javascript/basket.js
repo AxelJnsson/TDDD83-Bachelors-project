@@ -468,3 +468,52 @@ function getUserdetails() {
   $('#cashEmail').val(JSON.parse(sessionStorage.getItem('auth')).user.email);
   $('#cashName').val(JSON.parse(sessionStorage.getItem('auth')).user.first_name);
 }
+
+
+function addOrdersAndItemsToHistory () {
+//INTE DEN KOD SOM SKA VARA KSA SKRIVAS OM
+console.log("Här")
+userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+
+  $.ajax ({
+    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/order/' +userID,
+    type: 'POST',
+    datatype: 'JSON',
+    contentType: "application/json",
+
+    success: function(ordernr) {
+      alert("la till order");
+      alert(ordernr);
+      addItemToOrder(ordernr); 
+    },
+    error: function(){
+      alert("la inte till order fk u");
+    } 
+  });
+
+}
+
+
+
+
+
+function addItemToOrder(ordernr){
+    //ajax
+
+  $.ajax ({
+    //headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/orderitem/' + userID,
+    type: 'POST',
+    datatype: 'JSON',
+    contentType: "application/json",
+
+    success: function(userID) {
+      //do something
+      alert(ordernr);
+    },
+    error: function(){
+      alert("la inte till order fk u 2");
+    } 
+  });
+}
