@@ -233,7 +233,7 @@ function appendProducts(filteredproducts){
         if (products[i].rating == 0) {
             rating = "Inget betyg än"
         } else {
-            rating = products[i].rating
+            rating = products[i].rating/products[i].nr_of_ratings
         }
     //funktion för att skriva ut produkterna 4 och 4
         //if (i%4 == 0) {
@@ -271,13 +271,29 @@ function appendProducts(filteredproducts){
         $("#productModalFooter").append('<button type="button" class="btn btn-tonehub" data-dismiss="modal" onClick="doThings(this.value, this)" value="'+products[prod_id].product_id+'" id="addProductToCartButton">Lägg i varukorgen<span class="cart-item"></span></button>');
         
         
-        //Skapar betygsknapparna i modal för produkter
+        //Skapar betygsknapparna i modal för produkter (stjärnor)
         $("#dropdown").append(
-         ' <a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 1 +','+products[prod_id].rating+')>1</a> ' +
-          '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 2 +','+products[prod_id].rating+')>2</a>' +
-          '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 3 +','+products[prod_id].rating+')>3</a>' +
-          '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 4 +','+products[prod_id].rating+')>4</a>' +
-          '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 5 +','+products[prod_id].rating+')>5</a>' 
+            '<fieldset class="rating">' +
+    '<input type="radio" id="star5" name="rating" value="5" onclick=calculateRating('+products[prod_id].product_id+',' + 5 +','+products[prod_id].rating+','+products[prod_id].nr_of_ratings+') />' +
+    '<label for="star5">5 stars</label>' +
+    '<input type="radio" id="star4" name="rating" value="4" onclick=calculateRating('+products[prod_id].product_id+',' + 4 +','+products[prod_id].rating+','+products[prod_id].nr_of_ratings+') />' +
+    '<label for="star4">4 stars</label>' +
+    '<input type="radio" id="star3" name="rating" value="3" onclick=calculateRating('+products[prod_id].product_id+',' + 3 +','+products[prod_id].rating+','+products[prod_id].nr_of_ratings+') />' +
+    '<label for="star3">3 stars</label>' +
+    '<input type="radio" id="star2" name="rating" value="2" onclick=calculateRating('+products[prod_id].product_id+',' + 2 +','+products[prod_id].rating+','+products[prod_id].nr_of_ratings+') />' +
+    '<label for="star2">2 stars</label>' +
+    '<input type="radio" id="star1" name="rating" value="1" onclick=calculateRating('+products[prod_id].product_id+',' + 1 +','+products[prod_id].rating+','+products[prod_id].nr_of_ratings+') />' +
+    '<label for="star1">1 star</label>' +
+'</fieldset>'
+
+            
+
+        // kan tas bort om stjärnorna fungerar
+        //  ' <a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 1 +','+products[prod_id].rating+','+products[prod_id].nr_of_ratings+')>1</a> ' +
+        //   '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 2 +','+products[prod_id].rating+','+products[prod_id].nr_of_ratings+')>2</a>' +
+        //   '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 3 +','+products[prod_id].rating+','+products[prod_id].nr_of_ratings+')>3</a>' +
+        //   '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 4 +','+products[prod_id].rating+','+products[prod_id].nr_of_ratings+')>4</a>' +
+        //   '<a class="dropdown-item" href="#" onclick=calculateRating('+products[prod_id].product_id+',' + 5 +','+products[prod_id].rating+','+products[prod_id].nr_of_ratings+')>5</a>' 
         )
         
     });
@@ -592,18 +608,26 @@ function setBack(btnn) {
 }
 
 //Beräknar en produkts rating efter att en användare har gett produkten en rating
-function calculateRating(id, rating, current_rating) {
+function calculateRating(id, rating, current_rating, nrOfRatings) {
     
+    nrOfRatings = nrOfRatings + 1
+
     new_rating = (current_rating + rating)
 
      $.ajax({
          headers: {
            "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
          url:'/product/' + id,
-         type: 'GET',
+         type: 'PUT',
+         datatype: 'JSON',
+         contentType: "application/json",
+         data: JSON.stringify({
+          "rating" : new_rating,
+         "nr_of_ratings" : nrOfRatings}),
          success: function(u) {
            
-
+           
+          
          }
      });
      

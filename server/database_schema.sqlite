@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS product (
     new_or_not INTEGER DEFAULT 1,
     quantity INTEGER NOT NULL,
     seller INTEGER DEFAULT 1,
-    rating FLOAT DEFAULT 0
+    rating FLOAT DEFAULT 0,
+    nr_of_ratings INTEGER DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS user (
@@ -65,6 +66,8 @@ CREATE TABLE new_product (
     year INTEGER NOT NULL,
     type TEXT NOT NULL,
     rating FLOAT,
+    nr_of_ratings INTEGER,
+    FOREIGN KEY(nr_of_ratings) REFERENCES product(nr_of_ratings),
     FOREIGN KEY(rating) REFERENCES product(rating),
     FOREIGN KEY(product_id) REFERENCES product(product_id)
 );
