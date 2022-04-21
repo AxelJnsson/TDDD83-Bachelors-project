@@ -594,7 +594,7 @@ function setBack(btnn) {
 //Beräknar en produkts rating efter att en användare har gett produkten en rating
 function calculateRating(id, rating, current_rating) {
     
-    alert(current_rating)
+    new_rating = (current_rating + rating)
 
      $.ajax({
          headers: {

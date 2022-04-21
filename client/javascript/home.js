@@ -454,6 +454,10 @@ function regOrAnnons() {
 function SucPay(u) {
   
   $("#mainViewContainer").html($("#lyckad-betalning").html())
+  alert("din betalning gick igenom");
+  addOrdersAndItemsToHistory();
+  //Gör nåt som uppdaterar varukorgen och skapar en
+
   $("#lyckadBet").attr("href", u)
 
  
