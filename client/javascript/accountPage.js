@@ -274,7 +274,7 @@ function displayUserAdd() {
       success: function(prod) {
   
         if(nextorder != orderID){
-          $("#historyCol").append("<div><b>Order: "+ orderID + "<br>Totalkostnad: " + orderamount + "kr </b>")
+          $("#historyCol").append("<div><b>Ordernummer: "+ orderID + "<br>Totalkostnad: " + orderamount + "kr </b>")
         }
         $("#historyCol").append("<div> Produkter:  "+ prod.name +" ("+ prod.price +" kr) </div>")
         nextorder = orderID
