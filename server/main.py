@@ -27,7 +27,6 @@ from flask import render_template, render_template_string
 #import cv2
 #from PIL import Image
 from pathlib import Path
-import easypost
 import shippo
 
 
@@ -116,7 +115,7 @@ class Order_history(db.Model):
   user_id = db.Column (db.Integer, db.ForeignKey('user.user_id'))
 
   def __repr__(self):
-    return '<Order_history {}: {} {}>'.format(self.id, self.user_id)
+    return '<Order_history {}: {} >'.format(self.id, self.user_id)
 
 class Orders(db.Model):
   order_nr = db.Column(db.Integer, primary_key = True)
@@ -125,16 +124,23 @@ class Orders(db.Model):
   
 
   def __repr__(self):
-    return '<Orders {}: {} {} {} >'.format(self.order_nr, self.amount, self.order_history_id)
+    return '<Orders {}: {} {}>'.format(self.order_nr, self.amount, self.order_history_id)
+
+  def serialize(self):
+    return dict(id=self.order_nr, amount=self.amount, order_history_id=self.order_history_id)
 
 class Order_item (db.Model):
-  id = db.Column(db.Integer, db.ForeignKey('product.product_id'), primary_key = True )
+  id = db.Column(db.Integer, primary_key = True )
+  product_id = db.Column(db.Integer, db.ForeignKey('product.product_id'))
   quantity = db.Column(db.Integer)
   order_nr = db.Column(db.Integer, db.ForeignKey('orders.order_nr'))
   
 
   def __repr__(self):
-    return '<Order_item {}: {} {} {} >'.format(self.id, self.quantity, self.order_nr)
+    return '<Order_item {}: {} {} {}  >'.format(self.id, self.product_id, self.quantity, self.order_nr)
+
+  def serialize(self):
+    return dict(id=self.id, product_id=self.product_id, quantity=self.quantity, order_nr = self.order_nr)
 
 
 #Sets up database from database_schema
@@ -205,7 +211,6 @@ stripe.api_key = 'sk_test_51KmeJFGTjasXI1q99HgReiS1UmSZmF3a2dZSnyq7dtYnoHUw8HPyo
 
  
 
-easypost.api_key = "<EZTK437cee1a8ca945c09c89080aef7debffIjlTAjf2l3c6oiT0CEvzFA>"
 
 shippo.api_key = "<shippo_test_4539126ef7ee2c56604e453728c9feb81c8e1494>"
 shippo.config.api_key= "shippo_test_4539126ef7ee2c56604e453728c9feb81c8e1494"
@@ -387,7 +392,7 @@ def signup():
     new_user = request.get_json()  
     print(new_user["first_name"])  
     x = User(first_name = new_user["first_name"], last_name = new_user["last_name"], email = new_user["email"])
-    x.set_password(new_user["password_hash"])
+    x.set_password(new_user["password"])
     db.session.add(x)
     db.session.commit()
     user_id = x.user_id
@@ -507,38 +512,100 @@ def createorderhistory(user_id):
   if request.method == 'POST':
     print("tries to create")
     x = Order_history( user_id= user_id)
+    print(x)
     db.session.add(x)
     db.session.commit()
     return 20
 
-#INTEKLAR
+#Supposed to create and get orders, can create orders  but does not insert an amount yet. 
+# Might need to make a PUT function for that. Also GET haven't been figured out yet.
 @app.route('/order/<int:user_id>', methods = ['POST', 'GET'])
 def createorders(user_id):
   if request.method == 'POST':
-    
-    orderhist = Order_history.query.filter_by(user_id)
+    print(user_id)
+    orderhist = Order_history.query.filter_by(user_id=user_id).first()
+    print("kommer vi hit")
+    #print(orderhist)
     x = Orders(order_history_id = orderhist.id)
+    print("orderhist.id=")
+    print(orderhist.id)
     db.session.add(x)
     db.session.commit()
-    return 200
-  elif request.method == 'GET':
-    order = Product.query.filter_by(order_nr = Order_history.query.filter_by(user_id).user_id)
-    order_list =[]
+
+    orders = Orders.query.filter_by(order_history_id = orderhist.id).all()
+    print(len(orders))
+    order = orders[len(orders)-1]
+    print("Order: ")
+    print(order.order_nr)
+    #return order.order_nr
+    # order_id = Orders.query.get_or_404(order.order_nr)
+    # print("order id:")
+    # print(order_id)
+
+    print("vad är detta?")
+    user_session = Shopping_Session.query.filter_by(user_id = user_id).first()
+    print(user_session.id)
+    order_items = Cart_Item.query.filter_by(session_id = user_session.id).all() #lades till
+    print(len(order_items))
+    
+    for x in order_items:
+      item = Order_item(product_id = x.product_id)
+      item.quantity = x.quantity
+      item.order_nr = order.order_nr
+      db.session.add(item)
+    #orderhist = Order_history.query.filter_by(user_id = user_id)
+    #x = Orders(order_history_id = orderhist.id)
+    db.session.commit()
+
+    prod_hist_id = Order_item.query.filter_by(order_nr = order.order_nr).all()
+    sum = 0
+    for x in prod_hist_id:
+      prod_item = Product.query.filter_by(product_id = x.product_id).first()
+      sum += prod_item.price * x.quantity
+      print(sum)
+    order.amount = sum
+    db.session.commit()
+    return jsonify(order.order_nr) #skicka tbx ordr_id
+  elif request.method == 'GET': 
+    #DENNA FUNGERAR INTE ÄN
+   
+
+    orderhistory = Order_history.query.filter_by(user_id=user_id).first()
+    order = Orders.query.filter_by(order_history_id = orderhistory.id).all()
+
+    bought_products = []
 
     for x in order:
-      order_list.append(x.serialize())
-    return jsonify(order_list)
+
+      bought_products.append(x.serialize())
+
+    
+    
+    # p = Product.query.filter_by(product_id = something)
+    # order_list =[]
+
+    #print(bought_products)
+
+    # for x in order:
+    #   order_list.append(x.serialize())
+    return jsonify(bought_products)
   return "401"
 
-#Route for adding orderitems
-@app.route('/orderitem/<int:user_id>', methods =['POST'])
-def createorderitem(user_id):
-  if request.method == 'POST':
-    orderhist = Order_history.query.filter_by(user_id)
-    x = Orders(order_history_id = orderhist.id)
-    db.session.add(x)
-    db.session.commit()
-    return 200
+#Ska lägga till orderItems som har samma order_nr som foreign key. 
+@app.route('/orderitems/<int:order_no>', methods =['GET'])
+def getorderitems(order_no): #user_id innan
+  if request.method == 'GET':
+    print(order_no)
+    orders = Order_item.query.filter_by(order_nr = order_no)
+    #print(orders)
+    product_list =[]
+
+    for x in orders:
+      product_list.append(x.serialize())
+    #print(product_list)
+    return jsonify(product_list)
+  else:
+    return "401"
 
 #Route for getting orderitems
 

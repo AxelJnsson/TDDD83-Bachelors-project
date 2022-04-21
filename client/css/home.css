@@ -196,6 +196,7 @@ h2 {
   color: white;
 }
 
+<<<<<<< HEAD
 
 /*h1 {
   color: white; kommenterar bort den sålänge då visa texter ej syns 
@@ -205,6 +206,8 @@ h2 {
 p {
   text-align: justify;
 }*/
+=======
+>>>>>>> 2805c133246043d84b4f376e6a8d8d367370ef23
 
 
 
@@ -405,14 +408,31 @@ p {
         
       }
     
-    .price {
-      margin-left: 1rem;
-    }
-    
     .modal-footer {
       padding-top: 0rem;
     }
 
 .btn-group {
   float:right;
+}
+
+#totalprice{
+
+  font-weight: bolder;
+}
+
+#pricePrint{
+
+text-align:center;
+justify-content: center;
+/* background-color: #384052; */
+width: 20%;
+
+
+}
+
+#productName{
+  /* background-color: rgb(177, 70, 70); */
+  width: 25%;
+  /* text-align:left; */
 }

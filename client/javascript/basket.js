@@ -217,12 +217,28 @@ function printEmptyBasketModal(){
   $('#bodyBasketModal').append("Varukorgen är tom!")
 }
 
+//lägger till tabellhuvudet
 function printProductInBasketModal(product, quantity){
+  $('#tableHeadModal').empty();
+  $('#tableHeadModal').append(`<table class="table table-image">
+  <thead>
+    <tr>
+      <th scope="col"></th><th scope="col"></th>
+      <th scope="col"></th><th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col">Produkt</th>
+      <th scope="col"></th>
+      <th scope="col">Pris</th>
+      <th scope="col"></th><th scope="col"></th>
+      <th scope="col">Kvantitet</th>
+    </tr>
+  </thead>
+</table>`)
 
   sessionStorage.setItem('price', JSON.parse(sessionStorage.getItem('price')) + product.price*quantity);
   showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
  // $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+'</div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
-  $('#bodyBasketModal').append(' <table class="table table-image"><tbody><tr> <td class="w-25"><img src='+ product.image +'  style="height: 150px; width: 150px;"></td> <td> '+product.name+' </td> <td> '+product.price+'kr </td><td> <div class = btn-group><button class="w3-button w3-black" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</button><button class="w3-button w3-white"> '+quantity+'</button> <button class="w3-button w3-teal" onclick= "addProductToCart(this.value);" value="'+product.product_id+'">+</button> </div></td></tr></tbody></table>');
+  $('#bodyBasketModal').append(' <table class="table table-image"><tbody><tr> <td class="w-25"><img src='+ product.image +'  style="height: 150px; width: 150px;"></td> <td id="productName"> '+product.name+' </td> <th id=pricePrint> '+product.price+'kr</th><td> <div class = btn-group><button class="w3-button w3-black" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</button><button class="w3-button w3-white"> '+quantity+'</button> <button class="w3-button w3-teal" onclick= "addProductToCart(this.value);" value="'+product.product_id+'">+</button> </div></td></tr></tbody></table>');
   // <div class="value-button" id="decrease" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</div>
   // <div class="value-button" id="increase" onclick= "addProductToCart(this.value);" value="+product.product_id+">+</div>
 }
@@ -300,7 +316,7 @@ function deleteProductFromCart2(productID){
 function showPriceInModal(currentTotal){
   $('#basketModalPriceDiv').empty();
   if (JSON.parse(sessionStorage.getItem('price'))>0){
-    $('#basketModalPriceDiv').append('Din nuvarande Total är: '+ currentTotal+'kr');
+    $('#basketModalPriceDiv').append('<a id="totalprice">Din nuvarande total är: '+ currentTotal+'kr</a>');
   }
 }
 
@@ -381,10 +397,17 @@ function showInRegister(products){
   }
 
 function printProductInBasketRegister(product,quantity){
-  $('#scrollableItemsInBasket').append('<div class="row" id="productDivInRegister"><div class="col-6"><img src='+ product.image +' style="height: 150px; width: 150px;"></div> <div class="col" style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+' <br> <button class="deleteProductFromRegisterButton" onClick="deleteProductFromRegister(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button> </div> </div> <br>');
+ // $('#scrollableItemsInBasket').append('<div class="row" id="productDivInRegister"><div class="col-6"><img src='+ product.image +' style="height: 150px; width: 150px;"></div> <div class="col" style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+' <br> <button class="deleteProductFromRegisterButton" onClick="deleteProductFromRegister(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button> </div> </div> <br>');
+
+  $('#scrollableItemsInBasket').append('<div class="row" id="productDivInRegister"><div class="col-6"><img src='+ product.image +' style="height: 150px; width: 150px;"></div> <div class="col" style=""> '+product.name+' <br> '+product.price+'kr <br>  <button class="w3-button w3-black" onClick="deleteProductFromRegister(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</button><button class="w3-button w3-white" id ="quantityInBasket" value ="'+quantity+'">'+quantity+'</button> <button class="w3-button w3-teal" id="increaseButton" onclick= "executeThings(this.value);" value="'+product.product_id+'">+</button></div> </div> <br>');
 }
 
-function printEmptyRegister(){
+function executeThings(product) {
+  addProductToCart(product);
+  printBasketedProducts();
+  }
+
+function printEmptyRegister() {
   $('#scrollableItemsInBasket').append('<div id="emptyBasketRegister">Din varukorg är tom!</div> <div id="contShop" onclick="showAllInst()"><p style="cursor: pointer;">Tryck här för att forsätta shoppa!</p></div>');
 }
 
@@ -434,5 +457,63 @@ function showPriceInRegister(currentTotal){
   $('#totalsumLine').empty();
   $('#totalsumLine').append( + currentTotal + "kr");
   stripePay(currentTotal*100);
+ getUserdetails();
 
+}
+
+function getUserdetails() { 
+  
+//var namn = JSON.parse(sessionStorage.getItem('auth')).user.first_name;
+  $('#cashName').val(JSON.parse(sessionStorage.getItem('auth')).user.first_name);
+  $('#cashEmail').val(JSON.parse(sessionStorage.getItem('auth')).user.email);
+  $('#cashName').val(JSON.parse(sessionStorage.getItem('auth')).user.first_name);
+}
+
+
+function addOrdersAndItemsToHistory () {
+//INTE DEN KOD SOM SKA VARA KSA SKRIVAS OM
+console.log("Här")
+userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+
+  $.ajax ({
+    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/order/' +userID,
+    type: 'POST',
+    datatype: 'JSON',
+    contentType: "application/json",
+
+    success: function(ordernr) {
+      alert("la till order");
+      alert(ordernr);
+      addItemToOrder(ordernr); 
+    },
+    error: function(){
+      alert("la inte till order fk u");
+    } 
+  });
+
+}
+
+
+
+
+
+function addItemToOrder(ordernr){
+    //ajax
+
+  $.ajax ({
+    //headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/orderitem/' + userID,
+    type: 'POST',
+    datatype: 'JSON',
+    contentType: "application/json",
+
+    success: function(userID) {
+      //do something
+      alert(ordernr);
+    },
+    error: function(){
+      alert("la inte till order fk u 2");
+    } 
+  });
 }
