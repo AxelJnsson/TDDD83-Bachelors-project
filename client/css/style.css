@@ -127,10 +127,11 @@ a:active {
 }
 
 #createAddPage{
-  border-color: rgb(196, 215, 240) !important;
-  border-style: double;
+  /*border-color: rgb(196, 215, 240) !important;
+  border-style: double;*/
   color: rgb(36, 33, 33);
   font-weight: bold;
+  max-height: 200px;
 }
 
 #THcreateAdd{
