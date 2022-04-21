@@ -218,6 +218,7 @@ function displayUserAdd() {
       type: 'GET',
       datatype: 'JSON',
       contentType: "application/json",
+      async: false,
   
       success: function(orderhistory) {
         //item =  new Order(orderhistory[i].id, product_names, orderhistory[i].amount);
@@ -269,6 +270,7 @@ function displayUserAdd() {
       type: 'GET',
       datatype: 'JSON',
       contentType: "application/json",
+      async: false,
   
       success: function(order) {
       
@@ -312,6 +314,7 @@ function displayUserAdd() {
       type: 'GET',
       datatype: 'JSON',
       contentType: "application/json",
+      async: false,
   
       success: function(prod) {
         //getOrderHistoryItems(orderhistory);
@@ -399,7 +402,7 @@ for (let i=0; i < orderlista.length; i++) {
   console.log(listTemp)
   console.log(listTemp[1])
   for(var j = 0; j < 99 ; i++) {
-    $("#jonatan").append("<div>"+ orderlista[i].products[j] +"</div>")
+    $("#jonatan").append("<div>"+ listTemp[j] +"</div>")
 
   }
   $("#historyCol").append("<p> <br></p>");
