@@ -125,7 +125,7 @@ div.sticky {
 
 .wrapper {
   text-align: center;
-  background-color: #384052;
+  background-color: white;
   padding: 50px;
   box-shadow: 0 0 5px ;
 }
@@ -157,14 +157,6 @@ h2 {
   color: white;
 }
 
-/*h1 {
-  color: white; kommenterar bort den sålänge då visa texter ej syns 
-}
-
-
-p {
-  text-align: justify;
-}*/
 
 .team {
   display: flex;
@@ -353,3 +345,43 @@ p {
       margin-top: 40px;
       margin-bottom: 40px;
     }
+        td, th {
+          border: 0;
+          color: #666;
+          font-size: 0.8rem;
+        }
+      
+      td, th {
+        vertical-align: middle;
+        text-align: center;
+        
+      }
+    
+    .modal-footer {
+      padding-top: 0rem;
+    }
+
+.btn-group {
+  float:right;
+}
+
+#totalprice{
+
+  font-weight: bolder;
+}
+
+#pricePrint{
+
+text-align:center;
+justify-content: center;
+/* background-color: #384052; */
+width: 20%;
+
+
+}
+
+#productName{
+  /* background-color: rgb(177, 70, 70); */
+  width: 25%;
+  /* text-align:left; */
+}
