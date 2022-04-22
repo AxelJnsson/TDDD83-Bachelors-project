@@ -210,6 +210,11 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   });
 
+  /*function gitarrView(){
+      $("#sideBarContainer").html($("#view-sidebar").html())  
+      $("#productViewContainer").html($("#view-product").html())
+      $("#mainViewContainer").html($("#empty").html())
+   };*/
    function showAllInst(){
     $("#sideBarContainer").html($("#view-sidebar").html())
     $("#productViewContainer").html($("#view-product").html())
@@ -352,6 +357,7 @@ $('#contactButton').click(function (e) {
   };
 
   $('#alphornButton').click(function (e) {  
+    //alert(filtertypes.length);
  
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
@@ -367,6 +373,15 @@ $('#contactButton').click(function (e) {
 
     e.preventDefault();
   });
+
+  // $('#resetFilterBtn').click(function (e) {  
+  //   alert("hej");
+  //   resetFilter();
+  //   $("#sideBarContainer").html($("#view-sidebar").html())  
+  //   $("#productViewContainer").html($("#view-product").html())
+  //   $("#mainViewContainer").html($("#empty").html())
+  //   showProdInfo(filterQ);
+  //  });
 
   function btnResetFilter(){
     alert("Filter rensas");
@@ -421,6 +436,7 @@ function checkNeworOldStuff(checkid, query){
    
     
   }
+  //alert(filterQ[7][0] + filterQ[7][1])
   
   $("#productViewContainer").html($("#empty").html())
   $("#productViewContainer").html($("#view-product").html())

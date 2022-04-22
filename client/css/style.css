@@ -353,10 +353,10 @@ input[type="radio"] {
   opacity: 1
 }
 
-/* .fas,
+.fas,
 .fab {
   color: #6d6c6d
-} */
+}
 
 ::placeholder {
   font-size: 12px

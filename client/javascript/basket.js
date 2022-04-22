@@ -18,7 +18,7 @@ function updateItemNumber(){
       datatype: 'JSON',
       contentType: "application/json",
       success: function(data) {
-        updateItemNumberLoggedIn(data);
+        updateItemNumber2(data);
       }
     }); 
   } else {
@@ -27,23 +27,27 @@ function updateItemNumber(){
     for (let key of productsInCart.keys()){
       a = a + productsInCart.get(key);
     }
-    updateCartNumber(a);
+    doThings3(a);
   }
 }
 
 <<<<<<< HEAD
 //Räknar ut antal produkter i varukorgen om man är inloggad
+<<<<<<< HEAD
 function updateItemNumberLoggedIn(data){
 =======
 function updateItemNumber2(data){
 >>>>>>> parent of 2bf19e4 (fixat med sökmotor och refaktorering)
+=======
+function updateItemNumber2(data){
+>>>>>>> parent of 03060b7 (refaktorering)
   var a = 0
   for (i = 0; i < data[2].length; i++){
     for(j = 0; j < data[2][i].quantity; j++){
       a = a + 1;
     }
   }
-  updateCartNumber(a);
+  doThings3(a);
 }
 
 $('#closeBasketButton').click(function (e) {

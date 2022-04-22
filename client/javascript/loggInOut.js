@@ -43,6 +43,13 @@ $('#LoginFinishButton').click(function (e) {
         error: function(){
           alert("Wrong username or password!");
         }
+        // statuscode: {
+        //   401: function() {
+        //     alert("Wrong username or password!");
+        //     $(".container").html($("#view-home").html());
+    
+        //   }
+        //}
       });    
   });
   
