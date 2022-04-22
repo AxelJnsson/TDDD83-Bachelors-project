@@ -38,7 +38,6 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
-#Nedan finns attribut och definitioner för produkter
 class Product(db.Model):
   product_id = db.Column(db.Integer, primary_key = True)
   brand = db.Column(db.String, nullable = False)
@@ -59,7 +58,6 @@ class Product(db.Model):
   def serialize(self):
     return dict(product_id=self.product_id, brand=self.brand, model=self.model, name=self.name, price=self.price, color=self.color, image=self.image, year=self.year, type=self.type, new_or_not = self.new_or_not, quantity = self.quantity, seller = self.seller)
 
-#Attribut och definitioner för användare
 class User(db.Model):
   user_id = db.Column(db.Integer, primary_key = True)
   email = db.Column(db.String, nullable = False)
@@ -674,7 +672,7 @@ def user():
     i = User.serialize(User.query.get_or_404(user_id))
     return i
 
-#Route för att lägga till produkter i varukorgen
+
 @app.route('/product/<int:product_id>/adding', methods= ['POST'])
 @jwt_required()
 def productadd(product_id):
@@ -720,7 +718,7 @@ def productadd(product_id):
     return "success : false"
 
 
-#Route för att ta bort produkter från varukorgen
+
 @app.route('/product/<int:product_id>/unadding', methods= ['POST'])
 @jwt_required()
 def carsub(product_id):
