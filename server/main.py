@@ -2,6 +2,7 @@
 
 from email.policy import default
 from faulthandler import dump_traceback_later
+from math import prod
 #from msilib import Table
 from sqlite3 import OperationalError
 #!from tkinter.tix import Select
@@ -751,6 +752,28 @@ def carsub(product_id):
     return "Tog bort produkt"
   else:
     return "Produkten finns inte i din varukorg"
+
+#Route för att ta bort alla produkter från varukorgen
+@app.route('/clear-cart', methods= ['POST'])
+@jwt_required()
+def clearCart():
+  if request.method == 'POST':
+    user = get_jwt_identity().get('user_id')
+    z = Shopping_Session.query.filter_by(user_id = user).first_or_404()
+    
+    temp_Item = Cart_Item.query.filter_by(session_id = z.id)
+    cart_item_list = temp_Item.all()
+    temp_Item.delete()
+    db.session.commit()
+    # Cart_Item.query.filter_by(session_id = z.id, product_id = product.product_id).update(data_to_updateCartItem)
+    # data_to_updateProduct = {"quantity" : x}
+    # Product.query.filter_by(product_id = product_id).update(data_to_updateProduct)
+    # db.session.commit()
+
+    return "Tog bort alla produkter"
+  else:
+    return "Produkten finns inte i din varukorg"
+
 
 if __name__ == "__main__":
   app.run(debug=True)
