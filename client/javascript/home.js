@@ -369,6 +369,10 @@ $('#contactButton').click(function (e) {
   });
 
   function btnResetFilter(){
+<<<<<<< HEAD
+=======
+    alert("Filter rensas");
+>>>>>>> parent of 8cbb410 (fixade fel från pull)
     resetFilter();
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())

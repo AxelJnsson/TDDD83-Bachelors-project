@@ -591,9 +591,9 @@ function doThings3(a) {
     $('#basketArea').empty();
 
     if (newCartTotal < 10) {
-        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 20px; margin-right: 10px; margin-left: 5px; text-align: center; background-color: rgb(196, 215, 240) !important; color: black;'>" + newCartTotal + "</span>");
+        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 20px; margin-right: 10px; margin-left: 5px; text-align: center;'>" + newCartTotal + "</span>");
     } else {
-        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 30px; margin-right: 10px; margin-left: 5px; text-align: center; background-color: rgb(196, 215, 240) !important; color: black;'>" + newCartTotal + "</span>"); 
+        $("#basketArea").append("<span class='badge badge-primary' style='height: 20px; width: 30px; margin-right: 10px; margin-left: 5px; text-align: center;'>" + newCartTotal + "</span>"); 
     }
 }
   
