@@ -187,15 +187,15 @@ function loadSearchResults(searchList) {
 
 //Här sker jämförelsen mellan det sökta ordet och ett ord i databasen, används för
 //att hantera felstavning
-function compare(string1, string2) {
-  for(var result = 0; i = string1.length; i--){
-    if (typeof string2[i] == 'undefined' || string1[i] == string2[i]) {
+function compare(s1, s2) {
+  for(var result = 0; i = s1.length; i--){
+    if (typeof s2[i] == 'undefined' || s1[i] == s2[i]) {
 
-    } else if (string1[i].toLowerCase() == string2[i].toLowerCase()) {
+    } else if (s1[i].toLowerCase() == s2[i].toLowerCase()) {
       result++;
     } else {
       result += 4;
     }
   }
-  return 1 - (result + 4*Math.abs(string1.length - string2.length))/(2*(string1.length+string2.length));
+  return 1 - (result + 4*Math.abs(s1.length - s2.length))/(2*(s1.length+s2.length));
 }
