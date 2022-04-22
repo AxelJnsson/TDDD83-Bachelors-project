@@ -157,7 +157,7 @@ $('#contactButton').click(function (e) {
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())    
     displayUser();  
-  
+    nextorder = null;
     displayUserAdd(); 
     e.preventDefault();
   });

@@ -58,13 +58,26 @@ $('#xButtonBasket').click(function (e) {
 
 
 function clearCart2(data) {
-  if (data[2].length > 0) {
-    deleteProductFromCart2(data[2][0].product_id);
-    clearCart();
-  } else {
-    printEmptyBasketModal();
-    showPriceInModal(0);
+  for (let i = 0; i< data[2].length; i++){
+    var iterQuant = parseInt(data[2][i].quantity);
+    while (iterQuant>0){
+      deleteProductFromCart2(data[2][i].product_id);
+      iterQuant--;
+    }
   }
+  $("#basketModal").modal('hide');
+  showPriceInModal(0);
+  $("#sideBarContainer").html($("#view-sidebar").html())
+  $("#productViewContainer").html($("#view-product").html())
+  $("#mainViewContainer").html($("#empty").html())
+
+  //showProdInfo("allt", null);
+  resetFilter();
+  //filternewornot.push("Ny", "Begagnad");
+  filternewornot.length = 0;
+  filternewornot.push(0, 1); 
+  showProdInfo(filterQ);
+  createCategoriesForSidebar();
 }
 
 function clearCart() {
@@ -85,6 +98,20 @@ function clearCart() {
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
     getProductsToPrintInBasket();
   }
+  showPriceInModal(0);
+  $("#basketModal").modal('hide');
+  $("#sideBarContainer").html($("#view-sidebar").html())
+  $("#productViewContainer").html($("#view-product").html())
+  $("#mainViewContainer").html($("#empty").html())
+
+  //showProdInfo("allt", null);
+  resetFilter();
+  //filternewornot.push("Ny", "Begagnad");
+  filternewornot.length = 0;
+  filternewornot.push(0, 1); 
+  showProdInfo(filterQ);
+  createCategoriesForSidebar();
+  updateItemNumber();
 }
 
 function addProductToCart(productToAdd){
@@ -232,13 +259,11 @@ function printProductInBasketModal(product, quantity){
     </tr>
   </thead>
 </table>`)
-
+//räknar fram och skriver ut totalsumma samt printar ut produkterna
   sessionStorage.setItem('price', JSON.parse(sessionStorage.getItem('price')) + product.price*quantity);
   showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
  // $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+'</div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
   $('#bodyBasketModal').append(' <table class="table table-image"><tbody><tr> <td class="w-25"><img src='+ product.image +'  style="height: 150px; width: 150px;"></td> <td id="productName"> '+product.name+' </td> <th id=pricePrint> '+product.price+'kr</th><td> <div class = btn-group><button class="w3-button w3-black" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</button><button class="w3-button w3-white"> '+quantity+'</button> <button class="w3-button w3-teal" onclick= "addProductToCart(this.value);" value="'+product.product_id+'">+</button> </div></td></tr></tbody></table>');
-  // <div class="value-button" id="decrease" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</div>
-  // <div class="value-button" id="increase" onclick= "addProductToCart(this.value);" value="+product.product_id+">+</div>
 }
 
 function deleteProductFromCart(productID){
@@ -303,7 +328,9 @@ function deleteProductFromCart2(productID){
     type: 'POST',
     datatype: 'JSON',
     contentType: "application/json",
+    async: false,
     success: function(product) {
+      updateItemNumber();
 
     },
     error: function(u){
@@ -396,7 +423,6 @@ function showInRegister(products){
 
 function printProductInBasketRegister(product,quantity){
  // $('#scrollableItemsInBasket').append('<div class="row" id="productDivInRegister"><div class="col-6"><img src='+ product.image +' style="height: 150px; width: 150px;"></div> <div class="col" style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+' <br> <button class="deleteProductFromRegisterButton" onClick="deleteProductFromRegister(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button> </div> </div> <br>');
-
   $('#scrollableItemsInBasket').append('<div class="row" id="productDivInRegister"><div class="col-6"><img src='+ product.image +' style="height: 150px; width: 150px;"></div> <div class="col" style=""> '+product.name+' <br> '+product.price+'kr <br>  <button class="w3-button w3-black" onClick="deleteProductFromRegister(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</button><button class="w3-button w3-white" id ="quantityInBasket" value ="'+quantity+'">'+quantity+'</button> <button class="w3-button w3-teal" id="increaseButton" onclick= "executeThings(this.value);" value="'+product.product_id+'">+</button></div> </div> <br>');
 }
 
