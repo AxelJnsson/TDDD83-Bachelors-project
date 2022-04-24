@@ -57,63 +57,55 @@ $('#xButtonBasket').click(function (e) {
   $("#basketModal").modal('hide');
 });
 
-//Används för att rensa varukorgen
-function clearCart2(data) {
-  for (let i = 0; i< data[2].length; i++){
-    var iterQuant = parseInt(data[2][i].quantity);
-    while (iterQuant>0){
-      deleteProductFromCart2(data[2][i].product_id);
-      iterQuant--;
-    }
-  }
-  $("#basketModal").modal('hide');
-  showPriceInModal(0);
-  $("#sideBarContainer").html($("#view-sidebar").html())
-  $("#productViewContainer").html($("#view-product").html())
-  $("#mainViewContainer").html($("#empty").html())
-
-  //showProdInfo("allt", null);
-  resetFilter();
-  //filternewornot.push("Ny", "Begagnad");
-  filternewornot.length = 0;
-  filternewornot.push(0, 1); 
-  showProdInfo(filterQ);
-  createCategoriesForSidebar();
-}
-
 //Hämtar produkter i varukorgen för att veta vilka som ska tas bort
 function clearCart() {
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
-    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
     $.ajax ({
-      url:'/user/'+userID,
-      type: 'GET',
+      headers: {
+        "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token}, 
+      url:'/clear-cart',
+      type: 'POST',
       datatype: 'JSON',
       contentType: "application/json",
-      success: function(data) {
-        clearCart2(data);
-      }
-    }); 
+      success: function(result) {
+        showPriceInModal(0);
+        $("#basketModal").modal('hide');
+        $("#sideBarContainer").html($("#view-sidebar").html())
+        $("#productViewContainer").html($("#view-product").html())
+        $("#mainViewContainer").html($("#empty").html())
+      
+        //showProdInfo("allt", null);
+        resetFilter();
+        //filternewornot.push("Ny", "Begagnad");
+        filternewornot.length = 0;
+        filternewornot.push(0, 1); 
+        showProdInfo(filterQ);
+        createCategoriesForSidebar();
+        updateItemNumber();      }
+    });
+    
+
   } else {
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     productsInCart.clear();
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
     getProductsToPrintInBasket();
-  }
-  showPriceInModal(0);
-  $("#basketModal").modal('hide');
-  $("#sideBarContainer").html($("#view-sidebar").html())
-  $("#productViewContainer").html($("#view-product").html())
-  $("#mainViewContainer").html($("#empty").html())
+    showPriceInModal(0);
+    $("#basketModal").modal('hide');
+    $("#sideBarContainer").html($("#view-sidebar").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
 
-  //showProdInfo("allt", null);
-  resetFilter();
-  //filternewornot.push("Ny", "Begagnad");
-  filternewornot.length = 0;
-  filternewornot.push(0, 1); 
-  showProdInfo(filterQ);
-  createCategoriesForSidebar();
-  updateItemNumber();
+    //showProdInfo("allt", null);
+    resetFilter();
+    //filternewornot.push("Ny", "Begagnad");
+    filternewornot.length = 0;
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    updateItemNumber();
+  }
+  
 }
 
 function addProductToCart(productToAdd){
