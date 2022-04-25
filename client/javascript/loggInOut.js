@@ -1,3 +1,4 @@
+//refaktorerad
 $('#loginButton').click(function (e) {
   e.preventDefault();
   $("#loginModal").modal('toggle');
