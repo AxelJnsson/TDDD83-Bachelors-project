@@ -358,16 +358,12 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   };
 
-  $('#alphornButton').click(function (e) {  
-    //alert(filtertypes.length);
- 
+  $('#blasButton').click(function (e) {   
     $("#sideBarContainer").html($("#view-sidebar").html())  
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
     resetFilter();
-    var testcategory1 = "Blås";
-    
-    filtertypes.push(testcategory1);
+    filtertypes.push("Blås");
     filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
