@@ -1,3 +1,4 @@
+//refaktorerad
 function Display_admin() {
     $.ajax({
       headers: {

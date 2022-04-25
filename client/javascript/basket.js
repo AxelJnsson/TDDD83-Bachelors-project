@@ -1,3 +1,4 @@
+//refaktorerad
 //BASKET
 
 //Öppna modalen för kassan om man klickar på ikonen

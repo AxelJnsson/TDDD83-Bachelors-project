@@ -1,10 +1,8 @@
 function stripePay(sum){
-
 // This is your test publishable API key.
 var stripe = Stripe("pk_test_51KmeJFGTjasXI1q9Qi3JlVno45atDNVgXx6jPMu7mYgfylorws1kbSzTXIR4lQJEckUOmKfyMvveS1CKmFHnrmTl00yA84HWND");
 
 // The items the customer wants to buy
-
 var sum1= sum;
 
 // Disable the button until we have Stripe set up on the page

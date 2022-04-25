@@ -1,3 +1,4 @@
+//refaktorerad
 var orderlista = [];
 let orderHist  = new Array()
 const orderList = []
