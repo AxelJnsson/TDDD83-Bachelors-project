@@ -1,3 +1,4 @@
+//Refaktorerad
 
 //För att söka när man klickar på enter
 $('#datatable-search-input').on('keypress', function (e) {
@@ -41,12 +42,7 @@ function search(productList) {
 
   // Loop through all list items, and choose those who match the search query
   for (a = 0; a < productList.length; a++) {
-    attributeList[0] = productList[a].brand;
-    attributeList[1] = productList[a].model;
-    attributeList[2] = productList[a].name;
-    attributeList[3] = productList[a].color;
-    attributeList[4] = productList[a].type;
-    attributeList[5] = productList[a].product_id;
+    attributeList = getAttributes(productList, a);
     for (b = 0; b < 5; b++) {
       word = attributeList[b];    
       if (word.toUpperCase().indexOf(inputWord) > -1) {
@@ -68,11 +64,7 @@ function search(productList) {
       //Jämför attributen för varje produkt med det sökta ordet
         for (b = 0; b < productList.length; b++) {
           var y = 0;
-          attributeList[0] = productList[b].brand;
-          attributeList[1] = productList[b].model;
-          attributeList[2] = productList[b].color;
-          attributeList[3] = productList[b].type;
-          attributeList[4] = productList[b].product_id;
+          attributeList = getAttributes2(productList, a);
           //Iterera över varje attribut för produkten
           aloop:
           for (c = 0; c < 4; c++) {
@@ -106,19 +98,12 @@ function search(productList) {
     }
   }
 
-
   //Kolla om några instrument matchar sökningen på bokstavsnivå för att hantera felstavning
-
   if (searchResults.length == 0) {
     //Kolla först för hela strängen
     for (a = 0; a < productList.length; a++) {
       var ratedAttributes = [];
-      attributeList[0] = productList[a].brand;
-      attributeList[1] = productList[a].model;
-      attributeList[2] = productList[a].name;
-      attributeList[3] = productList[a].color;
-      attributeList[4] = productList[a].type;
-      attributeList[5] = productList[a].product_id;
+      attributeList = getAttributes(productList, a);
       for (b = 0; b < 5; b++) {
         word = attributeList[b];
         var sim = compare(word, inputWord);
@@ -137,11 +122,7 @@ function search(productList) {
         if (splitWords[a] != (null || " ")) {
           for (b = 0; b < productList.length; b++) {
             var y = 0;
-            attributeList[0] = productList[b].brand;
-            attributeList[1] = productList[b].model;
-            attributeList[2] = productList[b].color;
-            attributeList[3] = productList[b].type;
-            attributeList[4] = productList[b].product_id;
+            attributeList = getAttributes2(productList, a);
             //Iterera över varje attribut för produkten
             for (c = 0; c < 4; c++) {  
               sim = compare(attributeList[c], splitWords[a]);
@@ -208,4 +189,25 @@ function compare(s1, s2) {
     }
   }
   return 1 - (result + 4*Math.abs(s1.length - s2.length))/(2*(s1.length+s2.length));
+}
+
+function getAttributes(productList, a){
+  var attributeList = [];
+  attributeList[0] = productList[a].brand;
+  attributeList[1] = productList[a].model;
+  attributeList[2] = productList[a].name;
+  attributeList[3] = productList[a].color;
+  attributeList[4] = productList[a].type;
+  attributeList[5] = productList[a].product_id;
+  return attributeList;
+}
+
+function getAttributes2(productList, a) {
+  var attributeList = [];
+  attributeList[0] = productList[b].brand;
+  attributeList[1] = productList[b].model;
+  attributeList[2] = productList[b].color;
+  attributeList[3] = productList[b].type;
+  attributeList[4] = productList[b].product_id;
+  return(attributeList);
 }

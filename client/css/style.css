@@ -1,16 +1,18 @@
-#navbarNav2 > ul > li{
+/* refaktorerad */
+
+#navbarNav2>ul>li {
   font-size: large;
   font-family: 'Oriya MN';
   font-weight: bolder;
   color: rgb(36, 33, 33);
-    display: inline-block;
+  display: inline-block;
 }
 
-  #navbarNav2 > ul {
-    width: auto;
-    float: none;
-    display: inline-block;
-    margin: 0 auto;
+#navbarNav2>ul {
+  width: auto;
+  float: none;
+  display: inline-block;
+  margin: 0 auto;
 }
 
 a:link {
@@ -31,65 +33,59 @@ a:active {
   color: rgb(102, 143, 196);
 }
 
-#registerFinishButton, #LoginFinishButton, #shopFromBasketButton{
-  background-color:orange;
+#registerFinishButton,
+#LoginFinishButton,
+#shopFromBasketButton {
+  background-color: orange;
   border: black;
   border-radius: 4px;
 }
 
-#toPaymentButton{
+#toPaymentButton {
   margin-right: 30%;
   margin-top: 40%;
-  background-color:orange;
+  background-color: orange;
   border: black;
   width: 200;
   float: right;
 }
 
-#cashRegisterArea{
-  background-color:rgb(196, 215, 240);
+#cashRegisterArea {
+  background-color: rgb(196, 215, 240);
   height: 700px;
-  /*width: 1000px;
-  overflow: auto;*/
-  
-
 }
 
-#scrollableItemsInBasket{
+#scrollableItemsInBasket {
   background-color: #f8f9fa;
-  /*float:left;*/
   margin-top: 4%;
   margin-bottom: 4%;
-  /*margin-left: 2%;
-  width: 600px;*/
   height: fit-content;
   max-height: 600px;
-  border-style:double;
+  border-style: double;
   border-radius: 7px;
   border-color: rgb(50, 52, 56);
   overflow-y: scroll;
 }
 
-#amountArea{
-  background-color:#f8f9fa;
+#amountArea {
+  background-color: #f8f9fa;
   border-radius: 8px;
   border-color: rgb(196, 215, 240);
   height: 1000px;
-  /*width: 300px;*/
   margin-top: 4%;
   margin-bottom: 4%;
-  /*position: sticky top;*/
 }
-#view-cashregister{
+
+#view-cashregister {
   background-color: rgb(196, 215, 240);
 }
 
 #prodimg {
-    height: 250px;
-    width: 250px;
+  height: 250px;
+  width: 250px;
 }
 
-[id^='productInScrollableAreaDiv']{
+[id^='productInScrollableAreaDiv'] {
   background-color: rgb(157, 157, 157);
   width: 600px;
   height: 150px;
@@ -98,53 +94,45 @@ a:active {
   border-color: rgb(0, 0, 0);
 }
 
-[id^='removeProductFromRegister']{
+[id^='removeProductFromRegister'] {
   float: right;
   margin-top: 10%;
   margin-right: 5%;
 }
 
-#productDivInBaskedModal{
+#productDivInBaskedModal {
   border: solid;
 }
 
-/* 
-.deleteProductFromCartButton{
-  height: 20px;
-  width: 20px;
-} */
-
-#productDivInRegister{
+#productDivInRegister {
   text-align: center;
   margin-top: 10px;
 }
 
-#bodyBasketModal{
+#bodyBasketModal {
   max-height: 460px;
-  overflow:scroll;
+  overflow: scroll;
 }
 
-#createAddPage{
+#createAddPage {
   border-color: rgb(196, 215, 240) !important;
   border-style: double;
   color: rgb(36, 33, 33);
   font-weight: bold;
 }
 
-#THcreateAdd{
+#THcreateAdd {
   text-align: center;
   font-size: xx-large;
   font-weight: bolder;
   color: rgb(196, 215, 240);
-      text-shadow:
-        -1px -1px 0 rgb(50, 52, 56),
-        1px -1px 0 rgb(50, 52, 56),
-        -1px 1px 0 rgb(50, 52, 56),
-        1px 1px 0 rgb(50, 52, 56);
+  text-shadow:
+    -1px -1px 0 rgb(50, 52, 56),
+    1px -1px 0 rgb(50, 52, 56),
+    -1px 1px 0 rgb(50, 52, 56),
+    1px 1px 0 rgb(50, 52, 56);
 
 }
-
-
 
 .box-1 {
   max-width: 450px;
@@ -332,8 +320,6 @@ input[type="radio"] {
   color: whitesmoke
 }
 
-
-
 .fas.fa-arrow-left,
 .fas.fa-arrow-right {
   font-size: 0.8rem;
@@ -364,15 +350,15 @@ input[type="radio"] {
 
 @media (max-width:768px) {
   .container {
-      max-width: 700px;
-      margin: 10px auto
+    max-width: 700px;
+    margin: 10px auto
   }
 
   .box-1,
   .box-2 {
-      max-width: 600px;
-      padding: 20px 90px;
-      margin: 20px auto
+    max-width: 600px;
+    padding: 20px 90px;
+    margin: 20px auto
   }
 }
 
@@ -380,21 +366,11 @@ input[type="radio"] {
 
   .box-1,
   .box-2 {
-      max-width: 400px;
-      padding: 20px 10px
+    max-width: 400px;
+    padding: 20px 10px
   }
 
   ::placeholder {
-      font-size: 9px
-  }}
-
-
-   
-  
-  /*i {
-    color: #9ABC66;
-    font-size: 100px;
-    line-height: 200px;
-    margin-left:-15px;
-  }*/
-  
+    font-size: 9px
+  }
+}
