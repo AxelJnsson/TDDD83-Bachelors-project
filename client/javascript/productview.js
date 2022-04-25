@@ -1,3 +1,4 @@
+//REFAKTORERAD
 let sortingKey = "null";
 let newlyfilteredproducts = null;
 let keyBoos = 
@@ -170,7 +171,6 @@ function sortingProduct(filteredproducts, key){
     }
 
     });
-    //console.log(sortedproducts)
     appendProducts(sortedproducts);
     }
     appendProducts(filteredproducts);
