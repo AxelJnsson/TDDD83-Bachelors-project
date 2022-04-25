@@ -280,7 +280,7 @@ h2 {
   height: 570px
 }
 
-#annap {
+#lowernavbar {
   background-color: rgb(196, 215, 240);
   color: rgb(50, 52, 56);
   background-size: cover;
@@ -296,7 +296,7 @@ h2 {
   color: black;
 }
 
-#annap .nav-link:focus {
+#lowernavbar .nav-link:focus {
   background-color: rgb(134, 164, 202);
   color: black;
 }
