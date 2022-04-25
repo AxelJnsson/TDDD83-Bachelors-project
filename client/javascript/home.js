@@ -214,10 +214,8 @@ function gitarrView() {
   $("#productViewContainer").html($("#view-product").html())
   $("#mainViewContainer").html($("#empty").html())
   document.getElementById('navbarNav2').scrollIntoView();
-
   resetFilter();
-  var defCategory = "Gitarr";
-  filtertypes.push(defCategory);
+  filtertypes.push("Gitarr");
   filternewornot.length = 0;
   filternewornot.push(0, 1);
   showProdInfo(filterQ);
@@ -342,19 +340,16 @@ function studioView() {
   e.preventDefault();
 };
 
-$('#alphornButton').click(function (e) {
+$('#blasButton').click(function (e) {
   $("#sideBarContainer").html($("#view-sidebar").html())
   $("#productViewContainer").html($("#view-product").html())
   $("#mainViewContainer").html($("#empty").html())
   resetFilter();
-  var testcategory1 = "Blås";
-
-  filtertypes.push(testcategory1);
+  filtertypes.push("Blås");
   filternewornot.length = 0;
   filternewornot.push(0, 1);
   showProdInfo(filterQ);
   createCategoriesForSidebar();
-
   e.preventDefault();
 });
 
@@ -382,6 +377,7 @@ function showView(view) {
   $("#productViewContainer").html($("#empty").html())
 }
 
+//filtering on new and old stuff, the filter must always contain 0 or 1 or both
 function checkNeworOldStuff(checkid, query) {
   var checkBox = document.getElementById(checkid);
 

@@ -104,7 +104,7 @@
   </nav>
 
   <!--Nedre navbar-->
-  <nav class="navbar navbar-expand-lg" id="annap">
+  <nav class="navbar navbar-expand-lg" id="lowernavbar">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -138,7 +138,7 @@
             aria-haspopup="true" aria-expanded="false">Slagverk</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#" onclick="drumView()" id="drumCButton">Klassiska</a>
-            <a class="dropdown-item" href="#" onclick="otherDrumView()" id="drumOButton">Spaciella Trummor</a>
+            <a class="dropdown-item" href="#" onclick="otherDrumView()" id="drumOButton">Speciella Trummor</a>
             <a class="dropdown-item" href="#" onclick="allDrumsView()" id="allDrumsButton">Alla slagverk</a>
           </div>
         </li>
@@ -146,7 +146,7 @@
           <a class="nav-link" href="#" onclick="studioView()" id="pianoButton">Studioutrustning</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="alphornButton">Blåsinstrument</a>
+          <a class="nav-link" href="#" id="blasButton">Blåsinstrument</a>
         </li>
       </ul>
     </div>
@@ -206,7 +206,7 @@
     <div class="unit">
       <img src="/images/members/jonatan.jpg" alt="">
       <p>Jonatan Johansson</p>
-      <p>Gitansvarig</p>
+      <p>Git-Jesus</p>
 
     </div>
 
@@ -240,9 +240,9 @@
     </div>
  </script>
 
+  <!--Sidebar-->
 
   <script id="view-sidebar" type="text/html">
-    <!--Sidebar-->
 
   <div class="row rounded" id="innerSidebar" style="margin-top: 5px;">
     <div class="col">
@@ -634,7 +634,7 @@
         <div class="unit">
           <img src="/images/members/jonatan.jpg" alt="">
           <p>Jonatan Johansson</p>
-          <p>Gitansvarig</p>
+          <p>Git-Jesus</p>
         </div>
         <div class="unit">
           <img src="/images/members/oscar.jpg" alt="">
@@ -687,7 +687,6 @@
           </div>
       </div>
       <div class="row mt-3">
-        <!--Dessa behöver göras om till dropdown mmenyer på saker som färg, brand osv-->      
           <div class="selectdiv">
             <label>
               <select id="typVal" onchange="updateChoice2()">
@@ -877,6 +876,7 @@
       </div>
     </div>
   </div>
+
   <!--Snapchat modal-->
   <div class="modal" id="snapchatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -1016,6 +1016,7 @@
   </div>  
 </script>
 
+<!--Product information-->
   <div class="modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" data-keyboard=false data-backdrop='static'>
     <div class="modal-dialog" role="document">
@@ -1044,6 +1045,7 @@
     </div>
   </div>
 
+  <!--Sidebar-->
   <div class="container-fluid bg-light" id=sidebarAndProduct>
     <div class="row">
       <div class="col-2" type="text/html">
@@ -1061,6 +1063,7 @@
   <div></div>
 </script>
 
+<!--Main Container-->
   <div class="container-fluid" id="mainViewContainer" type="text/html">
   </div>
 
@@ -1187,6 +1190,7 @@
     </div>
   </footer>
 
+  <!--JS, Bootstrap, CSS, JQuery files and other stuff-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
