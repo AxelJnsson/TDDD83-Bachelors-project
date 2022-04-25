@@ -145,6 +145,7 @@ function addProductToCart(productToAdd){
       productsInCart.set(parseInt(productToAdd),1)
     }
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
+    updateItemNumber();
   }
 
 
