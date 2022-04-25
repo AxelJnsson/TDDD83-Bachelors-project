@@ -103,6 +103,30 @@ width: 270px;
 height: 520px;
 }
 
+.cardSuccess {
+  text-align: left;
+  margin-left: 300px;
+  width: auto;
+  height: 200px;
+}
+
+.hejsan {
+
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.hej {
+  font-size: 20px;
+  font-style: normal;
+
+}
+
+.fa-check {
+  color: rgb(0, 240, 84);
+}
+
 .card:hover {
 box-shadow: 0 8px 16px 0 #666666;
 transition: all 0.3s ease;
@@ -151,6 +175,27 @@ font-weight: bold;
 font-weight: bold !important;
 }
 
+.orderPage1 {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  font-size: 80px;
+}
+
+.orderPage2 {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-weight: 300;
+  font-size: 40px;
+}
+
+.orderPage3 {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-weight: 100;
+  font-size: 20px;
+}
+
 h2 {
 text-align: center;
 font-size: 35px;
@@ -159,14 +204,8 @@ text-transform: uppercase;
 color: white;
 }
 
-/*h1 {
-color: white; kommenterar bort den sålänge då visa texter ej syns 
-}
 
 
-p {
-text-align: justify;
-}*/
 
 .team {
 display: flex;
@@ -359,10 +398,8 @@ background-repeat: no-repeat;
         font-size: 0.8rem;
       }
     
-    td, th {
-      vertical-align: middle;
-      text-align: center;
-      
+    .modal-footer {
+      padding-top: 0rem;
     }
   
   .price {
@@ -374,5 +411,30 @@ background-repeat: no-repeat;
   }
 
 .btn-group {
-float:right;
+  float:right;
+}
+
+#totalprice{
+
+  font-weight: bolder;
+}
+
+#pricePrint{
+
+text-align:center;
+justify-content: center;
+/* background-color: #384052; */
+width: 20%;
+
+
+}
+
+#productName{
+  /* background-color: rgb(177, 70, 70); */
+  width: 25%;
+  /* text-align:left; */
+}
+
+#searchButton {
+background-color:rgb(196, 215, 240);
 }

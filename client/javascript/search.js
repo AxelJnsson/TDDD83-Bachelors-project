@@ -7,6 +7,7 @@ $('#datatable-search-input').on('keypress', function (e) {
   }
 });
 
+let filtervar = [];
 //Hämta produkter från databasen och skicka till "search"
 function getSearchProducts() {
   $.ajax({        
@@ -19,6 +20,10 @@ function getSearchProducts() {
         alert("error");
     }    
   });
+}
+
+function setFilterQueries(f){
+  filtervar = f;
 }
   
 //I denna funktion finns algoritmen som sorterar ut vilka objekt som matchar sökningen
@@ -101,6 +106,7 @@ function search(productList) {
     }
   }
 
+
   //Kolla om några instrument matchar sökningen på bokstavsnivå för att hantera felstavning
 
   if (searchResults.length == 0) {
@@ -115,13 +121,13 @@ function search(productList) {
       attributeList[5] = productList[a].product_id;
       for (b = 0; b < 5; b++) {
         word = attributeList[b];
-        sim = compare(word, inputWord);
+        var sim = compare(word, inputWord);
         ratedAttributes[b] = sim;
       }
       var max = Math.max.apply(null, ratedAttributes); 
       if (max > 0.5) {
         searchResults.push(productList[a]);
-        searchResults[searchResults.length - 1].price = max; 
+        searchResults[searchResults.length - 1].price = 10*max; 
       }
     }
 
@@ -143,7 +149,7 @@ function search(productList) {
             }
             max = Math.max.apply(null, ratedAttributes); 
 
-            if (max > 0.5) {
+            if (max > 0) {
               //Höj ratingen om produkten redan finns i searchResults, lägg till produkten annars
               bloop:
               for (d = 0; d < searchResults.length; d++) {
@@ -182,16 +188,20 @@ function loadSearchResults(searchList) {
   $("#sideBarContainer").html($("#view-sidebar").html())
   $("#productViewContainer").html($("#view-product").html())
   $("#mainViewContainer").html($("#empty").html())
-  appendProducts(searchList);
+  //console.log(searchList.length)
+  filtering(searchList, filtervar);
+  //appendProducts(searchList);
 }
 
 //Här sker jämförelsen mellan det sökta ordet och ett ord i databasen, används för
 //att hantera felstavning
 function compare(s1, s2) {
-  for(var result = 0; i = s1.length; i--){
-    if (typeof s2[i] == 'undefined' || s1[i] == s2[i]) {
-
-    } else if (s1[i].toLowerCase() == s2[i].toLowerCase()) {
+  var result = 0;
+  for(var i = s1.length; i > 0; i--){
+    statementA:
+    if (typeof s2[i-1] == 'undefined' || s1[i-1] == s2[i-1]) {
+      break statementA;
+    } else if (s1[i-1].toLowerCase() == s2[i-1].toLowerCase()) {
       result++;
     } else {
       result += 4;

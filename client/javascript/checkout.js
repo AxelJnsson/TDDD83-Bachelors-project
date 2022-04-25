@@ -4,9 +4,7 @@ function stripePay(sum){
 var stripe = Stripe("pk_test_51KmeJFGTjasXI1q9Qi3JlVno45atDNVgXx6jPMu7mYgfylorws1kbSzTXIR4lQJEckUOmKfyMvveS1CKmFHnrmTl00yA84HWND");
 
 // The items the customer wants to buy
-var purchase = {
-  items: [{ id: "xl-tshirt" }]
-};
+
 var sum1= sum;
 
 // Disable the button until we have Stripe set up on the page
@@ -23,6 +21,7 @@ fetch("/create-payment-intent", {
   })
   .then(function(data) {
     var elements = stripe.elements();
+    
     var style = {
       base: {
         color: "#32325d",
@@ -40,7 +39,7 @@ fetch("/create-payment-intent", {
       }
     };
 
-    var card = elements.create("card", { style: style });
+    var card = elements.create("card", {hidePostalCode: true, style: style });
     // Stripe injects an iframe into the DOM
     card.mount("#card-element");
     // Stripe injects an iframe into the DOM
@@ -56,7 +55,7 @@ fetch("/create-payment-intent", {
     form.addEventListener("submit", function(event) {
       event.preventDefault();
       // Complete payment when the submit button is clicked
-      alert(data.clientSecret);
+     
       payWithCard(stripe, card, data.clientSecret);
     });
   });
@@ -81,7 +80,15 @@ var payWithCard = function(stripe, card, clientSecret) {
       } else {
         // The payment succeeded!
         orderComplete(result.paymentIntent.id);
-        SucPay();
+        //addOrdersAndItemsToHistory();
+        //SucPay();
+        createShipping();
+      
+        
+       
+        
+        
+        
       }
     });
 };
@@ -123,10 +130,36 @@ var loading = function(isLoading) {
     document.querySelector("#spinner").classList.add("hidden");
     document.querySelector("#button-text").classList.remove("hidden");
   }
-};
+};  
+}
 
 
-
+function createShipping() {
+  
+  var namn = document.getElementById("cashName").value;
+  
+  var adress = document.getElementById("cashAdress").value;
 
   
+  var postnr = document.getElementById("cashZip").value;
+  var stad = document.getElementById("cashCity").value;
+  var email = document.getElementById("cashEmail").value;
+  var phone = document.getElementById("cashPhone").value;
+ 
+
+  $.ajax({
+    url:'/createShipment',
+    type: 'POST',
+    datatype: 'JSON',
+    contentType: "application/json",
+    data: JSON.stringify({
+      "name":namn, "address":adress, "zip":postnr, "city":stad, "email":email, "phone":phone}),    
+    success: function(u) {
+     
+     
+     SucPay(u);
+      
+
+ }});
+
 }

@@ -21,44 +21,46 @@ $(document).ready(function(){
   }
 }
 
-  
-  $('#registerButton').toggleClass('d-none', !signedIn);
-  $('#loginButton').toggleClass('d-none', !signedIn);
-  $('#logoutButton').toggleClass('d-none', signedIn);
-  $('#annonsButton').toggleClass('d-none', signedIn);
-  $('#userButton').toggleClass('d-none', signedIn);
-  $('#adminButton').toggleClass('d-none', !admin);
-  sessionStorage.setItem('price', parseInt(0));  
-         
-  if (JSON.parse(sessionStorage.getItem('auth'))==null){
-    sessionStorage.setItem('loggedIn',false);
-  }else{
-    sessionStorage.setItem('loggedIn',true);
-  }
-  if (JSON.parse(sessionStorage.getItem('startedShopping'))==null){
-    idAndQuantity = {}
-    productsOutOfStock = [];
-    sessionStorage.setItem('productsInCart',JSON.stringify(Array.from(idAndQuantity)));
-    sessionStorage.setItem('outOfStock', JSON.stringify(productsOutOfStock));
-    sessionStorage.setItem('startedShopping',true);
-  }
+    
+    $('#registerButton').toggleClass('d-none', !signedIn);
+    $('#loginButton').toggleClass('d-none', !signedIn);
+    $('#logoutButton').toggleClass('d-none', signedIn);
+    $('#annonsButton').toggleClass('d-none', signedIn);
+    $('#userButton').toggleClass('d-none', signedIn);
+    $('#adminButton').toggleClass('d-none', !admin);
+    sessionStorage.setItem('price', parseInt(0));  
+           
+    if (JSON.parse(sessionStorage.getItem('auth'))==null){
+      sessionStorage.setItem('loggedIn',false);
+    }else{
+      sessionStorage.setItem('loggedIn',true);
+    }
+    if (JSON.parse(sessionStorage.getItem('startedShopping'))==null){
+      idAndQuantity = {}
+      productsOutOfStock = [];
+      sessionStorage.setItem('productsInCart',JSON.stringify(Array.from(idAndQuantity)));
+      sessionStorage.setItem('outOfStock', JSON.stringify(productsOutOfStock));
+      sessionStorage.setItem('startedShopping',true);
+    }
+    filternewornot.push(0, 1); 
+    updateItemNumber();
+    setFilterQueries(filterQ);
 
-  updateItemNumber();
-})
-
-//var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
-//test för en till dimension av filtrering
-const filtertypes = [];
-const filterbrands = [];
-const filtermodels = [];
-const filtercolors = [];
-const filternames = [];
-const filterprices = [];
-const filteryears = [];
-const filternewornot = [];
-const filterpriceinterval = [];
-let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot, filterpriceinterval];
-//const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
+  })
+ 
+ //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
+ //test för en till dimension av filtrering
+ const filtertypes = [];
+ const filterbrands = [];
+ const filtermodels = [];
+ const filtercolors = [];
+ const filternames = [];
+ const filterprices = [];
+ const filteryears = [];
+ const filternewornot = [];
+ const filterpriceinterval = [];
+ let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot, filterpriceinterval];
+ //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
   $("#mainViewContainer").html($("#view-about").html())  
@@ -148,26 +150,36 @@ function startshopp() {
 
 }
 
-function myPage() {
-  $("#mainViewContainer").html($("#view-user").html())
-  $("#sideBarContainer").html($("#empty").html())
-  $("#productViewContainer").html($("#empty").html()) 
-  document.getElementById('top').scrollIntoView();
-  displayUser();  
-  getNewProducts();  
-  e.preventDefault();
+  $('#userButton').click(function (e) {   
+    
+    $("#mainViewContainer").html($("#view-user").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html())    
+    displayUser();  
+    nextorder = null;
+    displayUserAdd(); 
+    e.preventDefault();
+  });
 
-}
-$('#userButton').click(function (e) {   
-  
-  $("#mainViewContainer").html($("#view-user").html())
-  $("#sideBarContainer").html($("#empty").html())
-  $("#productViewContainer").html($("#empty").html())    
-  displayUser();  
+  function resetFilter(){
+      filtertypes.length = 0;
+      filterbrands.length = 0;
+      filtermodels.length = 0;
+      filtercolors.length = 0;
+      filternames.length = 0;
+      filterprices.length = 0;
+      filteryears.length = 0;
+      filterpriceinterval.length = 0;
+      yearClicked = false;
+      modelClicked = false;
+      brandClicked = false;
+      colorClicked = false;
+      priceClicked = false;
+      //filternewornot.length = 0;
+  }
 
   displayUserAdd(); 
   e.preventDefault();
-});
 
 function resetFilter(){
     filtertypes.length = 0;
@@ -467,8 +479,17 @@ if ((sessionStorage.getItem('auth') == null) || sessionStorage.getItem('auth').t
 } 
 }
 
-function SucPay() {
-$("#mainViewContainer").html($("#lyckad-betalning").html())
-alert("din betalning gick igenom");
-//Gör nåt som uppdaterar varukorgen och skapar en
+function SucPay(u) {
+  
+  $("#mainViewContainer").html($("#lyckad-betalning").html())
+  alert("din betalning gick igenom");
+  //addOrdersAndItemsToHistory();
+  //Gör nåt som uppdaterar varukorgen och skapar en
+  $("#lyckadBet").attr("href", u)
+
+ 
+ 
+ 
+ 
 }
+
