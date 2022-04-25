@@ -122,6 +122,7 @@ function addProductToCart(productToAdd){
             type: 'GET',
             success: function(product) { 
               updateprice(parseInt(product.price));
+              updateItemNumber();
               $("#productModal").modal('hide');
              
             },
@@ -145,8 +146,7 @@ function addProductToCart(productToAdd){
     }
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
   }
-  // button = document.getElementById('addProductToCartButton'+productToAdd);
-  // button.remove();
+
 
 
   var checkQuantityTemp = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
@@ -302,34 +302,6 @@ function deleteProductFromCart(productID){
       getProductsToPrintInBasket();
     }
   }
-}
-
-function deleteProductFromCart2(productID){
-  $.ajax ({
-    url:'/product/'+ productID,
-    type: 'GET',
-    datatype: 'JSON',
-    contentType: "application/json",
-    success: function(product) {
-      updateprice((parseInt(product.price))*(-1));
-      //showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
-    }
-  });
-
-  $.ajax ({
-    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-    url:'/product/'+productID+'/unadding',
-    type: 'POST',
-    datatype: 'JSON',
-    contentType: "application/json",
-    async: false,
-    success: function(product) {
-      updateItemNumber();
-
-    },
-    error: function(u){
-    } 
-  });
 }
 
 function showPriceInModal(currentTotal){
