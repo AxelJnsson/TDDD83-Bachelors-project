@@ -42,8 +42,10 @@ $(document).ready(function(){
       sessionStorage.setItem('outOfStock', JSON.stringify(productsOutOfStock));
       sessionStorage.setItem('startedShopping',true);
     }
-
+    filternewornot.push(0, 1); 
     updateItemNumber();
+    setFilterQueries(filterQ);
+
   })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
@@ -456,6 +458,7 @@ function SucPay(u) {
   $("#mainViewContainer").html($("#lyckad-betalning").html())
   alert("din betalning gick igenom");
   addOrdersAndItemsToHistory();
+  clearCart();
   //Gör nåt som uppdaterar varukorgen och skapar en
   $("#lyckadBet").attr("href", u)
 
