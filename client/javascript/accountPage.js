@@ -158,10 +158,9 @@ function displayUserAdd() {
 });
    }
 
-//ej fungerande än
    function deleteUserAdd(name) {
      var namn = name;
-   x= JSON.parse(sessionStorage.getItem('auth')).user.user_id;
+      x= JSON.parse(sessionStorage.getItem('auth')).user.user_id;
     $.ajax({
       headers: {
         "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
@@ -173,6 +172,7 @@ function displayUserAdd() {
         "namn":namn}),
       success: function(u) {
         alert("raderat annons");
+        myPage();
 
    }});}
 
