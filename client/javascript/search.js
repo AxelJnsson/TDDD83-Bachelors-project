@@ -7,6 +7,7 @@ $('#datatable-search-input').on('keypress', function (e) {
   }
 });
 
+let filtervar = [];
 //Hämta produkter från databasen och skicka till "search"
 function getSearchProducts() {
   $.ajax({        
@@ -19,6 +20,10 @@ function getSearchProducts() {
         alert("error");
     }    
   });
+}
+
+function setFilterQueries(f){
+  filtervar = f;
 }
   
 //I denna funktion finns algoritmen som sorterar ut vilka objekt som matchar sökningen
@@ -101,6 +106,7 @@ function search(productList) {
     }
   }
 
+
   //Kolla om några instrument matchar sökningen på bokstavsnivå för att hantera felstavning
 
   if (searchResults.length == 0) {
@@ -182,7 +188,9 @@ function loadSearchResults(searchList) {
   $("#sideBarContainer").html($("#view-sidebar").html())
   $("#productViewContainer").html($("#view-product").html())
   $("#mainViewContainer").html($("#empty").html())
-  appendProducts(searchList);
+  //console.log(searchList.length)
+  filtering(searchList, filtervar);
+  //appendProducts(searchList);
 }
 
 //Här sker jämförelsen mellan det sökta ordet och ett ord i databasen, används för

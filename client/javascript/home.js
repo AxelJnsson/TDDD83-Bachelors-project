@@ -42,8 +42,10 @@ $(document).ready(function(){
       sessionStorage.setItem('outOfStock', JSON.stringify(productsOutOfStock));
       sessionStorage.setItem('startedShopping',true);
     }
-
+    filternewornot.push(0, 1); 
     updateItemNumber();
+    setFilterQueries(filterQ);
+
   })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;
