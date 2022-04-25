@@ -31,16 +31,8 @@ function updateItemNumber(){
   }
 }
 
-<<<<<<< HEAD
 //Räknar ut antal produkter i varukorgen om man är inloggad
-<<<<<<< HEAD
-function updateItemNumberLoggedIn(data){
-=======
 function updateItemNumber2(data){
->>>>>>> parent of 2bf19e4 (fixat med sökmotor och refaktorering)
-=======
-function updateItemNumber2(data){
->>>>>>> parent of 03060b7 (refaktorering)
   var a = 0
   for (i = 0; i < data[2].length; i++){
     for(j = 0; j < data[2][i].quantity; j++){
@@ -59,7 +51,6 @@ $('#xButtonBasket').click(function (e) {
   e.preventDefault();
   $("#basketModal").modal('hide');
 });
-
 
 function clearCart2(data) {
   for (let i = 0; i< data[2].length; i++){
@@ -84,38 +75,55 @@ function clearCart2(data) {
   createCategoriesForSidebar();
 }
 
+//Hämtar produkter i varukorgen för att veta vilka som ska tas bort
 function clearCart() {
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
-    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
     $.ajax ({
-      url:'/user/'+userID,
-      type: 'GET',
+      headers: {
+        "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token}, 
+      url:'/clear-cart',
+      type: 'POST',
       datatype: 'JSON',
       contentType: "application/json",
-      success: function(data) {
-        clearCart2(data);
-      }
-    }); 
+      success: function(result) {
+        showPriceInModal(0);
+        $("#basketModal").modal('hide');
+        $("#sideBarContainer").html($("#view-sidebar").html())
+        $("#productViewContainer").html($("#view-product").html())
+        $("#mainViewContainer").html($("#empty").html())
+      
+        //showProdInfo("allt", null);
+        resetFilter();
+        //filternewornot.push("Ny", "Begagnad");
+        filternewornot.length = 0;
+        filternewornot.push(0, 1); 
+        showProdInfo(filterQ);
+        createCategoriesForSidebar();
+        updateItemNumber();      }
+    });
+    
+
   } else {
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     productsInCart.clear();
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
     getProductsToPrintInBasket();
-  }
-  showPriceInModal(0);
-  $("#basketModal").modal('hide');
-  $("#sideBarContainer").html($("#view-sidebar").html())
-  $("#productViewContainer").html($("#view-product").html())
-  $("#mainViewContainer").html($("#empty").html())
+    showPriceInModal(0);
+    $("#basketModal").modal('hide');
+    $("#sideBarContainer").html($("#view-sidebar").html())
+    $("#productViewContainer").html($("#view-product").html())
+    $("#mainViewContainer").html($("#empty").html())
 
-  //showProdInfo("allt", null);
-  resetFilter();
-  //filternewornot.push("Ny", "Begagnad");
-  filternewornot.length = 0;
-  filternewornot.push(0, 1); 
-  showProdInfo(filterQ);
-  createCategoriesForSidebar();
-  updateItemNumber();
+    //showProdInfo("allt", null);
+    resetFilter();
+    //filternewornot.push("Ny", "Begagnad");
+    filternewornot.length = 0;
+    filternewornot.push(0, 1); 
+    showProdInfo(filterQ);
+    createCategoriesForSidebar();
+    updateItemNumber();
+  }
+  
 }
 
 function addProductToCart(productToAdd){

@@ -99,66 +99,66 @@ function search(productList) {
 
   //Kolla om några instrument matchar sökningen på bokstavsnivå för att hantera felstavning
 
-  if (searchResults.length == 0) {
-    //Kolla först för hela strängen
-    for (a = 0; a < productList.length; a++) {
-      var ratedAttributes = [];
-      attributeList[0] = productList[a].brand;
-      attributeList[1] = productList[a].model;
-      attributeList[2] = productList[a].name;
-      attributeList[3] = productList[a].color;
-      attributeList[4] = productList[a].type;
-      attributeList[5] = productList[a].product_id;
-      for (b = 0; b < 5; b++) {
-        word = attributeList[b];
-        sim = compare(word, inputWord);
-        ratedAttributes[b] = sim;
-      }
-      var max = Math.max.apply(null, ratedAttributes); 
-      if (max > 0.5) {
-        searchResults.push(productList[a]);
-        searchResults[searchResults.length - 1].price = max; 
-      }
-    }
+  // if (searchResults.length == 0) {
+  //   //Kolla först för hela strängen
+  //   for (a = 0; a < productList.length; a++) {
+  //     var ratedAttributes = [];
+  //     attributeList[0] = productList[a].brand;
+  //     attributeList[1] = productList[a].model;
+  //     attributeList[2] = productList[a].name;
+  //     attributeList[3] = productList[a].color;
+  //     attributeList[4] = productList[a].type;
+  //     attributeList[5] = productList[a].product_id;
+  //     for (b = 0; b < 5; b++) {
+  //       word = attributeList[b];
+  //       sim = compare(word, inputWord);
+  //       ratedAttributes[b] = sim;
+  //     }
+  //     var max = Math.max.apply(null, ratedAttributes); 
+  //     if (max > 0.5) {
+  //       searchResults.push(productList[a]);
+  //       searchResults[searchResults.length - 1].price = max; 
+  //     }
+  //   }
 
-    //Undersök på bokstavsnivå för enstaka ord i den sökta strängen
-    if (splitWords.length > 1) {
-      for (a = 0; a < splitWords.length; a++) {
-        if (splitWords[a] != (null || " ")) {
-          for (b = 0; b < productList.length; b++) {
-            var y = 0;
-            attributeList[0] = productList[b].brand;
-            attributeList[1] = productList[b].model;
-            attributeList[2] = productList[b].color;
-            attributeList[3] = productList[b].type;
-            attributeList[4] = productList[b].product_id;
-            //Iterera över varje attribut för produkten
-            for (c = 0; c < 4; c++) {  
-              sim = compare(attributeList[c], splitWords[a]);
-              ratedAttributes[c] = sim;
-            }
-            max = Math.max.apply(null, ratedAttributes); 
+  //   //Undersök på bokstavsnivå för enstaka ord i den sökta strängen
+  //   if (splitWords.length > 1) {
+  //     for (a = 0; a < splitWords.length; a++) {
+  //       if (splitWords[a] != (null || " ")) {
+  //         for (b = 0; b < productList.length; b++) {
+  //           var y = 0;
+  //           attributeList[0] = productList[b].brand;
+  //           attributeList[1] = productList[b].model;
+  //           attributeList[2] = productList[b].color;
+  //           attributeList[3] = productList[b].type;
+  //           attributeList[4] = productList[b].product_id;
+  //           //Iterera över varje attribut för produkten
+  //           for (c = 0; c < 4; c++) {  
+  //             sim = compare(attributeList[c], splitWords[a]);
+  //             ratedAttributes[c] = sim;
+  //           }
+  //           max = Math.max.apply(null, ratedAttributes); 
 
-            if (max > 0.5) {
-              //Höj ratingen om produkten redan finns i searchResults, lägg till produkten annars
-              bloop:
-              for (d = 0; d < searchResults.length; d++) {
-                if (searchResults[d].product_id == productList[b].product_id) {             
-                  searchResults[d].price = searchResults[d].price + max;           
-                  y++;
-                  break bloop;
-                }  
-              }
-              if (y == 0) {
-                searchResults.push(productList[b]);
-                searchResults[searchResults.length - 1].price = max;
-              }
-            } 
-          }
-        }
-      }
-    }
-  }
+  //           if (max > 0.5) {
+  //             //Höj ratingen om produkten redan finns i searchResults, lägg till produkten annars
+  //             bloop:
+  //             for (d = 0; d < searchResults.length; d++) {
+  //               if (searchResults[d].product_id == productList[b].product_id) {             
+  //                 searchResults[d].price = searchResults[d].price + max;           
+  //                 y++;
+  //                 break bloop;
+  //               }  
+  //             }
+  //             if (y == 0) {
+  //               searchResults.push(productList[b]);
+  //               searchResults[searchResults.length - 1].price = max;
+  //             }
+  //           } 
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   searchResults.sort(function(a, b)
   {return b.price - a.price});
@@ -180,13 +180,17 @@ function loadSearchResults(searchList) {
   appendProducts(searchList);
 }
 
-function compare(strA,strB){
-  for(var result = 0, i = strA.length; i--;){
-      if(typeof strB[i] == 'undefined' || strA[i] == strB[i]);
-      else if(strA[i].toLowerCase() == strB[i].toLowerCase())
-          result++;
-      else
-          result += 4;
-  }
-  return 1 - (result + 4*Math.abs(strA.length - strB.length))/(2*(strA.length+strB.length));
-}
+//Här sker jämförelsen mellan det sökta ordet och ett ord i databasen, används för
+//att hantera felstavning
+// function compare(s1, s2) {
+//   for(var result = 0; i = s1.length; i--){
+//     if (typeof s2[i] == 'undefined' || s1[i] == s2[i]) {
+
+//     } else if (s1[i].toLowerCase() == s2[i].toLowerCase()) {
+//       result++;
+//     } else {
+//       result += 4;
+//     }
+//   }
+//   return 1 - (result + 4*Math.abs(s1.length - s2.length))/(2*(s1.length+s2.length));
+// }

@@ -750,5 +750,37 @@ def carsub(product_id):
   else:
     return "Produkten finns inte i din varukorg"
 
+
+#Route för att ta bort alla produkter från varukorgen
+@app.route('/clear-cart', methods= ['POST'])
+@jwt_required()
+def clearCart():
+  if request.method == 'POST':
+    user = get_jwt_identity().get('user_id')
+    z = Shopping_Session.query.filter_by(user_id = user).first_or_404()
+    
+    temp_Item = Cart_Item.query.filter_by(session_id = z.id)
+    for item in temp_Item:
+      print("kvant"+str(item.quantity))
+      print("id"+str(item.product_id))
+      product = Product.query.filter_by(product_id = item.product_id).first_or_404()
+      x = product.quantity
+      x = x + item.quantity
+      data_to_updateProduct = {"quantity" : x}
+      Product.query.filter_by(product_id = item.product_id).update(data_to_updateProduct)
+      db.session.commit()
+      
+    temp_Item.delete()
+    db.session.commit()
+    # Cart_Item.query.filter_by(session_id = z.id, product_id = product.product_id).update(data_to_updateCartItem)
+    # data_to_updateProduct = {"quantity" : x}
+    # Product.query.filter_by(product_id = product_id).update(data_to_updateProduct)
+    # db.session.commit()
+
+    return "Tog bort alla produkter"
+  else:
+    return "Produkten finns inte i din varukorg"
+
+
 if __name__ == "__main__":
   app.run(debug=True)
