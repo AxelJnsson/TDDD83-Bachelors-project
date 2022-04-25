@@ -98,10 +98,12 @@ function filtering(arr, filterQueries){
             types.indexOf(el.type) >= 0);
     }
 
+
     if (brands.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             brands.indexOf(el.brand) >= 0);
     }
+
     
     if (models.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
@@ -126,10 +128,13 @@ function filtering(arr, filterQueries){
             years.indexOf(el.year) >= 0);
     }
 
+
     //if (newornots.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             newornots.indexOf(el.new_or_not) >= 0);
     //}
+    
+
     
     //alert("Antal produkter: " + filteredstuff.length);
     //getClickID(filteredstuff)
@@ -139,7 +144,7 @@ function filtering(arr, filterQueries){
      //alert("Modeller: " + models.length + " Brands: " + brands.length + " Colors: " + colors.length + " År: " + years.length + " Nytt/beg: " + newornots.length + " Types: " + types.length);
      //----------------------
     
-    //alert("hej");
+    //alert(filteredstuff.length);
     newlyfilteredproducts = filteredstuff;
     //clickedSort();
     appendProducts(filteredstuff);

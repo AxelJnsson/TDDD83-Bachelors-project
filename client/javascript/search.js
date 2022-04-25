@@ -7,8 +7,7 @@ $('#datatable-search-input').on('keypress', function (e) {
   }
 });
 
-const filtervar = [];
-
+let filtervar = [];
 //Hämta produkter från databasen och skicka till "search"
 function getSearchProducts() {
   $.ajax({        
@@ -189,6 +188,7 @@ function loadSearchResults(searchList) {
   $("#sideBarContainer").html($("#view-sidebar").html())
   $("#productViewContainer").html($("#view-product").html())
   $("#mainViewContainer").html($("#empty").html())
+  //console.log(searchList.length)
   filtering(searchList, filtervar);
   //appendProducts(searchList);
 }

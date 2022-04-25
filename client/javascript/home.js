@@ -42,9 +42,9 @@ $(document).ready(function(){
       sessionStorage.setItem('outOfStock', JSON.stringify(productsOutOfStock));
       sessionStorage.setItem('startedShopping',true);
     }
-
+    filternewornot.push(0, 1); 
     updateItemNumber();
-    setFilterQueries(filteringByArray);
+    setFilterQueries(filterQ);
 
   })
  
