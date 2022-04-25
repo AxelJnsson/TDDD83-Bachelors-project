@@ -459,6 +459,7 @@ function SucPay(u) {
   alert("din betalning gick igenom");
   addOrdersAndItemsToHistory();
   clearCart();
+  updateItemNumber();
   //Gör nåt som uppdaterar varukorgen och skapar en
   $("#lyckadBet").attr("href", u)
 
