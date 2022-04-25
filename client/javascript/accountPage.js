@@ -1,38 +1,7 @@
-class User {
-    constructor(id, email, first_name, last_name, adress, is_admin ) {
-        this.id = id;
-        this.email = email;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.adress = adress;
-        this.is_admin = is_admin;
-    }
-}
-
-
-
-class Order {
-  constructor (id, products = [], amount){
-    this.id = id;
-    this.products = products;
-    this.amount = amount;
-  }
-}
-
-class Name {
-  constructor (name) {
-    this.name = name;
-  }
-}
 var orderlista = [];
 let orderHist  = new Array()
 const orderList = []
 var productlist = ["Name"]
-
-
-
-
-//let active_user = new User(3, "Fredrik.Lindberg@gmail.com", "Fredrik", "Lindberg", True);
 
 function editUser2() {
   $("#editUserModal").modal('toggle');
@@ -77,16 +46,15 @@ function editUser3() {
  })   
 }
  
-
-  $('#closeEditButton').click(function (e) {
-    e.preventDefault();
-    $("#editUserModal").modal('hide');
-  });
+$('#closeEditButton').click(function (e) {
+  e.preventDefault();
+  $("#editUserModal").modal('hide');
+});
 
 function displayUser() {
    var x = JSON.parse(sessionStorage.getItem('auth')).user.user_id; 
-   orderHistoryParent();
-    //displayUserAdd();
+   printOrderHistory()
+   //displayUserAdd();
     $.ajax({
         headers: {
           "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
@@ -109,13 +77,12 @@ function displayUser() {
           $("#profContact").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value='078 346 876 21'>");
           $("#profSek").append("<input type='text' readonly class='form-control-plaintext' id='staticEmail' value="+admin+">");
         }
-    });
+  });
 }
 
 function deleteUser() {
     
   var x = JSON.parse(sessionStorage.getItem('auth')).user.user_id; 
-    
   $.ajax({
       headers: {
         "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
@@ -155,112 +122,82 @@ function displayUserAdd() {
           $("#userAdds").append("<p> <br></p>");
       }     
     }
-});
-   }
+  });
+}
 
 //ej fungerande än
-   function deleteUserAdd(name) {
-     var namn = name;
-   x= JSON.parse(sessionStorage.getItem('auth')).user.user_id;
-    $.ajax({
-      headers: {
-        "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-      url:'/useradd/' + x,
-      type: 'DELETE',
-      datatype: 'JSON',
-      contentType: "application/json",
-      data: JSON.stringify({
-        "namn":namn}),
-      success: function(u) {
-        alert("raderat annons");
+function deleteUserAdd(name) {
+    var namn = name;
+  x= JSON.parse(sessionStorage.getItem('auth')).user.user_id;
+  $.ajax({
+    headers: {
+      "Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/useradd/' + x,
+    type: 'DELETE',
+    datatype: 'JSON',
+    contentType: "application/json",
+    data: JSON.stringify({
+      "namn":namn}),
+    success: function(u) {
+      alert("raderat annons");
+    }
+  });
+}
 
-   }});}
+function printOrderHistory() {
+  userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
 
-   function orderHistoryParent() {
-     
-    printOrderHistory()
+  $.ajax ({
+    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/order/' +userID,
+    type: 'GET',
+    datatype: 'JSON',
+    contentType: "application/json",
+    success: function(orderhistory) {
+      for(var i = 0; i < orderhistory.length; i++){
+        var orderid = orderhistory[i].id
+        var orderamount = orderhistory[i].amount
+        getOrderHistoryItems(orderid, orderamount) 
+      }
+    },
+    error: function(){
+      //alert("error");
 
-  }
+    } 
+  });
+}
 
-   function printOrderHistory() {
-    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
-  
-    $.ajax ({
-      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-      url:'/order/' +userID,
-      type: 'GET',
-      datatype: 'JSON',
-      contentType: "application/json",
-      //async: false,
-  
-      success: function(orderhistory) {
-    
-
-          for(var i = 0; i < orderhistory.length; i++){
-            var orderid = orderhistory[i].id
-            var orderamount = orderhistory[i].amount
-            getOrderHistoryItems(orderid, orderamount)
-
-            
-          }
-
-
-
-     
-        
-      },
-      error: function(){
-        //alert("error");
-
-      } 
-    });
-
-  }
-
-
-
-  function getOrderHistoryItems(orderID, orderamount){
-
-    console.log(orderID)
-    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
-    $.ajax ({
-      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-      url:'/orderitems/' +orderID,
-      type: 'GET',
-      datatype: 'JSON',
-      contentType: "application/json",
-      //async: false,
-  
-      success: function(order) {
-      productlist.length = 0;
+function getOrderHistoryItems(orderID, orderamount){
+  console.log(orderID)
+  userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+  $.ajax ({
+    headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+    url:'/orderitems/' +orderID,
+    type: 'GET',
+    datatype: 'JSON',
+    contentType: "application/json",
+    success: function(order) {
+    productlist.length = 0;
       prodnames.length = 0;
-
-       console.log(order)
-
+      console.log(order)
         for (var i = 0; i < order.length ; i++){
           console.log(order[i].product_id)
           productlist.push(order[i].product_id)
         }
-        
         console.log(productlist.length)
-
         getProduct(productlist, orderID, orderamount)
-
-
         console.log(productlist)
-  
-      },
-      error: function(){
-        //alert("error");
-      } 
-    });
-   
-  } 
+    },
+    error: function(){
+      //alert("error");
+    } 
+  });
+} 
 
   const prodnames = []
   var nextorder;
 
-  function getProduct(prod_list, orderID, orderamount){
+function getProduct(prod_list, orderID, orderamount){
 
     for(var i = 0; i < prod_list.length; i++){
     $.ajax ({
@@ -268,9 +205,7 @@ function displayUserAdd() {
       url:'/product/' +prod_list[i],
       type: 'GET',
       datatype: 'JSON',
-      contentType: "application/json",
-      //async: false,
-  
+      contentType: "application/json",  
       success: function(prod) {
   
         if(nextorder != orderID){
@@ -278,24 +213,13 @@ function displayUserAdd() {
         }
         $("#historyCol").append("<div> Produkter:  "+ prod.name +" ("+ prod.price +" kr) </div>")
         nextorder = orderID
-
-      
       },
       error: function(){
-        //alert("error");
+        alert("error");
       } 
     });
   }
-
-  }
-  
-
-  // function getOrderItems(orderID){
-
-
-  
-// const prodlist = []
-
+}
 
 function openForm(i) {
   var order =  "order"+i;
@@ -305,18 +229,14 @@ function openForm(i) {
    }else{
       document.getElementById(order).style.display = 'none';
   }
-    } 
+} 
 
-    function openAdd(i) {
-      var add =  "add"+i;
-      if(document.getElementById(add).style.display == 'none')
-       {
-        document.getElementById(add).style.display = "block";
-       }else{
-          document.getElementById(add).style.display = 'none';
-      }
-        } 
-    
-
-
-
+function openAdd(i) {
+  var add =  "add"+i;
+  if(document.getElementById(add).style.display == 'none')
+  {
+    document.getElementById(add).style.display = "block";
+  }else{
+      document.getElementById(add).style.display = 'none';
+  }
+} 
