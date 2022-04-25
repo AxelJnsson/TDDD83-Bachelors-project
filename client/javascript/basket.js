@@ -455,9 +455,9 @@ function showPriceInRegister(currentTotal){
 function getUserdetails() { 
   
 //var namn = JSON.parse(sessionStorage.getItem('auth')).user.first_name;
-  
+  $('#cashName').val(JSON.parse(sessionStorage.getItem('auth')).user.first_name);
   $('#cashEmail').val(JSON.parse(sessionStorage.getItem('auth')).user.email);
-  $('#cashName').val(((JSON.parse(sessionStorage.getItem('auth')).user.first_name)+" " + JSON.parse(sessionStorage.getItem('auth')).user.last_name));
+  $('#cashName').val(JSON.parse(sessionStorage.getItem('auth')).user.first_name);
 }
 
 

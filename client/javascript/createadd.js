@@ -1,7 +1,7 @@
 function createAdd() {
   
     var pris = $("#createPris").val();
-    var begagnad = 0;
+    var begagnad = 1;
     var saljare = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
     var year = $("#createYear").val();
     var model = $("#modelVal").val();
