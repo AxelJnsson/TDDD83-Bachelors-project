@@ -95,6 +95,30 @@ div.sticky {
   height: 520px;
 }
 
+.cardSuccess {
+  text-align: left;
+  margin-left: 300px;
+  width: auto;
+  height: 200px;
+}
+
+.hejsan {
+
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.hej {
+  font-size: 20px;
+  font-style: normal;
+
+}
+
+.fa-check {
+  color: rgb(0, 240, 84);
+}
+
 .card:hover {
   box-shadow: 0 8px 16px 0 #666666;
   transition: all 0.3s ease;
@@ -143,6 +167,27 @@ div.sticky {
   font-weight: bold !important;
 }
 
+.orderPage1 {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  font-size: 80px;
+}
+
+.orderPage2 {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-weight: 300;
+  font-size: 40px;
+}
+
+.orderPage3 {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-weight: 100;
+  font-size: 20px;
+}
+
 h2 {
   text-align: center;
   font-size: 35px;
@@ -150,6 +195,8 @@ h2 {
   text-transform: uppercase;
   color: white;
 }
+
+
 
 
 .team {
