@@ -1,3 +1,4 @@
+//REFAKTORERAD
 let sortingKey = "null";
 let newlyfilteredproducts = null;
 let keyBoos = 
@@ -16,9 +17,7 @@ function createProducts(filteringByArray,sortingKey){
         url:'/product',
         type: 'GET',
         success: function(u) {          
-            var allinstruments = u;
-            //getInstruments(allinstruments);
-      
+            var allinstruments = u;      
          filtering(allinstruments,filteringByArray);
         },
         error: function(){
@@ -40,13 +39,9 @@ function filterPriceInterval(stuffToFilter, interval){
 
 
     for(var i = 0; i < prInterval.length ; i++) { 
-            //alert(prInterval[0][0]);
             lowerBoundPrice.push(prInterval[i][0]);
             higherBoundPrice.push(prInterval[i][1]);
     }
-
-    // alert(lowerBoundPrice[0]);
-    // alert(higherBoundPrice[0]);
 
     numbersArray.length = 0;
     
@@ -54,7 +49,6 @@ function filterPriceInterval(stuffToFilter, interval){
             numbersArray.push(stuffToFilter[item].price);
     }
 
-    //let matches = [];
     let nonMatches = [];
     
     numbersArray.forEach(num => {
@@ -65,19 +59,16 @@ function filterPriceInterval(stuffToFilter, interval){
     matched ? filterprices.push(num) : nonMatches.push(num);
     });
 
-    //  alert("Matchar: " + matches.length);
-    //  alert("Ingen match: " + nonMatches.length);
-
 
 }
 
 
-//riktig filtrering
-function filtering(arr, filterQueries){
-    var filteredstuff = arr;
-    const priceInterval = filterQueries[8];
+//filter function
+function filtering(returnedProducts, filterQueries){
+    var filteredstuff = returnedProducts;
+    const priceInterval = filterQueries[7];
 
-    //alert(priceInterval.length);
+    //checking price intervals and adding prices to the filter
      if (priceInterval !== 0){
          filterPriceInterval(filteredstuff, priceInterval); 
      }
@@ -86,13 +77,13 @@ function filtering(arr, filterQueries){
     const brands = filterQueries[1];
     const models = filterQueries[2];
     const colors = filterQueries[3];
-    const prices = filterQueries[5];
-    const years = filterQueries[6];
-    const newornots = filterQueries[7];
+    const prices = filterQueries[4];
+    const years = filterQueries[5];
+    const newornots = filterQueries[6];
 
 
 
-
+    //filter
     if (types.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             types.indexOf(el.type) >= 0);
@@ -129,133 +120,90 @@ function filtering(arr, filterQueries){
     }
 
 
-    //if (newornots.length !== 0) {
-        filteredstuff = filteredstuff.filter( el => 
-            newornots.indexOf(el.new_or_not) >= 0);
-    //}
+    filteredstuff = filteredstuff.filter( el => 
+        newornots.indexOf(el.new_or_not) >= 0);
     
 
-    
-    //alert("Antal produkter: " + filteredstuff.length);
-    //getClickID(filteredstuff)
-    
-    
-    //buggsökning -----------
-     //alert("Modeller: " + models.length + " Brands: " + brands.length + " Colors: " + colors.length + " År: " + years.length + " Nytt/beg: " + newornots.length + " Types: " + types.length);
-     //----------------------
-    
-    //alert(filteredstuff.length);
     newlyfilteredproducts = filteredstuff;
-    //clickedSort();
     appendProducts(filteredstuff);
     sideBar(filteredstuff); 
-    //return filteredstuff;
 }
 
+//get click-id for sorting function
 function getClickID() {
 sortingProduct(newlyfilteredproducts,event.target.id)
 
 
 console.log(event.target.id)
 }
-/*function getClickID(products){
-  console.log("testar")
-  var sortbuttons = document.getElementsByClassName('sort-by')
-      for (i = 0; i < sortbuttons.length; i++) {
-        if (document.addEventListener) {
-        console.log("hej")
-        console.log(sortbuttons[i])
-        sortbuttons[i].addEventListener("click", myfunction(products));
-        }
-        else { 
-          if (document.attachEvent) {
-              sortbuttons[i].attachEvent("onclick", myfunction(products));
-          }
-    }
-  }
-}*/
 
-/*function myfunction(products){
-  console.log("Lyssnar");
-  console.log(target.id)
-  sortingProduct(products, target.id)
-  
-};
-function clickedSort() {
-  
-}*/
 
+//sorting
 function sortingProduct(filteredproducts, key){
-if (key !== "null") {
+    if (key !== "null") {
 
-//if (Object.keys(keyBoos).contains(key)) {
-if (keyBoos.hasOwnProperty(key)){ 
-  if (keyBoos["key"] == 0 ){
-    keyBoos["key"] = 1
-    console.log(keyBoos["key"])
-  } else {
-    keyBoos["key"] = 0
-    console.log(keyBoos["key"])
-  };
+        if (keyBoos.hasOwnProperty(key)){ 
+        if (keyBoos["key"] == 0 ){
+            keyBoos["key"] = 1
+            console.log(keyBoos["key"])
+        } else {
+            keyBoos["key"] = 0
+            console.log(keyBoos["key"])
+        };
 
-};
+    };
 
 
-const objectkeysarray = Object.keys(filteredproducts[0])
-console.log(objectkeysarray);
-const sortedproducts = filteredproducts.sort(function(x,y) {
-  if (keyBoos["key"] == 1) {
-    let z;
-    z = x;
-    x = y
-    y = z
-  }
-  if (key == "price") {
-    
-  return x[key] - y[key];
-  }
-  else {
-    return x[key] == y[key] ? 0 : x[key] > y[key] ? 1 : -1;
-  }
+    const objectkeysarray = Object.keys(filteredproducts[0])
+    console.log(objectkeysarray);
+    const sortedproducts = filteredproducts.sort(function(x,y) {
+    if (keyBoos["key"] == 1) {
+        let z;
+        z = x;
+        x = y
+        y = z
+    }
+    if (key == "price") {      
+        return x[key] - y[key];
+    }
+    else {
+        return x[key] == y[key] ? 0 : x[key] > y[key] ? 1 : -1;
+    }
 
-});
-//console.log(sortedproducts)
-appendProducts(sortedproducts);
-}
-appendProducts(filteredproducts);
+    });
+    appendProducts(sortedproducts);
+    }
+    appendProducts(filteredproducts);
 }
 
+//function for appending products in productview
 function appendProducts(filteredproducts){
     $("#productViewContainer").html($("#empty").html())
     $("#productViewContainer").html($("#view-product").html())  
     var products = filteredproducts;
     let j = 0;
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
+
     for (let i=0; i < products.length; i++) {
-    //funktion för att skriva ut produkterna 4 och 4
-        //if (i%4 == 0) {
-            //j++;
-            
-        //} Tog bort, snyggare att dom lägger sig rätt beroende på skärmstorlek! <333 /Unn
-        var beg;
-        $("#testdiv").append("<div class='row' id='"+j+"'></div>");
+        var condition;
+        $("#productrow").append("<div class='row' id='"+j+"'></div>");
         if (products[i].new_or_not == 0) {
-            beg = "Begagnad";
+            condition = "Begagnad";
         } else {
-            beg = "Ny";
+            condition = "Ny";
         }
        let q = 0
        if (productsInCart.has(products[i].product_id)){
            q = productsInCart.get(products[i].product_id);
        } 
-    //    console.log(products[i].quantity-productsInCart.get(products[i].product_id));
        if ((products[i].quantity-q)<1){
-        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-red' style='font-size:10px; background-color: red;' data-dismiss='modal'onClick='outOfStockAlert()' value='"+products[i].product_id+"' id='addProductToCartButtonOut"+products[i].product_id+"'>Slut<span class='cart-item'></span></button></div></div></div>");
+            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+condition+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-red' style='font-size:10px; background-color: red;' data-dismiss='modal'onClick='outOfStockAlert()' value='"+products[i].product_id+"' id='addProductToCartButtonOut"+products[i].product_id+"'>Slut<span class='cart-item'></span></button></div></div></div>");
        }else{
-        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' id='buttonDivForProductView"+products[i].product_id+"' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-tonehub' style='font-size:10px;' data-dismiss='modal' onClick='addProductDirectlyToCart(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton"+products[i].product_id+"'>Köp<span class='cart-item'></span></button></div></div></div>");
+            $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+condition+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' id='buttonDivForProductView"+products[i].product_id+"' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-tonehub' style='font-size:10px;' data-dismiss='modal' onClick='addProductDirectlyToCart(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton"+products[i].product_id+"'>Köp<span class='cart-item'></span></button></div></div></div>");
        }
- }
+    }
 
+    //modal for product info
     $('.btnInfo').on("click" ,function (e) {
         var prod_id = $(this).data('id');
         $(".product-modal-body").empty();
@@ -273,7 +221,6 @@ function appendProducts(filteredproducts){
 
 function showProdModal(){
     $("#productModal").modal('toggle');
-    //$("#productModal").data('bs.modal')._config.backdrop = 'static'; 
     showProdInfo();
 }
 
@@ -285,14 +232,10 @@ function showProdInfo(filterQueries) {
     var filterQ = filterQueries;
 
    createProducts(filterQ);
-   //alert(products[0].name);
-
-   // filtering(products, filterQ);
-
-    //return products;
-
 }
 
+//global variables for the sidebar
+//variables for if certain areas on the sidebar have been clicked,if they have then the sidebar should not update with the filter
 var brandClicked = false;
 var modelClicked = false;
 var colorClicked = false;
@@ -308,10 +251,9 @@ function sideBar(products){
     const colors = [];
     const years = [];
 
-    const priceIntervals = [[0, 1000], [1000, 5000], [5000, 10000], [10000, 100000], [100000, 1000000000000000]]; //hårdkodade så länge
+    const priceIntervals = [[0, 1000], [1000, 5000], [5000, 10000], [10000, 100000], [100000, 1000000000000000]];
    
-    const all = [];
-
+    //adding attributes to lists to be appended in the sidebar
     for(var j = 0; j < prod.length; j++){
         brands.push(prod[j].brand);
         models.push(prod[j].model);
@@ -319,7 +261,7 @@ function sideBar(products){
         years.push(prod[j].year);   
     }
 
-
+    //removing duplicates and sorting the attributes/names alphabetically
     var uniqueBrands = brands.filter((v, i, a) => a.indexOf(v) === i);
     var uniqueModels = models.filter((v, i, a) => a.indexOf(v) === i);
     var uniqueColors = colors.filter((v, i, a) => a.indexOf(v) === i)
@@ -330,10 +272,8 @@ function sideBar(products){
     uniqueColors.sort();
     uniqueYears.sort();
 
-    //debug
-    //alert("Valbara märken: " + uniqueBrands.length + " Valbara modeller: " + uniqueModels.length + " Valbara färger: " + uniqueColors.length + " Valbara år: " + uniqueYears.length);
 
-
+    //appending checkboxes
     if(brandClicked == false) {
         $("#brandArea").empty();
         for(var j = 0; j < uniqueBrands.length; j++){
@@ -362,8 +302,6 @@ function sideBar(products){
         }
     }
 
-    //alert("Brand clicked: " + brandClicked + " Model clicked: " + modelClicked + " Color clicked: " + colorClicked + " Year clicked: " + yearClicked);
-
     var outputInterval;
 
     if(priceClicked == false) {
@@ -385,29 +323,24 @@ function sideBar(products){
         }
     }
 
+  //functions for clicking on each checkbox
+  //brands
   $('.somebrand').on("click" ,function (e) {
     e.stopImmediatePropagation();
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") === true){
         filterbrands.push(uniqueBrands[checkBoxId]);
-        //alert(filterbrands.length);
         brandClicked = true;
-        //alert(brandClicked);
-
     } else if ($(this).prop("checked") === false) {
         if(filterbrands.length == 1) {
-            //alert(filterbrands.length);
             brandClicked = false;
             filterbrands.length = 0;
-            //alert(brandClicked);
         } else if (filterbrands.length > 1) {
-            //alert("test");
             for(item in filterbrands) {
                 if(filterbrands[item] == uniqueBrands[checkBoxId]){
                   filterbrands.splice(item,1);
                 }
-              }
-
+            }
         }
     }
         $("#productViewContainer").html($("#empty").html())
@@ -416,9 +349,9 @@ function sideBar(products){
     
   });
 
+  //models
   $('.somemodel').on("click" ,function (e) {
     e.stopImmediatePropagation();
-
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") == true){
         filtermodels.push(uniqueModels[checkBoxId]);
@@ -428,7 +361,6 @@ function sideBar(products){
             filtermodels.length = 0;
             modelClicked = false;
         } else if (filtermodels.length > 1) {
-            //alert("test");
             for(item in filtermodels) {
                 if(filtermodels[item] == uniqueModels[checkBoxId]){
                   filtermodels.splice(item,1);
@@ -439,62 +371,51 @@ function sideBar(products){
     }
         $("#productViewContainer").html($("#empty").html())
         $("#productViewContainer").html($("#view-product").html())
-        //alert(filterQ[2].length);  
         showProdInfo(filterQ);
-    
   });
 
+  //colors
   $('.somecolor').on("click" ,function (e) {
     e.stopImmediatePropagation();
-
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") == true){
         filtercolors.push(uniqueColors[checkBoxId]);
         colorClicked = true;
-        //alert(filtercolors[0]);
     } else if ($(this).prop("checked") == false) {
         if(filtercolors.length == 1) {
             filtercolors.length = 0;
             colorClicked = false;
         } else if (filtercolors.length > 1) {
-            //alert("test");
             for(item in filtercolors) {
                 if(filtercolors[item] == uniqueColors[checkBoxId]){
                   filtercolors.splice(item,1);
                 }
-              }
-
+            }
         }
-        
     }
         $("#productViewContainer").html($("#empty").html())
         $("#productViewContainer").html($("#view-product").html())  
         showProdInfo(filterQ);
-    
   });
     
+  //years
   $('.someyear').on("click" ,function (e) {
     e.stopImmediatePropagation();
-
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") == true){
         filteryears.push(uniqueYears[checkBoxId]);
         yearClicked = true;
-        //alert(filteryears[0]);
     } else if ($(this).prop("checked") == false) {
         if(filteryears.length == 1) {
             filteryears.length = 0;
             yearClicked = false;
         } else if (filteryears.length > 1) {
-            //alert("test");
             for(item in filteryears) {
                 if(filteryears[item] == uniqueYears[checkBoxId]){
                   filteryears.splice(item,1);
                 }
-              }
-
+            }
         }
-        
     }
         $("#productViewContainer").html($("#empty").html())
         $("#productViewContainer").html($("#view-product").html())  
@@ -502,37 +423,31 @@ function sideBar(products){
     
   });
 
+  //price intervals
   $('.someprice').on("click" ,function (e) {
     e.stopImmediatePropagation();
     var checkBoxId = $(this).data('id');
     if($(this).prop("checked") == true){
         filterpriceinterval.push(priceIntervals[checkBoxId]);
-        
         priceClicked = true;
-        //alert(filteryears[0]);
     } else if ($(this).prop("checked") == false) {
         if(filterpriceinterval.length == 1) {
             filterpriceinterval.length = 0;
             priceClicked = false;
         } else if (filterpriceinterval.length > 1) {
-            //alert("test");
             for(item in filterpriceinterval) {
                 if(filterpriceinterval[item] == priceIntervals[checkBoxId]){
                   filterpriceinterval.splice(item,1);
                 }
-              }
-
+            }
         }
         filterprices.length = 0;
-
     }
         $("#productViewContainer").html($("#empty").html())
         $("#productViewContainer").html($("#view-product").html())  
         showProdInfo(filterQ);
     
   });
-    
-    
 }
 
 $('#closeProductModal').on("click" ,function (e) {
@@ -550,7 +465,7 @@ $('#xProduct').on("click" ,function (e) {
 });
 
 
-//För att visa "tillagd" när en produkt läggs i varukorgen
+//To display "added" when a product is added to the cart
 function addProductDirectlyToCart(value, btn){
     addProductToCart(value);
     btn.textContent ='Tillagd';
@@ -558,7 +473,7 @@ function addProductDirectlyToCart(value, btn){
     
 }
   
-//Ändrar siffran bredvid varukorgen när en produkt läggs i varukorgen
+//Changing the number next to the cart as a product is added to it
 function doThings3(a) {
     var newCartTotal = parseInt(a);
     $('#basketArea').empty();
@@ -570,7 +485,7 @@ function doThings3(a) {
     }
 }
   
-//Ändrar tillbaka knappen från "tillagd" till "köp"
+//Changing the button from "added" to "buy"
 function setBack(btnn) {
     btnn.textContent ='Köp';
 }

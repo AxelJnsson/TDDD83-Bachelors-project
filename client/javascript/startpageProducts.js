@@ -1,30 +1,32 @@
+//Refaktorerad
+
 //Alla funktioner i denna fil hämtar och appendar info för de tre produkter som visas på startsidan
 
-function createProducts2(){ 
-    $.ajax({        
-        url:'/product',
+function createProducts2() {
+    $.ajax({
+        url: '/product',
         type: 'GET',
-        success: function(u) {          
+        success: function (u) {
             var allinstruments = u;
             appendStartProducts(allinstruments);
         },
-        error: function(){
+        error: function () {
             alert("fel");
-        }    
+        }
     });
 }
 
-function createProducts3(id){ 
-    $.ajax({        
-        url:'/product',
+function createProducts3(id) {
+    $.ajax({
+        url: '/product',
         type: 'GET',
-        success: function(u) {          
+        success: function (u) {
             var allinstruments = u;
             toggleProductModal(allinstruments[id]);
         },
-        error: function(){
+        error: function () {
             alert("fel");
-        }    
+        }
     });
 }
 
@@ -33,8 +35,8 @@ function toggleProductModal(product) {
     $("#productModalFooter").empty();
 
     $("#productModal").modal('toggle');
-    $(".product-modal-body").append("<div class='card-body'><h5 class='card-title' style='text-align: center; font-weight: bold;'> " + product.name +  "</h5><br><img class='card-img-top' style='margin-left: 90px;' src='"+ product.image +"'><br><p class='card-text' style='text-align: center'> <b>Märke:</b> " + product.brand + "<br> <b>Modell:</b> " + product.model + "<br> <b>Färg: </b>" + product.color + "<br> <b>År: </b>" + product.year + "<br> <b>Pris:</b> " + product.price + "</p></div>");
-    $("#productModalFooter").append('<button type="button" class="btn btn-tonehub" data-dismiss="modal" onClick="addProductDirectlyToCart(this.value, this)" value="'+product.product_id+'" id="addProductToCartButton">Lägg i varukorgen</button>');
+    $(".product-modal-body").append("<div class='card-body'><h5 class='card-title' style='text-align: center; font-weight: bold;'> " + product.name + "</h5><br><img class='card-img-top' style='margin-left: 90px;' src='" + product.image + "'><br><p class='card-text' style='text-align: center'> <b>Märke:</b> " + product.brand + "<br> <b>Modell:</b> " + product.model + "<br> <b>Färg: </b>" + product.color + "<br> <b>År: </b>" + product.year + "<br> <b>Pris:</b> " + product.price + "</p></div>");
+    $("#productModalFooter").append('<button type="button" class="btn btn-tonehub" data-dismiss="modal" onClick="addProductDirectlyToCart(this.value, this)" value="' + product.product_id + '" id="addProductToCartButton">Lägg i varukorgen</button>');
 }
 
 function appendStartProducts(products) {

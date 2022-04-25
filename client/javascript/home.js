@@ -59,7 +59,7 @@ $(document).ready(function(){
  const filteryears = [];
  const filternewornot = [];
  const filterpriceinterval = [];
- let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filternames, filterprices, filteryears, filternewornot, filterpriceinterval];
+ let filterQ = [filtertypes, filterbrands, filtermodels, filtercolors, filterprices, filteryears, filternewornot, filterpriceinterval];
  //const filterQueries = {category: filterCategory, brand: filterBrand, model: filterModel, color: filterColor, name: filterName, price: filterPrice, year: filterYear};
 
 $('#aboutButton').click(function (e) {      
@@ -459,6 +459,7 @@ function SucPay(u) {
   alert("din betalning gick igenom");
   addOrdersAndItemsToHistory();
   clearCart();
+  updateItemNumber();
   //Gör nåt som uppdaterar varukorgen och skapar en
   $("#lyckadBet").attr("href", u)
 

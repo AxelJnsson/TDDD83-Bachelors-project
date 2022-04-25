@@ -1,3 +1,5 @@
+<!-- Refaktorerad -->
+
 <!doctype html>
 <html lang="se">
 
@@ -20,16 +22,14 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
     rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/css/home.css">
   <link rel="stylesheet" href="/css/form.css">
   <link rel="stylesheet" href="/css/slide.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/checkout.css" />
   <link rel="stylesheet" href="/css/productview.css" />
-  
-
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -38,22 +38,20 @@
 
 
   <title>Välkommen till ToneHub</title>
-  <!--FavIcon, hemmagjord ändå haha :()-->
   <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
 
-
 </head>
+
 <script src="https://kit.fontawesome.com/ba5ddd8013.js" crossorigin="anonymous"></script>
 
 <body class="bg-light">
 
   <!--Övre navbar-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light" id="top">
-
     <div id="div1" style="width: 40%">
       <div class="input-group" style="margin-left: 20px; margin-right: 10px; width: 45%; float: left;">
-          <input type="search" class="form-control" placeholder="Sök.." id="datatable-search-input"
-            onkeyup="getSearchProducts()">
+        <input type="search" class="form-control" placeholder="Sök.." id="datatable-search-input"
+          onkeyup="getSearchProducts()">
         <button type="button" class="btn btn-secondary" id="searchButton" onclick="getSearchProducts()">
           <i class="fas fa-search"></i>
         </button>
@@ -152,7 +150,6 @@
         </li>
       </ul>
     </div>
-
   </nav>
 
   <script id="view-about" type="text/html">
@@ -255,7 +252,6 @@
               style="text-align: center; padding: 20px;"></i>Kategori</span>
         </a>
         <div>
-          <!-- <input type="checkbox" data-toggle="switchbutton" checked data-onstyle="outline-dark" data-offstyle="outline-dark" data-size="sm" data-onlabel="Nya Produkter" data-offlabel="ej nya produkter" id="newProd" onclick="checkNeworOldStuff('newProd', 1)"></div>-->
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="newProd" checked
               onclick="checkNeworOldStuff('newProd', 1)">
@@ -281,8 +277,6 @@
             </li>
             <li>
               <a href="#submenu2" data-toggle="collapse" class="nav-link px-0">
-
-
                 <span class="text-justright"><i class="fa-brands fa-itunes-note"
                     style="text-align: center; padding-right: 20px;"></i>Modeller</span>
               </a>
@@ -334,18 +328,14 @@
                 <button id="resetFilterBtn" class="btn" onclick="btnResetFilter()">Återställ filter</button>
               </div>
             </li>
-
           </ul>
           <hr>
         </div>
-
-
-
       </div>
-
   </script>
+
   <script id="view-product" type="text/html">
-    <div class="col" id="testdiv">
+    <div class="col" id="productrow">
       <nav class="navbar navbar-expand-lg" id="sortingNav">
         <button class="navbar-toggler" type="button" 
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -371,10 +361,8 @@
             <li class="nav-item">
               <a class="sort-by" href="#" onclick=getClickID() id="name">Namn</a>
             </li>
-
           </ul>
         </div>
-    
       </nav>
     </div>
   </script>
@@ -445,12 +433,10 @@
                 </p>
               </div>
             </div>
-          </div>
           </section>
         </script>
 
   <!--Användarsida-->
-
   <script id="view-user" type="text/html">
     <div class="container rounded bg-white mt-5 mb-5">
       <div class="row">
@@ -468,22 +454,20 @@
                   </div>
                      <div class="d-flex justify-content-between align-items-center mb-3">
                     <h3 class="text-right">Adress:</h3>
-                <!--    <button type="button" class="btn btn-primary" id="changeAdress">Ändra</button> -->
                   </div>     
                   <div id="profAdress" style="padding-bottom:0px"></div>                
                 
                   <div class="d-flex justify-content-between align-items-center mb-3" id="profKontakt">
                     <h3 class="text-right">Kontaktuppgifter:</h3>
-                  <!--  <button type="button" class="btn btn-primary" id="changeContact">Ändra</button> -->
                   </div>
                   <div id="profContact" style="padding-bottom:0px"></div>
                   <div class="d-flex justify-content-between align-items-center mb-3" id="profSekretess">
                     <h3 class="text-right">Sekretess</h3>
-                  <!--  <button type="button" class="btn btn-primary" id="changeSekre">Ändra</button> -->
                   </div>
                   <div id="profSek" style="padding-bottom:00px"></div>                 
                 </div>                
              </div>
+            </div>
           <div class="col-md-4 ">
             <div class="p-3 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -491,8 +475,9 @@
             </div>
               <div id="orderHistory">                  
                   <div class="row" id="historyCol">
-                    <div id="productPlace"></div>
-            
+                    <div id="productPlace">
+
+                    </div>
                   </div>
               </div>
                </div>                     
@@ -501,15 +486,9 @@
                 <h1>Dina annonser:</h1>
                 <div class="d-flex justify-content-between align-items-center mb-3" id="userAdds">
 
-
                 </div>
-
-
-
           </div>  
-
        </div>
-
     </div>
 </script>
 
@@ -620,7 +599,6 @@
       </div>
   </div>  
   
-  
   <pre class="tab"></pre>
   <pre class="tab"></pre>
  
@@ -679,7 +657,6 @@
  
   </script>
 
-
   <script id="lyckad-betalning" type="text/html">
   <div>
     <div class="orderPage1">
@@ -693,9 +670,6 @@
       </div>
     </div>
   </div>
-
-
-
 </script>
 
   <!--skapa annonssida-->
@@ -730,7 +704,6 @@
               <select id="modelVal">
                   <option selected>Modell</option>
                 
-              
               </select>
           </label>
           
@@ -759,8 +732,6 @@
           </label>
           </div>  
           <div class="col-md-6"><label class="labels">Pris</label><input type="number" id="createPris" class="form-control" placeholder="Pris" value=""></div>
-        <!-- <div class="col-md-6"><label class="labels">Begagnad</label><input type="text" readonly class="form-control" id="staticEmail" value="yes"></div>
-          <div class="col-md-6"><label class="labels">Kategori</label><input type="text" id="createkat"  class="form-control" placeholder="" value=""></div>-->
           <div class="col-md-6"><label class="labels">Årtal</label><input type="number" id="createYear" min="1950" max="2022" class="form-control" placeholder="" value=""></div>   
           <div class="mt-5 text-center"><button class="btn btn-tonehub profile-button" id="createAddButton" onclick="createAdd()" type="button">Skapa annons</button></div>
       </div>
@@ -770,34 +741,8 @@
   
   </script>
 
-  <!-- <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Din varukorg</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xButtonBasket">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="bodyBasketModal">
-        </div>
-        <div class="modal-footer">
-          <div id="basketModalPriceDiv" style="margin: auto;">
-
-          </div>
-          <div style="margin: auto;">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton" onclick="updateItemNumber()">Stäng</button>
-            <button type="button" style="color: white;"class="btn btn-warning" data-dismiss="modal" id="clearBasketButton" onclick="clearCart()">Rensa</button>
-            <button type="button" style="background-color: #0d6efd !important;" class="btn btn-primary" data-dismiss="modal" id="shopFromBasketButton">Till Kassan</button>
-          </div>  
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-
-  <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header border-bottom-0">
@@ -815,7 +760,7 @@
           <div id="basketModalPriceDiv" style="margin: auto;">
 
           </div>
-  
+
           <div style="margin: auto;">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton"
               onclick="updateItemNumber()">Stäng</button>
@@ -828,8 +773,6 @@
       </div>
     </div>
   </div>
-
-
 
   <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -865,7 +808,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Registrera dig</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xRegister">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xRegister" onclick="closeRegisterModal()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -887,13 +830,9 @@
             <label for="inputPassword">Passwords</label>
             <input type="password" class="form-control" id="inputPasswordRegisterForm">
           </div>
-          <!-- <div class="form-group">
-            <label for="inputPassword">Password igen</label>
-            <input class="form-control" id="inputPasswordAgainRegisterForm">
-          </div>-->
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeRegisterButton">Stäng</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeRegisterButton" onclick="closeRegisterModal()">Stäng</button>
           <button type="button" class="btn btn-tonehub" data-dismiss="modal" id="registerFinishButton">Registrera
             dig</button>
         </div>
@@ -957,15 +896,11 @@
 
   <script id="view-adminPage" type="text/html">
     <div class="center">
-    <div class="d-flex justify-content-between align-items-center mb-3" >
-      <h4 class="text-right">Adminsida</h4>
-    </div>
-    <div class="card-container row">
-    </div>
-  </div>
-  </div>
-  </div>
-  
+      <div class="d-flex justify-content-between align-items-center mb-3" >
+        <h4 class="text-right">Adminsida</h4>
+      </div>
+      <div class="card-container row">
+    </div>  
   </script>
 
   <div class="modal fade" id="adminEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -1024,25 +959,7 @@
     
     <div class="col-1"></div>
       <div class="col-4" id="scrollableItemsInBasket">
-      </div> 
-      
-  
-      <!-- <div class="col-4"  id="amountArea">   
-        <h1 style="text-align:center">
-          Din Total
-        </h1>
-        <h6 style="margin-left: 7%;">
-          <br>
-          <br>
-          Deltotal:
-          <br>
-          <br>
-          Frakt:
-          <br>
-          <br>
-        </h6>
-        <h5 style="margin-left: 6%;" id="totalsumLine"></h5-->
-                    
+      </div>                     
                
                     <div class="box-2">
                       <div class="box-inner-2">
@@ -1057,17 +974,7 @@
 
                                 </div>
                               <div>
-                                 
-                                  <!--<form id="payment-form">
-                                    
-                                    <div id="card-element"><--Stripe.js injects the Card Element-></div>
-            
-                                    <p id="card-error" role="alert"></p>
-                                    <p class="result-message hidden">
-                                      Payment succeeded, see the result in your
-                                      <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
-                                    </p>
-                                  </form>-->
+
                                  
                                   <div class="my-3 cardname">
                                       <p class="dis fw-bold mb-2">Namn:</p> <input class="form-control" id="cashName" type="text">
@@ -1081,17 +988,7 @@
                                           <div class="d-flex align-items-center justify-content-between mb-2">
                                               <p>Summa:</p>
                                               <p id="totalsumLine"><span class="fas"></span></p>
-                                          </div>
-                                         <!-- <div class="d-flex align-items-center justify-content-between mb-2">
-                                              <p>VAT<span>(20%)</span></p>
-                                              <p><span class="fas fa-dollar-sign"></span>2.80</p>
-                                          </div>
-                                          <div class="d-flex align-items-center justify-content-between mb-2">
-                                              <p class="fw-bold">Total</p>
-                                              <p class="fw-bold"><span class="fas fa-dollar-sign"></span>35.80</p>
-                                          </div>-->
-                                          
-                                        
+                                          </div>                                                                        
                                       </div>
                                   </div>
                               </div>
@@ -1110,43 +1007,15 @@
                             </p>
                           </form>
                       </div>
-            
-          
-  
-                      
-                    
-        
+
           </div>
       </div>
 
       <div class="col"></div>
 
-  </div>
-    <!--<script id="pay-view">-->
-  
-  
+  </div>  
 </script>
 
-<!-- Lägger till order i betalning och kallar på stripe. Bör flytta till när en betalning går igenom.-->
-<!--<script>
-  function onBetalningClick() {
-    addOrdersAndItemsToHistory();
-    stripeTestFunction();
-    
-    
-  }
-</script>
-
-<div class="modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true" data-keyboard=false data-backdrop='static'>
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; text-align: center;">Produktinformation</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xProduct">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div> -->
   <div class="modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" data-keyboard=false data-backdrop='static'>
     <div class="modal-dialog" role="document">
@@ -1198,8 +1067,6 @@
   <!--Footer-->
   <footer class="mt-4 text-center" id="footer">
 
-    <!--Iconer osv om man vill-->
-
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
       <div class="me-5 d-none d-lg-block">
         <i class="fa-solid fa-laptop"></i>
@@ -1225,7 +1092,6 @@
       </div>
       <!-- Right -->
     </section>
-    <!-- Section: Social media -->
 
     <!-- Section: Links  -->
     <section class="">
@@ -1331,8 +1197,6 @@
     crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
   <script src="https://js.stripe.com/v3/"></script>
-  <!-- <script src="../../assets/js/vendor/popper.min.js"></script>
-  <script src="../../dist/js/bootstrap.min.js"></script>-->
   <script src="/javascript/home.js"></script>
 
   <script src="/javascript/accountPage.js"></script>

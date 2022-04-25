@@ -1,31 +1,32 @@
+//Refaktorerad
 
 //För att söka när man klickar på enter
 $('#datatable-search-input').on('keypress', function (e) {
   var keycode = (e.keyCode ? e.keyCode : e.which);
-  if(keycode == '13'){
-    $('#searchButton').click();   
+  if (keycode == '13') {
+    $('#searchButton').click();
   }
 });
 
 let filtervar = [];
 //Hämta produkter från databasen och skicka till "search"
 function getSearchProducts() {
-  $.ajax({        
-    url:'/product',
+  $.ajax({
+    url: '/product',
     type: 'GET',
-    success: function(u) {  
-        search(u);
+    success: function (u) {
+      search(u);
     },
-    error: function(){
-        alert("error");
-    }    
+    error: function () {
+      alert("error");
+    }
   });
 }
 
-function setFilterQueries(f){
+function setFilterQueries(f) {
   filtervar = f;
 }
-  
+
 //I denna funktion finns algoritmen som sorterar ut vilka objekt som matchar sökningen
 function search(productList) {
   var attributeList = [];
@@ -41,18 +42,13 @@ function search(productList) {
 
   // Loop through all list items, and choose those who match the search query
   for (a = 0; a < productList.length; a++) {
-    attributeList[0] = productList[a].brand;
-    attributeList[1] = productList[a].model;
-    attributeList[2] = productList[a].name;
-    attributeList[3] = productList[a].color;
-    attributeList[4] = productList[a].type;
-    attributeList[5] = productList[a].product_id;
+    attributeList = getAttributes(productList, a);
     for (b = 0; b < 5; b++) {
-      word = attributeList[b];    
+      word = attributeList[b];
       if (word.toUpperCase().indexOf(inputWord) > -1) {
         //alert("din sökning machar ett instrument");   
         searchResults.push(productList[a]);
-        searchResults[searchResults.length - 1].price = 10;      
+        searchResults[searchResults.length - 1].price = 10;
         break;
       }
     }
@@ -65,38 +61,34 @@ function search(productList) {
   if (splitWords.length > 1) {
     for (a = 0; a < splitWords.length; a++) {
       if (splitWords[a] != (null || " ")) {
-      //Jämför attributen för varje produkt med det sökta ordet
+        //Jämför attributen för varje produkt med det sökta ordet
         for (b = 0; b < productList.length; b++) {
           var y = 0;
-          attributeList[0] = productList[b].brand;
-          attributeList[1] = productList[b].model;
-          attributeList[2] = productList[b].color;
-          attributeList[3] = productList[b].type;
-          attributeList[4] = productList[b].product_id;
+          attributeList = getAttributes2(productList, a);
           //Iterera över varje attribut för produkten
           aloop:
           for (c = 0; c < 4; c++) {
-            word = attributeList[c];    
+            word = attributeList[c];
             //Matchar något av attributen med sökordet?
             if (word.toUpperCase().indexOf(splitWords[a]) > -1) {
               //Höj ratingen om produkten redan finns i searchResults, lägg till produkten annars
               bloop:
               for (d = 0; d < searchResults.length; d++) {
-                if (searchResults[d].product_id == productList[b].product_id) {             
-                  searchResults[d].price = searchResults[d].price + 10;  
+                if (searchResults[d].product_id == productList[b].product_id) {
+                  searchResults[d].price = searchResults[d].price + 10;
                   if (c == 3) {
-                    searchResults[d].price = searchResults[d].price + 10; 
-                  }            
+                    searchResults[d].price = searchResults[d].price + 10;
+                  }
                   y++;
                   break bloop;
-                }  
+                }
               }
               if (y == 0) {
                 searchResults.push(productList[b]);
                 searchResults[searchResults.length - 1].price = 10;
                 if (c == 3) {
-                  searchResults[d].price = searchResults[d].price + 10; 
-                } 
+                  searchResults[d].price = searchResults[d].price + 10;
+                }
               }
               break aloop;
             }
@@ -106,28 +98,21 @@ function search(productList) {
     }
   }
 
-
   //Kolla om några instrument matchar sökningen på bokstavsnivå för att hantera felstavning
-
   if (searchResults.length == 0) {
     //Kolla först för hela strängen
     for (a = 0; a < productList.length; a++) {
       var ratedAttributes = [];
-      attributeList[0] = productList[a].brand;
-      attributeList[1] = productList[a].model;
-      attributeList[2] = productList[a].name;
-      attributeList[3] = productList[a].color;
-      attributeList[4] = productList[a].type;
-      attributeList[5] = productList[a].product_id;
+      attributeList = getAttributes(productList, a);
       for (b = 0; b < 5; b++) {
         word = attributeList[b];
         var sim = compare(word, inputWord);
         ratedAttributes[b] = sim;
       }
-      var max = Math.max.apply(null, ratedAttributes); 
+      var max = Math.max.apply(null, ratedAttributes);
       if (max > 0.5) {
         searchResults.push(productList[a]);
-        searchResults[searchResults.length - 1].price = 10*max; 
+        searchResults[searchResults.length - 1].price = 10 * max;
       }
     }
 
@@ -137,41 +122,36 @@ function search(productList) {
         if (splitWords[a] != (null || " ")) {
           for (b = 0; b < productList.length; b++) {
             var y = 0;
-            attributeList[0] = productList[b].brand;
-            attributeList[1] = productList[b].model;
-            attributeList[2] = productList[b].color;
-            attributeList[3] = productList[b].type;
-            attributeList[4] = productList[b].product_id;
+            attributeList = getAttributes2(productList, a);
             //Iterera över varje attribut för produkten
-            for (c = 0; c < 4; c++) {  
+            for (c = 0; c < 4; c++) {
               sim = compare(attributeList[c], splitWords[a]);
               ratedAttributes[c] = sim;
             }
-            max = Math.max.apply(null, ratedAttributes); 
+            max = Math.max.apply(null, ratedAttributes);
 
             if (max > 0) {
               //Höj ratingen om produkten redan finns i searchResults, lägg till produkten annars
               bloop:
               for (d = 0; d < searchResults.length; d++) {
-                if (searchResults[d].product_id == productList[b].product_id) {             
-                  searchResults[d].price = searchResults[d].price + max;           
+                if (searchResults[d].product_id == productList[b].product_id) {
+                  searchResults[d].price = searchResults[d].price + max;
                   y++;
                   break bloop;
-                }  
+                }
               }
               if (y == 0) {
                 searchResults.push(productList[b]);
                 searchResults[searchResults.length - 1].price = max;
               }
-            } 
+            }
           }
         }
       }
     }
   }
 
-  searchResults.sort(function(a, b)
-  {return b.price - a.price});
+  searchResults.sort(function (a, b) { return b.price - a.price });
 
   for (a = 0; a < searchResults.length; a++) {
     for (b = 0; b < prices.length; b++) {
@@ -182,7 +162,7 @@ function search(productList) {
   }
   loadSearchResults(searchResults);
 }
-  
+
 //Skriver ut sökresultaten på skärmen
 function loadSearchResults(searchList) {
   $("#sideBarContainer").html($("#view-sidebar").html())
@@ -197,15 +177,36 @@ function loadSearchResults(searchList) {
 //att hantera felstavning
 function compare(s1, s2) {
   var result = 0;
-  for(var i = s1.length; i > 0; i--){
+  for (var i = s1.length; i > 0; i--) {
     statementA:
-    if (typeof s2[i-1] == 'undefined' || s1[i-1] == s2[i-1]) {
+    if (typeof s2[i - 1] == 'undefined' || s1[i - 1] == s2[i - 1]) {
       break statementA;
-    } else if (s1[i-1].toLowerCase() == s2[i-1].toLowerCase()) {
+    } else if (s1[i - 1].toLowerCase() == s2[i - 1].toLowerCase()) {
       result++;
     } else {
       result += 4;
     }
   }
-  return 1 - (result + 4*Math.abs(s1.length - s2.length))/(2*(s1.length+s2.length));
+  return 1 - (result + 4 * Math.abs(s1.length - s2.length)) / (2 * (s1.length + s2.length));
+}
+
+function getAttributes(productList, a) {
+  var attributeList = [];
+  attributeList[0] = productList[a].brand;
+  attributeList[1] = productList[a].model;
+  attributeList[2] = productList[a].name;
+  attributeList[3] = productList[a].color;
+  attributeList[4] = productList[a].type;
+  attributeList[5] = productList[a].product_id;
+  return attributeList;
+}
+
+function getAttributes2(productList, a) {
+  var attributeList = [];
+  attributeList[0] = productList[b].brand;
+  attributeList[1] = productList[b].model;
+  attributeList[2] = productList[b].color;
+  attributeList[3] = productList[b].type;
+  attributeList[4] = productList[b].product_id;
+  return (attributeList);
 }
