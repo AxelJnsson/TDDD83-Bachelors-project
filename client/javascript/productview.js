@@ -12,7 +12,6 @@ let keyBoos =
 
 
 function createProducts(filteringByArray,sortingKey){ 
-  
     $.ajax({        
         url:'/product',
         type: 'GET',
@@ -20,7 +19,7 @@ function createProducts(filteringByArray,sortingKey){
             var allinstruments = u;
             //getInstruments(allinstruments);
       
-         filtering(allinstruments,filteringByArray, sortingKey);
+         filtering(allinstruments,filteringByArray);
         },
         error: function(){
             alert("fel");
@@ -74,7 +73,7 @@ function filterPriceInterval(stuffToFilter, interval){
 
 
 //riktig filtrering
-function filtering(arr, filterQueries, sortingKey){
+function filtering(arr, filterQueries){
     var filteredstuff = arr;
     const priceInterval = filterQueries[8];
 
@@ -99,10 +98,12 @@ function filtering(arr, filterQueries, sortingKey){
             types.indexOf(el.type) >= 0);
     }
 
+
     if (brands.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             brands.indexOf(el.brand) >= 0);
     }
+
     
     if (models.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
@@ -127,10 +128,13 @@ function filtering(arr, filterQueries, sortingKey){
             years.indexOf(el.year) >= 0);
     }
 
+
     //if (newornots.length !== 0) {
         filteredstuff = filteredstuff.filter( el => 
             newornots.indexOf(el.new_or_not) >= 0);
     //}
+    
+
     
     //alert("Antal produkter: " + filteredstuff.length);
     //getClickID(filteredstuff)
@@ -140,7 +144,7 @@ function filtering(arr, filterQueries, sortingKey){
      //alert("Modeller: " + models.length + " Brands: " + brands.length + " Colors: " + colors.length + " År: " + years.length + " Nytt/beg: " + newornots.length + " Types: " + types.length);
      //----------------------
     
-    
+    //alert(filteredstuff.length);
     newlyfilteredproducts = filteredstuff;
     //clickedSort();
     appendProducts(filteredstuff);
