@@ -81,6 +81,7 @@ var payWithCard = function(stripe, card, clientSecret) {
         // The payment succeeded!
         orderComplete(result.paymentIntent.id);
         //addOrdersAndItemsToHistory();
+        //SucPay();
         createShipping();
       
         

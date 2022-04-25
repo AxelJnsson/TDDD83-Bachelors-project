@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS used_product;
 DROP TABLE IF EXISTS new_product;
 
+
 CREATE TABLE  used_product (
     product_id INTEGER PRIMARY KEY,
     brand TEXT NOT NULL,
