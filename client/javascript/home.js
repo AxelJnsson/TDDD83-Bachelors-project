@@ -44,6 +44,8 @@ $(document).ready(function(){
     }
 
     updateItemNumber();
+    setFilterQueries(filteringByArray);
+
   })
  
  //var filterCategory, filterBrand, filterModel, filterColor, filterName, filterPrice, filterYear;

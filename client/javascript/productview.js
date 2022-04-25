@@ -12,7 +12,6 @@ let keyBoos =
 
 
 function createProducts(filteringByArray,sortingKey){ 
-  
     $.ajax({        
         url:'/product',
         type: 'GET',
@@ -20,7 +19,7 @@ function createProducts(filteringByArray,sortingKey){
             var allinstruments = u;
             //getInstruments(allinstruments);
       
-         filtering(allinstruments,filteringByArray, sortingKey);
+         filtering(allinstruments,filteringByArray);
         },
         error: function(){
             alert("fel");
@@ -74,7 +73,7 @@ function filterPriceInterval(stuffToFilter, interval){
 
 
 //riktig filtrering
-function filtering(arr, filterQueries, sortingKey){
+function filtering(arr, filterQueries){
     var filteredstuff = arr;
     const priceInterval = filterQueries[8];
 
@@ -140,7 +139,7 @@ function filtering(arr, filterQueries, sortingKey){
      //alert("Modeller: " + models.length + " Brands: " + brands.length + " Colors: " + colors.length + " År: " + years.length + " Nytt/beg: " + newornots.length + " Types: " + types.length);
      //----------------------
     
-    
+    //alert("hej");
     newlyfilteredproducts = filteredstuff;
     //clickedSort();
     appendProducts(filteredstuff);
