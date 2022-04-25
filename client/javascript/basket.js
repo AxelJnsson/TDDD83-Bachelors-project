@@ -73,18 +73,13 @@ function clearCart() {
         $("#sideBarContainer").html($("#view-sidebar").html())
         $("#productViewContainer").html($("#view-product").html())
         $("#mainViewContainer").html($("#empty").html())
-      
-        //showProdInfo("allt", null);
         resetFilter();
-        //filternewornot.push("Ny", "Begagnad");
         filternewornot.length = 0;
         filternewornot.push(0, 1); 
         showProdInfo(filterQ);
         createCategoriesForSidebar();
         updateItemNumber();      }
     });
-    
-
   } else {
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     productsInCart.clear();
@@ -95,17 +90,13 @@ function clearCart() {
     $("#sideBarContainer").html($("#view-sidebar").html())
     $("#productViewContainer").html($("#view-product").html())
     $("#mainViewContainer").html($("#empty").html())
-
-    //showProdInfo("allt", null);
     resetFilter();
-    //filternewornot.push("Ny", "Begagnad");
     filternewornot.length = 0;
     filternewornot.push(0, 1); 
     showProdInfo(filterQ);
     createCategoriesForSidebar();
     updateItemNumber();
   }
-  
 }
 
 function addProductToCart(productToAdd){
@@ -134,7 +125,6 @@ function addProductToCart(productToAdd){
       error: function(u){
           alert("funkarej");
       }  
-        
   });
   } else if (!JSON.parse(sessionStorage.getItem('loggedIn'))){
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
@@ -147,11 +137,7 @@ function addProductToCart(productToAdd){
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)))
     updateItemNumber();
   }
-
-
-
   var checkQuantityTemp = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
-
   if (checkQuantityTemp.has(parseInt(productToAdd))){
     var q = checkQuantityTemp.get(parseInt(productToAdd));
   } else{
@@ -165,7 +151,6 @@ function addProductToCart(productToAdd){
         addToCardButton = document.getElementById('addProductToCartButton'+product.product_id);
         addToCardButton.remove();
         $('#buttonDivForProductView'+product.product_id).append("<button type='button' class='btn btn-red' style='font-size:10px; background-color: red;' data-dismiss='modal'onClick='outOfStockAlert()' value='"+parseInt(productToAdd)+"' id='addProductToCartButtonOut"+parseInt(productToAdd)+"'>Slut<span class='cart-item'></span></button>");
-
       }
     }
    });
@@ -257,7 +242,6 @@ function printProductInBasketModal(product, quantity){
 //räknar fram och skriver ut totalsumma samt printar ut produkterna
   sessionStorage.setItem('price', JSON.parse(sessionStorage.getItem('price')) + product.price*quantity);
   showPriceInModal(JSON.parse(sessionStorage.getItem('price')));
- // $('#bodyBasketModal').append('<div id="productDivInBaskedModal">  <img src='+ product.image +' style="height: 150px; width: 150px;">  <div style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+'</div> <button id="deleteButtonForCartItem'+product.product_id+'" class="deleteProductFromCartButton" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button>  </div> <br>');
   $('#bodyBasketModal').append(' <table class="table table-image"><tbody><tr> <td class="w-25"><img src='+ product.image +'  style="height: 150px; width: 150px;"></td> <td id="productName"> '+product.name+' </td> <th id=pricePrint> '+product.price+'kr</th><td> <div class = btn-group><button class="w3-button w3-black" onClick="deleteProductFromCart(this.value)" data-value="'+product.price+'" value="'+product.product_id+'">-</button><button class="w3-button w3-white"> '+quantity+'</button> <button class="w3-button w3-teal" onclick= "addProductToCart(this.value);" value="'+product.product_id+'">+</button> </div></td></tr></tbody></table>');
 }
 
@@ -312,11 +296,7 @@ function showPriceInModal(currentTotal){
   }
 }
 
-
-
 //KASSA
-
-
 
 $('#shopFromBasketButton').click(function (e) {
   e.preventDefault();
@@ -326,7 +306,7 @@ $('#shopFromBasketButton').click(function (e) {
   $("#mainViewContainer").html($("#view-cashregister").html());
   printBasketedProducts();
  
- });
+});
 
 function printBasketedProducts(){
   $('#scrollableItemsInBasket').empty();
@@ -374,19 +354,19 @@ function printBasketedProducts(){
 }
 
 function showInRegister(products){
-    for (let i = 0; i <products.length; i++)
-      $.ajax ({
-        url:'/product/'+products[i].product_id,
-        type: 'GET',
-        datatype: 'JSON',
-        contentType: "application/json",
-        success: function(product) {
-          updateprice(product.price*products[i].quantity);
-          showPriceInRegister(sessionStorage.getItem('price'));
-          printProductInBasketRegister(product,products[i].quantity);
-        }
-      });
-  }
+  for (let i = 0; i <products.length; i++)
+    $.ajax ({
+      url:'/product/'+products[i].product_id,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      success: function(product) {
+        updateprice(product.price*products[i].quantity);
+        showPriceInRegister(sessionStorage.getItem('price'));
+        printProductInBasketRegister(product,products[i].quantity);
+      }
+    });
+}
 
 function printProductInBasketRegister(product,quantity){
  // $('#scrollableItemsInBasket').append('<div class="row" id="productDivInRegister"><div class="col-6"><img src='+ product.image +' style="height: 150px; width: 150px;"></div> <div class="col" style=""> '+product.name+' <br> '+product.price+'kr <br> Antal: '+quantity+' <br> <button class="deleteProductFromRegisterButton" onClick="deleteProductFromRegister(this.value)" value="'+product.product_id+'"> <img src="/images/soptunnapixil.png" width="25" height="30"> </button> </div> </div> <br>');
@@ -401,8 +381,6 @@ function executeThings(product) {
 function printEmptyRegister() {
   $('#scrollableItemsInBasket').append('<div id="emptyBasketRegister">Din varukorg är tom!</div> <div id="contShop" onclick="showAllInst()"><p style="cursor: pointer;">Tryck här för att forsätta shoppa!</p></div>');
 }
-
-
 
 function deleteProductFromRegister(productID){
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
@@ -433,12 +411,10 @@ function deleteProductFromRegister(productID){
       sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
     }
     printBasketedProducts();
-
   }
 }
 
 function updateprice(price){
-  // alert("uppdaterade priset med "+price+"kr")
   let oldPrice = parseInt(sessionStorage.getItem('price'));
   let newPrice = oldPrice + price;
   sessionStorage.setItem('price', newPrice);           
@@ -449,20 +425,15 @@ function showPriceInRegister(currentTotal){
   $('#totalsumLine').append( + currentTotal + "kr");
   stripePay(currentTotal*100);
  getUserdetails();
-
 }
 
 function getUserdetails() { 
-  
-//var namn = JSON.parse(sessionStorage.getItem('auth')).user.first_name;
   $('#cashName').val(JSON.parse(sessionStorage.getItem('auth')).user.first_name);
   $('#cashEmail').val(JSON.parse(sessionStorage.getItem('auth')).user.email);
   $('#cashName').val(JSON.parse(sessionStorage.getItem('auth')).user.first_name);
 }
 
-
 function addOrdersAndItemsToHistory () {
-//INTE DEN KOD SOM SKA VARA KSA SKRIVAS OM
 console.log("Här")
 userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
 
@@ -474,37 +445,12 @@ userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
     contentType: "application/json",
 
     success: function(ordernr) {
-      alert("la till order");
+      alert("la till ordadsasdadader");
       alert(ordernr);
       addItemToOrder(ordernr); 
     },
     error: function(){
       alert("la inte till order fk u");
-    } 
-  });
-
-}
-
-
-
-
-
-function addItemToOrder(ordernr){
-    //ajax
-
-  $.ajax ({
-    //headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
-    url:'/orderitem/' + userID,
-    type: 'POST',
-    datatype: 'JSON',
-    contentType: "application/json",
-
-    success: function(userID) {
-      //do something
-      alert(ordernr);
-    },
-    error: function(){
-      alert("la inte till order fk u 2");
     } 
   });
 }
