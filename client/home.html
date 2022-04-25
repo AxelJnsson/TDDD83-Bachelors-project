@@ -20,13 +20,15 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
     rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="/css/home.css">
   <link rel="stylesheet" href="/css/form.css">
   <link rel="stylesheet" href="/css/slide.css">
-
+  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/checkout.css" />
   <link rel="stylesheet" href="/css/productview.css" />
+  
 
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -488,7 +490,9 @@
               <h1 class="text-right">Orderhistorik</h1>
             </div>
               <div id="orderHistory">                  
-                  <div class="row" id="historyCol">            
+                  <div class="row" id="historyCol">
+                    <div id="productPlace"></div>
+            
                   </div>
               </div>
                </div>                     
@@ -678,7 +682,15 @@
 
   <script id="lyckad-betalning" type="text/html">
   <div class="d-flex justify-content-between align-items-center mb-3" >
-    <h4 class="text-right">Lyckad betalning</h4>
+  
+    <div class="card">
+      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+        <i class="checkmark">✓</i>
+      </div>
+        <h1>Success</h1> 
+        <p>Ditt köp är genomfört!<br/> Din order är påväg till dig, </p>
+        <a id="lyckadBet" href=""target="_blank">Hämta din adresslapp</a>
+      </div>
   </div>
 
 
@@ -783,8 +795,7 @@
   </div> -->
 
 
-  <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header border-bottom-0">
@@ -796,26 +807,21 @@
           </button>
         </div>
         <div class="modal-body" id="tableHeadModal">
-          <table class="table table-image">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Produkt</th>
-                <th scope="col">Pris</th>
-                <th scope="col">Kvantitet</th>
-              </tr>
-            </thead>
-          </table>
         </div>
         <div class="modal-body" id="bodyBasketModal"></div>
+        <div class="modal-footer">
+          <div id="basketModalPriceDiv" style="margin: auto;">
 
-        <div style="margin: auto;">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton"
-            onclick="updateItemNumber()">Stäng</button>
-          <button type="button" style="color: white;" class="btn btn-warning" data-dismiss="modal"
-            id="clearBasketButton" onclick="clearCart()">Rensa</button>
-          <button type="button" style="background-color: #0d6efd !important;" class="btn btn-primary"
-            data-dismiss="modal" id="shopFromBasketButton">Till Kassan</button>
+          </div>
+  
+          <div style="margin: auto;">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton"
+              onclick="updateItemNumber()">Stäng</button>
+            <button type="button" style="color: white;" class="btn btn-warning" data-dismiss="modal"
+              id="clearBasketButton" onclick="clearCart()">Rensa</button>
+            <button type="button" style="background-color: #0d6efd !important;" class="btn btn-primary"
+              data-dismiss="modal" id="shopFromBasketButton">Till Kassan</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1017,9 +1023,9 @@
     <div class="col-1"></div>
       <div class="col-4" id="scrollableItemsInBasket">
       </div> 
-      <div class="col-1"></div>
+      
   
-      <div class="col-4" style="position:relative-top;" id="amountArea">   
+      <!-- <div class="col-4"  id="amountArea">   
         <h1 style="text-align:center">
           Din Total
         </h1>
@@ -1033,21 +1039,80 @@
           <br>
           <br>
         </h6>
-        <h5 style="margin-left: 6%;" id="totalsumLine"></h5>
-        <div class="container rounded bg-white mt-5 mb-5">
+        <h5 style="margin-left: 6%;" id="totalsumLine"></h5-->
+                    
+               
+                    <div class="box-2">
+                      <div class="box-inner-2">
+                          <div>
+                              <p class="fw-bold">Betalningsuppgifter</p>
+                              <p class="dis mb-3">Slutför ditt köp genom att mata in dina uppgifter.</p>
+                          </div>
+                          <form action="">
+                              <div class="mb-3">
+                                  <p class="dis fw-bold mb-2">Email address:</p> <input class="form-control" id="cashEmail" type="email" value="">
+                                  <p class="dis fw-bold mb-2">Telefonnummer:</p> <input class="form-control" id="cashPhone" type="email" value="">
+
+                                </div>
+                              <div>
+                                 
+                                  <!--<form id="payment-form">
+                                    
+                                    <div id="card-element"><--Stripe.js injects the Card Element-></div>
+            
+                                    <p id="card-error" role="alert"></p>
+                                    <p class="result-message hidden">
+                                      Payment succeeded, see the result in your
+                                      <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+                                    </p>
+                                  </form>-->
+                                 
+                                  <div class="my-3 cardname">
+                                      <p class="dis fw-bold mb-2">Namn:</p> <input class="form-control" id="cashName" type="text">
+                                  </div>
+                                  <div class="address">
+                                      <p class="dis fw-bold mb-3">Adress</p> 
+                                      <div class="d-flex"> <input class="form-control zip" id="cashAdress" type="text" placeholder="Gatuadress" value=""></div>
+                                      <div class="d-flex"> <input class="form-control zip" id="cashZip" type="text" placeholder="Postnummer" value=""> <input class="form-control city" id="cashCity" type="text" value="" placeholder="Stad"> </div>
+                                     
+                                      <div class="d-flex flex-column dis">
+                                          <div class="d-flex align-items-center justify-content-between mb-2">
+                                              <p>Summa:</p>
+                                              <p id="totalsumLine"><span class="fas"></span></p>
+                                          </div>
+                                         <!-- <div class="d-flex align-items-center justify-content-between mb-2">
+                                              <p>VAT<span>(20%)</span></p>
+                                              <p><span class="fas fa-dollar-sign"></span>2.80</p>
+                                          </div>
+                                          <div class="d-flex align-items-center justify-content-between mb-2">
+                                              <p class="fw-bold">Total</p>
+                                              <p class="fw-bold"><span class="fas fa-dollar-sign"></span>35.80</p>
+                                          </div>-->
+                                          
+                                        
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+                          <p class="dis fw-bold mb-2">Kortnummer</p>
+                          <form id="payment-form">
+                            <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+                            <button id="submit">
+                              <div class="spinner hidden" id="spinner"></div>
+                              <span id="button-text">Betala</span>
+                            </button>
+                            <p id="card-error" role="alert"></p>
+                            <p class="result-message hidden">
+                              Köpet har genomförts, vänligen vänta
+                              <a href="" target="_blank"></a> 
+                            </p>
+                          </form>
+                      </div>
+            
+          
   
-          <form id="payment-form">
-            <div id="card-element"><!--Stripe.js injects the Card Element--></div>
-            <button id="submit">
-              <div class="spinner hidden" id="spinner"></div>
-              <span id="button-text">Pay now</span>
-            </button>
-            <p id="card-error" role="alert"></p>
-            <p class="result-message hidden">
-              Payment succeeded, see the result in your
-              <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
-            </p>
-          </form>
+                      
+                    
         
           </div>
       </div>
@@ -1060,6 +1125,26 @@
   
 </script>
 
+<!-- Lägger till order i betalning och kallar på stripe. Bör flytta till när en betalning går igenom.-->
+<!--<script>
+  function onBetalningClick() {
+    addOrdersAndItemsToHistory();
+    stripeTestFunction();
+    
+    
+  }
+</script>
+
+<div class="modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" data-keyboard=false data-backdrop='static'>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold; text-align: center;">Produktinformation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="xProduct">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
   <div class="modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true" data-keyboard=false data-backdrop='static'>
     <div class="modal-dialog" role="document">

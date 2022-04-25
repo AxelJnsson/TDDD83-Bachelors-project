@@ -157,7 +157,7 @@ $('#contactButton').click(function (e) {
     $("#sideBarContainer").html($("#empty").html())
     $("#productViewContainer").html($("#empty").html())    
     displayUser();  
-  
+    nextorder = null;
     displayUserAdd(); 
     e.preventDefault();
   });
@@ -451,8 +451,18 @@ function regOrAnnons() {
   } 
 }
 
-function SucPay() {
+function SucPay(u) {
+  
   $("#mainViewContainer").html($("#lyckad-betalning").html())
   alert("din betalning gick igenom");
+  addOrdersAndItemsToHistory();
   //Gör nåt som uppdaterar varukorgen och skapar en
+
+  $("#lyckadBet").attr("href", u)
+
+ 
+ 
+ 
+ 
 }
+

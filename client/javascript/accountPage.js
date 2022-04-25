@@ -12,12 +12,22 @@ class User {
 
 
 class Order {
-  constructor (id, products, amount){
+  constructor (id, products = [], amount){
     this.id = id;
     this.products = products;
     this.amount = amount;
   }
 }
+
+class Name {
+  constructor (name) {
+    this.name = name;
+  }
+}
+var orderlista = [];
+let orderHist  = new Array()
+const orderList = []
+var productlist = ["Name"]
 
 
 
@@ -75,7 +85,7 @@ function editUser3() {
 
 function displayUser() {
    var x = JSON.parse(sessionStorage.getItem('auth')).user.user_id; 
-    displayHistory();
+   orderHistoryParent();
     //displayUserAdd();
     $.ajax({
         headers: {
@@ -150,7 +160,6 @@ function displayUserAdd() {
 
 //ej fungerande än
    function deleteUserAdd(name) {
-     alert("hej");
      var namn = name;
    x= JSON.parse(sessionStorage.getItem('auth')).user.user_id;
     $.ajax({
@@ -167,38 +176,126 @@ function displayUserAdd() {
 
    }});}
 
+   function orderHistoryParent() {
+     
+    printOrderHistory()
 
+  }
 
-function displayHistory() {
+   function printOrderHistory() {
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
   
-  let order1 = new Order(1, "Gitarr", "Piano", 3000);
-  let order2 = new Order(2, "Trumma", "Saxofon", 1500);
-  let order3 = new Order(3,"Piano", "Flöjt", 10000);
-  let order4 = new Order(4, "Violin", "Bas", 3700);
+    $.ajax ({
+      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+      url:'/order/' +userID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      //async: false,
+  
+      success: function(orderhistory) {
+    
 
-  const orderlista= [order1, order2, order3, order4];
+          for(var i = 0; i < orderhistory.length; i++){
+            var orderid = orderhistory[i].id
+            var orderamount = orderhistory[i].amount
+            getOrderHistoryItems(orderid, orderamount)
 
- 
-for (let i=0; i < orderlista.length; i++) {
- var html = '<div class="col-md-6" onclick="openForm('+i+')" style="padding-top: 25px;"><img src="/images/order.png" class="media-object img-thumbnail" /></div>\
- <div class="col-md-11" style="display: none" id="order'+i+'" >\
-     <div class="row">\
-         <div class="col-md-12">\
-             <div class="pull-right"><label class="label label-danger">Delivered</label></div>\
-             <div class="col-md-12">Summa: '+orderlista[i].amount+' kr</a></div>\
-             <div class="col-md-12">Produkt 1: '+orderlista[i].product1+'</a></div>\
-             <div class="col-md-12">Produkt 2: '+orderlista[i].product2+'</a></div>\
-             <div class="col-md-12">Order nr: '+orderlista[i].id+'</a></div>\
-         </div>\
-     </div>\
- </div>';
+            
+          }
 
-       
-  //$("#historyCol").append("<div class='col-md-6'><img src='https://bootdey.com/img/Content/user_3.jpg' class='media-object img-thumbnail' /></div>  <div class='col-md-11'> <div class='row'><div class='col-md-12'><div class='pull-right'><label class='label label-danger'>rejected</label></div><span><strong>Order name</strong></span> <span class='label label-info'>group name</span><br />Quantity : 2, cost: $323.13 <br /><a data-placement='top' class='btn btn-success btn-xs glyphicon glyphicon-ok' href='#' title='View'></a> <a data-placement='top' class='btn btn-danger btn-xs glyphicon glyphicon-trash' href='#' title='Danger'></a> <a data-placement='top' class='btn btn-info btn-xs glyphicon glyphicon-usd' href='#' title='Danger'></a></div><div class='col-md-12'>order made on: 05/31/2014 by <a href='#'>Jane Doe </a></div> <br></div>");
-  $("#historyCol").append(html);
-  $("#historyCol").append("<p> <br></p>");
-}
-}
+
+
+     
+        
+      },
+      error: function(){
+        //alert("error");
+
+      } 
+    });
+
+  }
+
+
+
+  function getOrderHistoryItems(orderID, orderamount){
+
+    console.log(orderID)
+    userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
+    $.ajax ({
+      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+      url:'/orderitems/' +orderID,
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      //async: false,
+  
+      success: function(order) {
+      productlist.length = 0;
+      prodnames.length = 0;
+
+       console.log(order)
+
+        for (var i = 0; i < order.length ; i++){
+          console.log(order[i].product_id)
+          productlist.push(order[i].product_id)
+        }
+        
+        console.log(productlist.length)
+
+        getProduct(productlist, orderID, orderamount)
+
+
+        console.log(productlist)
+  
+      },
+      error: function(){
+        //alert("error");
+      } 
+    });
+   
+  } 
+
+  const prodnames = []
+  var nextorder;
+
+  function getProduct(prod_list, orderID, orderamount){
+
+    for(var i = 0; i < prod_list.length; i++){
+    $.ajax ({
+      headers : {"Authorization": "Bearer " + JSON.parse(sessionStorage.getItem('auth')).token},
+      url:'/product/' +prod_list[i],
+      type: 'GET',
+      datatype: 'JSON',
+      contentType: "application/json",
+      //async: false,
+  
+      success: function(prod) {
+  
+        if(nextorder != orderID){
+          $("#historyCol").append("<div><b>Ordernummer: "+ orderID + "<br>Totalkostnad: " + orderamount + "kr </b>")
+        }
+        $("#historyCol").append("<div> Produkter:  "+ prod.name +" ("+ prod.price +" kr) </div>")
+        nextorder = orderID
+
+      
+      },
+      error: function(){
+        //alert("error");
+      } 
+    });
+  }
+
+  }
+  
+
+  // function getOrderItems(orderID){
+
+
+  
+// const prodlist = []
+
 
 function openForm(i) {
   var order =  "order"+i;

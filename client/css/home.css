@@ -151,14 +151,6 @@ h2 {
   color: white;
 }
 
-/*h1 {
-  color: white; kommenterar bort den sålänge då visa texter ej syns 
-}
-
-
-p {
-  text-align: justify;
-}*/
 
 .team {
   display: flex;
@@ -357,14 +349,35 @@ p {
         
       }
     
-    .price {
-      margin-left: 1rem;
-    }
-    
     .modal-footer {
       padding-top: 0rem;
     }
 
 .btn-group {
   float:right;
+}
+
+#totalprice{
+
+  font-weight: bolder;
+}
+
+#pricePrint{
+
+text-align:center;
+justify-content: center;
+/* background-color: #384052; */
+width: 20%;
+
+
+}
+
+#productName{
+  /* background-color: rgb(177, 70, 70); */
+  width: 25%;
+  /* text-align:left; */
+}
+
+#searchButton {
+background-color:rgb(196, 215, 240);
 }
