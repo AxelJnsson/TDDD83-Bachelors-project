@@ -230,10 +230,28 @@ function appendProducts(filteredproducts){
 
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
     for (let i=0; i < products.length; i++) {
-        if (products[i].rating == 0) {
-            rating = "Inget betyg än"
+        if (products[i].rating < 0.5) {
+            rating = "/images/NoStars.png"
+        } else if (0.5 >= products[i].rating && products[i].rating < 1){
+            rating = "/images/HalfStars.png"
+        } else if (1 >= products[i].rating && products[i].rating < 1.5) {
+            rating = "/images/OneStars.png"
+        } else if (1.5 >= products[i].rating && products[i].rating < 2) {
+            rating = "/images/OneAndhalfStars.png"
+        } else if(2 >= products[i].rating && products[i].rating < 2.5) {
+            rating = "/images/TwoStars.png"
+        } else if(2.5 >= products[i].rating && products[i].rating < 3) {
+            rating = "/images/TwoAndHalfStars.png"
+        } else if (3 >= products[i].rating && products[i].rating < 3.5) {
+            rating = "/images/ThreeStars.png"
+        } else if (3.5 >= products[i].rating && products[i].rating < 4) {
+            rating = "/images/ThreeAndHalfStars.png"
+        } else if (4 >= products[i].rating && products[i].rating < 4.5) {
+            rating = "/images/FourStars.png"
+        } else if (4.5 >= products[i].rating && products[i].rating < 5) {
+            rating = "/images/FourAndHalfStars.png"
         } else {
-            rating = products[i].rating/products[i].nr_of_ratings
+            rating = "/images/FiveStars.png"
         }
     //funktion för att skriva ut produkterna 4 och 4
         //if (i%4 == 0) {
@@ -253,9 +271,9 @@ function appendProducts(filteredproducts){
        }
     //    console.log(products[i].quantity-productsInCart.get(products[i].product_id));
        if ((products[i].quantity-q)<1){
-        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p><p class='card-text'> <b>Betyg: </b> "+ rating +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' id='buttonDivForProductView"+products[i].product_id+"' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-tonehub' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton"+products[i].product_id+"'>Köp<span class='cart-item'></span></button></div></div></div>");
+        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p><p class='card-text'> <b>Betyg: </b> <img src='"+ rating +"' alt='Stars' style='width:150px;height:25px;'></p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' id='buttonDivForProductView"+products[i].product_id+"' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-tonehub' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton"+products[i].product_id+"'>Köp<span class='cart-item'></span></button></div></div></div>");
        }else{
-        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p><p class='card-text'> <b>Betyg: </b> "+ rating +"</p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton'>Köp<span class='cart-item'></span></button></div></div></div>");
+        $("#"+j).append("<div class='col-auto mb-3'><div class='card'><img class='card-img-top prodimg'  src='"+ products[i].image +"' alt='Card image cap' id='prodimg'><div class='card-body' style='text-align: center'><h5 class='card-title'><b>" + products[i].name + "</b><br><br></h5><p style='font-weight: bold; display:inline'>Skick: </p><p style='display:inline'>"+beg+"</p><p class='card-text'> <b>Kategori: </b> "+ products[i].type +"</p><p class='card-text'> <b>Betyg: </b> <img src='"+ rating +"' alt='Stars' style='width:150px;height:25px;'></p> <b><p style='font-weight: bold; display:inline'>Pris: </p><p style='display:inline; font-weight:normal'>" + products[i].price + "</p></b></div>" + "<div class ='row' style='margin-left: auto; margin-right: auto;'> <button class='btn btn-secondary btn-sm btnInfo' style='font-size:10px;' data-id='"+ i + "'>Visa info</button><button type='button' class='btn btn-primary' style='font-size:10px;' data-dismiss='modal' onClick='doThings(this.value, this)' value='"+products[i].product_id+"' id='addProductToCartButton'>Köp<span class='cart-item'></span></button></div></div></div>");
 
        }
  }
@@ -272,6 +290,7 @@ function appendProducts(filteredproducts){
         
         
         //Skapar betygsknapparna i modal för produkter (stjärnor)
+        
         $("#dropdown").append(
             '<fieldset class="rating">' +
     '<input type="radio" id="star5" name="rating" value="5" onclick=calculateRating('+products[prod_id].product_id+',' + 5 +','+products[prod_id].rating+','+products[prod_id].nr_of_ratings+') />' +
