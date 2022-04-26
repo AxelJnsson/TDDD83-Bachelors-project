@@ -2,6 +2,7 @@
 function createAdd() {
 
   var pris = $("#createPris").val();
+ 
   var begagnad = 1;
   var saljare = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
   var year = $("#createYear").val();
@@ -66,6 +67,12 @@ function updateChoice() {
   }
   typeClicked1 = false;
   createSelects(filterQ2);
+}
+
+function resetAddfilter() {
+  filtertypes2.length = 0;
+  filterbrands2.length = 0;
+ 
 }
 
 function updateChoice2() {
