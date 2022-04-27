@@ -483,8 +483,8 @@
                </div>                     
           </div>
           <div class="col-md-4 ">
-                <h1>Dina annonser:</h1>
-                <div class="d-flex justify-content-between align-items-center mb-3" id="userAdds">
+                <h1>Dina annonser:</h1>              
+                <div class="col-" id="userAdds">
 
                 </div>
           </div>  
@@ -691,18 +691,24 @@
           <div class="selectdiv">
             <label>
               <select id="typVal" onchange="updateChoice2()">
-                  <option selected>Kategori</option>        
+                  <option hidden disabled selected value>Kategori</option>   
+                  <option>Trummor</option>
+                  <option>Gitarr</option>                   
+                  <option>Piano</option>
+                  <option>Keyboard</option>
+                  <option>Speciella Trummor</option>
+                  <option>Studio</option>                  
               </select>
           </label>
           <label>
             <select id="brandVal" onchange="updateChoice()">
-                <option  selected>Märke</option>
+                <option  hidden disabled selected value>Märke</option>
               
             </select>
         </label>
             <label>
               <select id="modelVal">
-                  <option selected>Modell</option>
+                  <option hidden disabled selected value>Modell</option>
                 
               </select>
           </label>

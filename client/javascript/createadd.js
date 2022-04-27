@@ -114,11 +114,11 @@ function fillOptions2(products) {
     }
   }
 
-  if (!typeClicked1) {
+  /*if (!typeClicked1) {
     for (var j = 0; j < uniqueType.length; j++) {
       $("#typVal").append("<option >" + uniqueType[j] + "</options>");
     }
-  }
+  }*/
 
   for (var i = 0; i < uniqueModels.length; i++) {
     $("#modelVal").append("<option >" + uniqueModels[i] + "</options>");

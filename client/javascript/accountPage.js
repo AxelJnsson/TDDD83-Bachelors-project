@@ -90,7 +90,7 @@ function deleteUser() {
       url:'/user/' + x,
       type: 'DELETE',
       success: function(u) {
-        alert("Din användare är nu raderad!!!, FU");
+        alert("Din användare är nu raderad!");
         logoutUser();
 
        
@@ -106,8 +106,8 @@ function displayUserAdd() {
     url:'/useradd/' + x,
     type: 'GET',
     success: function(u) {
-     
-      for (let i=0; i < u.length; i++) {
+   
+      for (let i=0; i < u.length; i++) {    
         var html = '<div class="col-md-11" onclick="openAdd('+i+')"><img src="'+u[i].image+'" class="media-object img-thumbnail" /></div>\
                       <div class="col-md-11" style="display: none" id="add'+i+'" >\
                             <div class="row">\
@@ -121,8 +121,8 @@ function displayUserAdd() {
 
           $("#userAdds").append(html);
           $("#userAdds").append("<p> <br></p>");
-      }     
-    }
+   
+    }}
   });
 }
 
