@@ -2,6 +2,7 @@
 function createAdd() {
 
   var pris = $("#createPris").val();
+ 
   var begagnad = 1;
   var saljare = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
   var year = $("#createYear").val();
@@ -68,6 +69,12 @@ function updateChoice() {
   createSelects(filterQ2);
 }
 
+function resetAddfilter() {
+  filtertypes2.length = 0;
+  filterbrands2.length = 0;
+ 
+}
+
 function updateChoice2() {
   if ($("#typVal").val() == "Kategori") {
 
@@ -107,11 +114,11 @@ function fillOptions2(products) {
     }
   }
 
-  if (!typeClicked1) {
+  /*if (!typeClicked1) {
     for (var j = 0; j < uniqueType.length; j++) {
       $("#typVal").append("<option >" + uniqueType[j] + "</options>");
     }
-  }
+  }*/
 
   for (var i = 0; i < uniqueModels.length; i++) {
     $("#modelVal").append("<option >" + uniqueModels[i] + "</options>");

@@ -54,7 +54,7 @@ function adminDeleteUser(user_id) {
       url:'/user/' + user_id,
       type: 'DELETE',
       success: function(u) {
-        alert("Din användare är nu raderad!!!, FU");
+        alert("Din användare är nu raderad!!!");
         $("#mainViewContainer").html($("#view-adminPage").html())
         Display_admin();
       }

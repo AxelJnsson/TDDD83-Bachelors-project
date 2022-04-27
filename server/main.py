@@ -347,12 +347,7 @@ def create_payment():
     except Exception as e:
         return jsonify(error=str(e)), 403
 
-@app.route('/order/success', methods=['GET'])
-def order_success():
-  session = stripe.checkout.Session.retrieve(request.args.get('session_id'))
-  customer = stripe.Customer.retrieve(session.customer)
 
-  return render_template_string('<html><body><h1>Thanks for your order, {{customer.name}}!</h1></body></html>')
 
 
 
