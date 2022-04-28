@@ -169,6 +169,7 @@ function loadSearchResults(searchList) {
   $("#productViewContainer").html($("#view-product").html())
   $("#mainViewContainer").html($("#empty").html())
   //console.log(searchList.length)
+  resetFilter();
   filtering(searchList, filtervar);
   //appendProducts(searchList);
 }
