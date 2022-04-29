@@ -131,22 +131,30 @@ function filtering(returnedProducts, filterQueries){
 
 //get click-id for sorting function
 function getClickID() {
-  
+   
 sortingProduct(newlyfilteredproducts,event.target.id)
-document.getElementById('stigande').onclick = changeColor();  
 
-function changeColor() {
-    document.body.style.color = "purple";
-    return false;
-}  
+
+//document.getElementById("stigande").innerHTML ="hej";
+
+
 
 
 console.log(event.target.id)
 }
 
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.innerHTML === "Hello") {
+      x.innerHTML = "Swapped text!";
+    } else {
+      x.innerHTML = "Hello";
+    }
+  }
 
 //sorting
 function sortingProduct(filteredproducts, key){
+    
     if (key !== "null") {
 
         if (keyBoos.hasOwnProperty(key)){ 
@@ -181,6 +189,7 @@ function sortingProduct(filteredproducts, key){
     appendProducts(sortedproducts);
     }
     appendProducts(filteredproducts);
+  
 }
 
 //function for appending products in productview
