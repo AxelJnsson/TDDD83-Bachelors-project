@@ -409,7 +409,7 @@ function regOrAnnons() {
 function SucPay(u) {
   
   $("#mainViewContainer").html($("#lyckad-betalning").html())
-  alert("din betalning gick igenom");
+  //alert("din betalning gick igenom");
   addOrdersAndItemsToHistory();
   clearCart2();
   updateItemNumber();

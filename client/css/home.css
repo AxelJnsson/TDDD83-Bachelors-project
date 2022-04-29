@@ -180,16 +180,16 @@ div.sticky {
 
 .orderPage1 {
   text-align: center;
-  font-family: Georgia, serif;
+  /*font-family: Georgia, serif;*/
   font-weight: bold;
-  font-size: 80px;
+  font-size: 60px;
 }
 
 .orderPage2 {
   text-align: center;
-  font-family: Georgia, serif;
+ /* font-family: Georgia, serif;*/
   font-weight: 300;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .orderPage3 {
@@ -361,15 +361,15 @@ h2 {
 }
 
 .outline {
-  color: rgb(196, 215, 240);
-  font-family: Phosphate;
+  /*color: rgb(196, 215, 240);
+  font-family: Phosphate;*/
   font-weight: bold;
   font-size: xx-large;
-  text-shadow:
+ /* text-shadow:
     -1px -1px 0 rgb(50, 52, 56),
     1px -1px 0 rgb(50, 52, 56),
     -1px 1px 0 rgb(50, 52, 56),
-    1px 1px 0 rgb(50, 52, 56);
+    1px 1px 0 rgb(50, 52, 56);*/
 }
 
 #emptyBasketRegister {
@@ -431,4 +431,5 @@ td, th {
 
 #searchButton {
   background-color: rgb(196, 215, 240);
+  color: white !important;
 }

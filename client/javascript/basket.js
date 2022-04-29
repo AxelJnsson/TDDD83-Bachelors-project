@@ -471,8 +471,8 @@ userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
     contentType: "application/json",
 
     success: function(ordernr) {
-      alert("la till ordadsasdadader");
-      alert(ordernr);
+      //alert("la till ordadsasdadader");
+      //alert(ordernr);
       addItemToOrder(ordernr); 
     },
     error: function(){
