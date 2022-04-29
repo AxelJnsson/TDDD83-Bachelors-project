@@ -144,12 +144,12 @@ function addProductToCart(productToAdd){
              
             },
             error: function(u){
-                alert("uppdaterade inte priset. ägd.");
+               
             }    
         });
       },
       error: function(u){
-          alert("funkarej");
+          
       }  
   });
   } else if (!JSON.parse(sessionStorage.getItem('loggedIn'))){
@@ -296,7 +296,7 @@ function deleteProductFromCart(productID){
         getProductsToPrintInBasket();
       },
       error: function(u){
-        alert("tog inte bort fk u");
+        
       } 
     });
   } else{
@@ -418,11 +418,11 @@ function deleteProductFromRegister(productID){
       contentType: "application/json",
 
       success: function(product) {
-        // alert("tog bort")
+       
         printBasketedProducts(JSON.parse(sessionStorage.getItem('auth')).user.user_id)
       },
       error: function(u){
-        alert("tog inte bort fk u");
+        
       } 
     });
   }else{
@@ -471,12 +471,11 @@ userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id
     contentType: "application/json",
 
     success: function(ordernr) {
-      alert("la till ordadsasdadader");
-      alert(ordernr);
+     
       addItemToOrder(ordernr); 
     },
     error: function(){
-      alert("la inte till order fk u");
+      
     } 
   });
 }

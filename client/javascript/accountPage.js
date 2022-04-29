@@ -114,6 +114,7 @@ function displayUserAdd() {
                               <div class="col-md-12">Namn: '+u[i].name+'</a></div>\
                               <div class="col-md-12">Kategori: '+u[i].type+'</a></div>\
                               <div class="col-md-12">Märke: '+u[i].brand+'</a></div>\
+                              <div class="col-md-12">Pris: '+u[i].price+'</a></div>\
                               <button type="button" class="btn btn-danger" id="deleteaddButton" onclick="deleteUserAdd(\'' + u[i].name + '\')">Radera</button>\
                             </div>\
                        </div>\
@@ -141,6 +142,13 @@ function deleteUserAdd(name) {
       "namn":namn}),
     success: function(u) {
       alert("raderat annons");
+      $("#mainViewContainer").html($("#view-user").html())
+      $("#sideBarContainer").html($("#empty").html())
+      $("#productViewContainer").html($("#empty").html())    
+      displayUser();  
+      nextorder = null;
+      displayUserAdd(); 
+      e.preventDefault();
     }
   });
 }
@@ -162,7 +170,7 @@ function printOrderHistory() {
       }
     },
     error: function(){
-      //alert("error");
+     
 
     } 
   });
@@ -190,7 +198,7 @@ function getOrderHistoryItems(orderID, orderamount){
         console.log(productlist)
     },
     error: function(){
-      //alert("error");
+     
     } 
   });
 } 
@@ -216,7 +224,7 @@ function getProduct(prod_list, orderID, orderamount){
         nextorder = orderID
       },
       error: function(){
-        alert("error");
+        
       } 
     });
   }

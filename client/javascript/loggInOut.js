@@ -60,6 +60,7 @@ $('#registerButton').click(function (e) {
   $(".container").html($("#view-signup").html())
 });
 
+
 $('#registerFinishButton').click(function (e) {
   var email = $("#inputEmailRegisterForm").val();
   var first_name = $("#inputFirstname").val();
@@ -74,7 +75,7 @@ $('#registerFinishButton').click(function (e) {
       "first_name": first_name, "last_name": lastName, "email": email, "password": password
     }),
     success: function (i) {
-      alert("Din användare är skapad!");
+  
       $("#sideBarContainer").html($("#empty").html())
       $("#productViewContainer").html($("#empty").html())
       $("#mainViewContainer").html($("#view-home").html())

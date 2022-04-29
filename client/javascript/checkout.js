@@ -28,7 +28,7 @@ function stripePay(sum) {
           fontSmoothing: "antialiased",
           fontSize: "16px",
           "::placeholder": {
-            color: "#32325d"
+            color: "#000000"  
           }
         },
         invalid: {
@@ -78,8 +78,9 @@ function stripePay(sum) {
           // The payment succeeded!
           orderComplete(result.paymentIntent.id);
           //addOrdersAndItemsToHistory();
-          //SucPay();
           createShipping();
+          SucPay();
+        
         }
       });
   };
@@ -143,7 +144,8 @@ function createShipping() {
       "name": namn, "address": adress, "zip": postnr, "city": stad, "email": email, "phone": phone
     }),
     success: function (u) {
-      SucPay(u);
+      $("#lyckadBet").attr("href", u)
+
     }
   });
 }

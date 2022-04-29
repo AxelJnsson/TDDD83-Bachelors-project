@@ -25,7 +25,13 @@ function createAdd() {
       "brand": brand, "model": model, "image": image, "name": text, "type": type, "price": pris, "color": color, "year": year, "new_or_not": begagnad, "seller": saljare
     }),
     success: function (user) {
-      alert("produkt tillagd!");
+      $("#mainViewContainer").html($("#view-user").html())
+    $("#sideBarContainer").html($("#empty").html())
+    $("#productViewContainer").html($("#empty").html())    
+    displayUser();  
+    nextorder = null;
+    displayUserAdd(); 
+    e.preventDefault();
 
     }
   })

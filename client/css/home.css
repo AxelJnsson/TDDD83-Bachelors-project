@@ -230,6 +230,7 @@ h2 {
   text-align: center;
 }
 
+
 #homeh2 {
   margin: 25px;
   width: 50px;
@@ -317,6 +318,7 @@ h2 {
 
 .text-justright {
   color: rgb(50, 52, 56);
+  font-weight: bold;
 }
 
 .form-check-input {

@@ -41,6 +41,12 @@ a:active {
   border-radius: 4px;
 }
 
+#registerFinishButton-button:disabled {
+  background: #999;
+  color: #555;
+  cursor: not-allowed;
+}
+
 #toPaymentButton {
   margin-right: 30%;
   margin-top: 40%;
