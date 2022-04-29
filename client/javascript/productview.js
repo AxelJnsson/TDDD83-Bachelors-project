@@ -457,19 +457,11 @@ function sideBar(products){
   });
 }
 
-$('#closeProductModal').on("click" ,function (e) {
-    $(".product-modal-body").empty();
-    $("#productModal").modal('hide');
-    $('#productModal').data('bs.modal',null);  
-    e.preventDefault();
-});
-
-$('#xProduct').on("click" ,function (e) {
+function closeProdModal(){
     $(".product-modal-body").empty();
     $("#productModal").modal('hide'); 
     $('#productModal').data('bs.modal',null);  
-    e.preventDefault();
-});
+}
 
 
 //To display "added" when a product is added to the cart
