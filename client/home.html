@@ -138,16 +138,16 @@
             aria-haspopup="true" aria-expanded="false">Slagverk</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#" onclick="drumView()" id="drumCButton">Klassiska</a>
-            <a class="dropdown-item" href="#" onclick="otherDrumView()" id="drumOButton">Spaciella Trummor</a>
+            <a class="dropdown-item" href="#" onclick="otherDrumView()" id="drumOButton">Övriga Trummor</a>
             <a class="dropdown-item" href="#" onclick="allDrumsView()" id="allDrumsButton">Alla slagverk</a>
           </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" onclick="studioView()" id="pianoButton">Studioutrustning</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="blasButton">Blåsinstrument</a>
-        </li>
+        <!--li class="nav-item">
+          <a class="nav-link" href="#" id="alphornButton">Blåsinstrument</a>
+        </li>-->  
       </ul>
     </div>
   </nav>
@@ -252,12 +252,12 @@
               style="text-align: center; padding: 20px;"></i>Kategori</span>
         </a>
         <div>
-          <div class="form-check form-switch">
+          <div class="form-check form-switch" style=" font-weight: bold;">
             <input class="form-check-input" type="checkbox" id="newProd" checked
               onclick="checkNeworOldStuff('newProd', 1)">
             <label class="form-check-label" for="flexSwitchCheckChecked">Nya Produkter</label>
           </div>
-          <div class="form-check form-switch">
+          <div class="form-check form-switch" style=" font-weight: bold;">
             <input class="form-check-input" type="checkbox" id="secondHandProd" checked
               onclick="checkNeworOldStuff('secondHandProd', 0)">
             <label class="form-check-label" for="flexSwitchCheckChecked">Begagnade</label>
@@ -363,6 +363,21 @@
             </li>
           </ul>
         </div>
+        <div class="collapse navbar-collapse row" id="navbarNav2">
+         
+        <ul class="sort-nav col" style="word-spacing: 20px;">
+         
+        <li class="nav-item">
+          <a class="sort-by" href="#" id="fallande">Fallande</a>
+        </li>
+     
+      
+        <li class="nav-item">
+          <a class="sort-by" href="#" id="stigande">Stigande</a>
+        </li>
+     
+      </ul>
+</div>
       </nav>
     </div>
   </script>
@@ -461,10 +476,7 @@
                     <h3 class="text-right">Kontaktuppgifter:</h3>
                   </div>
                   <div id="profContact" style="padding-bottom:0px"></div>
-                  <div class="d-flex justify-content-between align-items-center mb-3" id="profSekretess">
-                    <h3 class="text-right">Sekretess</h3>
-                  </div>
-                  <div id="profSek" style="padding-bottom:00px"></div>                 
+                                 
                 </div>                
              </div>
             </div>
@@ -834,14 +846,17 @@
             <input class="form-control" id="inputLastname">
           </div>
           <div class="form-group">
-            <label for="inputPassword">Passwords</label>
+            <label for="inputPassword">Lösenord</label>
             <input type="password" class="form-control" id="inputPasswordRegisterForm">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Skriv in ditt lösenord igen</label>
+            <input type="password" class="form-control" id="inputPasswordRegisterForm2">
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeRegisterButton" onclick="closeRegisterModal()">Stäng</button>
-          <button type="button" class="btn btn-tonehub" data-dismiss="modal" id="registerFinishButton">Registrera
-            dig</button>
+          <button type="button" class="btn btn-tonehub" data-dismiss="modal" id="registerFinishButton">Registrera dig</button>
         </div>
       </div>
     </div>
@@ -993,14 +1008,14 @@
                                      
                                       <div class="d-flex flex-column dis">
                                           <div class="d-flex align-items-center justify-content-between mb-2">
-                                              <p>Summa:</p>
-                                              <p id="totalsumLine"><span class="fas"></span></p>
+                                              <h3>Summa:</h3>
+                                              <h3 id="totalsumLine"><span class="fas"></span></h3>
                                           </div>                                                                        
                                       </div>
                                   </div>
                               </div>
                           </form>
-                          <p class="dis fw-bold mb-2">Kortnummer</p>
+                          <p class="dis fw-bold mb-2">Skriv dina kortuppgifter nedan</p>
                           <form id="payment-form">
                             <div id="card-element"><!--Stripe.js injects the Card Element--></div>
                             <button id="submit">

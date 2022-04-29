@@ -11,7 +11,7 @@ function createProducts2() {
             appendStartProducts(allinstruments);
         },
         error: function () {
-            alert("fel");
+          
         }
     });
 }
@@ -25,7 +25,7 @@ function createProducts3(id) {
             toggleProductModal(allinstruments[id]);
         },
         error: function () {
-            alert("fel");
+      
         }
     });
 }

@@ -21,7 +21,7 @@ function createProducts(filteringByArray,sortingKey){
          filtering(allinstruments,filteringByArray);
         },
         error: function(){
-            alert("fel");
+           
         }    
     });
 }
@@ -131,7 +131,14 @@ function filtering(returnedProducts, filterQueries){
 
 //get click-id for sorting function
 function getClickID() {
+  
 sortingProduct(newlyfilteredproducts,event.target.id)
+document.getElementById('stigande').onclick = changeColor();  
+
+function changeColor() {
+    document.body.style.color = "purple";
+    return false;
+}  
 
 
 console.log(event.target.id)

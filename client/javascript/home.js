@@ -67,15 +67,7 @@ $('#aboutButton').click(function (e) {
     e.preventDefault();
   });
 
-//används bara tillfälligt
-  $('#stripeButton').click(function (e) {      
-    $("#mainViewContainer").html($("#view-stripe").html())  
-    $("#sideBarContainer").html($("#empty").html())
-    $("#productViewContainer").html($("#empty").html()) 
 
-    
-    e.preventDefault();
-  });
 
 
 
@@ -340,6 +332,15 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   });
 
+  // $('#resetFilterBtn').click(function (e) {  
+
+  //   resetFilter();
+  //   $("#sideBarContainer").html($("#view-sidebar").html())  
+  //   $("#productViewContainer").html($("#view-product").html())
+  //   $("#mainViewContainer").html($("#empty").html())
+  //   showProdInfo(filterQ);
+  //  });
+
   function btnResetFilter(){
     resetFilter();
     $("#sideBarContainer").html($("#view-sidebar").html())  
@@ -391,7 +392,9 @@ function checkNeworOldStuff(checkid, query){
     }
    
     
-  }  
+  }
+  
+  
   $("#productViewContainer").html($("#empty").html())
   $("#productViewContainer").html($("#view-product").html())
   showProdInfo(filterQ);
@@ -409,13 +412,11 @@ function regOrAnnons() {
 function SucPay(u) {
   
   $("#mainViewContainer").html($("#lyckad-betalning").html())
-  //alert("din betalning gick igenom");
   addOrdersAndItemsToHistory();
   clearCart2();
   updateItemNumber();
   //Gör nåt som uppdaterar varukorgen och skapar en
-  $("#lyckadBet").attr("href", u)
-
+  
  
  
  

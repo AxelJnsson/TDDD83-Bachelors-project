@@ -18,7 +18,7 @@ function getSearchProducts() {
       search(u);
     },
     error: function () {
-      alert("error");
+     
     }
   });
 }
