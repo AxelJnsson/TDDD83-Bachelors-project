@@ -60,7 +60,7 @@ $('#xButtonBasket').click(function (e) {
 
 //Hämtar produkter i varukorgen för att veta vilka som ska tas bort
 function clearCart() {
-  updateItemNumber()
+  updateItemNumber();
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
     $.ajax ({
       headers: {

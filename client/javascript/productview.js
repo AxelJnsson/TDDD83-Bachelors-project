@@ -475,12 +475,17 @@ function closeProdModal(){
 
 //To display "added" when a product is added to the cart
 function addProductDirectlyToCart(value, btn){
+    
+    
     addProductToCart(value);
     btn.textContent ='Tillagd';
     setTimeout(function() { setBack(btn); }, 3000);
+    $('#menu1').toggle();
+   
     
 }
-  
+$('body').removeClass('open');
+
 //Changing the number next to the cart as a product is added to it
 function doThings3(a) {
     var newCartTotal = parseInt(a);

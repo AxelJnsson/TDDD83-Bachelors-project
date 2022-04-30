@@ -91,15 +91,15 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" id="adminButton">Admin</a>
-        <li class="nav-item">
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="#" onclick="logoutUser()" id="logoutButton">Logga ut</a>
         </li>
         <div class="dropdown">
-        <i class="fa" id='basketButton'
+        <i class="fa dropdown-toggle" id='basketButton'
           style="font-size:30px; margin-left: 10px; margin-top: auto; margin-bottom: auto; cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&#xf07a;</i>
-        
-          <div class="dropdown-menu dropdown-menu-right" id="dropdownBasket">
+        <u1 class ="dropdown-menu dropdown-menu-right" id="menu1">
+          <!--<div class="dropdown-menu dropdown-menu-right" id="dropdownBasket">-->
             <div class="modal-header border-bottom-0" >
               <h5 class="modal-title" id="exampleModalLabel">
                 Din varukorg
@@ -120,16 +120,21 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBasketButton"
                   onclick="updateItemNumber()">Stäng</button>
                 <button type="button" style="color: white;" class="btn btn-warning" data-dismiss="modal"
-                  id="clearBasketButton" onclick="clearCart()">Rensa</button>
+                  id="clearBasketButton" onclick="clearCart(); updateItemNumber()">Rensa</button>
                 <button type="button" style="background-color: #0d6efd !important;" class="btn btn-primary"
                   data-dismiss="modal" id="shopFromBasketButton">Till Kassan</button>
               </div>
-            </div>
-
-        </div>
-        </div>
+            </ul>
+          </div>
+        <!--</div>-->
+    
+    </div>  
+        
+        
            <div id="basketArea"></div>
       </ul>
+    </div>
+    
   </nav>
 
   <!--Nedre navbar-->
