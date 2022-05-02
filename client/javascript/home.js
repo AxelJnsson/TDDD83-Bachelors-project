@@ -332,14 +332,6 @@ $('#contactButton').click(function (e) {
     e.preventDefault();
   });
 
-  // $('#resetFilterBtn').click(function (e) {  
-
-  //   resetFilter();
-  //   $("#sideBarContainer").html($("#view-sidebar").html())  
-  //   $("#productViewContainer").html($("#view-product").html())
-  //   $("#mainViewContainer").html($("#empty").html())
-  //   showProdInfo(filterQ);
-  //  });
 
   function btnResetFilter(){
     resetFilter();
