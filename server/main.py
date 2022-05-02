@@ -385,7 +385,7 @@ def signup():
 
   if request.method == 'POST':
     new_user = request.get_json()  
-    print(new_user["first_name"])  
+    
     x = User(first_name = new_user["first_name"], last_name = new_user["last_name"], email = new_user["email"])
     x.set_password(new_user["password"])
     db.session.add(x)
@@ -436,7 +436,7 @@ def useradd(user_id):
     elif request.method == 'DELETE':
       add = request.get_json()
       products = Product.query.filter_by(seller = user_id)
-      #print(add.namn)
+     
       for x in products:
         if x.name == add["namn"]:
          db.session.delete(x)
@@ -505,9 +505,9 @@ def newproducts():
 @app.route('/createorderhistory/<int:user_id>', methods =['POST'])
 def createorderhistory(user_id):
   if request.method == 'POST':
-    print("tries to create")
+  
     x = Order_history( user_id= user_id)
-    print(x)
+   
     db.session.add(x)
     db.session.commit()
     return 20
@@ -517,31 +517,22 @@ def createorderhistory(user_id):
 @app.route('/order/<int:user_id>', methods = ['POST', 'GET'])
 def createorders(user_id):
   if request.method == 'POST':
-    print(user_id)
+   
     orderhist = Order_history.query.filter_by(user_id=user_id).first()
-    print("kommer vi hit")
-    #print(orderhist)
+   
+   
     x = Orders(order_history_id = orderhist.id)
-    print("orderhist.id=")
-    print(orderhist.id)
+    
     db.session.add(x)
     db.session.commit()
 
     orders = Orders.query.filter_by(order_history_id = orderhist.id).all()
-    print(len(orders))
+ 
     order = orders[len(orders)-1]
-    print("Order: ")
-    print(order.order_nr)
-    #return order.order_nr
-    # order_id = Orders.query.get_or_404(order.order_nr)
-    # print("order id:")
-    # print(order_id)
-
-    print("vad är detta?")
+    
+ 
     user_session = Shopping_Session.query.filter_by(user_id = user_id).first()
-    print(user_session.id)
     order_items = Cart_Item.query.filter_by(session_id = user_session.id).all() #lades till
-    print(len(order_items))
     
     for x in order_items:
       item = Order_item(product_id = x.product_id)
@@ -557,7 +548,6 @@ def createorders(user_id):
     for x in prod_hist_id:
       prod_item = Product.query.filter_by(product_id = x.product_id).first()
       sum += prod_item.price * x.quantity
-      print(sum)
     order.amount = sum
     db.session.commit()
     return jsonify(order.order_nr) #skicka tbx ordr_id
@@ -579,7 +569,7 @@ def createorders(user_id):
     # p = Product.query.filter_by(product_id = something)
     # order_list =[]
 
-    #print(bought_products)
+  
 
     # for x in order:
     #   order_list.append(x.serialize())
@@ -590,14 +580,13 @@ def createorders(user_id):
 @app.route('/orderitems/<int:order_no>', methods =['GET'])
 def getorderitems(order_no): #user_id innan
   if request.method == 'GET':
-    print(order_no)
+    
     orders = Order_item.query.filter_by(order_nr = order_no)
-    #print(orders)
     product_list =[]
 
     for x in orders:
       product_list.append(x.serialize())
-    #print(product_list)
+  
     return jsonify(product_list)
   else:
     return "401"
@@ -690,7 +679,7 @@ def productadd(product_id):
         cart_item = Cart_Item(product_id = product.product_id, session_id = z.id) #skapar en ny cart_item
         db.session.add(cart_item)
         db.session.commit()
-        print("bla")  
+        
 
       items = Cart_Item.query.filter_by(session_id = z.id).all()
       sum = 0
@@ -758,8 +747,7 @@ def clearCart():
     
     temp_Item = Cart_Item.query.filter_by(session_id = z.id)
     for item in temp_Item:
-      print("kvant"+str(item.quantity))
-      print("id"+str(item.product_id))
+    
       product = Product.query.filter_by(product_id = item.product_id).first_or_404()
       x = product.quantity
       x = x + item.quantity
