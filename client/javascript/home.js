@@ -416,10 +416,5 @@ function SucPay(u) {
   clearCart2();
   updateItemNumber();
   //Gör nåt som uppdaterar varukorgen och skapar en
-  
- 
- 
- 
- 
+   
 }
-
