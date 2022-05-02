@@ -15,6 +15,7 @@ $('#basketModal').on('hide.bs.modal', function (e) {
 
 //Hämtar och räknar ut antal produkter i varukorgen
 function updateItemNumber(){
+  
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
     userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
     $.ajax ({

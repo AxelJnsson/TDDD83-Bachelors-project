@@ -414,7 +414,7 @@ function SucPay(u) {
   $("#mainViewContainer").html($("#lyckad-betalning").html())
   addOrdersAndItemsToHistory();
   clearCart2();
-  updateItemNumber();
+  setTimeout(function() {updateItemNumber();}, 2000);
   //Gör nåt som uppdaterar varukorgen och skapar en
   
  

@@ -143,14 +143,7 @@ sortingProduct(newlyfilteredproducts,event.target.id)
 console.log(event.target.id)
 }
 
-function myFunction() {
-    var x = document.getElementById("myDIV");
-    if (x.innerHTML === "Hello") {
-      x.innerHTML = "Swapped text!";
-    } else {
-      x.innerHTML = "Hello";
-    }
-  }
+
 
 //sorting
 function sortingProduct(filteredproducts, key){
@@ -479,12 +472,14 @@ function addProductDirectlyToCart(value, btn){
     
     addProductToCart(value);
     btn.textContent ='Tillagd';
-    setTimeout(function() { setBack(btn); }, 3000);
-    $('#menu1').toggle();
+    setTimeout(function() { setBack(btn); }, 3000);    
+    open = true;
+    $('#menu1').show();
+    //setTimeout(function() {$('#menu1').hide();}, 2000);
    
     
 }
-$('body').removeClass('open');
+
 
 //Changing the number next to the cart as a product is added to it
 function doThings3(a) {
