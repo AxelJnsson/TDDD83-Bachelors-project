@@ -358,6 +358,14 @@ $('#homeButton').click(function (e) {
   createProducts2();
     e.preventDefault();
 });
+$('#homeButton1').click(function (e) {
+  $("#mainViewContainer").html($("#view-homeSlide").html()) 
+  $("#sideBarContainer").html($("#empty").html())
+  $("#productViewContainer").html($("#empty").html())
+  showSlides();
+  createProducts2();
+    e.preventDefault();
+});
 
 function showView(view){
   $("#mainViewContainer").html($(view).html())

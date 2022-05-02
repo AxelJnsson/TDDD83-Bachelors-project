@@ -132,6 +132,7 @@ function filtering(returnedProducts, filterQueries){
 //get click-id for sorting function
 function getClickID() {
    
+
 sortingProduct(newlyfilteredproducts,event.target.id)
 
 
