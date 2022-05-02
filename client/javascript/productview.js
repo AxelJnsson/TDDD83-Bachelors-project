@@ -149,16 +149,16 @@ sortingProduct(newlyfilteredproducts,event.target.id)
 //sorting
 function sortingProduct(filteredproducts, key) {
     if (key !== "null") {
-
         if (keyBoos.hasOwnProperty(key)) {
             if (keyBoos["key"] == 0) {
-                keyBoos["key"] = 1
-                console.log(keyBoos["key"])
+                keyBoos["key"] = 1;
+                console.log(keyBoos["key"]);
+                //$("#navbarNav3").append('<ul class="sort-nav col"><li class="nav-item"><img src="/images/arrow.jpg" style="transform: rotate(90deg); height: 20px; width: 20px;"></li></ul>');
             } else {
-                keyBoos["key"] = 0
-                console.log(keyBoos["key"])
+                keyBoos["key"] = 0;
+                console.log(keyBoos["key"]);
+                //$("#navbarNav3").append('<ul class="sort-nav col"><li class="nav-item"><img src="/images/arrow.jpg" style="transform: rotate(90deg); height: 20px; width: 20px;"></li></ul>');            
             };
-
         };
 
         const objectkeysarray = Object.keys(filteredproducts[0])
@@ -167,8 +167,8 @@ function sortingProduct(filteredproducts, key) {
             if (keyBoos["key"] == 1) {
                 let z;
                 z = x;
-                x = y
-                y = z
+                x = y;
+                y = z;
             }
             if (key == "price") {
                 return x[key] - y[key];
