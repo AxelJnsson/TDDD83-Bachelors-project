@@ -466,15 +466,6 @@ function closeProdModal() {
 
 
 //To display "added" when a product is added to the cart
-<<<<<<< HEAD
-function addProductDirectlyToCart(value, btn) {
-    addProductToCart(value);
-    btn.textContent = 'Tillagd';
-    setTimeout(function () { setBack(btn); }, 3000);
-
-}
-
-=======
 function addProductDirectlyToCart(value, btn){
     
     
@@ -489,7 +480,6 @@ function addProductDirectlyToCart(value, btn){
 }
 
 
->>>>>>> 5ff388cf38ff58ea615dd0d5e77154cede414344
 //Changing the number next to the cart as a product is added to it
 function doThings3(a) {
     var newCartTotal = parseInt(a);
