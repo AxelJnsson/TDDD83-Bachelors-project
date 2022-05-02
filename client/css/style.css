@@ -15,6 +15,21 @@
   margin: 0 auto;
 }
 
+#navbarNav3>ul>li {
+  font-size: large;
+  /*font-family: 'Oriya MN';*/
+  /*font-weight: bolder;*/
+  color: rgb(36, 33, 33);
+  display: inline-block;
+}
+
+#navbarNav3>ul {
+  width: auto;
+  float: none;
+  display: inline-block;
+  margin: 0 auto;
+}
+
 a:link {
   text-decoration: none;
 }

@@ -408,10 +408,5 @@ function SucPay(u) {
   clearCart2();
   setTimeout(function() {updateItemNumber();}, 2000);
   //Gör nåt som uppdaterar varukorgen och skapar en
-  
- 
- 
- 
- 
+   
 }
-

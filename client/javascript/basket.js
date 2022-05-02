@@ -114,6 +114,7 @@ function clearCart2() {
       contentType: "application/json",
       success: function(result) {
         showPriceInModal(0);      
+        updateItemNumber();
         
               }
     });
@@ -123,6 +124,7 @@ function clearCart2() {
     sessionStorage.setItem('productsInCart', JSON.stringify(Array.from(productsInCart)));
     getProductsToPrintInBasket();
     showPriceInModal(0);
+    updateItemNumber();
        
   }
 }
