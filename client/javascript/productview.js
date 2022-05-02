@@ -132,18 +132,18 @@ function filtering(returnedProducts, filterQueries) {
 
 //get click-id for sorting function
 function getClickID() {
+   
+sortingProduct(newlyfilteredproducts,event.target.id)
 
-    sortingProduct(newlyfilteredproducts, event.target.id)
-    document.getElementById('stigande').onclick = changeColor();
 
-    function changeColor() {
-        document.body.style.color = "purple";
-        return false;
-    }
+//document.getElementById("stigande").innerHTML ="hej";
+
+
 
 
     console.log(event.target.id)
 }
+
 
 
 //sorting
@@ -181,6 +181,7 @@ function sortingProduct(filteredproducts, key) {
         appendProducts(sortedproducts);
     }
     appendProducts(filteredproducts);
+  
 }
 
 //function for appending products in productview
@@ -465,6 +466,7 @@ function closeProdModal() {
 
 
 //To display "added" when a product is added to the cart
+<<<<<<< HEAD
 function addProductDirectlyToCart(value, btn) {
     addProductToCart(value);
     btn.textContent = 'Tillagd';
@@ -472,6 +474,22 @@ function addProductDirectlyToCart(value, btn) {
 
 }
 
+=======
+function addProductDirectlyToCart(value, btn){
+    
+    
+    addProductToCart(value);
+    btn.textContent ='Tillagd';
+    setTimeout(function() { setBack(btn); }, 3000);    
+    open = true;
+    $('#menu1').show();
+    //setTimeout(function() {$('#menu1').hide();}, 2000);
+   
+    
+}
+
+
+>>>>>>> 5ff388cf38ff58ea615dd0d5e77154cede414344
 //Changing the number next to the cart as a product is added to it
 function doThings3(a) {
     var newCartTotal = parseInt(a);
