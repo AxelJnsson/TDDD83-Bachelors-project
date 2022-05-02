@@ -131,22 +131,23 @@ function filtering(returnedProducts, filterQueries){
 
 //get click-id for sorting function
 function getClickID() {
-  
+   
 sortingProduct(newlyfilteredproducts,event.target.id)
-document.getElementById('stigande').onclick = changeColor();  
 
-function changeColor() {
-    document.body.style.color = "purple";
-    return false;
-}  
+
+//document.getElementById("stigande").innerHTML ="hej";
+
+
 
 
 console.log(event.target.id)
 }
 
 
+
 //sorting
 function sortingProduct(filteredproducts, key){
+    
     if (key !== "null") {
 
         if (keyBoos.hasOwnProperty(key)){ 
@@ -181,6 +182,7 @@ function sortingProduct(filteredproducts, key){
     appendProducts(sortedproducts);
     }
     appendProducts(filteredproducts);
+  
 }
 
 //function for appending products in productview
@@ -466,12 +468,19 @@ function closeProdModal(){
 
 //To display "added" when a product is added to the cart
 function addProductDirectlyToCart(value, btn){
+    
+    
     addProductToCart(value);
     btn.textContent ='Tillagd';
-    setTimeout(function() { setBack(btn); }, 3000);
+    setTimeout(function() { setBack(btn); }, 3000);    
+    open = true;
+    $('#menu1').show();
+    //setTimeout(function() {$('#menu1').hide();}, 2000);
+   
     
 }
-  
+
+
 //Changing the number next to the cart as a product is added to it
 function doThings3(a) {
     var newCartTotal = parseInt(a);

@@ -15,6 +15,7 @@ $('#basketModal').on('hide.bs.modal', function (e) {
 
 //Hämtar och räknar ut antal produkter i varukorgen
 function updateItemNumber(){
+  
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
     userID = JSON.parse(sessionStorage.getItem('auth')).user.user_id;
     $.ajax ({
@@ -60,6 +61,7 @@ $('#xButtonBasket').click(function (e) {
 
 //Hämtar produkter i varukorgen för att veta vilka som ska tas bort
 function clearCart() {
+  updateItemNumber();
   if (JSON.parse(sessionStorage.getItem('loggedIn'))){
     $.ajax ({
       headers: {
@@ -79,7 +81,7 @@ function clearCart() {
         filternewornot.push(0, 1); 
         showProdInfo(filterQ);
         createCategoriesForSidebar();
-        updateItemNumber();      }
+      }
     });
   } else {
     var productsInCart = new Map(JSON.parse(sessionStorage.getItem('productsInCart')));
@@ -97,6 +99,7 @@ function clearCart() {
     showProdInfo(filterQ);
     createCategoriesForSidebar();
     updateItemNumber();
+   
   }
 }
 

@@ -185,6 +185,21 @@ div.sticky {
   font-size: 60px;
 }
 
+.dropdown-menu {
+  position: sticky top;
+position: absolute;
+transform: scale(0.65, 0.65);
+margin-top: -280%;
+margin-right: -300%;
+min-width: 400px;
+min-height: 700px;
+ 
+
+
+}
+
+
+
 .orderPage2 {
   text-align: center;
  /* font-family: Georgia, serif;*/
